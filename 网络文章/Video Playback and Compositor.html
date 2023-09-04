@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<!-- saved from url=(0083)https://www.chromium.org/developers/design-documents/video-playback-and-compositor/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>Video Playback and Compositor</title>
+  <link rel="stylesheet" href="./Video Playback and Compositor_files/style.css">
+  <link rel="stylesheet" href="./Video Playback and Compositor_files/default.css">
+<script type="text/javascript" async="" src="./Video Playback and Compositor_files/analytics.js"></script><script async="" src="./Video Playback and Compositor_files/js"></script><script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-24XP4PG02H');
+</script><script src="./Video Playback and Compositor_files/index.js"></script><script src="./Video Playback and Compositor_files/js(1)" async=""></script><script src="./Video Playback and Compositor_files/cookie_consent_bar.v3.js" data-autoload-cookie-consent-bar="true" data-autoload-cookie-content-bar-intl-code=""></script><style type="text/css">
+   #cookieBar {
+     background-color: #5a5a5a;
+     border: none;
+     border-radius: 0;
+     -moz-border-radius: 0;
+     -webkit-border-radius: 0;
+     bottom: 0;
+     color: #fff;
+     left: 0;
+     margin: 0;
+     position: fixed;
+     right: 0;
+     width: 100%;
+     z-index: 999;
+   }
+ 
+   #cookieBar .cookieBarInner {
+     padding: 10px 15px;
+   }
+ 
+   #cookieBar .cookieBarText, #cookieBar .cookieBarButtons {
+     font-family: arial,sans-serif;
+     font-size: 13px;
+     font-weight: 600;
+     line-height: 1.8;
+   }
+ 
+   #cookieBar .cookieBarText {
+     margin-right: 5px;
+   }
+ 
+   [dir="rtl"] #cookieBar .cookieBarText {
+     margin-left: 5px;
+     margin-right: 0;
+   }
+ 
+   @media (max-width: 720px) #cookieBar .cookieBarText {
+     display: block;
+     margin-bottom: 5px;
+   }
+ 
+   #cookieBar .cookieBarButton {
+     background-color: #303030;
+     border: 1px solid rgba(0,0,0,.1);
+     border-radius: 2px;
+     -moz-border-radius: 2px;
+     -webkit-border-radius: 2px;
+     color: #fff;
+     cursor: pointer;
+     line-height: 19px;
+     margin-left: 5px;
+     padding: 4px 8px;
+     text-decoration: none;
+     white-space: nowrap;
+   }
+ 
+   [dir="rtl"] #cookieBar .cookieBarButton {
+     margin-left: 0;
+     margin-right: 5px;
+   }
+ </style></head>
+<!-- Configure Google Analytics v4 -->
+<!-- Google tag (gtag.js) -->
+
+
+
+<body youdao="bind"><div id="cookieBar" aria-labelledby="cookieBarText" role="region"><div class="cookieBarInner"><span id="cookieBarText" class="cookieBarText">This site uses cookies from Google to deliver and enhance the quality of its services and to analyze traffic.</span><span class="cookieBarButtons"><a rel="noopener" target="_blank" href="https://policies.google.com/technologies/cookies?hl=en" class="cookieBarButton cookieBarMoreButton">Learn more</a><a href="https://www.chromium.org/developers/design-documents/video-playback-and-compositor/#" role="button" class="cookieBarButton cookieBarConsentButton">OK, got it</a></span></div></div><header>
+  <a href="https://www.chromium.org/">
+    <img alt="the Chromium logo" src="./Video Playback and Compositor_files/icon-chromium-96.png" width="48" height="48">
+    <h2>The Chromium Projects</h2>
+  </a>
+  <div id="search"><button type="button" class="DocSearch DocSearch-Button" aria-label="Search"><span class="DocSearch-Button-Container"><svg width="20" height="20" class="DocSearch-Search-Icon" viewBox="0 0 20 20"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="DocSearch-Button-Placeholder">Search</span></span><span class="DocSearch-Button-Keys"><span class="DocSearch-Button-Key">⌘</span><span class="DocSearch-Button-Key">K</span></span></button></div>
+</header>
+
+<div id="main-wrapper">
+  <nav id="sidebar-left">
+    <section>
+      <a href="https://www.chromium.org/chromium-projects">Home</a>
+      <a href="https://www.chromium.org/Home">Chromium</a>
+      <a href="https://www.chromium.org/chromium-os">Chromium OS</a>
+    </section>
+    <section>
+      <h4>Quick links</h4>
+      <a href="https://www.chromium.org/for-testers/bug-reporting-guidelines">Report bugs</a>
+      <a href="https://www.chromium.org/developers/discussion-groups">Discuss</a>
+    </section>
+    <section>
+      <h4>Other sites</h4>
+      <a href="https://blog.chromium.org/">Chromium Blog</a>
+      <a href="https://developer.chrome.com/extensions">Google Chrome Extensions</a>
+    </section>
+    <section id="license" role="complementary">
+      Except as otherwise
+      <a href="https://developers.google.com/site-policies.html#restrictions">noted</a>,
+      the content of this page is licensed under a
+      <a href="https://creativecommons.org/licenses/by/2.5/">Creative Commons Attribution 2.5 license</a>,
+      and examples are licensed under the
+      <a href="https://chromium.googlesource.com/chromium/src/+/HEAD/LICENSE">BSD License</a>.
+    </section>
+    <section id="privacy" role="complementary">
+      <a href="https://policies.google.com/privacy">Privacy</a>
+    </section>
+    <a id="edit-this-page" href="https://edit.chromium.org/edit?repo=chromium/website/main&amp;file=site/developers/design-documents/video-playback-and-compositor/index.md">Edit this page</a>
+  </nav>
+  <main>
+    <div class="breadcrumbs">
+      <a href="https://www.chromium.org/developers">For Developers</a> &gt;
+      <a href="https://www.chromium.org/developers/design-documents">Design Documents</a> &gt;
+    </div>
+    <h1>Video Playback and Compositor</h1>
+  <p><strong>Authors: <a href="mailto:jamesr@chromium.org">jamesr@chromium.org</a>, <a href="mailto:danakj@chromium.org">danakj@chromium.org</a></strong></p>
+<p><strong>The Chromium compositor has support for video playback to support offloading work to the GPU and displaying video frames while the main thread is blocked. There are a few different media engine implementations in Chromium, but they interact with the compositor in similar ways. Here’s a diagram of the different classes and how they interact:</strong></p>
+<p><strong><img alt="image" src="./Video Playback and Compositor_files/video_paths.jpg" height="322px;" width="616px;"></strong></p>
+<p><strong>Things in dotted square boxes are interfaces, things in ovals are concrete classes. Arrows represent pointers between objects.</strong></p>
+<p><strong>Objects by thread (note that a few span multiple threads):</strong></p>
+<p><strong><img alt="image" src="./Video Playback and Compositor_files/video_threads.jpg" height="342px;" width="625px;"></strong></p>
+<p><strong>Before video playback:</strong></p>
+<p><strong>1.) WebMediaPlayerClientImpl constructed by WebCore</strong></p>
+<p><strong>At start of video load:</strong></p>
+<p><strong>2.) WebMediaPlayerClientImpl constructs WebMediaPlayer</strong></p>
+<p><strong>In SetReadyState, if the video has loaded enough to know we want composited playback:</strong></p>
+<p><strong>3.) WebMediaPlayerImpl constructs a WebLayerImpl wrapping a cc::VideoLayer with the provider pointer set to the WebMediaPlayerImpl</strong></p>
+<p><strong>4.) WebMediaPlayerImpl provides WebLayer* to WebMediaPlayerClientImpl to register in WebCore’s compositing tree</strong></p>
+<p><strong>On the next compositor commit during tree sync (on compositor thread with main thread blocked):</strong></p>
+<p><strong>5.) cc::VideoLayer creates a cc::VideoLayerImpl and passes the cc::VideoFrameProvider*</strong></p>
+<p><strong>6.) cc::VideoLayerImpl creates a cc::VideoFrameProviderClientImpl with the provider pointer</strong></p>
+<p><strong>7.) cc::VideoFrameProviderClientImpl calls SetVideoFrameProviderClient(this) on the cc::VideoFrameProvider*, which is the WebMediaPlayerImpl</strong></p>
+<p><strong>On tree activation (immediately after tree sync when not in impl-side painting, at some point later on in impl-side painting)</strong></p>
+<p><strong>8.) Active tree cc::VideoLayerImpl sets itself as the cc::VideoFrameProviderClientImpl’s active layer</strong></p>
+<p><strong>If we fully initialize without anything shutting down, then the pathway for the video layer to grab a new frame is:</strong></p>
+<p><strong>On the compositor thread when preparing to draw a frame:</strong></p>
+<p><strong>1.) cc::VideoLayerImpl::WillDraw calls VideoFrameProviderClientImpl::AcquireLockAndCurrentFrame()</strong></p>
+<p><strong>2.) VFPCI::ALACF takes its provider_lock_ and calls GetCurrentFrame() on its provider</strong></p>
+<p><strong>3.) WebMediaPlayerImpl takes its internal lock_ and returns its current_frame_</strong></p>
+<p><strong>4.) cc::VideoLayerImpl uploads data into textures (if needed)</strong></p>
+<p><strong>On the compositor thread when drawing a frame:</strong></p>
+<p><strong>5.) cc::VideoLayerImpl::AppendQuads adds quads into the draw list referencing the video texture(s)</strong></p>
+<p><strong>On the compositor thread after drawing a frame:</strong></p>
+<p><strong>6.) cc::VideoLayerImpl::DidDraw calls VideoFrameProviderClientImpl::PutCurrentFrame</strong></p>
+<p><strong>7.) VFPCI::PCF calls PutCurrentFrame() on its provider</strong></p>
+<p><strong>8.) cc::VideoLayerImpl::DidDraw calls VFPCI::ReleaseLock which releases provider_lock_</strong></p>
+<p><strong>The way the media system can notify the compositor of new video frames on the compositor thread is (currently implemented only on android):</strong></p>
+<p><strong>On the compositor thread when the media system has a new frame available</strong></p>
+<p><strong>1.) Something in the media playback system (content::StreamTextureProxyImpl for android) calls cc::VideoFrameProvider::DidReceiveFrame()</strong></p>
+<p><strong>2.) cc::VideoFrameProviderClientImpl checks if it has an active cc::VideoLayerImpl and calls SetNeedsRedraw() on it if so</strong></p>
+<p><strong>3.) cc::VideoLayerImpl::SetNeedsRedraw tells the compositor to schedule a new frame</strong></p>
+<p><strong>Shutdown</strong></p>
+<p><strong>There are a few ways this system can shut down. All shutdown paths start on the main thread, but they can propagate out to other threads in different ways depending on the type of shutdown.</strong></p>
+<p><strong>Video layer removed from compositing tree while playing</strong></p>
+<p><strong>This can happen if a &lt;video&gt; element is detached from the DOM tree or display:none is set on an ancestor of the element.</strong></p>
+<p><strong>There are two cases to consider here - impl-side painting off and impl-side painting on. With impl-side painting off, there is only one cc::VideoLayerImpl associated with a given cc::VideoLayer. The cc::VideoLayerImpl is always created or destroyed during the tree sync part of commit which happens on the compositor thread with the main thread blocked.</strong></p>
+<p><strong>With impl-side painting on, there are potentially two cc::VideoLayerImpls associated with a given cc::VideoLayer. One is in the pending/recycle tree and is always created/destroyed during the commit tree sync on the compositor thread with the main thread blocked. The other is in the active tree and is created/destroyed during tree activation, which happens on the compositor thread while the main thread is not blocked. In impl-side painting mode both cc::VideoLayerImpls hold a reference to the same cc::VideoFrameProviderClientImpl.</strong></p>
+<p><strong>Preconditions:</strong></p>
+<p><strong>1.) WebMediaPlayerClientImpl owns a WebMediaPlayer (which is a WebMediaPlayerImpl)</strong></p>
+<p><strong>2.) WebMediaPlayerImpl owns a WebLayerImpl, which has a ref to a cc::VideoLayer</strong></p>
+<p><strong>3.) cc::VideoLayer has an associated cc::VideoLayerImpl (two in impl-side painting mode) which reference a cc::VideoFrameProviderClientImpl</strong></p>
+<p><strong>4.) WebMediaPlayerImpl’s provider_client_ pointer points to the cc::VideoFrameProviderClientImpl</strong></p>
+<p><strong>5.) cc::VideoFrameProviderClientImpl’s provider_ pointer points to the WebMediaPlayerImpl</strong></p>
+<p><strong>Sequence:</strong></p>
+<p><strong>On the main thread at any point in time</strong></p>
+<p><strong>1.) cc::VideoLayer removed from the compositing tree and/or destroyed</strong></p>
+<p><strong>In the next compositor commit on the compositor thread with the main thread blocked:</strong></p>
+<p><strong>2.) Tree sync starts destruction of the cc::VideoLayerImpl (only cc::VideoLayerImpl when not in impl-side painting, pending/recycle layer in impl-side painting)</strong></p>
+<p><strong>3.) ~cc::VideoLayerImpl() calls cc::VideoFrameProviderClientImpl::Stop()</strong></p>
+<p><strong>4.) cc::VFPCI::Stop() calls SetVideoFrameProviderClientImpl(NULL) on its cc::VideoFrameProvider*, which is a WebMediaPlayerImpl</strong></p>
+<p><strong>5.) cc::VFPCI::StopUsingProvider() takes its provider_lock_ and nulls out its provider_</strong></p>
+<p><strong>6.) WebMediaPlayerImpl nulls out its provider_client_ pointer</strong></p>
+<p><strong>7.) cc::VFPCI::Stop() nulls out its provider_ pointer (again)</strong></p>
+<p><strong>If in impl-side painting mode, on tree activation in the compositor thread:</strong></p>
+<p><strong>8.) cc::VideoLayerImpl in active tree destroyed, dropping last reference to cc::VideoFrameProviderClientImpl</strong></p>
+<p><strong>Ordering:</strong></p>
+<p><strong>Steps 2-7 happen on the compositor thread with the main thread blocked. This means that the compositor cannot be in a frame for any of these steps and nothing on the main thread can advance (i.e. we can’t start shutting down the WebMediaPlayerImpl).</strong></p>
+<p><strong>Postconditions:</strong></p>
+<p><strong>1.) WebMediaPlayerImpl’s provider_client_ pointer is NULL (as of step 7)</strong></p>
+<p><strong>2.) cc::VideoFrameProviderClientImpl’s provider_ pointer is NULL (as of step 6)</strong></p>
+<p><strong>When impl-side painting is not enabled, then</strong></p>
+<p><strong>3.) cc::VideoLayerImpl and cc::VideoFrameProviderClientImpl destroyed (as of step 9)</strong></p>
+<p><strong>Media engine shut down while video layer is in compositing tree</strong></p>
+<p><strong>Preconditions:</strong></p>
+<p><strong>1.) WebMediaPlayerClientImpl owns a WebMediaPlayer (which is a WebMediaPlayerImpl)</strong></p>
+<p><strong>2.) WebMediaPlayerImpl owns a WebLayerImpl, which has a ref to a cc::VideoLayer</strong></p>
+<p><strong>3.) cc::VideoLayer has an associated cc::VideoLayerImpl (two in impl-side painting mode) which reference a cc::VideoFrameProviderClientImpl</strong></p>
+<p><strong>4.) WebMediaPlayerImpl’s provider_client_ pointer points to the cc::VideoFrameProviderClientImpl</strong></p>
+<p><strong>5.) cc::VideoFrameProviderClientImpl’s provider_ pointer points to the WebMediaPlayerImpl</strong></p>
+<p><strong>6.) We’re outside a compositor commit on the main thread</strong></p>
+<p><strong>7.) The compositor thread may be in any state, including activation or drawing a frame.</strong></p>
+<p><strong>Sequence:</strong></p>
+<p><strong>On the main thread at any point in time:</strong></p>
+<p><strong>1.) WebMediaPlayerClientImpl destroys its WebMediaPlayer (which is a WebMediaPlayerImpl)</strong></p>
+<p><strong>2.) ~WebMediaPlayerImpl() calls SetVideoFrameProviderClient(NULL) on its provider_client_, which is a cc::VideoFrameProvierClientImpl</strong></p>
+<p><strong>3.) cc::VideoFrameProviderClientImpl::SetVideoFrameProviderClient() takes its provider_lock_</strong></p>
+<p><strong>4.) cc::VideoFrameProviderClientImpl::SetVideoFrameProviderClient() nulls out its provider_ pointer, which pointed to the WebMediaPlayerImpl</strong></p>
+<p><strong>5.) cc:VFPCI::SetVideoFrameProviderClient() releases its provider_lock_</strong></p>
+<p><strong>6.) ~WebMediaPlayerImpl() completes and the object is destroyed</strong></p>
+<p><strong>Ordering:</strong></p>
+<p><strong>1.) In step (3) the cc::VFPCI takes its provider_lock_. If the compositor thread is in the middle of drawing a frame (specifically between WillDraw() and DidDraw()), this call will block until the frame is complete</strong></p>
+<p><strong>Postconditions:</strong></p>
+<p><strong>1.) WebMediaPlayerImpl’s provider_client_ pointer is NULL (as of step 4)</strong></p>
+<p><strong>2.) cc::VideoFrameProviderClientImpl’s provider_ pointer is NULL (as of step
+5)</strong></p>
+
+  </main>
+</div>
+<script>
+// Configure Algolia search.
+let s = document.createElement('script');
+s.src = '/_scripts/@docsearch/index.js';
+document.head.append(s);
+
+window.addEventListener('load', () => {
+  // Add the Algolia search widget.
+  docsearch({
+    container: '#search',
+    appId: 'RZDQYCCABX',
+    apiKey: '98b0eabafeb13fe3e1af693d5713d8b4',
+    indexName: 'chromium'
+  });
+});
+
+// Configure Google Universal Analytics (the predecessor to GA4, we should
+// delete this when we don't need it any more).
+s = document.createElement('script');
+s.src = 'https://www.googletagmanager.com/gtag/js?id=UA-5484340-1'
+s.async = true;
+document.head.append(s)
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-5484340-1');
+
+// Configure consent bar.
+s = document.createElement('script');
+s.src = 'https://www.gstatic.com/brandstudio/kato/cookie_choice_component/cookie_consent_bar.v3.js'
+s.dataset.autoloadCookieConsentBar = true;
+s.dataset.autoloadCookieContentBarIntlCode = '';
+document.head.append(s);</script>
+</body></html>
