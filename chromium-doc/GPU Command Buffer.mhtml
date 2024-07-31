@@ -1,0 +1,1293 @@
+From: <Saved by Blink>
+Snapshot-Content-Location: https://www.chromium.org/developers/design-documents/gpu-command-buffer/
+Subject: GPU Command Buffer
+Date: Fri, 19 Jul 2024 11:15:41 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----MultipartBoundary--NLwT93Dt7JpMp3bJSHhUzvzWuosjv1fer10QcJJaXN----"
+
+
+------MultipartBoundary--NLwT93Dt7JpMp3bJSHhUzvzWuosjv1fer10QcJJaXN----
+Content-Type: text/html
+Content-ID: <frame-71C858F6A4DAF0150A8A162BFD7FCE47@mhtml.blink>
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://www.chromium.org/developers/design-documents/gpu-command-buffer/
+
+<!DOCTYPE html><html><head><meta http-equiv=3D"Content-Type" content=3D"tex=
+t/html; charset=3DUTF-8"><link rel=3D"stylesheet" type=3D"text/css" href=3D=
+"cid:css-aededc88-8686-43e7-9977-d31ea6fbba7f@mhtml.blink" />
+ =20
+  <title>GPU Command Buffer</title>
+  <link rel=3D"stylesheet" href=3D"https://www.chromium.org/_stylesheets/@d=
+ocsearch/style.css">
+  <link rel=3D"stylesheet" href=3D"https://www.chromium.org/_stylesheets/de=
+fault.css">
+</head>
+<!-- Configure Google Analytics v4 -->
+<!-- Google tag (gtag.js) -->
+
+
+
+<body youdao=3D"bind"><div id=3D"cookieBar" aria-labelledby=3D"cookieBarTex=
+t" role=3D"region"><div class=3D"cookieBarInner"><span id=3D"cookieBarText"=
+ class=3D"cookieBarText">This site uses cookies from Google to deliver and =
+enhance the quality of its services and to analyze traffic.</span><span cla=
+ss=3D"cookieBarButtons"><a rel=3D"noopener" target=3D"_blank" href=3D"https=
+://policies.google.com/technologies/cookies?hl=3Den" class=3D"cookieBarButt=
+on cookieBarMoreButton">Learn more</a><a href=3D"https://www.chromium.org/d=
+evelopers/design-documents/gpu-command-buffer/#" role=3D"button" class=3D"c=
+ookieBarButton cookieBarConsentButton">OK, got it</a></span></div></div><he=
+ader>
+  <a href=3D"https://www.chromium.org/">
+    <img alt=3D"the Chromium logo" src=3D"https://www.chromium.org/_assets/=
+icon-chromium-96.png" width=3D"48" height=3D"48">
+    <h2>The Chromium Projects</h2>
+  </a>
+  <div id=3D"search"><button type=3D"button" class=3D"DocSearch DocSearch-B=
+utton" aria-label=3D"Search"><span class=3D"DocSearch-Button-Container"><sv=
+g width=3D"20" height=3D"20" class=3D"DocSearch-Search-Icon" viewBox=3D"0 0=
+ 20 20"><path d=3D"M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.941=
+9-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.94=
+19 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke=
+=3D"currentColor" fill=3D"none" fill-rule=3D"evenodd" stroke-linecap=3D"rou=
+nd" stroke-linejoin=3D"round"></path></svg><span class=3D"DocSearch-Button-=
+Placeholder">Search</span></span><span class=3D"DocSearch-Button-Keys"><spa=
+n class=3D"DocSearch-Button-Key">=E2=8C=98</span><span class=3D"DocSearch-B=
+utton-Key">K</span></span></button></div>
+</header>
+
+<div id=3D"main-wrapper">
+  <nav id=3D"sidebar-left">
+    <section>
+      <a href=3D"https://www.chromium.org/chromium-projects">Home</a>
+      <a href=3D"https://www.chromium.org/Home">Chromium</a>
+      <a href=3D"https://www.chromium.org/chromium-os">ChromiumOS</a>
+    </section>
+    <section>
+      <h4>Quick links</h4>
+      <a href=3D"https://www.chromium.org/for-testers/bug-reporting-guideli=
+nes">Report bugs</a>
+      <a href=3D"https://www.chromium.org/developers/discussion-groups">Dis=
+cuss</a>
+    </section>
+    <section>
+      <h4>Other sites</h4>
+      <a href=3D"https://blog.chromium.org/">Chromium Blog</a>
+      <a href=3D"https://developer.chrome.com/extensions">Google Chrome Ext=
+ensions</a>
+    </section>
+    <section id=3D"license" role=3D"complementary">
+      Except as otherwise
+      <a href=3D"https://developers.google.com/site-policies.html#restricti=
+ons">noted</a>,
+      the content of this page is licensed under a
+      <a href=3D"https://creativecommons.org/licenses/by/2.5/">Creative Com=
+mons Attribution 2.5 license</a>,
+      and examples are licensed under the
+      <a href=3D"https://chromium.googlesource.com/chromium/src/+/HEAD/LICE=
+NSE">BSD License</a>.
+    </section>
+    <section id=3D"privacy" role=3D"complementary">
+      <a href=3D"https://policies.google.com/privacy">Privacy</a>
+    </section>
+    <a id=3D"edit-this-page" href=3D"https://edit.chromium.org/edit?repo=3D=
+chromium/website/main&amp;file=3Dsite/developers/design-documents/gpu-comma=
+nd-buffer/index.md&amp;ext_google.git=3D%7B%22repo%22%3A%22chromium%2Fwebsi=
+te%22%2C%22ref%22%3A%22main%22%2C%22file%22%3A%22site/developers/design-doc=
+uments/gpu-command-buffer/index.md%22%7D">Edit this page</a>
+  </nav>
+  <main>
+    <div class=3D"breadcrumbs">
+      <a href=3D"https://www.chromium.org/developers">For Developers</a> &g=
+t;
+      <a href=3D"https://www.chromium.org/developers/design-documents">Desi=
+gn Documents</a> &gt;
+    </div>
+    <h1>GPU Command Buffer</h1>
+  <p>This are mostly just notes on the GPU command buffer</p>
+<p>The GPU Command Buffer system is the way in which Chrome talks to the GP=
+U either
+OpenGL or OpenGL ES (or OpenGL ES emulated through ANGLE). It is designed t=
+o
+have an API that emulates the OpenGL ES 2.0 API enforcing the restrictions =
+of
+that API and working around incompatibilities in drivers and platforms.</p>
+<h2 id=3D"goals" tabindex=3D"-1"><a class=3D"header-anchor" href=3D"https:/=
+/www.chromium.org/developers/design-documents/gpu-command-buffer/#goals">Go=
+als:</a></h2>
+<p>The #1 goal of the command buffer system is security. Graphics systems i=
+n OSes
+have gaping security holes. Two simple examples are you can allocate a text=
+ure
+or a buffer and the memory returned is left as is. That memory is often lef=
+t
+over from other applications and could contain passwords, images or other d=
+ata
+that should not be visible to the calling app. Similarly there are many API
+functions that are buggy or have poorly designed APIs that make them easy t=
+o
+call in ways that would crash the browser. The #1 goal of the GPU process i=
+s to
+prevent these problems.</p>
+<p>The #2 goal is compatibility across systems. From the POV of clients the=
+re
+should be no differences in behavior across systems. In some cases that mea=
+ns
+enforcing restrictions that are not there on the actual system. Examples in=
+clude
+disabling advanced GLSL features. Others involve working around bugs by
+re-writing shaders or other techniques.</p>
+<p>The #3 goal is speed. Speed is why a command buffer implementation was c=
+hosen.
+The client can write commands very quickly with little or no communication =
+with
+the service and only once in a while tell the service it has written more
+commands. For example, another implementation could have used a separate IP=
+C for
+each OpenGL ES 2.0 function but that would arguably be too slow. The comman=
+d
+buffer gets another speed boost because it effectively parallelizes calls i=
+nto
+the OS graphics API. A call like glUniform or glDrawArrays might be a very
+expensive call but because of the command buffer the client just writes a f=
+ew
+bytes into the command buffer and is done. The GPU process calls the real O=
+penGL
+function on another process which effectively makes the program multi-core.=
+</p>
+<p>Implementation:</p>
+<p>The basic implementation is a "command buffer". A client (the render pro=
+cess,
+pepper plugin, etc..) writes commands into some shared memory. It updates a
+'put' pointer through IPC telling the GPU process how far it has written in=
+to
+that buffer. The GPU process or service then reads commands from that buffe=
+r.
+For each command it validates the command, its arguments, and whether or no=
+t the
+arguments are appropriate for the current state of the OSes graphics API an=
+d
+only then makes the actual call into the OS. This means even a compromised
+renderer running native code, writing its own commands, can hopefully not g=
+et
+the GPU process to call the graphics system in such a way as to compromise =
+the
+system.</p>
+<p>When writing new service side code, please keep that in mind. Never desi=
+gn a new
+command that requires the client to be well behaved. Assume the client can =
+go
+rogue. For example, make sure the service's bookkeeping will never be wrong=
+ no
+matter what the client does.</p>
+<p>API Layers:</p>
+<h3 id=3D"life-of-a-gl-call-in-chrome" tabindex=3D"-1"><a class=3D"header-a=
+nchor" href=3D"https://www.chromium.org/developers/design-documents/gpu-com=
+mand-buffer/#life-of-a-gl-call-in-chrome">Life of a GL call in Chrome</a></=
+h3>
+<p>In simple terms:</p>
+<p>gl2.h-&gt;gles2_c_lib.cc-&gt;GLES2Implemetation-&gt;GLES2CmdHelper...Sha=
+redMemory...-&gt;GLES2DecoderImpl-&gt;ui/gfx/gl/gl_bindings-&gt;OpenGL</p>
+<p>There is an interface, CommandBuffer, that is responsible for coordinati=
+ng
+communication between GLES2CmdHelper and GLES2DecoderImpl. It has methods f=
+or
+creating and deleting shared memory as well as communicating the current st=
+ate
+back and forth. Specifically sending the latest 'put' pointer from the clie=
+nt
+through AsyncFlush() or Flush() and for getting the latest 'get' pointer th=
+rough
+the results of 'Flush'</p>
+<p>An implementation of CommandBuffer called CommandBufferService directly =
+talks to
+GLES2DecoderImpl. If you had a single threaded single process chrome you co=
+uld
+pass an instance of CommandBufferService to GLES2CmdHelper and the ideas is
+things would just work. In the the real multi-process chrome there is anoth=
+er
+implementation, ComamdBufferProxy which uses IPC to talk from the client to=
+ the
+service through GpuCommandBufferStub to GpuScheduler to CommandBufferServic=
+e.</p>
+<p>Client side code:</p>
+<p>Note: Everything in src/gpu/command_buffer/client and
+src/gpu/command_buffer/common must compile WITHOUT EXTRA LIBRARIES as they =
+are
+used in the untrusted Pepper plugin</p>
+<p>These define the public OpenGL ES 2.0 interface</p>
+<p>src/third_party/khronos/GLES2/gl2.h</p>
+<p>src/third_party/khronos/GLES2/gl2ext.h</p>
+<p>This defines the C interface. Most of this is auto generated</p>
+<p>src/gpu/command_buffer/client/gles2_c_lib.cc</p>
+<p>src/gpu/command_buffer/client/gles2_c_lib_autogen.h</p>
+<p>This is the actual client side implementation that writes commands into =
+the
+command buffer. Most of this is auto generated.</p>
+<p>src/gpu/command_buffer/client/gles2_implementation.cc</p>
+<p>src/gpu/command_buffer/client/gles2_implementation_autogen.h</p>
+<p>This is a mostly auto generated class to help with formatting commands.<=
+/p>
+<p>src/gpu/command_buffer/client/gles2_cmd_helper.h</p>
+<p>src/gpu/command_buffer/client/gles2_cmd_helper_autogen.h</p>
+<p>These define the actual format of the commands</p>
+<p>src/gpu/command_buffer/common/cmd_buffer_common.h</p>
+<p>src/gpu/command_buffer/common/gles2_cmd_format.h</p>
+<p>src/gpu/command_buffer/common/gles2_cmd_format_autogen.h</p>
+<h3 id=3D"service-side-code" tabindex=3D"-1"><a class=3D"header-anchor" hre=
+f=3D"https://www.chromium.org/developers/design-documents/gpu-command-buffe=
+r/#service-side-code">Service side code:</a></h3>
+<p>This is the code that reads the commands, validates and calls OpenGL.</p=
+>
+<p>src/gpu/command_buffer/service/gles2_cmd_decoder.cc</p>
+<p>src/gpu/command_buffer/service/gles2_cmd_decoder_autogen.cc</p>
+<h2 id=3D"3-ways-of-transferring-data" tabindex=3D"-1"><a class=3D"header-a=
+nchor" href=3D"https://www.chromium.org/developers/design-documents/gpu-com=
+mand-buffer/#3-ways-of-transferring-data">3 ways of transferring data</a></=
+h2>
+<p>There are 3 ways of transferring data through the command buffer.</p>
+<h3 id=3D"1-in-a-command-itself" tabindex=3D"-1"><a class=3D"header-anchor"=
+ href=3D"https://www.chromium.org/developers/design-documents/gpu-command-b=
+uffer/#1-in-a-command-itself">#1) In a command itself</a></h3>
+<p>Commands can either have a hard coded length (glUniform4f for example ta=
+kes
+exactly a location and 4 floats) or they can have a variable length
+(glUniform4fv takes N sets of 4 floats). The data is inserted after the com=
+mand
+in the command buffer and the length of the command itself is updated to co=
+ntain
+that data.</p>
+<p>Advantages:</p>
+<p>* Easy. Fire and forget</p>
+<p>Disadvantages:</p>
+<p>* Commands have a maximum length of 1meg - 1</p>
+<p>* Commands can only be as long as the command buffer itself.</p>
+<h3 id=3D"2-in-shared-memory" tabindex=3D"-1"><a class=3D"header-anchor" hr=
+ef=3D"https://www.chromium.org/developers/design-documents/gpu-command-buff=
+er/#2-in-shared-memory">#2) In shared memory</a></h3>
+<p>Some commands transfer data in shared memory. TexImage2D for example, th=
+e client
+puts data into a shared memory. The command itself has a shared memory id a=
+nd an
+offset into that shared memory as well as either an explicit or implicit si=
+ze.
+For TexImage2D the size is implicit.</p>
+<p>Advantages:</p>
+<p>* Can transfer any size</p>
+<p>* Can pre-allocate the shared memory and fill any time (glMapTexSubImage=
+2D for
+example)</p>
+<p>Disadvantages:</p>
+<p>* Must check with the server when it has actually used the contents of t=
+he
+shared memory.</p>
+<h3 id=3D"3-in-a-bucket" tabindex=3D"-1"><a class=3D"header-anchor" href=3D=
+"https://www.chromium.org/developers/design-documents/gpu-command-buffer/#3=
+-in-a-bucket">#3) In a bucket</a></h3>
+<p>Buckets are a kind of abstraction of #2. You define a bucket by size (1 =
+command)
+you then transfer the data into the bucket through shared memory (n command=
+s),
+finally you issue the command you really wanted to issue (ShaderSource,
+CompressedTeximage2D, ...) and reference the bucket.</p>
+<p>The problem buckets attempt to solve is; Imagine you are trying to imple=
+ment
+TexImage2D and you only have 1meg of shared memory and you are asked to sen=
+d a
+3meg texture. You can't call TexImage2D with your 3 meg of data since you o=
+nly
+have 1 meg so instead you call TexImage2D with no data to define your textu=
+re
+and then call TexSubImage2D 3 times to transfer your data. GLES2Implementat=
+ion
+actually does this.</p>
+<p>Now imagine you are trying to implement ShaderSource. You are passed a 3=
+ meg
+string and you only have 1meg of shared memory. There is no ShaderSubSource
+function so you can't use the previous solution. Instead, you create a buck=
+et of
+3 meg, transfer the data to that bucket 1meg at a time, then issue the
+ShaderSource command referencing the bucket.</p>
+<p>Advantages:</p>
+<p>* Do not need a "SubData" command implemented</p>
+<p>* Can handle data larger than shared memory</p>
+<p>Disadvantages:</p>
+<p>* Slower. Data has to be copied out of shared memory and into a bucket.<=
+/p>
+<p>Adding a command:</p>
+<p>Here are some terse notes for adding a new command:</p>
+<ol>
+<li>Add your function to src/gpu/command_buffer/cmd_buffer_functions.txt
+Note: See examples. For new enums, GLenumTypeOfEnum. For GLint, GLintptr or
+GLsizei, if negative is disallowed GLxxxNotNegative. For resources
+GLidTypeOfResource</li>
+<li>Add your function to _FUNCTION_INFO in
+src/gpu/command_buffer/build_gles2_cmd_buffer.py
+Copy a function that is similar to yours.</li>
+<li>run build_gles2_cmd_buffer.py from the command_buffer directory
+Note: we don't currently run this as part of the build as this lets us
+easily see the changes during code review.</li>
+<li>Add your function to src/third_party/gl2ext.h if you want it
+callable as an OpenGL like function.
+If you only need it callable from WebGraphicsContext3DCommandBufferImpl the=
+n
+you don't need to do this step.</li>
+<li>If your function adds any new GL ENUMs to other functions (most
+commonly glGetInteger, glTexImage2D, etc.)
+<ol>
+<li>Add them in src/gpu/command_buffer/service/function_info.cc
+In particular, add them only if your functionally is available and if
+they are requested. See code in function_info.cc</li>
+<li>Add them in src/gpu/command_buffer/common/gles2_cmd_utils.cc
+<ul>
+<li>for glGetInteger enums add them to
+GLES2Util:GLGetNumValuesReturned</li>
+<li>for texture and buffer formats see ElementsPerGroup,
+BytesPerElement</li>
+<li>for texture and renderbuffer formats see
+GetChannelsForFormat</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>See these CLs as examples
+<ul>
+<li><a href=3D"http://codereview.chromium.org/8772033/">http://codereview.c=
+hromium.org/8772033/</a></li>
+</ul>
+</li>
+</ol>
+<p><strong>Texture issues</strong></p>
+<p>In order to prevent a user program from reading uninitialized vram all t=
+extures
+must be cleared before being used. In order to increase the speed of progra=
+ms
+that upload a lot of textures this clearing happens lazily. If you call
+glTexImage(..., null) the command buffer will create the texture level and =
+mark
+it as unclear. Before any read or write to that texture the command buffer =
+will
+clear it.</p>
+<p>If you add functions that update textures you need to call the code that=
+ clears
+an uncleared level by calling TextureManager::ClearTextureLevel for the lev=
+el in
+question. You can see examples of this in GLES2DecoderImpl::DoTexImage2D,
+GLES2DecoderImpl::DoCopyTexSubImage2D, etc..</p>
+<h2 id=3D"opengl-quirks-to-be-aware-of" tabindex=3D"-1"><a class=3D"header-=
+anchor" href=3D"https://www.chromium.org/developers/design-documents/gpu-co=
+mmand-buffer/#opengl-quirks-to-be-aware-of">OpenGL Quirks to be aware of</a=
+></h2>
+<ul>
+<li>There are N * M texture binding points.
+The reference pages for OpenGL ES 2.0 were derived from OpenGL 1.0 written
+in 1993 when maybe there was only 1 texture allowed and talk about 2 bindin=
+g
+points, GL_TEXTURE_2D, and GL_TEXTURE_CUBE_MAP. But, glActiveTexture select
+the active texture slot, each one has these binding points. To give an
+example
+GLuint textures[2];
+glGenTextures(2, textures);
+texture0 =3D textures[0];
+texture1 =3D textures[1];
+glBindTexture(GL_TEXTURE_2D, texture0);
+glActiveTexture(GL_TEXTURE1);
+glBindTexture(GL_TEXTURE_2D, texture1);
+glActiveTexture(GL_TEXTURE0);
+// This command will effect texture0 not texture1
+glTexImage2D(GL_TEXTURE_2D, ....
+As more texture targets are added there are more binding points.</li>
+<li>glGenXXX only reserves a name, it does not create a resource.
+In other worlds
+GLuint tex;
+glGenTextures(1, &amp;tex);
+printf("%s\n", glIsTexture(tex) ? "true" : "false"); // prints false
+glBindTexture(GL_TEXTURE_2D, tex);
+printf("%s\n", glIsTexture(tex) ? "true" : "false"); // prints true
+This is a arguably a bug in the command buffer right now though there is
+code to work around it. You'll see we create internal tracking objects on
+glGenXXX but they are marked as invalid until glBindXXX time (except for
+Queries)</li>
+<li>glBindXXX creates objects.
+You do NOT have to call glGenXXX before calling glBindXXX. You can make up
+any ids you like on your own for buffers, framebuffers, renderbuffers and
+textures and GL will automatically create an object for you when you call
+glBindXXX.
+Note: This is not true for Queries, Programs and Shaders.</li>
+<li>Resources are ref counted.
+This has many issues. In general, calling glDeleteXXX does 2 things. It
+releases the 'id' so the 'id' if used again, will generate a new resource.
+It releases the references in the current context's state and the current
+context's bound objects BUT NO WHERE ELSE.
+So: glDeleteTextures will free the ids for those textures and clear the
+references from this contexts texture units and from the current framebuffe=
+r
+object. It will NOT clear the references from other framebuffer objects nor
+other contexts.
+Programs and Shaders are far more quirky.</li>
+<li>Framebuffer objects can not be shared across contexts.
+According to the OpenGL ES spec all objects are declared as shared but
+Appendix C of the OpenGL spec says that FBOs can not actually be shared.</l=
+i>
+<li>Texture id 0 is the default texture.
+There's no such thing as turning off textures in OpenLG ES 2.0. Binding
+texture id =3D 0 just binds the default texture. All the normal texture
+commands can effect this default texture.</li>
+</ul>
+<h2 id=3D"opengl-es-20-incompatibilities" tabindex=3D"-1"><a class=3D"heade=
+r-anchor" href=3D"https://www.chromium.org/developers/design-documents/gpu-=
+command-buffer/#opengl-es-20-incompatibilities">OpenGL ES 2.0 incompatibili=
+ties</a></h2>
+<h3 id=3D"client-side-arrays" tabindex=3D"-1"><a class=3D"header-anchor" hr=
+ef=3D"https://www.chromium.org/developers/design-documents/gpu-command-buff=
+er/#client-side-arrays">Client side arrays</a></h3>
+<p>Client side arrays refers to the ability to store vertex data in client =
+side
+memory and have OpenGL reference it directly. The command buffer itself doe=
+s not
+support this. All vertex data must be put in an OpenGL buffer.</p>
+<p>To keep compatibility the client side class, GLES2Implementation, emulat=
+es
+client side arrays by tracking the OpenGL attribute state and at draw time,
+copying any client side arrays into a buffer, updating the vertex attribute=
+s to
+use this buffer, issuing the draw call, then restoring the vertex attribute
+state. This is a very slow operation and because there is no way to know wh=
+en
+the client has changed any of its data those buffers must be updated with e=
+very
+draw call. For this reason, and because more modern versions of OpenGL requ=
+ire
+it, client side array emulation is compiled out for everything except Nativ=
+e
+Client.</p>
+<h3 id=3D"gl_fixed" tabindex=3D"-1"><a class=3D"header-anchor" href=3D"http=
+s://www.chromium.org/developers/design-documents/gpu-command-buffer/#gl_fix=
+ed">GL_FIXED</a></h3>
+<p>OpenGL ES 2.0 is required to support GL_FIXED as an attribute type (an a=
+rgument
+to glVertexAttribPointer). Desktop GPUs do not support this.</p>
+<p>The command buffer has optional support for this. Turning it on requires=
+ calling
+glEnableFeatureCHROMIUM("pepper3d_support_fixed_attribs"); as one of the fi=
+rst
+calls into GL. This makes the command buffer keep it's own copy of all GL
+buffers. At DrawXXX time, any attributes that are of type GL_FIXED are pull=
+ed
+out of their respective buffers, converted to float and copied to a temp bu=
+ffer.
+The attributes are changed to point to this temp buffer. Then the draw happ=
+ens
+and the attributes are reset to their previous state.</p>
+<p>Clearly this is slow and requires lots of memory. It is there solely to =
+help
+port OpenGL ES 2.0 apps to NaCl and to pass the OpenGL ES 2.0 conformance t=
+ests.</p>
+<p>Refactoring Ideas:</p>
+<h3 id=3D"separating-decoding-the-command-buffer-from-emulating-opengl-es-2=
+0" tabindex=3D"-1"><a class=3D"header-anchor" href=3D"https://www.chromium.=
+org/developers/design-documents/gpu-command-buffer/#separating-decoding-the=
+-command-buffer-from-emulating-opengl-es-20">Separating decoding the comman=
+d buffer from emulating OpenGL ES 2.0</a></h3>
+<p>Currently those 2 responsibilities are mixed together in GLES2DecoderImp=
+l. There
+has been some discussion of separating them. A few issues off the top of my=
+ head</p>
+<h4 id=3D"1-validating-shared-memory" tabindex=3D"-1"><a class=3D"header-an=
+chor" href=3D"https://www.chromium.org/developers/design-documents/gpu-comm=
+and-buffer/#1-validating-shared-memory">#1) Validating shared memory</a></h=
+4>
+<p>As one example the command for TexImage2D gets passed a shared memory id=
+, an
+offset and a size. Before the real glTexImage2D is called the service needs=
+ to
+validate that the id is a valid shared memory id, that the offset and size =
+are
+wholly contained inside that shared memory, that the call to glTexImage2D i=
+s
+going to only reference memory inside that shared memory region. To do that
+requires potentially knowing various state that would normally be not
+efficiently query-able given a separated OpenGL ES emulation. It's possible=
+ the
+needed state could be easily exposed through separate functions or else may=
+be
+changing TexImage2D and similar commands so the size is explicit 'size' ins=
+tead
+of implicit 'width * height * type * format'.</p>
+<h4 id=3D"2-dealing-with-resource-ids" tabindex=3D"-1"><a class=3D"header-a=
+nchor" href=3D"https://www.chromium.org/developers/design-documents/gpu-com=
+mand-buffer/#2-dealing-with-resource-ids">#2) Dealing with resource ids</a>=
+</h4>
+<p>OpenGL ES 2.0 uses int ids for resources. The client uses one set of ids=
+ and the
+service a different set. A mapping from a client id to the service id is ke=
+pt by
+the service. In order to avoid a round trip from client to server to manage
+those ids, for clients context that are not sharing resources, the ids are
+completely managed on the client and just their usage is communicated to th=
+e
+service. The service makes up a service id to associate with a given client=
+ id
+as needed. Under the current design this works. If the command buffer code =
+was
+separated from the OpenGL ES 2.0 emulation code a new method of managing th=
+ese
+ids would need to be inserted, possibly requiring a double mapping, mapping=
+ a
+client id to a command buffer service id and mapping a command buffer servi=
+ce id
+to the OpenGL ES 2.0 emulation id. Again, there may be ways to design out t=
+hat
+issue.</p>
+<h3 id=3D"moving-functionally-from-gles2decoderimpl-to-the-various-resource=
+-managers" tabindex=3D"-1"><a class=3D"header-anchor" href=3D"https://www.c=
+hromium.org/developers/design-documents/gpu-command-buffer/#moving-function=
+ally-from-gles2decoderimpl-to-the-various-resource-managers">Moving functio=
+nally from GLES2DecoderImpl to the various resource managers</a></h3>
+<p>GLES2DecoderImpl is HUGE. Nearly 8000 lines. There's been talk of moving=
+ large
+chunks of functionality to the various resource managers. For example, move=
+ all
+handling of the texture functions, TexImage2D, TexSubImage2D, TexParameter,
+CopyTexImage2D, CopyTexSubImage2D, CompressedTexImage2D,
+CompressedTexSubImage2D, GenTexture, DeleteTexture, IsTexture, TexStorage2D=
+EXT
+from GLES2DecoderImpl to TextureManager.</p>
+<p>I'd love to see that happen. Unfortunately I expect it's not a small amo=
+unt of
+work. In particular fixing up all the unit tests</p>
+<p>Still, it seems like it would be a much cleaner implementation to go tha=
+t route.</p>
+<h3 id=3D"separate-command-generation-from-opengl-es" tabindex=3D"-1"><a cl=
+ass=3D"header-anchor" href=3D"https://www.chromium.org/developers/design-do=
+cuments/gpu-command-buffer/#separate-command-generation-from-opengl-es">Sep=
+arate command generation from OpenGL ES</a></h3>
+<p>build_gles2_cmd_buffer.py has a nearly 1 to 1 mapping of OpenGL ES funct=
+ions to
+commands. Ideally the commands in the command buffer would be separate from=
+ the
+OpenGL api so that it would be easier to add any command needed and not hav=
+e to
+expose it as an OpenGL ES extension.</p>
+<h3 id=3D"remove-legacy-code" tabindex=3D"-1"><a class=3D"header-anchor" hr=
+ef=3D"https://www.chromium.org/developers/design-documents/gpu-command-buff=
+er/#remove-legacy-code">Remove legacy code</a></h3>
+<p>Originally the command buffer commands were going to be the public API t=
+o the
+gpu process with the OpenGL ES API as a wrapper. Most game consoles allow y=
+ou to
+work directly with command buffers which is one reason for their performanc=
+e.
+Being able to work directly with command buffers means you can pre-compute
+command buffers and patch them on the fly as needed which in turn means you=
+r
+code can do the minimal amount of work and therefore gain a lot of speed.
+Eventually it was decided not to expose the command buffer commands directl=
+y but
+there is still code based on the original design that could be removed.</p>
+<h4 id=3D"low-level-commands" tabindex=3D"-1"><a class=3D"header-anchor" hr=
+ef=3D"https://www.chromium.org/developers/design-documents/gpu-command-buff=
+er/#low-level-commands">low-level commands</a></h4>
+<h4 id=3D"implemented-in-srcgpucommand_bufferclientcmd_buffer_helpercc-srcg=
+pucommand_buffercommoncmd_buffer_commonh-and-srcgpucommand_bufferservicecom=
+mon_decodercc-are-functions-that-implement-jump-call-and-return-these-funct=
+ions-in-turn-influence-some-of-the-design-constraints-of-the-rest-of-the-sy=
+stem-they-are-not-needed-unless-command-buffers-are-a-public-interface-and-=
+could-be-removed" tabindex=3D"-1"><a class=3D"header-anchor" href=3D"https:=
+//www.chromium.org/developers/design-documents/gpu-command-buffer/#implemen=
+ted-in-srcgpucommand_bufferclientcmd_buffer_helpercc-srcgpucommand_bufferco=
+mmoncmd_buffer_commonh-and-srcgpucommand_bufferservicecommon_decodercc-are-=
+functions-that-implement-jump-call-and-return-these-functions-in-turn-influ=
+ence-some-of-the-design-constraints-of-the-rest-of-the-system-they-are-not-=
+needed-unless-command-buffers-are-a-public-interface-and-could-be-removed">=
+Implemented in src/gpu/command_buffer/client/cmd_buffer_helper.cc, src/gpu/=
+command_buffer/common/cmd_buffer_common.h and src/gpu/command_buffer/servic=
+e/common_decoder.cc are functions that implement JUMP, CALL and RETURN. The=
+se functions in turn influence some of the design constraints of the rest o=
+f the system. They are not needed unless command buffers are a public inter=
+face and could be removed.</a></h4>
+<h4 id=3D"3-types-of-commands" tabindex=3D"-1"><a class=3D"header-anchor" h=
+ref=3D"https://www.chromium.org/developers/design-documents/gpu-command-buf=
+fer/#3-types-of-commands">3 types of commands</a></h4>
+<p>build_gles2_cmd_buffer.py generates 3 versions of many functions. One fo=
+r each
+of the data transfer modes above. For example TexImage2D, TexImage2DImmedia=
+te
+and TexImage2DBucket are respectively the transfer buffer implementation of
+TexImage2D, the data-in-the-command-buffer version of TexImage2D and the bu=
+cket
+version of TexImage2D. When the command buffer was the public interface it
+seemed important to have all 3 as they each have their pluses and minuses. =
+Now
+though only the commands used by GLES2Implementation are needed. Maybe the =
+code
+that generates all 3 versions should be retired.</p>
+<h4 id=3D"remove-_cmd_id_table" tabindex=3D"-1"><a class=3D"header-anchor" =
+href=3D"https://www.chromium.org/developers/design-documents/gpu-command-bu=
+ffer/#remove-_cmd_id_table">remove _CMD_ID_TABLE</a></h4>
+<p>in build_gles2_cmd_buffer.py _CMD_ID_TABLE's sole purpose is to make sur=
+e the
+ids of commands do not change. This was important when commands were going =
+to be
+a public API. It no longer matters and can be removed and commands can chan=
+ge
+ids any time.</p>
+<h4 id=3D"size-in-entries" tabindex=3D"-1"><a class=3D"header-anchor" href=
+=3D"https://www.chromium.org/developers/design-documents/gpu-command-buffer=
+/#size-in-entries">size in entries</a></h4>
+<p>Left over from the O3D code, the command buffer works on CommandBufferEn=
+try
+units. Each unit is 32 bits and sizes of commands and command data is calcu=
+lated
+in those units. There's a lot of superfluous math involved in converting to=
+ and
+from those units. If instead the code was refactored so that the size of
+commands was in bytes all of that extra math code could disappear.</p>
+
+  </main>
+</div>
+
+</body></html>
+------MultipartBoundary--NLwT93Dt7JpMp3bJSHhUzvzWuosjv1fer10QcJJaXN----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-aededc88-8686-43e7-9977-d31ea6fbba7f@mhtml.blink
+
+@charset "utf-8";
+
+#cookieBar { background-color: rgb(90, 90, 90); border: none; border-radius=
+: 0px; bottom: 0px; color: rgb(255, 255, 255); left: 0px; margin: 0px; posi=
+tion: fixed; right: 0px; width: 100%; z-index: 999; }
+
+#cookieBar .cookieBarInner { padding: 10px 15px; }
+
+#cookieBar .cookieBarText, #cookieBar .cookieBarButtons { font-family: aria=
+l, sans-serif; font-size: 13px; font-weight: 600; line-height: 1.8; }
+
+#cookieBar .cookieBarText { margin-right: 5px; }
+
+[dir=3D"rtl"] #cookieBar .cookieBarText { margin-left: 5px; margin-right: 0=
+px; }
+
+@media not all {
+}
+
+#cookieBar .cookieBarButton { background-color: rgb(48, 48, 48); border: 1p=
+x solid rgba(0, 0, 0, 0.1); border-radius: 2px; color: rgb(255, 255, 255); =
+cursor: pointer; line-height: 19px; margin-left: 5px; padding: 4px 8px; tex=
+t-decoration: none; white-space: nowrap; }
+
+[dir=3D"rtl"] #cookieBar .cookieBarButton { margin-left: 0px; margin-right:=
+ 5px; }
+------MultipartBoundary--NLwT93Dt7JpMp3bJSHhUzvzWuosjv1fer10QcJJaXN----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://www.chromium.org/_stylesheets/@docsearch/style.css
+
+@charset "utf-8";
+
+:root { --docsearch-primary-color: #5468ff; --docsearch-text-color: #1c1e21=
+; --docsearch-spacing: 12px; --docsearch-icon-stroke-width: 1.4; --docsearc=
+h-highlight-color: var(--docsearch-primary-color); --docsearch-muted-color:=
+ #969faf; --docsearch-container-background: rgba(101,108,133,0.8); --docsea=
+rch-logo-color: #5468ff; --docsearch-modal-width: 560px; --docsearch-modal-=
+height: 600px; --docsearch-modal-background: #f5f6f7; --docsearch-modal-sha=
+dow: inset 1px 1px 0 0 hsla(0,0%,100%,0.5),0 3px 8px 0 #555a64; --docsearch=
+-searchbox-height: 56px; --docsearch-searchbox-background: #ebedf0; --docse=
+arch-searchbox-focus-background: #fff; --docsearch-searchbox-shadow: inset =
+0 0 0 2px var(--docsearch-primary-color); --docsearch-hit-height: 56px; --d=
+ocsearch-hit-color: #444950; --docsearch-hit-active-color: #fff; --docsearc=
+h-hit-background: #fff; --docsearch-hit-shadow: 0 1px 3px 0 #d4d9e1; --docs=
+earch-key-gradient: linear-gradient(-225deg,#d5dbe4,#f8f8f8); --docsearch-k=
+ey-shadow: inset 0 -2px 0 0 #cdcde6,inset 0 0 1px 1px #fff,0 1px 2px 1px rg=
+ba(30,35,90,0.4); --docsearch-footer-height: 44px; --docsearch-footer-backg=
+round: #fff; --docsearch-footer-shadow: 0 -1px 0 0 #e0e3e8,0 -3px 6px 0 rgb=
+a(69,98,155,0.12); }
+
+html[data-theme=3D"dark"] { --docsearch-text-color: #f5f6f7; --docsearch-co=
+ntainer-background: rgba(9,10,17,0.8); --docsearch-modal-background: #15172=
+a; --docsearch-modal-shadow: inset 1px 1px 0 0 #2c2e40,0 3px 8px 0 #000309;=
+ --docsearch-searchbox-background: #090a11; --docsearch-searchbox-focus-bac=
+kground: #000; --docsearch-hit-color: #bec3c9; --docsearch-hit-shadow: none=
+; --docsearch-hit-background: #090a11; --docsearch-key-gradient: linear-gra=
+dient(-26.5deg,#565872,#31355b); --docsearch-key-shadow: inset 0 -2px 0 0 #=
+282d55,inset 0 0 1px 1px #51577d,0 2px 2px 0 rgba(3,4,9,0.3); --docsearch-f=
+ooter-background: #1e2136; --docsearch-footer-shadow: inset 0 1px 0 0 rgba(=
+73,76,106,0.5),0 -4px 8px 0 rgba(0,0,0,0.2); --docsearch-logo-color: #fff; =
+--docsearch-muted-color: #7f8497; }
+
+.DocSearch-Button { align-items: center; background: var(--docsearch-search=
+box-background); border: 0px; border-radius: 40px; color: var(--docsearch-m=
+uted-color); cursor: pointer; display: flex; font-weight: 500; height: 36px=
+; justify-content: space-between; margin: 0px 0px 0px 16px; padding: 0px 8p=
+x; user-select: none; }
+
+.DocSearch-Button:active, .DocSearch-Button:focus, .DocSearch-Button:hover =
+{ background: var(--docsearch-searchbox-focus-background); box-shadow: var(=
+--docsearch-searchbox-shadow); color: var(--docsearch-text-color); outline:=
+ none; }
+
+.DocSearch-Button-Container { align-items: center; display: flex; }
+
+.DocSearch-Search-Icon { stroke-width: 1.6; }
+
+.DocSearch-Button .DocSearch-Search-Icon { color: var(--docsearch-text-colo=
+r); }
+
+.DocSearch-Button-Placeholder { font-size: 1rem; padding: 0px 12px 0px 6px;=
+ }
+
+.DocSearch-Button-Keys { display: flex; min-width: calc(0.8em + 40px); }
+
+.DocSearch-Button-Key { align-items: center; background: var(--docsearch-ke=
+y-gradient); border-radius: 3px; box-shadow: var(--docsearch-key-shadow); c=
+olor: var(--docsearch-muted-color); display: flex; height: 18px; justify-co=
+ntent: center; margin-right: 0.4em; padding-bottom: 2px; position: relative=
+; top: -1px; width: 20px; }
+
+@media (max-width: 750px) {
+  .DocSearch-Button-Keys, .DocSearch-Button-Placeholder { display: none; }
+}
+
+.DocSearch--active { overflow: hidden !important; }
+
+.DocSearch-Container, .DocSearch-Container * { box-sizing: border-box; }
+
+.DocSearch-Container { background-color: var(--docsearch-container-backgrou=
+nd); height: 100vh; left: 0px; position: fixed; top: 0px; width: 100vw; z-i=
+ndex: 200; }
+
+.DocSearch-Container a { text-decoration: none; }
+
+.DocSearch-Link { appearance: none; background: none; border: 0px; color: v=
+ar(--docsearch-highlight-color); cursor: pointer; font: inherit; margin: 0p=
+x; padding: 0px; }
+
+.DocSearch-Modal { background: var(--docsearch-modal-background); border-ra=
+dius: 6px; box-shadow: var(--docsearch-modal-shadow); flex-direction: colum=
+n; margin: 60px auto auto; max-width: var(--docsearch-modal-width); positio=
+n: relative; }
+
+.DocSearch-SearchBar { display: flex; padding: var(--docsearch-spacing) var=
+(--docsearch-spacing) 0; }
+
+.DocSearch-Form { align-items: center; background: var(--docsearch-searchbo=
+x-focus-background); border-radius: 4px; box-shadow: var(--docsearch-search=
+box-shadow); display: flex; height: var(--docsearch-searchbox-height); marg=
+in: 0px; padding: 0 var(--docsearch-spacing); position: relative; width: 10=
+0%; }
+
+.DocSearch-Input { appearance: none; background: transparent; border: 0px; =
+color: var(--docsearch-text-color); flex: 1 1 0%; font-style: inherit; font=
+-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height=
+: inherit; font-family: inherit; font-optical-sizing: inherit; font-kerning=
+: inherit; font-feature-settings: inherit; font-variation-settings: inherit=
+; font-size: 1.2em; height: 100%; outline: none; padding: 0px 0px 0px 8px; =
+width: 80%; }
+
+.DocSearch-Input::placeholder { color: var(--docsearch-muted-color); opacit=
+y: 1; }
+
+.DocSearch-Input::-webkit-search-cancel-button, .DocSearch-Input::-webkit-s=
+earch-decoration, .DocSearch-Input::-webkit-search-results-button, .DocSear=
+ch-Input::-webkit-search-results-decoration { display: none; }
+
+.DocSearch-LoadingIndicator, .DocSearch-MagnifierLabel, .DocSearch-Reset { =
+margin: 0px; padding: 0px; }
+
+.DocSearch-MagnifierLabel, .DocSearch-Reset { align-items: center; color: v=
+ar(--docsearch-highlight-color); display: flex; justify-content: center; }
+
+.DocSearch-Container--Stalled .DocSearch-MagnifierLabel, .DocSearch-Loading=
+Indicator { display: none; }
+
+.DocSearch-Container--Stalled .DocSearch-LoadingIndicator { align-items: ce=
+nter; color: var(--docsearch-highlight-color); display: flex; justify-conte=
+nt: center; }
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .DocSearch-Reset { animation: auto ease 0s 1 normal none running none; ap=
+pearance: none; background: none; border: 0px; border-radius: 50%; color: v=
+ar(--docsearch-icon-color); cursor: pointer; right: 0px; stroke-width: var(=
+--docsearch-icon-stroke-width); }
+}
+
+.DocSearch-Reset { animation: 0.1s ease-in 0s 1 normal forwards running fad=
+e-in; appearance: none; background: none; border: 0px; border-radius: 50%; =
+color: var(--docsearch-icon-color); cursor: pointer; padding: 2px; right: 0=
+px; stroke-width: var(--docsearch-icon-stroke-width); }
+
+.DocSearch-Reset[hidden] { display: none; }
+
+.DocSearch-Reset:focus { outline: none; }
+
+.DocSearch-Reset:hover { color: var(--docsearch-highlight-color); }
+
+.DocSearch-LoadingIndicator svg, .DocSearch-MagnifierLabel svg { height: 24=
+px; width: 24px; }
+
+.DocSearch-Cancel { display: none; }
+
+.DocSearch-Dropdown { max-height: calc(var(--docsearch-modal-height) - var(=
+--docsearch-searchbox-height) - var(--docsearch-spacing) - var(--docsearch-=
+footer-height)); min-height: var(--docsearch-spacing); overflow-y: overlay;=
+ padding: 0 var(--docsearch-spacing); scrollbar-color: var(--docsearch-mute=
+d-color) var(--docsearch-modal-background); scrollbar-width: thin; }
+
+.DocSearch-Dropdown::-webkit-scrollbar { width: 12px; }
+
+.DocSearch-Dropdown::-webkit-scrollbar-track { background: transparent; }
+
+.DocSearch-Dropdown::-webkit-scrollbar-thumb { background-color: var(--docs=
+earch-muted-color); border: 3px solid var(--docsearch-modal-background); bo=
+rder-radius: 20px; }
+
+.DocSearch-Dropdown ul { list-style: none; margin: 0px; padding: 0px; }
+
+.DocSearch-Label { font-size: 0.75em; line-height: 1.6em; }
+
+.DocSearch-Help, .DocSearch-Label { color: var(--docsearch-muted-color); }
+
+.DocSearch-Help { font-size: 0.9em; margin: 0px; user-select: none; }
+
+.DocSearch-Title { font-size: 1.2em; }
+
+.DocSearch-Logo a { display: flex; }
+
+.DocSearch-Logo svg { color: var(--docsearch-logo-color); margin-left: 8px;=
+ }
+
+.DocSearch-Hits:last-of-type { margin-bottom: 24px; }
+
+.DocSearch-Hits mark { background: none; color: var(--docsearch-highlight-c=
+olor); }
+
+.DocSearch-HitsFooter { color: var(--docsearch-muted-color); display: flex;=
+ font-size: 0.85em; justify-content: center; margin-bottom: var(--docsearch=
+-spacing); padding: var(--docsearch-spacing); }
+
+.DocSearch-HitsFooter a { border-bottom: 1px solid; color: inherit; }
+
+.DocSearch-Hit { border-radius: 4px; display: flex; padding-bottom: 4px; po=
+sition: relative; }
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .DocSearch-Hit--deleting { transition: none 0s ease 0s; }
+}
+
+.DocSearch-Hit--deleting { opacity: 0; transition: all 0.25s linear 0s; }
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .DocSearch-Hit--favoriting { transition: none 0s ease 0s; }
+}
+
+.DocSearch-Hit--favoriting { transform: scale(0); transform-origin: center =
+top; transition: all 0.25s linear 0.25s; }
+
+.DocSearch-Hit a { background: var(--docsearch-hit-background); border-radi=
+us: 4px; box-shadow: var(--docsearch-hit-shadow); display: block; padding-l=
+eft: var(--docsearch-spacing); width: 100%; }
+
+.DocSearch-Hit-source { background: var(--docsearch-modal-background); colo=
+r: var(--docsearch-highlight-color); font-size: 0.85em; font-weight: 600; l=
+ine-height: 32px; margin: 0px -4px; padding: 8px 4px 0px; position: sticky;=
+ top: 0px; z-index: 10; }
+
+.DocSearch-Hit-Tree { color: var(--docsearch-muted-color); height: var(--do=
+csearch-hit-height); opacity: 0.5; stroke-width: var(--docsearch-icon-strok=
+e-width); width: 24px; }
+
+.DocSearch-Hit[aria-selected=3D"true"] a { background-color: var(--docsearc=
+h-highlight-color); }
+
+.DocSearch-Hit[aria-selected=3D"true"] mark { text-decoration: underline; }
+
+.DocSearch-Hit-Container { align-items: center; color: var(--docsearch-hit-=
+color); display: flex; flex-direction: row; height: var(--docsearch-hit-hei=
+ght); padding: 0 var(--docsearch-spacing) 0 0; }
+
+.DocSearch-Hit-icon { height: 20px; width: 20px; }
+
+.DocSearch-Hit-action, .DocSearch-Hit-icon { color: var(--docsearch-muted-c=
+olor); stroke-width: var(--docsearch-icon-stroke-width); }
+
+.DocSearch-Hit-action { align-items: center; display: flex; height: 22px; w=
+idth: 22px; }
+
+.DocSearch-Hit-action svg { display: block; height: 18px; width: 18px; }
+
+.DocSearch-Hit-action + .DocSearch-Hit-action { margin-left: 6px; }
+
+.DocSearch-Hit-action-button { appearance: none; background: none; border: =
+0px; border-radius: 50%; color: inherit; cursor: pointer; padding: 2px; }
+
+svg.DocSearch-Hit-Select-Icon { display: none; }
+
+.DocSearch-Hit[aria-selected=3D"true"] .DocSearch-Hit-Select-Icon { display=
+: block; }
+
+.DocSearch-Hit-action-button:focus, .DocSearch-Hit-action-button:hover { ba=
+ckground: rgba(0, 0, 0, 0.2); transition: background-color 0.1s ease-in 0s;=
+ }
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .DocSearch-Hit-action-button:focus, .DocSearch-Hit-action-button:hover { =
+transition: none 0s ease 0s; }
+}
+
+.DocSearch-Hit-action-button:focus path, .DocSearch-Hit-action-button:hover=
+ path { fill: rgb(255, 255, 255); }
+
+.DocSearch-Hit-content-wrapper { display: flex; flex: 1 1 auto; flex-direct=
+ion: column; font-weight: 500; justify-content: center; line-height: 1.2em;=
+ margin: 0px 8px; overflow-x: hidden; position: relative; text-overflow: el=
+lipsis; white-space: nowrap; width: 80%; }
+
+.DocSearch-Hit-title { font-size: 0.9em; }
+
+.DocSearch-Hit-path { color: var(--docsearch-muted-color); font-size: 0.75e=
+m; }
+
+.DocSearch-Hit[aria-selected=3D"true"] .DocSearch-Hit-action, .DocSearch-Hi=
+t[aria-selected=3D"true"] .DocSearch-Hit-icon, .DocSearch-Hit[aria-selected=
+=3D"true"] .DocSearch-Hit-path, .DocSearch-Hit[aria-selected=3D"true"] .Doc=
+Search-Hit-text, .DocSearch-Hit[aria-selected=3D"true"] .DocSearch-Hit-titl=
+e, .DocSearch-Hit[aria-selected=3D"true"] .DocSearch-Hit-Tree, .DocSearch-H=
+it[aria-selected=3D"true"] mark { color: var(--docsearch-hit-active-color) =
+!important; }
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .DocSearch-Hit-action-button:focus, .DocSearch-Hit-action-button:hover { =
+background: rgba(0, 0, 0, 0.2); transition: none 0s ease 0s; }
+}
+
+.DocSearch-ErrorScreen, .DocSearch-NoResults, .DocSearch-StartScreen { font=
+-size: 0.9em; margin: 0px auto; padding: 36px 0px; text-align: center; widt=
+h: 80%; }
+
+.DocSearch-Screen-Icon { color: var(--docsearch-muted-color); padding-botto=
+m: 12px; }
+
+.DocSearch-NoResults-Prefill-List { display: inline-block; padding-bottom: =
+24px; text-align: left; }
+
+.DocSearch-NoResults-Prefill-List ul { display: inline-block; padding: 8px =
+0px 0px; }
+
+.DocSearch-NoResults-Prefill-List li { list-style-position: inside; list-st=
+yle-type: "=C2=BB "; }
+
+.DocSearch-Prefill { appearance: none; background: none; border: 0px; borde=
+r-radius: 1em; color: var(--docsearch-highlight-color); cursor: pointer; di=
+splay: inline-block; font-size: 1em; font-weight: 700; padding: 0px; }
+
+.DocSearch-Prefill:focus, .DocSearch-Prefill:hover { outline: none; text-de=
+coration: underline; }
+
+.DocSearch-Footer { align-items: center; background: var(--docsearch-footer=
+-background); border-radius: 0px 0px 8px 8px; box-shadow: var(--docsearch-f=
+ooter-shadow); display: flex; flex-direction: row-reverse; flex-shrink: 0; =
+height: var(--docsearch-footer-height); justify-content: space-between; pad=
+ding: 0 var(--docsearch-spacing); position: relative; user-select: none; wi=
+dth: 100%; z-index: 300; }
+
+.DocSearch-Commands { color: var(--docsearch-muted-color); display: flex; l=
+ist-style: none; margin: 0px; padding: 0px; }
+
+.DocSearch-Commands li { align-items: center; display: flex; }
+
+.DocSearch-Commands li:not(:last-of-type) { margin-right: 0.8em; }
+
+.DocSearch-Commands-Key { align-items: center; background: var(--docsearch-=
+key-gradient); border-radius: 2px; box-shadow: var(--docsearch-key-shadow);=
+ display: flex; height: 18px; justify-content: center; margin-right: 0.4em;=
+ padding-bottom: 1px; width: 20px; }
+
+@media (max-width: 750px) {
+  :root { --docsearch-spacing: 10px; --docsearch-footer-height: 40px; }
+  .DocSearch-Dropdown { height: 100%; }
+  .DocSearch-Container { height: calc(var(--docsearch-vh, 1vh)*100); positi=
+on: absolute; }
+  .DocSearch-Footer { border-radius: 0px; bottom: 0px; position: absolute; =
+}
+  .DocSearch-Hit-content-wrapper { display: flex; position: relative; width=
+: 80%; }
+  .DocSearch-Modal { border-radius: 0px; box-shadow: none; height: calc(var=
+(--docsearch-vh, 1vh)*100); margin: 0px; max-width: 100%; width: 100%; }
+  .DocSearch-Dropdown { max-height: calc(var(--docsearch-vh, 1vh)*100 - var=
+(--docsearch-searchbox-height) - var(--docsearch-spacing) - var(--docsearch=
+-footer-height)); }
+  .DocSearch-Cancel { appearance: none; background: none; border: 0px; colo=
+r: var(--docsearch-highlight-color); cursor: pointer; display: inline-block=
+; flex: 0 0 auto; font-style: inherit; font-variant: inherit; font-stretch:=
+ inherit; line-height: inherit; font-family: inherit; font-optical-sizing: =
+inherit; font-kerning: inherit; font-feature-settings: inherit; font-variat=
+ion-settings: inherit; font-size: 1em; font-weight: 500; margin-left: var(-=
+-docsearch-spacing); outline: none; overflow: hidden; padding: 0px; user-se=
+lect: none; white-space: nowrap; }
+  .DocSearch-Commands, .DocSearch-Hit-Tree { display: none; }
+}
+
+@keyframes fade-in {=20
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+------MultipartBoundary--NLwT93Dt7JpMp3bJSHhUzvzWuosjv1fer10QcJJaXN----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://www.chromium.org/_stylesheets/default.css
+
+@charset "utf-8";
+
+*, ::before, ::after { box-sizing: border-box; }
+
+body, h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd, pre { margin: =
+0px; }
+
+body { min-height: 100vh; }
+
+ul[role=3D"list"], ol[role=3D"list"] { list-style: none; }
+
+ul, ol { list-style-position: inside; }
+
+a:not([class]) { text-decoration-skip-ink: auto; }
+
+img { display: block; height: auto; max-width: 100%; }
+
+p img { display: inline-block; vertical-align: sub; }
+
+input, button, textarea, select { font: inherit; letter-spacing: inherit; w=
+ord-spacing: inherit; }
+
+iframe { border: 0px; }
+
+img:not([alt]) { filter: blur(10px); }
+
+hr { height: 1px; margin: 0px; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01s !important; animation-iteration-count: 1 !i=
+mportant; scroll-behavior: auto !important; transition-duration: 0.01s !imp=
+ortant; }
+}
+
+a { color: rgb(0, 102, 204); }
+
+a.disabled { color: rgb(102, 102, 102); text-decoration: none; }
+
+b { font-weight: 700; }
+
+body { background-color: rgb(247, 247, 247); color: black; font-family: Ari=
+al, Verdana, sans-serif; }
+
+code { background: rgb(239, 239, 239); color: rgb(0, 96, 0); font-family: m=
+onospace; }
+
+em, i { font-style: italic; }
+
+pre { background: rgb(239, 239, 239); border: 1px solid lightgray; margin: =
+1em; padding: 0.5em 1em; }
+
+header { align-items: center; display: flex; justify-content: space-between=
+; margin: 5px 5px 5px 10px; }
+
+header a { align-items: center; color: rgb(0, 102, 204); display: flex; tex=
+t-decoration: none; }
+
+header a h2 { width: 100%; }
+
+header img { display: block; margin-right: 10px; }
+
+#main-wrapper { display: flex; }
+
+#sidebar-left { flex: 0 1 auto; font-size: 12px; line-height: 1.33em; min-w=
+idth: 160px; width: 160px; }
+
+#sidebar-left section { background-color: white; margin: 0px 5px 6px; paddi=
+ng: 0px 0px 0px 5px; }
+
+#sidebar-left a { color: rgb(0, 102, 204); display: block; text-decoration:=
+ none; }
+
+#sidebar-left a.selected { color: black; font-weight: bold; }
+
+#sidebar-left h4 { color: rgb(72, 72, 72); font-weight: 700; font-size: 13p=
+x; margin-bottom: 1px; padding: 3px 0px 2px; }
+
+#sidebar-left #license { background-color: white; color: rgb(94, 106, 114);=
+ font-size: 10px; line-height: normal; margin: 0px 5px 6px; padding: 11px 5=
+px 5px; }
+
+#sidebar-left #license a { display: inline; text-decoration: underline; }
+
+#sidebar-left a#edit-this-page { background-color: rgb(3, 25, 79); border: =
+1px solid silver; color: white; display: block; font-size: 14px; font-weigh=
+t: 700; margin: 20px auto; padding: 6px 12px; text-align: center; text-deco=
+ration: none; width: 90%; }
+
+main { background-color: white; border: 1px solid lightgray; flex: 1 1 100%=
+; font-family: Arial, Verdana, sans-serif; font-size: 13.333px; line-height=
+: 1.3; margin-right: 5px; padding: 20px; }
+
+main a:visited { color: rgb(71, 18, 100); }
+
+main a.header-anchor { color: inherit; text-decoration: inherit; }
+
+main blockquote { background-color: rgb(255, 253, 231); border-left: 0.2em =
+solid rgb(250, 183, 0); color: black; margin-bottom: 1em; padding: 0.2em 1e=
+m; }
+
+main del { background-color: rgb(244, 204, 204); text-decoration: inherit; =
+}
+
+main h1 { font-size: 22px; font-weight: 700; margin: 10px 0px 1.4em; }
+
+main h1 a { color: rgb(0, 102, 204); }
+
+main h2 { font-size: 20px; font-weight: 700; margin: 1.2em 0px 0.8em; }
+
+main h3 { font-size: 16px; font-weight: 700; margin: 1.2em 0px 0.7em; }
+
+main h4 { font-weight: 700; margin: 1.2em 0px 0.6em; }
+
+main h4 a { color: rgb(0, 102, 204); }
+
+main h4 i a { color: rgb(0, 102, 204); font-weight: 400; }
+
+main ins { background-color: rgb(217, 234, 211); text-decoration: inherit; =
+}
+
+main p { margin-bottom: 13.33px; margin-top: 1.4em; }
+
+main pre { white-space: break-spaces; word-break: break-all; }
+
+main #title-crumbs { padding: 6px 0px 0px 10px; }
+
+main #title-crumbs + h3 { margin-top: 6px; }
+
+main ul { display: block; list-style-position: outside; list-style-type: di=
+sc; margin-bottom: 1em; margin-top: 1em; padding-left: 40px; }
+
+main ul li { margin-bottom: 5px; margin-top: 5px; }
+
+main ul li > p:first-of-type { display: inline; }
+
+main ul ul { list-style-type: circle; margin-bottom: 0px; margin-top: 0px; =
+}
+
+main ul ul ul { list-style-type: square; }
+
+main ol { list-style-position: outside; list-style-type: decimal; padding-l=
+eft: 40px; margin: 1em 0px; }
+
+main ol li { margin: 5px 0px; }
+
+main ol li p { margin: 0.5em 0px; }
+
+main ol li > p:first-of-type { display: inline; }
+
+main ol ul { list-style-type: circle; margin-bottom: 0px; margin-top: 0px; =
+}
+
+main table { border-collapse: collapse; border-spacing: 0px; margin: 1.3em =
+0px; }
+
+main table td, main table th { border: 1px solid rgb(217, 217, 217); paddin=
+g: 5px 10px; vertical-align: top; }
+
+main nav.subpage-listing { background-color: rgb(241, 241, 241); border: 1p=
+x solid lightgray; }
+
+main nav.subpage-listing details { margin-left: -1em; }
+
+main nav.subpage-listing h4 { margin: inherit; padding: 0.5em 0px 0px 0.5em=
+; }
+
+main nav.subpage-listing li { font-weight: normal; list-style: none none; m=
+argin-left: 1.2em; padding-left: 1.3em; }
+
+main nav.subpage-listing li a { text-decoration: none; }
+
+main nav.subpage-listing ul { padding-left: 0px; }
+
+main nav.subpage-listing > ul { margin: 0.5em 0px; }
+
+main nav.subpage-listing > ul > li { border-top: 1px solid white; font-weig=
+ht: bold; margin: 3px 0px; padding: 2px 0px 2px 1.3em; }
+
+main .table-of-contents { border: 1px solid lightgray; background-color: rg=
+b(241, 241, 241); display: table; font-size: 12px; margin-left: 1em; paddin=
+g: 1em 2em 1em 1em; }
+
+main .table-of-contents a { text-decoration: none; }
+
+main .table-of-contents > ol::before { content: "Contents"; display: block;=
+ font-weight: 700; margin: 0px 0px 0.5em -1em; }
+
+main .table-of-contents ol { line-height: 1.1em; margin: 0px; padding-left:=
+ 1.2em; }
+
+main .table-of-contents ol li { list-style-type: none; }
+
+main .two-column-container { align-items: flex-start; display: flex; }
+
+main .two-column-container > div.column { flex: 1 1 50%; margin: 0px; paddi=
+ng-right: 30px; }
+------MultipartBoundary--NLwT93Dt7JpMp3bJSHhUzvzWuosjv1fer10QcJJaXN----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: https://www.chromium.org/_assets/icon-chromium-96.png
+
+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
+AElFTkSuQmCC
+
+------MultipartBoundary--NLwT93Dt7JpMp3bJSHhUzvzWuosjv1fer10QcJJaXN------

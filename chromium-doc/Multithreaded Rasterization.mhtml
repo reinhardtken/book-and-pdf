@@ -1,0 +1,1209 @@
+From: <Saved by Blink>
+Snapshot-Content-Location: https://www.chromium.org/developers/design-documents/impl-side-painting/
+Subject: Multithreaded Rasterization
+Date: Fri, 19 Jul 2024 11:21:01 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----MultipartBoundary--ew8YfQXE9cllSzKzDDkmt75uSQppsjYmBwO1j20Un9----"
+
+
+------MultipartBoundary--ew8YfQXE9cllSzKzDDkmt75uSQppsjYmBwO1j20Un9----
+Content-Type: text/html
+Content-ID: <frame-448288D7F4348506333447B4CDD4F257@mhtml.blink>
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://www.chromium.org/developers/design-documents/impl-side-painting/
+
+<!DOCTYPE html><html><head><meta http-equiv=3D"Content-Type" content=3D"tex=
+t/html; charset=3DUTF-8"><link rel=3D"stylesheet" type=3D"text/css" href=3D=
+"cid:css-69fe7596-e392-4470-ab1c-8a5720acee03@mhtml.blink" />
+ =20
+  <title>Multithreaded Rasterization</title>
+  <link rel=3D"stylesheet" href=3D"https://www.chromium.org/_stylesheets/@d=
+ocsearch/style.css">
+  <link rel=3D"stylesheet" href=3D"https://www.chromium.org/_stylesheets/de=
+fault.css">
+</head>
+<!-- Configure Google Analytics v4 -->
+<!-- Google tag (gtag.js) -->
+
+
+
+<body youdao=3D"bind"><div id=3D"cookieBar" aria-labelledby=3D"cookieBarTex=
+t" role=3D"region"><div class=3D"cookieBarInner"><span id=3D"cookieBarText"=
+ class=3D"cookieBarText">This site uses cookies from Google to deliver and =
+enhance the quality of its services and to analyze traffic.</span><span cla=
+ss=3D"cookieBarButtons"><a rel=3D"noopener" target=3D"_blank" href=3D"https=
+://policies.google.com/technologies/cookies?hl=3Den" class=3D"cookieBarButt=
+on cookieBarMoreButton">Learn more</a><a href=3D"https://www.chromium.org/d=
+evelopers/design-documents/impl-side-painting/#" role=3D"button" class=3D"c=
+ookieBarButton cookieBarConsentButton">OK, got it</a></span></div></div><he=
+ader>
+  <a href=3D"https://www.chromium.org/">
+    <img alt=3D"the Chromium logo" src=3D"https://www.chromium.org/_assets/=
+icon-chromium-96.png" width=3D"48" height=3D"48">
+    <h2>The Chromium Projects</h2>
+  </a>
+  <div id=3D"search"><button type=3D"button" class=3D"DocSearch DocSearch-B=
+utton" aria-label=3D"Search"><span class=3D"DocSearch-Button-Container"><sv=
+g width=3D"20" height=3D"20" class=3D"DocSearch-Search-Icon" viewBox=3D"0 0=
+ 20 20"><path d=3D"M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.941=
+9-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.94=
+19 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke=
+=3D"currentColor" fill=3D"none" fill-rule=3D"evenodd" stroke-linecap=3D"rou=
+nd" stroke-linejoin=3D"round"></path></svg><span class=3D"DocSearch-Button-=
+Placeholder">Search</span></span><span class=3D"DocSearch-Button-Keys"><spa=
+n class=3D"DocSearch-Button-Key">=E2=8C=98</span><span class=3D"DocSearch-B=
+utton-Key">K</span></span></button></div>
+</header>
+
+<div id=3D"main-wrapper">
+  <nav id=3D"sidebar-left">
+    <section>
+      <a href=3D"https://www.chromium.org/chromium-projects">Home</a>
+      <a href=3D"https://www.chromium.org/Home">Chromium</a>
+      <a href=3D"https://www.chromium.org/chromium-os">ChromiumOS</a>
+    </section>
+    <section>
+      <h4>Quick links</h4>
+      <a href=3D"https://www.chromium.org/for-testers/bug-reporting-guideli=
+nes">Report bugs</a>
+      <a href=3D"https://www.chromium.org/developers/discussion-groups">Dis=
+cuss</a>
+    </section>
+    <section>
+      <h4>Other sites</h4>
+      <a href=3D"https://blog.chromium.org/">Chromium Blog</a>
+      <a href=3D"https://developer.chrome.com/extensions">Google Chrome Ext=
+ensions</a>
+    </section>
+    <section id=3D"license" role=3D"complementary">
+      Except as otherwise
+      <a href=3D"https://developers.google.com/site-policies.html#restricti=
+ons">noted</a>,
+      the content of this page is licensed under a
+      <a href=3D"https://creativecommons.org/licenses/by/2.5/">Creative Com=
+mons Attribution 2.5 license</a>,
+      and examples are licensed under the
+      <a href=3D"https://chromium.googlesource.com/chromium/src/+/HEAD/LICE=
+NSE">BSD License</a>.
+    </section>
+    <section id=3D"privacy" role=3D"complementary">
+      <a href=3D"https://policies.google.com/privacy">Privacy</a>
+    </section>
+    <a id=3D"edit-this-page" href=3D"https://edit.chromium.org/edit?repo=3D=
+chromium/website/main&amp;file=3Dsite/developers/design-documents/impl-side=
+-painting/index.md&amp;ext_google.git=3D%7B%22repo%22%3A%22chromium%2Fwebsi=
+te%22%2C%22ref%22%3A%22main%22%2C%22file%22%3A%22site/developers/design-doc=
+uments/impl-side-painting/index.md%22%7D">Edit this page</a>
+  </nav>
+  <main>
+    <div class=3D"breadcrumbs">
+      <a href=3D"https://www.chromium.org/developers">For Developers</a> &g=
+t;
+      <a href=3D"https://www.chromium.org/developers/design-documents">Desi=
+gn Documents</a> &gt;
+    </div>
+    <h1>Multithreaded Rasterization</h1>
+  <h2 id=3D"nduca-enne-vangelis-and-many-others" tabindex=3D"-1"><a class=
+=3D"header-anchor" href=3D"https://www.chromium.org/developers/design-docum=
+ents/impl-side-painting/#nduca-enne-vangelis-and-many-others"><strong>## <s=
+trong>## <strong>@nduca, @enne, @vangelis (and many others)</strong></stron=
+g></strong></a></h2>
+<h1>Implementation status:</h1>
+<h1>crbug.com/169282, and <a href=3D"https://code.google.com/p/chromium/iss=
+ues/list?q=3Dlabel:Cr-Internals-Compositing-Rasterization">https://code.goo=
+gle.com/p/chromium/issues/list?q=3Dlabel:Cr-Internals-Compositing-Rasteriza=
+tion</a></h1>
+<p>This feature is referred to as "multithreaded painting" and "impl-side p=
+ainting"
+in some forums.</p>
+<h2 id=3D"background-problem-statement" tabindex=3D"-1"><a class=3D"header-=
+anchor" href=3D"https://www.chromium.org/developers/design-documents/impl-s=
+ide-painting/#background-problem-statement">Background &amp; Problem Statem=
+ent</a></h2>
+<h2 id=3D"our-current-compositor-thread-architecture-is-built-around-the-id=
+ea-of-rasterizing-layers-on-the-main-webkit-thread-and-then-on-the-composit=
+or-thread-drawing-the-bits-of-the-layers-that-we-have-based-on-their-variou=
+s-animated-and-scrolled-positions-this-allows-us-to-move-the-page-up-and-do=
+wn-eg-due-to-finger-dragging-without-having-to-block-on-the-webkit-thread-w=
+hen-a-tile-is-exposed-that-does-not-have-contents-we-draw-a-checkerboard-an=
+d-wait-for-the-main-thread-to-rasterize-that-tile" tabindex=3D"-1"><a class=
+=3D"header-anchor" href=3D"https://www.chromium.org/developers/design-docum=
+ents/impl-side-painting/#our-current-compositor-thread-architecture-is-buil=
+t-around-the-idea-of-rasterizing-layers-on-the-main-webkit-thread-and-then-=
+on-the-compositor-thread-drawing-the-bits-of-the-layers-that-we-have-based-=
+on-their-various-animated-and-scrolled-positions-this-allows-us-to-move-the=
+-page-up-and-down-eg-due-to-finger-dragging-without-having-to-block-on-the-=
+webkit-thread-when-a-tile-is-exposed-that-does-not-have-contents-we-draw-a-=
+checkerboard-and-wait-for-the-main-thread-to-rasterize-that-tile">Our curre=
+nt compositor thread architecture is built around the idea of rasterizing l=
+ayers on the main webkit thread and then, on the compositor thread, drawing=
+ the bits of the layers that we have based on their various animated and sc=
+rolled positions. This allows us to move the page up and down, e.g. due to =
+finger dragging, without having to block on the webkit thread. When a tile =
+is exposed that does not have contents, we draw a checkerboard and wait for=
+ the main thread to rasterize that tile.</a></h2>
+<ol>
+<li>
+<h2 id=3D"we-want-to-be-able-to-fill-in-checkerboards-without-requiring" ta=
+bindex=3D"-1"><a class=3D"header-anchor" href=3D"https://www.chromium.org/d=
+evelopers/design-documents/impl-side-painting/#we-want-to-be-able-to-fill-i=
+n-checkerboards-without-requiring">****We want to be able to fill in checke=
+rboards without requiring</a></h2>
+<pre><code>    a new commit, since that requires going to a busy webkit thr=
+ead and
+    pulling in a whole new tree + damage. We also want to be able to
+    render tiles at multiple resolutions, and quality levels. These
+    kinds of tricks reduce memory pressure, avoid the jarring
+    interruption of checkerboards.****
+</code></pre>
+</li>
+</ol>
+<h2 id=3D"the-excessive-checkerboarding-problem" tabindex=3D"-1"><a class=
+=3D"header-anchor" href=3D"https://www.chromium.org/developers/design-docum=
+ents/impl-side-painting/#the-excessive-checkerboarding-problem"><strong><st=
+rong>### The Excessive Checkerboarding Problem</strong></strong></a></h2>
+<h2 id=3D"a-lot-of-our-unwanted-checkerboarding-comes-from-invalidates-gett=
+ing-intermixed-with-requests-from-the-impl-thread-to-fill-in-missing-tiles-=
+in-the-current-architecture-we-can-only-rasterize-tiles-on-the-main-thread-=
+using-webkits-rendering-data-structures-if-webkits-rendering-tree-is-comple=
+tely-unchanged-then-the-page-scrolls-all-the-rasterization-requests-that-go=
+-to-the-main-thread-are-easily-satisifed-by-webkit" tabindex=3D"-1"><a clas=
+s=3D"header-anchor" href=3D"https://www.chromium.org/developers/design-docu=
+ments/impl-side-painting/#a-lot-of-our-unwanted-checkerboarding-comes-from-=
+invalidates-getting-intermixed-with-requests-from-the-impl-thread-to-fill-i=
+n-missing-tiles-in-the-current-architecture-we-can-only-rasterize-tiles-on-=
+the-main-thread-using-webkits-rendering-data-structures-if-webkits-renderin=
+g-tree-is-completely-unchanged-then-the-page-scrolls-all-the-rasterization-=
+requests-that-go-to-the-main-thread-are-easily-satisifed-by-webkit"><strong=
+><strong>A lot of our unwanted checkerboarding comes from invalidates getti=
+ng intermixed with "requests" from the impl thread to fill in missing tiles=
+. In the current architecture, we can only rasterize tiles on the main thre=
+ad, using webkit's rendering data structures. If webkit's rendering tree is=
+ completely unchanged, then the page scrolls, all the rasterization request=
+s that go to the main thread are easily satisifed by webkit.</strong></stro=
+ng></a></h2>
+<h2 id=3D"however-any-time-javascript-changes-the-rendering-tree-we-have-th=
+e-following-problem-we-have-some-newly-exposed-tiles-that-the-compositor-th=
+read-needs-to-prevent-checkerboarding-but-annoyingly-any-of-the-previously-=
+painted-tiles-that-webkit-says-were-invalidated-we-can-only-paint-the-new-r=
+endering-tree-the-old-rendering-tree-is-gone-so-we-have-two-options-at-this=
+-point" tabindex=3D"-1"><a class=3D"header-anchor" href=3D"https://www.chro=
+mium.org/developers/design-documents/impl-side-painting/#however-any-time-j=
+avascript-changes-the-rendering-tree-we-have-the-following-problem-we-have-=
+some-newly-exposed-tiles-that-the-compositor-thread-needs-to-prevent-checke=
+rboarding-but-annoyingly-any-of-the-previously-painted-tiles-that-webkit-sa=
+ys-were-invalidated-we-can-only-paint-the-new-rendering-tree-the-old-render=
+ing-tree-is-gone-so-we-have-two-options-at-this-point"><strong><strong>Howe=
+ver, any time javascript changes the rendering tree, we have the following =
+problem: we have some "newly exposed tiles" that the compositor thread need=
+s to prevent checkerboarding. But, annoyingly, any of the previously-painte=
+d tiles that webkit says were invalidated. We can only paint the new render=
+ing tree -- the old rendering tree is gone. So, we have two options at this=
+ point:</strong></strong></a></h2>
+<p><strong><strong>1. Draw the new tiles with the new rendering tree, and r=
+edraw the old tiles
+with the new rendering tree</strong></strong></p>
+<p><strong><strong>2. Draw only the new tiles, and let the old tiles stick =
+around.</strong></strong></p>
+<p><strong><strong>#2 doesn't work well at all, of course: if you have a pa=
+ge that toggles
+between green and blue constantly, what you'd see is a random mix of green =
+and
+blue page at any given moment. We want to preserve the "atomicity of render=
+ing"
+--- meaning that the complete state of a web page at rAF time is what gets =
+put
+on the screen.</strong></strong></p>
+<p><strong><strong>There is a variant on 2 where we draw the new tiles, as =
+well as any old
+tiles that are *onscreen*. If a tile is offscreen, then we make a note that=
+ is
+is invalid, but dont repaint it. In the green-blue scenario, this causes th=
+e
+screen to be green or blue, but never both=3D=3D, as long as you dont scrol=
+l=3D=3D. We
+ship this on Chrome Android m18. Even so, this is undesirable: if you scrol=
+l,
+you'll see a mix of content. This is expedient performance wise, but makes =
+us
+all feel dirty.</strong></strong></p>
+<h2 id=3D"our-other-source-of-heavy-checkerboarding-is-latency-related-the-=
+work-we-do-on-the-main-thread-is-based-on-as-scroll-position-update-message=
+-that-comes-from-the-impl-thread-this-message-is-itself-not-very-latent-arr=
+iving-on-the-main-thread-milliseconds-after-it-is-sent-however-paints-for-a=
+-new-set-of-tiles-can-take-300ms-to-complete-even-with-the-relaxed-atomicit=
+y-approach-described-above-by-the-time-we-have-painted-all-300ms-worth-of-w=
+ork-the-page-has-scrolled-way-past-the-original-scroll-position-and-half-of=
+-the-tiles-we-worked-hard-to-prepare-are-irrelevant-we-have-discussed-a-var=
+iety-of-solutions-here-but-the-real-core-problem-is-that-the-main-thread-ca=
+nnot-be-updated-fast-enough-with-the-new-scroll-positions-to-really-ever-ke=
+ep-up-properly" tabindex=3D"-1"><a class=3D"header-anchor" href=3D"https://=
+www.chromium.org/developers/design-documents/impl-side-painting/#our-other-=
+source-of-heavy-checkerboarding-is-latency-related-the-work-we-do-on-the-ma=
+in-thread-is-based-on-as-scroll-position-update-message-that-comes-from-the=
+-impl-thread-this-message-is-itself-not-very-latent-arriving-on-the-main-th=
+read-milliseconds-after-it-is-sent-however-paints-for-a-new-set-of-tiles-ca=
+n-take-300ms-to-complete-even-with-the-relaxed-atomicity-approach-described=
+-above-by-the-time-we-have-painted-all-300ms-worth-of-work-the-page-has-scr=
+olled-way-past-the-original-scroll-position-and-half-of-the-tiles-we-worked=
+-hard-to-prepare-are-irrelevant-we-have-discussed-a-variety-of-solutions-he=
+re-but-the-real-core-problem-is-that-the-main-thread-cannot-be-updated-fast=
+-enough-with-the-new-scroll-positions-to-really-ever-keep-up-properly">Our =
+other source of heavy checkerboarding is latency related. The work we do on=
+ the main thread is based on as scroll position update message that comes f=
+rom the impl thread. This message is itself not very latent, arriving on th=
+e main thread milliseconds after it is sent. However, paints for a new set =
+of tiles can take 300ms + to complete, even with the relaxed atomicity appr=
+oach described above. By the time we have painted all 300ms worth of work, =
+the page has scrolled way past the original scroll position, and half of th=
+e tiles we worked hard to prepare are irrelevant. We have discussed a varie=
+ty of solutions here, but the real core problem is that the main thread can=
+not be updated fast enough with the new scroll positions to really ever kee=
+p up properly.</a></h2>
+<h3 id=3D"planned-solution" tabindex=3D"-1"><a class=3D"header-anchor" href=
+=3D"https://www.chromium.org/developers/design-documents/impl-side-painting=
+/#planned-solution">Planned Solution</a></h3>
+<h3 id=3D"display-lists-namely-skpictures-modified-a-bit-to-support-partial=
+-updating-we-call-this-a-picture-pile-a-name-borrowed-from-the-awesome-folk=
+s-behind-android-browser-the-idea-is-to-only-capture-a-display-list-of-the-=
+webkit-rendering-tree-on-the-main-thread-then-do-rasterization-on-the-impl-=
+thread-which-is-much-more-responsive" tabindex=3D"-1"><a class=3D"header-an=
+chor" href=3D"https://www.chromium.org/developers/design-documents/impl-sid=
+e-painting/#display-lists-namely-skpictures-modified-a-bit-to-support-parti=
+al-updating-we-call-this-a-picture-pile-a-name-borrowed-from-the-awesome-fo=
+lks-behind-android-browser-the-idea-is-to-only-capture-a-display-list-of-th=
+e-webkit-rendering-tree-on-the-main-thread-then-do-rasterization-on-the-imp=
+l-thread-which-is-much-more-responsive">Display lists. Namely, SkPictures, =
+modified a bit to support partial updating. We call this a Picture pile, a =
+name borrowed from the awesome folks behind Android Browser. The idea is to=
+ only capture a display list of the webkit rendering tree on the main threa=
+d. Then, do rasterization on the impl thread, which is much more responsive=
+.</a></h3>
+<h3 id=3D"on-main-thread-web-content-is-turned-into-picturelayers-picture-l=
+ayers-make-a-recording-of-the-layer-into-a-picturepile-we-track-invalidatio=
+ns-in-skregions-and-during-the-display-list-capture-process-decide-between-=
+re-capturing-the-entire-layer-or-just-grabbing-the-invalidated-area-and-dra=
+wing-it-on-top-of-the-previously-recorded-base-layer" tabindex=3D"-1"><a cl=
+ass=3D"header-anchor" href=3D"https://www.chromium.org/developers/design-do=
+cuments/impl-side-painting/#on-main-thread-web-content-is-turned-into-pictu=
+relayers-picture-layers-make-a-recording-of-the-layer-into-a-picturepile-we=
+-track-invalidations-in-skregions-and-during-the-display-list-capture-proce=
+ss-decide-between-re-capturing-the-entire-layer-or-just-grabbing-the-invali=
+dated-area-and-drawing-it-on-top-of-the-previously-recorded-base-layer">On =
+main thread, web content is turned into PictureLayers. <strong><strong>Pict=
+ure layers make a recording of the layer into a PicturePile. We track inval=
+idations in SkRegions and during the display list capture process, decide b=
+etween re-capturing the entire layer or just grabbing the invalidated area =
+and drawing it on-top of the previously recorded base layer.</strong></stro=
+ng></a></h3>
+<h2 id=3D"during-commit-we-pass-these-picturepiles-to-a-picturelayerimpl-re=
+call-layers-can-change-in-scale-over-time-under-animation-pinch-zoom-etc-to=
+-handle-this-a-picturelayerimpl-manages-one-or-more-picturelayertiling-obje=
+cts-via-a-picturelayertilingset-which-is-a-decomposition-of-the-layers-enti=
+re-contents-into-tiles-at-a-picture-screenspace-resolution-so-for-example-a=
+-512x512-layer-might-have-a-tiling-into-4-256x256-tiles-for-a-11-ratio-of-s=
+creenspace-pixels-to-content-pixels-but-also-1-256x256-tile-for-a-12-ratio-=
+of-screenspace-to-conten-space-we-manage-these-tilings-dyanmically" tabinde=
+x=3D"-1"><a class=3D"header-anchor" href=3D"https://www.chromium.org/develo=
+pers/design-documents/impl-side-painting/#during-commit-we-pass-these-pictu=
+repiles-to-a-picturelayerimpl-recall-layers-can-change-in-scale-over-time-u=
+nder-animation-pinch-zoom-etc-to-handle-this-a-picturelayerimpl-manages-one=
+-or-more-picturelayertiling-objects-via-a-picturelayertilingset-which-is-a-=
+decomposition-of-the-layers-entire-contents-into-tiles-at-a-picture-screens=
+pace-resolution-so-for-example-a-512x512-layer-might-have-a-tiling-into-4-2=
+56x256-tiles-for-a-11-ratio-of-screenspace-pixels-to-content-pixels-but-als=
+o-1-256x256-tile-for-a-12-ratio-of-screenspace-to-conten-space-we-manage-th=
+ese-tilings-dyanmically"><strong><strong>During commit, we pass these Pictu=
+rePiles to a PictureLayerImpl.</strong> <strong>Recall, layers can change i=
+n scale over time, under animation, pinch zoom, etc. To handle this, a Pict=
+ureLayerImpl manages</strong> <strong>one or more PictureLayerTiling object=
+s (via a PictureLayerTilingSet), which is a decomposition of the layer's en=
+tire contents into tiles at a picture screenspace resolution. So for exampl=
+e, a 512x512 layer might have a tiling into 4 256x256 tiles for a 1:1 ratio=
+ of screenspace pixels to content pixels, but also 1 256x256 tile for a 1:2=
+ ratio of screenspace to conten space. We manage these tilings dyanmically.=
+</strong></strong></a></h2>
+<h2 id=3D"a-tiling-itself-takes-the-layers-entire-size-not-just-the-visible=
+-part-and-breaks-it-up-into-tiles-each-tile-represents-a-rectangle-of-the-p=
+icturepile-painted-into-a-resource-id-think-gl-texture-at-a-given-resolutio=
+n-and-quality-setting" tabindex=3D"-1"><a class=3D"header-anchor" href=3D"h=
+ttps://www.chromium.org/developers/design-documents/impl-side-painting/#a-t=
+iling-itself-takes-the-layers-entire-size-not-just-the-visible-part-and-bre=
+aks-it-up-into-tiles-each-tile-represents-a-rectangle-of-the-picturepile-pa=
+inted-into-a-resource-id-think-gl-texture-at-a-given-resolution-and-quality=
+-setting"><strong><strong>A tiling itself takes the layers entire size, not=
+ just the visible part, and breaks it up into Tiles. Each tile represents a=
+ rectangle of the PicturePile painted into a Resource ID [think, GL texture=
+], at a given resolution and quality setting.</strong></strong></a></h2>
+<p><strong><strong>Every tile is given a set of TilePriority values by the =
+PictureLayerImpl
+based on its screen space position, animation and scroll velocity, and pict=
+ure
+contents. These different priorities encode how soon, in time units, the ti=
+le
+could be visually useful onscreen. Key metrics are things like "how soon wi=
+ll it
+be visible" and "how soon will it be crisp" and "is this a tile we'd use if=
+ a
+crisp one wasn't available?"</strong></strong></p>
+<p><strong><strong>These Tiles are registered to the</strong> <strong>TileM=
+anager, which keeps these tiles
+sorted based on their priority and some global priority states. Tiles are b=
+inned
+in orders of urgency (needed now, needed in the next second, needed eventua=
+lly,
+never going to be needed) and then sorted within their bin. The total GPU M=
+emory
+budget is then assigned in decreasing priority order to these tiles. Tiles =
+that
+are given permission to use memory are then added to a rasterization queue =
+if
+needed.</strong></strong></p>
+<p><strong><strong>The raster thread scheduler is a very simple solution: o=
+n the impl thread,
+we simply pop from the raster queue, dispatch the raster task. We keep a ce=
+rtain
+number of jobs enqueued per thread, opting to not enqueue them all so that =
+if
+the prioritization changes much in the future, we wont do redundant work.</=
+strong></strong></p>
+<p><strong><strong>JPEG/PNG/etc bitmaps are stored in the display lists in =
+still-encoded form
+to keep display list recording cost low and memory footprint small. Thus, t=
+he
+first time we draw a bitmap, a costly decode and downsample operation may b=
+e
+needed.</strong> <strong>Thus, before dispatch, tiles are "cracked open" to=
+ determine whether
+any bitmaps need to be decompressed, using the SkLazyPixelRef interface to
+WebCore's ImageDecodingStore. If decoding is needed, the tile is held in a =
+side
+queue while a decoding task is dispatched to the raster threads. When the
+decodes are done, raster tasks are enqueued.</strong></strong></p>
+<h2 id=3D"this-approach-fixes-the-atomicity-of-commits-problem-by-allowing-=
+us-to-servie-checkerboard-misses-without-havin-to-go-to-the-laggy-potential=
+ly-changed-main-thread-in-the-previous-example-when-the-compositor-sees-a-c=
+heckerboarded-tile-we-can-rasterize-it-without-having-to-start-a-commit-flo=
+w-allowing-us-to-disallow-commits-entirely-during-flings-and-other-heavy-an=
+imation-use-cases" tabindex=3D"-1"><a class=3D"header-anchor" href=3D"https=
+://www.chromium.org/developers/design-documents/impl-side-painting/#this-ap=
+proach-fixes-the-atomicity-of-commits-problem-by-allowing-us-to-servie-chec=
+kerboard-misses-without-havin-to-go-to-the-laggy-potentially-changed-main-t=
+hread-in-the-previous-example-when-the-compositor-sees-a-checkerboarded-til=
+e-we-can-rasterize-it-without-having-to-start-a-commit-flow-allowing-us-to-=
+disallow-commits-entirely-during-flings-and-other-heavy-animation-use-cases=
+"><strong>### <strong><strong>This approach fixes the =E2=80=9Catomicity of=
+ commits=E2=80=9D problem by allowing us to servie checkerboard misses with=
+out havin to go to the laggy, potentially changed main thread. In the previ=
+ous example, when the compositor sees a checkerboarded tile, we can rasteri=
+ze it without having to start a commit flow, allowing us to disallow commit=
+s entirely during flings and other heavy animation use cases.</strong></str=
+ong></strong></a></h2>
+<h2 id=3D"hitch-free-commits" tabindex=3D"-1"><a class=3D"header-anchor" hr=
+ef=3D"https://www.chromium.org/developers/design-documents/impl-side-painti=
+ng/#hitch-free-commits"><strong><strong>### ## <strong>### Hitch-free commi=
+ts</strong></strong></strong></a></h2>
+<h2 id=3D"a-key-challenge-with-this-approach-is-switching-from-the-old-tree=
+-to-the-new-tree-in-the-existing-architecture-when-we-go-to-switch-to-the-n=
+ew-tree-we-have-painted-and-uploaded-all-the-tiles-so-the-tree-can-be-immed=
+iately-switched" tabindex=3D"-1"><a class=3D"header-anchor" href=3D"https:/=
+/www.chromium.org/developers/design-documents/impl-side-painting/#a-key-cha=
+llenge-with-this-approach-is-switching-from-the-old-tree-to-the-new-tree-in=
+-the-existing-architecture-when-we-go-to-switch-to-the-new-tree-we-have-pai=
+nted-and-uploaded-all-the-tiles-so-the-tree-can-be-immediately-switched"><s=
+trong><strong>### ## ### <strong><strong>A key challenge with this approach=
+ is switching from the old tree to the new tree. In the existing architectu=
+re, when we go to switch to the new tree, we have painted and uploaded all =
+the tiles, so the tree can be immediately switched.</strong></strong></stro=
+ng></strong>**</a></h2>
+<h2 id=3D"in-the-impl-side-painting-architecture-we-need-to-create" tabinde=
+x=3D"-1"><a class=3D"header-anchor" href=3D"https://www.chromium.org/develo=
+pers/design-documents/impl-side-painting/#in-the-impl-side-painting-archite=
+cture-we-need-to-create">****### ## ****In the impl-side painting architect=
+ure, we need to create</a></h2>
+<p>PictureLayerImpl's in order to begin rasterizing them. Moreover, those i=
+mpls
+need to be attached together to the LayerTreeHostImpl in order to get their
+screenspace positions, which are essential in computing their
+priorities.**********</p>
+<h2 id=3D"the-obvious-way-to-do-this-is-to-simply-commit-the-main-tree" tab=
+index=3D"-1"><a class=3D"header-anchor" href=3D"https://www.chromium.org/de=
+velopers/design-documents/impl-side-painting/#the-obvious-way-to-do-this-is=
+-to-simply-commit-the-main-tree">****### ## ****The obvious way to do this =
+is to simply commit the main tree</a></h2>
+<p>to the impl tree like we usually do. However, if we do that, then the im=
+pl tree
+now has holes in it where there were invalidations. At this point, the impl=
+-side
+has two options when vsync comes around: checkerboard, or drop the frame.
+Neither is very cool.**********</p>
+<h2 id=3D"our-solution-is-the-layertreeimpl-whereas-the-previous" tabindex=
+=3D"-1"><a class=3D"header-anchor" href=3D"https://www.chromium.org/develop=
+ers/design-documents/impl-side-painting/#our-solution-is-the-layertreeimpl-=
+whereas-the-previous">****### ## ****Our solution is the LayerTreeImpl. Whe=
+reas the previous</a></h2>
+<p>architecture's LayerTreeHostImpl had a root layer and all its associated=
+ state,
+we instead introduce LayerTreeImpl, which has all the state associated with=
+ a
+layer tree: scrolling info, viewport, background color, etc. The LTHI then
+stores not one, but two LayerTreeImpl's: the active tree is the one we are
+drawing, while the pending tree is the one we are rasterizing. Priority is =
+given
+to the active tree, but once the pending tree is fully painted, we activate=
+ it
+and throw away the old one. This allows us to switch between old and new tr=
+ees
+without janking.**********</p>
+<h2 id=3D"handling-giant-skpictures" tabindex=3D"-1"><a class=3D"header-anc=
+hor" href=3D"https://www.chromium.org/developers/design-documents/impl-side=
+-painting/#handling-giant-skpictures"><strong><strong>### Handling Giant Sk=
+Pictures</strong></strong></a></h2>
+<h2 id=3D"one-potential-challenge-to-impl-side-painting-compared-to-our-exi=
+sting-painting-model-is-that-the-skpicture-for-a-given-layer-are-potentiall=
+y-unbounded-we-plan-to-mitigate-this-by-limiting-the-picturepiles-size-to-a=
+-10000px-emperically-determined-portion-of-the-total-layer-size-cenetered-a=
+round-the-viewport-at-the-time-of-the-picture-piles-first-creation-when-the=
+-impl-thread-starts-needing-tiles-outside-the-piles-area-we-will-asynchrono=
+usly-trigger-the-main-thread-to-go-update-the-pile-around-the-new-viewport-=
+center" tabindex=3D"-1"><a class=3D"header-anchor" href=3D"https://www.chro=
+mium.org/developers/design-documents/impl-side-painting/#one-potential-chal=
+lenge-to-impl-side-painting-compared-to-our-existing-painting-model-is-that=
+-the-skpicture-for-a-given-layer-are-potentially-unbounded-we-plan-to-mitig=
+ate-this-by-limiting-the-picturepiles-size-to-a-10000px-emperically-determi=
+ned-portion-of-the-total-layer-size-cenetered-around-the-viewport-at-the-ti=
+me-of-the-picture-piles-first-creation-when-the-impl-thread-starts-needing-=
+tiles-outside-the-piles-area-we-will-asynchronously-trigger-the-main-thread=
+-to-go-update-the-pile-around-the-new-viewport-center"><strong><strong>One =
+potential challenge to impl-side painting compared to our existing painting=
+ model is that the SkPicture for a given layer are potentially unbounded. W=
+e plan to mitigate this by limiting the PicturePile's size to a 10,000px (e=
+mperically determined) portion of the total layer size cenetered around the=
+ viewport at the time of the picture pile's first creation. When the impl t=
+hread starts needing tiles outside the pile's area, we will asynchronously =
+trigger the main thread to go update the pile around the new viewport cente=
+r.</strong></strong></a></h2>
+<p><strong><strong>### Choosing the scale at which to raster</strong></stro=
+ng></p>
+<p>Whenever we compute the draw properties for a PictureLayerImpl, we also =
+decide
+what tilings it should have, or in other words, at what scales it should ha=
+ve
+sets of tiles. To do this we track two scale values: The ideal scale, and t=
+he
+raster scale. The ideal scale is the scale at which we should create tiles =
+to
+give the texels in the tile a 1:1 correspondence with pixels on the screen.=
+ The
+raster scale is the high-resolution scale at which we are currently creatin=
+g
+tiles. When we set the raster scale to be equal to the ideal scale, we get =
+crisp
+tiles. This is what we'd like to have at all times, but we limit this for
+performance reasons. During a pinch gesture, or an accelerated animation, t=
+he
+raster scale lags behind the ideal scale. CSS can change the scale of a lay=
+er
+through the DOM, and we limit how often it is allowed to change the raster
+scale. This decision to reset the raster scale to the ideal or leave it alo=
+ne is
+made in PictureLayerImpl::ManageTilings. Whenever the raster scale changes,=
+ we
+add a tiling both at the raster scale, and at a low resolution related to t=
+he
+raster scale. These tilings are marked as HIGH_RESOLUTION and LOW_RESOLUTIO=
+N and
+are given priority as we raster tiles for the layer.</p>
+<p><strong><strong>### Texture Upload</strong></strong></p>
+<p><strong><strong>One key challenge on lowend devcies is that uploading a =
+single 256x256
+texture can take many milliseconds, sometimes as crazy as 3-5ms. Because of
+this, we have to carefully throttle our texture uploads so that we dont dro=
+p a
+frame. To do this, we are adopting a new approach of async texture uploads.
+Instad of issuing standard glTexImage calls, we instead place textures into
+shared memory and then instruct the GPU process to do the upload
+when-convenient. This enables the GPU process to do the upload during idle
+times, or even on another thread. The compositor then polls the GPU process=
+ via
+the query infrastructure to determine if the upload is complete. Only when =
+the
+upload is complete will we draw with it.</strong></strong></p>
+<p><strong><strong>### Handling setPictureListener</strong></strong></p>
+<p><strong><strong>If the embedder has a picture listener, we need to send =
+a serialized
+SkPicture to the embedding process. We would need to, at every impl-side
+swapbuffers, serialize our SkPictures for all the active layers (plus the
+bitmaps) and send them to the main thread.</strong></strong></p>
+<p><strong><strong>Followup Work</strong></strong>
+<strong><strong>The initial impl-side painting implementation is expected t=
+o enable the following followup use cases:</strong></strong></p>
+<p><strong><strong>Low-res tiles: For tiles that take a long time to raster=
+ize, we may want to rasterize them at half or third resolution. This often =
+dramatically reduces (5-6x anecdotally) raster cost and allows us to avoid =
+checkerboarding during fling. However, it is worth noting that some Android=
+ users criticized this behavior on ICS devices as making fonts look too ugl=
+y. High-dpi devices may change the UX impact of this behavior on users.</st=
+rong></strong></p>
+<p><strong><strong>Just-in-time scaling: We currently do resizing of conten=
+t at many layers in the pipeline. For example, we rasterize layers at their=
+ content resolution without consideration to their screenspace transform. T=
+hus, a layer that is -webkit-transform: scale(0.5)=E2=80=99d will actually =
+paint at its full size. Similarly, we resize images inside webkit at their =
+content resolution. We could reduce rasterization/decode costs and memory f=
+ootprint if we could do all of this scaling using the draw-time transforms =
+on the impl thread.</strong></strong></p>
+<p><strong><strong>Accelerated painting: An interesting property of impl-si=
+de painting is that it cleans up our accelerated painting story. We would s=
+tore the SkPicture for a layer, and then can decide to rasterize a layer wi=
+th the GPU without having to involve the main thread at all in the process.=
+</strong></strong></p>
+
+  </main>
+</div>
+
+</body></html>
+------MultipartBoundary--ew8YfQXE9cllSzKzDDkmt75uSQppsjYmBwO1j20Un9----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-69fe7596-e392-4470-ab1c-8a5720acee03@mhtml.blink
+
+@charset "utf-8";
+
+#cookieBar { background-color: rgb(90, 90, 90); border: none; border-radius=
+: 0px; bottom: 0px; color: rgb(255, 255, 255); left: 0px; margin: 0px; posi=
+tion: fixed; right: 0px; width: 100%; z-index: 999; }
+
+#cookieBar .cookieBarInner { padding: 10px 15px; }
+
+#cookieBar .cookieBarText, #cookieBar .cookieBarButtons { font-family: aria=
+l, sans-serif; font-size: 13px; font-weight: 600; line-height: 1.8; }
+
+#cookieBar .cookieBarText { margin-right: 5px; }
+
+[dir=3D"rtl"] #cookieBar .cookieBarText { margin-left: 5px; margin-right: 0=
+px; }
+
+@media not all {
+}
+
+#cookieBar .cookieBarButton { background-color: rgb(48, 48, 48); border: 1p=
+x solid rgba(0, 0, 0, 0.1); border-radius: 2px; color: rgb(255, 255, 255); =
+cursor: pointer; line-height: 19px; margin-left: 5px; padding: 4px 8px; tex=
+t-decoration: none; white-space: nowrap; }
+
+[dir=3D"rtl"] #cookieBar .cookieBarButton { margin-left: 0px; margin-right:=
+ 5px; }
+------MultipartBoundary--ew8YfQXE9cllSzKzDDkmt75uSQppsjYmBwO1j20Un9----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://www.chromium.org/_stylesheets/@docsearch/style.css
+
+@charset "utf-8";
+
+:root { --docsearch-primary-color: #5468ff; --docsearch-text-color: #1c1e21=
+; --docsearch-spacing: 12px; --docsearch-icon-stroke-width: 1.4; --docsearc=
+h-highlight-color: var(--docsearch-primary-color); --docsearch-muted-color:=
+ #969faf; --docsearch-container-background: rgba(101,108,133,0.8); --docsea=
+rch-logo-color: #5468ff; --docsearch-modal-width: 560px; --docsearch-modal-=
+height: 600px; --docsearch-modal-background: #f5f6f7; --docsearch-modal-sha=
+dow: inset 1px 1px 0 0 hsla(0,0%,100%,0.5),0 3px 8px 0 #555a64; --docsearch=
+-searchbox-height: 56px; --docsearch-searchbox-background: #ebedf0; --docse=
+arch-searchbox-focus-background: #fff; --docsearch-searchbox-shadow: inset =
+0 0 0 2px var(--docsearch-primary-color); --docsearch-hit-height: 56px; --d=
+ocsearch-hit-color: #444950; --docsearch-hit-active-color: #fff; --docsearc=
+h-hit-background: #fff; --docsearch-hit-shadow: 0 1px 3px 0 #d4d9e1; --docs=
+earch-key-gradient: linear-gradient(-225deg,#d5dbe4,#f8f8f8); --docsearch-k=
+ey-shadow: inset 0 -2px 0 0 #cdcde6,inset 0 0 1px 1px #fff,0 1px 2px 1px rg=
+ba(30,35,90,0.4); --docsearch-footer-height: 44px; --docsearch-footer-backg=
+round: #fff; --docsearch-footer-shadow: 0 -1px 0 0 #e0e3e8,0 -3px 6px 0 rgb=
+a(69,98,155,0.12); }
+
+html[data-theme=3D"dark"] { --docsearch-text-color: #f5f6f7; --docsearch-co=
+ntainer-background: rgba(9,10,17,0.8); --docsearch-modal-background: #15172=
+a; --docsearch-modal-shadow: inset 1px 1px 0 0 #2c2e40,0 3px 8px 0 #000309;=
+ --docsearch-searchbox-background: #090a11; --docsearch-searchbox-focus-bac=
+kground: #000; --docsearch-hit-color: #bec3c9; --docsearch-hit-shadow: none=
+; --docsearch-hit-background: #090a11; --docsearch-key-gradient: linear-gra=
+dient(-26.5deg,#565872,#31355b); --docsearch-key-shadow: inset 0 -2px 0 0 #=
+282d55,inset 0 0 1px 1px #51577d,0 2px 2px 0 rgba(3,4,9,0.3); --docsearch-f=
+ooter-background: #1e2136; --docsearch-footer-shadow: inset 0 1px 0 0 rgba(=
+73,76,106,0.5),0 -4px 8px 0 rgba(0,0,0,0.2); --docsearch-logo-color: #fff; =
+--docsearch-muted-color: #7f8497; }
+
+.DocSearch-Button { align-items: center; background: var(--docsearch-search=
+box-background); border: 0px; border-radius: 40px; color: var(--docsearch-m=
+uted-color); cursor: pointer; display: flex; font-weight: 500; height: 36px=
+; justify-content: space-between; margin: 0px 0px 0px 16px; padding: 0px 8p=
+x; user-select: none; }
+
+.DocSearch-Button:active, .DocSearch-Button:focus, .DocSearch-Button:hover =
+{ background: var(--docsearch-searchbox-focus-background); box-shadow: var(=
+--docsearch-searchbox-shadow); color: var(--docsearch-text-color); outline:=
+ none; }
+
+.DocSearch-Button-Container { align-items: center; display: flex; }
+
+.DocSearch-Search-Icon { stroke-width: 1.6; }
+
+.DocSearch-Button .DocSearch-Search-Icon { color: var(--docsearch-text-colo=
+r); }
+
+.DocSearch-Button-Placeholder { font-size: 1rem; padding: 0px 12px 0px 6px;=
+ }
+
+.DocSearch-Button-Keys { display: flex; min-width: calc(0.8em + 40px); }
+
+.DocSearch-Button-Key { align-items: center; background: var(--docsearch-ke=
+y-gradient); border-radius: 3px; box-shadow: var(--docsearch-key-shadow); c=
+olor: var(--docsearch-muted-color); display: flex; height: 18px; justify-co=
+ntent: center; margin-right: 0.4em; padding-bottom: 2px; position: relative=
+; top: -1px; width: 20px; }
+
+@media (max-width: 750px) {
+  .DocSearch-Button-Keys, .DocSearch-Button-Placeholder { display: none; }
+}
+
+.DocSearch--active { overflow: hidden !important; }
+
+.DocSearch-Container, .DocSearch-Container * { box-sizing: border-box; }
+
+.DocSearch-Container { background-color: var(--docsearch-container-backgrou=
+nd); height: 100vh; left: 0px; position: fixed; top: 0px; width: 100vw; z-i=
+ndex: 200; }
+
+.DocSearch-Container a { text-decoration: none; }
+
+.DocSearch-Link { appearance: none; background: none; border: 0px; color: v=
+ar(--docsearch-highlight-color); cursor: pointer; font: inherit; margin: 0p=
+x; padding: 0px; }
+
+.DocSearch-Modal { background: var(--docsearch-modal-background); border-ra=
+dius: 6px; box-shadow: var(--docsearch-modal-shadow); flex-direction: colum=
+n; margin: 60px auto auto; max-width: var(--docsearch-modal-width); positio=
+n: relative; }
+
+.DocSearch-SearchBar { display: flex; padding: var(--docsearch-spacing) var=
+(--docsearch-spacing) 0; }
+
+.DocSearch-Form { align-items: center; background: var(--docsearch-searchbo=
+x-focus-background); border-radius: 4px; box-shadow: var(--docsearch-search=
+box-shadow); display: flex; height: var(--docsearch-searchbox-height); marg=
+in: 0px; padding: 0 var(--docsearch-spacing); position: relative; width: 10=
+0%; }
+
+.DocSearch-Input { appearance: none; background: transparent; border: 0px; =
+color: var(--docsearch-text-color); flex: 1 1 0%; font-style: inherit; font=
+-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height=
+: inherit; font-family: inherit; font-optical-sizing: inherit; font-kerning=
+: inherit; font-feature-settings: inherit; font-variation-settings: inherit=
+; font-size: 1.2em; height: 100%; outline: none; padding: 0px 0px 0px 8px; =
+width: 80%; }
+
+.DocSearch-Input::placeholder { color: var(--docsearch-muted-color); opacit=
+y: 1; }
+
+.DocSearch-Input::-webkit-search-cancel-button, .DocSearch-Input::-webkit-s=
+earch-decoration, .DocSearch-Input::-webkit-search-results-button, .DocSear=
+ch-Input::-webkit-search-results-decoration { display: none; }
+
+.DocSearch-LoadingIndicator, .DocSearch-MagnifierLabel, .DocSearch-Reset { =
+margin: 0px; padding: 0px; }
+
+.DocSearch-MagnifierLabel, .DocSearch-Reset { align-items: center; color: v=
+ar(--docsearch-highlight-color); display: flex; justify-content: center; }
+
+.DocSearch-Container--Stalled .DocSearch-MagnifierLabel, .DocSearch-Loading=
+Indicator { display: none; }
+
+.DocSearch-Container--Stalled .DocSearch-LoadingIndicator { align-items: ce=
+nter; color: var(--docsearch-highlight-color); display: flex; justify-conte=
+nt: center; }
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .DocSearch-Reset { animation: auto ease 0s 1 normal none running none; ap=
+pearance: none; background: none; border: 0px; border-radius: 50%; color: v=
+ar(--docsearch-icon-color); cursor: pointer; right: 0px; stroke-width: var(=
+--docsearch-icon-stroke-width); }
+}
+
+.DocSearch-Reset { animation: 0.1s ease-in 0s 1 normal forwards running fad=
+e-in; appearance: none; background: none; border: 0px; border-radius: 50%; =
+color: var(--docsearch-icon-color); cursor: pointer; padding: 2px; right: 0=
+px; stroke-width: var(--docsearch-icon-stroke-width); }
+
+.DocSearch-Reset[hidden] { display: none; }
+
+.DocSearch-Reset:focus { outline: none; }
+
+.DocSearch-Reset:hover { color: var(--docsearch-highlight-color); }
+
+.DocSearch-LoadingIndicator svg, .DocSearch-MagnifierLabel svg { height: 24=
+px; width: 24px; }
+
+.DocSearch-Cancel { display: none; }
+
+.DocSearch-Dropdown { max-height: calc(var(--docsearch-modal-height) - var(=
+--docsearch-searchbox-height) - var(--docsearch-spacing) - var(--docsearch-=
+footer-height)); min-height: var(--docsearch-spacing); overflow-y: overlay;=
+ padding: 0 var(--docsearch-spacing); scrollbar-color: var(--docsearch-mute=
+d-color) var(--docsearch-modal-background); scrollbar-width: thin; }
+
+.DocSearch-Dropdown::-webkit-scrollbar { width: 12px; }
+
+.DocSearch-Dropdown::-webkit-scrollbar-track { background: transparent; }
+
+.DocSearch-Dropdown::-webkit-scrollbar-thumb { background-color: var(--docs=
+earch-muted-color); border: 3px solid var(--docsearch-modal-background); bo=
+rder-radius: 20px; }
+
+.DocSearch-Dropdown ul { list-style: none; margin: 0px; padding: 0px; }
+
+.DocSearch-Label { font-size: 0.75em; line-height: 1.6em; }
+
+.DocSearch-Help, .DocSearch-Label { color: var(--docsearch-muted-color); }
+
+.DocSearch-Help { font-size: 0.9em; margin: 0px; user-select: none; }
+
+.DocSearch-Title { font-size: 1.2em; }
+
+.DocSearch-Logo a { display: flex; }
+
+.DocSearch-Logo svg { color: var(--docsearch-logo-color); margin-left: 8px;=
+ }
+
+.DocSearch-Hits:last-of-type { margin-bottom: 24px; }
+
+.DocSearch-Hits mark { background: none; color: var(--docsearch-highlight-c=
+olor); }
+
+.DocSearch-HitsFooter { color: var(--docsearch-muted-color); display: flex;=
+ font-size: 0.85em; justify-content: center; margin-bottom: var(--docsearch=
+-spacing); padding: var(--docsearch-spacing); }
+
+.DocSearch-HitsFooter a { border-bottom: 1px solid; color: inherit; }
+
+.DocSearch-Hit { border-radius: 4px; display: flex; padding-bottom: 4px; po=
+sition: relative; }
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .DocSearch-Hit--deleting { transition: none 0s ease 0s; }
+}
+
+.DocSearch-Hit--deleting { opacity: 0; transition: all 0.25s linear 0s; }
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .DocSearch-Hit--favoriting { transition: none 0s ease 0s; }
+}
+
+.DocSearch-Hit--favoriting { transform: scale(0); transform-origin: center =
+top; transition: all 0.25s linear 0.25s; }
+
+.DocSearch-Hit a { background: var(--docsearch-hit-background); border-radi=
+us: 4px; box-shadow: var(--docsearch-hit-shadow); display: block; padding-l=
+eft: var(--docsearch-spacing); width: 100%; }
+
+.DocSearch-Hit-source { background: var(--docsearch-modal-background); colo=
+r: var(--docsearch-highlight-color); font-size: 0.85em; font-weight: 600; l=
+ine-height: 32px; margin: 0px -4px; padding: 8px 4px 0px; position: sticky;=
+ top: 0px; z-index: 10; }
+
+.DocSearch-Hit-Tree { color: var(--docsearch-muted-color); height: var(--do=
+csearch-hit-height); opacity: 0.5; stroke-width: var(--docsearch-icon-strok=
+e-width); width: 24px; }
+
+.DocSearch-Hit[aria-selected=3D"true"] a { background-color: var(--docsearc=
+h-highlight-color); }
+
+.DocSearch-Hit[aria-selected=3D"true"] mark { text-decoration: underline; }
+
+.DocSearch-Hit-Container { align-items: center; color: var(--docsearch-hit-=
+color); display: flex; flex-direction: row; height: var(--docsearch-hit-hei=
+ght); padding: 0 var(--docsearch-spacing) 0 0; }
+
+.DocSearch-Hit-icon { height: 20px; width: 20px; }
+
+.DocSearch-Hit-action, .DocSearch-Hit-icon { color: var(--docsearch-muted-c=
+olor); stroke-width: var(--docsearch-icon-stroke-width); }
+
+.DocSearch-Hit-action { align-items: center; display: flex; height: 22px; w=
+idth: 22px; }
+
+.DocSearch-Hit-action svg { display: block; height: 18px; width: 18px; }
+
+.DocSearch-Hit-action + .DocSearch-Hit-action { margin-left: 6px; }
+
+.DocSearch-Hit-action-button { appearance: none; background: none; border: =
+0px; border-radius: 50%; color: inherit; cursor: pointer; padding: 2px; }
+
+svg.DocSearch-Hit-Select-Icon { display: none; }
+
+.DocSearch-Hit[aria-selected=3D"true"] .DocSearch-Hit-Select-Icon { display=
+: block; }
+
+.DocSearch-Hit-action-button:focus, .DocSearch-Hit-action-button:hover { ba=
+ckground: rgba(0, 0, 0, 0.2); transition: background-color 0.1s ease-in 0s;=
+ }
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .DocSearch-Hit-action-button:focus, .DocSearch-Hit-action-button:hover { =
+transition: none 0s ease 0s; }
+}
+
+.DocSearch-Hit-action-button:focus path, .DocSearch-Hit-action-button:hover=
+ path { fill: rgb(255, 255, 255); }
+
+.DocSearch-Hit-content-wrapper { display: flex; flex: 1 1 auto; flex-direct=
+ion: column; font-weight: 500; justify-content: center; line-height: 1.2em;=
+ margin: 0px 8px; overflow-x: hidden; position: relative; text-overflow: el=
+lipsis; white-space: nowrap; width: 80%; }
+
+.DocSearch-Hit-title { font-size: 0.9em; }
+
+.DocSearch-Hit-path { color: var(--docsearch-muted-color); font-size: 0.75e=
+m; }
+
+.DocSearch-Hit[aria-selected=3D"true"] .DocSearch-Hit-action, .DocSearch-Hi=
+t[aria-selected=3D"true"] .DocSearch-Hit-icon, .DocSearch-Hit[aria-selected=
+=3D"true"] .DocSearch-Hit-path, .DocSearch-Hit[aria-selected=3D"true"] .Doc=
+Search-Hit-text, .DocSearch-Hit[aria-selected=3D"true"] .DocSearch-Hit-titl=
+e, .DocSearch-Hit[aria-selected=3D"true"] .DocSearch-Hit-Tree, .DocSearch-H=
+it[aria-selected=3D"true"] mark { color: var(--docsearch-hit-active-color) =
+!important; }
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .DocSearch-Hit-action-button:focus, .DocSearch-Hit-action-button:hover { =
+background: rgba(0, 0, 0, 0.2); transition: none 0s ease 0s; }
+}
+
+.DocSearch-ErrorScreen, .DocSearch-NoResults, .DocSearch-StartScreen { font=
+-size: 0.9em; margin: 0px auto; padding: 36px 0px; text-align: center; widt=
+h: 80%; }
+
+.DocSearch-Screen-Icon { color: var(--docsearch-muted-color); padding-botto=
+m: 12px; }
+
+.DocSearch-NoResults-Prefill-List { display: inline-block; padding-bottom: =
+24px; text-align: left; }
+
+.DocSearch-NoResults-Prefill-List ul { display: inline-block; padding: 8px =
+0px 0px; }
+
+.DocSearch-NoResults-Prefill-List li { list-style-position: inside; list-st=
+yle-type: "=C2=BB "; }
+
+.DocSearch-Prefill { appearance: none; background: none; border: 0px; borde=
+r-radius: 1em; color: var(--docsearch-highlight-color); cursor: pointer; di=
+splay: inline-block; font-size: 1em; font-weight: 700; padding: 0px; }
+
+.DocSearch-Prefill:focus, .DocSearch-Prefill:hover { outline: none; text-de=
+coration: underline; }
+
+.DocSearch-Footer { align-items: center; background: var(--docsearch-footer=
+-background); border-radius: 0px 0px 8px 8px; box-shadow: var(--docsearch-f=
+ooter-shadow); display: flex; flex-direction: row-reverse; flex-shrink: 0; =
+height: var(--docsearch-footer-height); justify-content: space-between; pad=
+ding: 0 var(--docsearch-spacing); position: relative; user-select: none; wi=
+dth: 100%; z-index: 300; }
+
+.DocSearch-Commands { color: var(--docsearch-muted-color); display: flex; l=
+ist-style: none; margin: 0px; padding: 0px; }
+
+.DocSearch-Commands li { align-items: center; display: flex; }
+
+.DocSearch-Commands li:not(:last-of-type) { margin-right: 0.8em; }
+
+.DocSearch-Commands-Key { align-items: center; background: var(--docsearch-=
+key-gradient); border-radius: 2px; box-shadow: var(--docsearch-key-shadow);=
+ display: flex; height: 18px; justify-content: center; margin-right: 0.4em;=
+ padding-bottom: 1px; width: 20px; }
+
+@media (max-width: 750px) {
+  :root { --docsearch-spacing: 10px; --docsearch-footer-height: 40px; }
+  .DocSearch-Dropdown { height: 100%; }
+  .DocSearch-Container { height: calc(var(--docsearch-vh, 1vh)*100); positi=
+on: absolute; }
+  .DocSearch-Footer { border-radius: 0px; bottom: 0px; position: absolute; =
+}
+  .DocSearch-Hit-content-wrapper { display: flex; position: relative; width=
+: 80%; }
+  .DocSearch-Modal { border-radius: 0px; box-shadow: none; height: calc(var=
+(--docsearch-vh, 1vh)*100); margin: 0px; max-width: 100%; width: 100%; }
+  .DocSearch-Dropdown { max-height: calc(var(--docsearch-vh, 1vh)*100 - var=
+(--docsearch-searchbox-height) - var(--docsearch-spacing) - var(--docsearch=
+-footer-height)); }
+  .DocSearch-Cancel { appearance: none; background: none; border: 0px; colo=
+r: var(--docsearch-highlight-color); cursor: pointer; display: inline-block=
+; flex: 0 0 auto; font-style: inherit; font-variant: inherit; font-stretch:=
+ inherit; line-height: inherit; font-family: inherit; font-optical-sizing: =
+inherit; font-kerning: inherit; font-feature-settings: inherit; font-variat=
+ion-settings: inherit; font-size: 1em; font-weight: 500; margin-left: var(-=
+-docsearch-spacing); outline: none; overflow: hidden; padding: 0px; user-se=
+lect: none; white-space: nowrap; }
+  .DocSearch-Commands, .DocSearch-Hit-Tree { display: none; }
+}
+
+@keyframes fade-in {=20
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+------MultipartBoundary--ew8YfQXE9cllSzKzDDkmt75uSQppsjYmBwO1j20Un9----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://www.chromium.org/_stylesheets/default.css
+
+@charset "utf-8";
+
+*, ::before, ::after { box-sizing: border-box; }
+
+body, h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd, pre { margin: =
+0px; }
+
+body { min-height: 100vh; }
+
+ul[role=3D"list"], ol[role=3D"list"] { list-style: none; }
+
+ul, ol { list-style-position: inside; }
+
+a:not([class]) { text-decoration-skip-ink: auto; }
+
+img { display: block; height: auto; max-width: 100%; }
+
+p img { display: inline-block; vertical-align: sub; }
+
+input, button, textarea, select { font: inherit; letter-spacing: inherit; w=
+ord-spacing: inherit; }
+
+iframe { border: 0px; }
+
+img:not([alt]) { filter: blur(10px); }
+
+hr { height: 1px; margin: 0px; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01s !important; animation-iteration-count: 1 !i=
+mportant; scroll-behavior: auto !important; transition-duration: 0.01s !imp=
+ortant; }
+}
+
+a { color: rgb(0, 102, 204); }
+
+a.disabled { color: rgb(102, 102, 102); text-decoration: none; }
+
+b { font-weight: 700; }
+
+body { background-color: rgb(247, 247, 247); color: black; font-family: Ari=
+al, Verdana, sans-serif; }
+
+code { background: rgb(239, 239, 239); color: rgb(0, 96, 0); font-family: m=
+onospace; }
+
+em, i { font-style: italic; }
+
+pre { background: rgb(239, 239, 239); border: 1px solid lightgray; margin: =
+1em; padding: 0.5em 1em; }
+
+header { align-items: center; display: flex; justify-content: space-between=
+; margin: 5px 5px 5px 10px; }
+
+header a { align-items: center; color: rgb(0, 102, 204); display: flex; tex=
+t-decoration: none; }
+
+header a h2 { width: 100%; }
+
+header img { display: block; margin-right: 10px; }
+
+#main-wrapper { display: flex; }
+
+#sidebar-left { flex: 0 1 auto; font-size: 12px; line-height: 1.33em; min-w=
+idth: 160px; width: 160px; }
+
+#sidebar-left section { background-color: white; margin: 0px 5px 6px; paddi=
+ng: 0px 0px 0px 5px; }
+
+#sidebar-left a { color: rgb(0, 102, 204); display: block; text-decoration:=
+ none; }
+
+#sidebar-left a.selected { color: black; font-weight: bold; }
+
+#sidebar-left h4 { color: rgb(72, 72, 72); font-weight: 700; font-size: 13p=
+x; margin-bottom: 1px; padding: 3px 0px 2px; }
+
+#sidebar-left #license { background-color: white; color: rgb(94, 106, 114);=
+ font-size: 10px; line-height: normal; margin: 0px 5px 6px; padding: 11px 5=
+px 5px; }
+
+#sidebar-left #license a { display: inline; text-decoration: underline; }
+
+#sidebar-left a#edit-this-page { background-color: rgb(3, 25, 79); border: =
+1px solid silver; color: white; display: block; font-size: 14px; font-weigh=
+t: 700; margin: 20px auto; padding: 6px 12px; text-align: center; text-deco=
+ration: none; width: 90%; }
+
+main { background-color: white; border: 1px solid lightgray; flex: 1 1 100%=
+; font-family: Arial, Verdana, sans-serif; font-size: 13.333px; line-height=
+: 1.3; margin-right: 5px; padding: 20px; }
+
+main a:visited { color: rgb(71, 18, 100); }
+
+main a.header-anchor { color: inherit; text-decoration: inherit; }
+
+main blockquote { background-color: rgb(255, 253, 231); border-left: 0.2em =
+solid rgb(250, 183, 0); color: black; margin-bottom: 1em; padding: 0.2em 1e=
+m; }
+
+main del { background-color: rgb(244, 204, 204); text-decoration: inherit; =
+}
+
+main h1 { font-size: 22px; font-weight: 700; margin: 10px 0px 1.4em; }
+
+main h1 a { color: rgb(0, 102, 204); }
+
+main h2 { font-size: 20px; font-weight: 700; margin: 1.2em 0px 0.8em; }
+
+main h3 { font-size: 16px; font-weight: 700; margin: 1.2em 0px 0.7em; }
+
+main h4 { font-weight: 700; margin: 1.2em 0px 0.6em; }
+
+main h4 a { color: rgb(0, 102, 204); }
+
+main h4 i a { color: rgb(0, 102, 204); font-weight: 400; }
+
+main ins { background-color: rgb(217, 234, 211); text-decoration: inherit; =
+}
+
+main p { margin-bottom: 13.33px; margin-top: 1.4em; }
+
+main pre { white-space: break-spaces; word-break: break-all; }
+
+main #title-crumbs { padding: 6px 0px 0px 10px; }
+
+main #title-crumbs + h3 { margin-top: 6px; }
+
+main ul { display: block; list-style-position: outside; list-style-type: di=
+sc; margin-bottom: 1em; margin-top: 1em; padding-left: 40px; }
+
+main ul li { margin-bottom: 5px; margin-top: 5px; }
+
+main ul li > p:first-of-type { display: inline; }
+
+main ul ul { list-style-type: circle; margin-bottom: 0px; margin-top: 0px; =
+}
+
+main ul ul ul { list-style-type: square; }
+
+main ol { list-style-position: outside; list-style-type: decimal; padding-l=
+eft: 40px; margin: 1em 0px; }
+
+main ol li { margin: 5px 0px; }
+
+main ol li p { margin: 0.5em 0px; }
+
+main ol li > p:first-of-type { display: inline; }
+
+main ol ul { list-style-type: circle; margin-bottom: 0px; margin-top: 0px; =
+}
+
+main table { border-collapse: collapse; border-spacing: 0px; margin: 1.3em =
+0px; }
+
+main table td, main table th { border: 1px solid rgb(217, 217, 217); paddin=
+g: 5px 10px; vertical-align: top; }
+
+main nav.subpage-listing { background-color: rgb(241, 241, 241); border: 1p=
+x solid lightgray; }
+
+main nav.subpage-listing details { margin-left: -1em; }
+
+main nav.subpage-listing h4 { margin: inherit; padding: 0.5em 0px 0px 0.5em=
+; }
+
+main nav.subpage-listing li { font-weight: normal; list-style: none none; m=
+argin-left: 1.2em; padding-left: 1.3em; }
+
+main nav.subpage-listing li a { text-decoration: none; }
+
+main nav.subpage-listing ul { padding-left: 0px; }
+
+main nav.subpage-listing > ul { margin: 0.5em 0px; }
+
+main nav.subpage-listing > ul > li { border-top: 1px solid white; font-weig=
+ht: bold; margin: 3px 0px; padding: 2px 0px 2px 1.3em; }
+
+main .table-of-contents { border: 1px solid lightgray; background-color: rg=
+b(241, 241, 241); display: table; font-size: 12px; margin-left: 1em; paddin=
+g: 1em 2em 1em 1em; }
+
+main .table-of-contents a { text-decoration: none; }
+
+main .table-of-contents > ol::before { content: "Contents"; display: block;=
+ font-weight: 700; margin: 0px 0px 0.5em -1em; }
+
+main .table-of-contents ol { line-height: 1.1em; margin: 0px; padding-left:=
+ 1.2em; }
+
+main .table-of-contents ol li { list-style-type: none; }
+
+main .two-column-container { align-items: flex-start; display: flex; }
+
+main .two-column-container > div.column { flex: 1 1 50%; margin: 0px; paddi=
+ng-right: 30px; }
+------MultipartBoundary--ew8YfQXE9cllSzKzDDkmt75uSQppsjYmBwO1j20Un9----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: https://www.chromium.org/_assets/icon-chromium-96.png
+
+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
+AElFTkSuQmCC
+
+------MultipartBoundary--ew8YfQXE9cllSzKzDDkmt75uSQppsjYmBwO1j20Un9------
