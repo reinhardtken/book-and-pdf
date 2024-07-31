@@ -1,0 +1,3052 @@
+From: <Saved by Blink>
+Snapshot-Content-Location: https://keyou.github.io/blog/2020/06/22/chromium-gpu-image-share/
+Subject: =?utf-8?Q?Chromium=20GPU=20Resource=20Share=20(Shared=20Image)=20|=20=E6?=
+ =?utf-8?Q?=9F=AF=E5=B9=BD?=
+Date: Mon, 22 Jul 2024 01:04:50 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----MultipartBoundary--FDiXNbHWeOrFaggulQYLeYkPS7C25rsQck0ENczq8g----"
+
+
+------MultipartBoundary--FDiXNbHWeOrFaggulQYLeYkPS7C25rsQck0ENczq8g----
+Content-Type: text/html
+Content-ID: <frame-A97298CBF76B898A0DD95E715B0C86B9@mhtml.blink>
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://keyou.github.io/blog/2020/06/22/chromium-gpu-image-share/
+
+<!DOCTYPE html><!--[if lt IE 7]>      <html class=3D"no-js lt-ie9 lt-ie8 lt=
+-ie7"> <![endif]--><!--[if IE 7]>         <html class=3D"no-js lt-ie9 lt-ie=
+8"> <![endif]--><!--[if IE 8]>         <html class=3D"no-js lt-ie9"> <![end=
+if]--><!--[if gt IE 8]><!--><html class=3D" js flexbox flexboxlegacy canvas=
+ canvastext webgl no-touch geolocation postmessage no-websqldatabase indexe=
+ddb hashchange history draganddrop websockets rgba hsla multiplebgs backgro=
+undsize borderimage borderradius boxshadow textshadow opacity cssanimations=
+ csscolumns cssgradients cssreflections csstransforms csstransforms3d csstr=
+ansitions fontface generatedcontent video audio localstorage sessionstorage=
+ webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang=3D"en=
+" style=3D""><!--<![endif]--><head><meta http-equiv=3D"Content-Type" conten=
+t=3D"text/html; charset=3DUTF-8">
+   =20
+<!--[if IE]><meta http-equiv=3D'X-UA-Compatible' content=3D'IE=3Dedge,chrom=
+e=3D1'><![endif]-->
+<meta name=3D"viewport" content=3D"width=3Ddevice-width,initial-scale=3D1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Chromium GPU Resource Share (Shared Image) | =E6=9F=AF=E5=B9=BD</tit=
+le>
+<meta name=3D"generator" content=3D"Jekyll v3.9.3">
+<meta property=3D"og:title" content=3D"Chromium GPU Resource Share (Shared =
+Image)">
+<meta name=3D"author" content=3D"keyou">
+<meta property=3D"og:locale" content=3D"en">
+<meta name=3D"description" content=3D"Update: 2020.8.5: =E6=B7=BB=E5=8A=A0=
+=E4=BD=BF=E7=94=A8 GPU-R =E5=92=8C OOP-R =E6=8E=A5=E5=8F=A3=E7=9A=84=E4=BB=
+=A3=E7=A0=81=E7=A4=BA=E4=BE=8B=E3=80=82 2022.7.26: =E4=BF=AE=E6=AD=A3=E5=85=
+=B3=E4=BA=8E OOP-D =E7=9A=84=E9=94=99=E8=AF=AF=E6=8F=8F=E8=BF=B0=E3=80=82">
+<meta property=3D"og:description" content=3D"Update: 2020.8.5: =E6=B7=BB=E5=
+=8A=A0=E4=BD=BF=E7=94=A8 GPU-R =E5=92=8C OOP-R =E6=8E=A5=E5=8F=A3=E7=9A=84=
+=E4=BB=A3=E7=A0=81=E7=A4=BA=E4=BE=8B=E3=80=82 2022.7.26: =E4=BF=AE=E6=AD=A3=
+=E5=85=B3=E4=BA=8E OOP-D =E7=9A=84=E9=94=99=E8=AF=AF=E6=8F=8F=E8=BF=B0=E3=
+=80=82">
+<link rel=3D"canonical" href=3D"https://keyou.github.io/blog/2020/06/22/chr=
+omium-gpu-image-share/">
+<meta property=3D"og:url" content=3D"https://keyou.github.io/blog/2020/06/2=
+2/chromium-gpu-image-share/">
+<meta property=3D"og:site_name" content=3D"=E6=9F=AF=E5=B9=BD">
+<meta property=3D"og:type" content=3D"article">
+<meta property=3D"article:published_time" content=3D"2020-06-22T00:00:00+00=
+:00">
+<meta name=3D"twitter:card" content=3D"summary">
+<meta property=3D"twitter:title" content=3D"Chromium GPU Resource Share (Sh=
+ared Image)">
+
+<!-- End Jekyll SEO tag -->
+
+<meta name=3D"keywords" content=3D"chromium,graphics,rendering,opengl">
+
+
+
+
+
+<link type=3D"application/atom+xml" rel=3D"alternate" href=3D"https://keyou=
+.github.io/feed.xml" title=3D"=E6=9F=AF=E5=B9=BD">
+    <link href=3D"https://keyou.github.io/assets/stylesheets/blog.css" rel=
+=3D"stylesheet" type=3D"text/css">
+   =20
+
+
+
+
+
+
+
+
+   =20
+<link rel=3D"stylesheet" href=3D"https://keyou.github.io/assets/javascripts=
+/fancybox/jquery.fancybox.css?v=3D2.1.4" type=3D"text/css"><link rel=3D"sty=
+lesheet" href=3D"https://keyou.github.io/assets/javascripts/fancybox/helper=
+s/jquery.fancybox-buttons.css?v=3D1.0.5" type=3D"text/css"></head>
+
+<body class=3D"  pace-done" youdao=3D"bind"><div class=3D"pace  pace-inacti=
+ve"><div class=3D"pace-progress" data-progress-text=3D"100%" data-progress=
+=3D"99" style=3D"transform: translate3d(100%, 0px, 0px);">
+  <div class=3D"pace-progress-inner"></div>
+</div>
+<div class=3D"pace-activity"></div></div>
+   =20
+
+    <!--[if IE]>
+    <p class=3D"site-notice">You are using an outdated browser. Please <a h=
+ref=3D"http://browsehappy.com/" target=3D"_blank">upgrade your browser</a> =
+or <a href=3D"http://www.google.com/chromeframe/?redirect=3Dtrue" target=3D=
+"_blank">activate Google Chrome Frame</a> to improve your experience.</p>
+<![endif]-->
+
+
+    <div class=3D"nav-wrapper overlay-wrapper">
+    <div class=3D"nav-form overlay-form">
+        <span class=3D"overlay-header menu">Menu</span>
+        <a class=3D"btn-close">Close</a>
+        <div class=3D"results">
+            <ul>
+                <li><a href=3D"https://keyou.github.io/blog/categories/">Ca=
+tegories</a></li>
+                <li><a href=3D"https://keyou.github.io/blog/tags/">Tags</a>=
+</li>
+                <li><a href=3D"https://keyou.github.io/blog/projects/">Proj=
+ects</a></li>
+                <li><a href=3D"https://keyou.github.io/">About</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class=3D"search-wrapper overlay-wrapper">
+    <div class=3D"search-form overlay-form">
+        <input type=3D"text" class=3D"overlay-header search-field" placehol=
+der=3D"Search...">
+        <a class=3D"btn-close">Close</a>
+        <ul class=3D"results"></ul>
+    </div>
+</div>
+
+
+    <div id=3D"page" class=3D"hentry">
+        <header class=3D"the-header">
+    <div class=3D"unit-head">
+        <div class=3D"unit-inner unit-head-inner">
+            <nav class=3D"nav-global">
+                <ul>
+                    <li class=3D"logo nav-link">
+                        <button class=3D"btn-menu" title=3D"Menu"></button>
+                        <a href=3D"https://keyou.github.io/blog/">=E6=9F=AF=
+=E5=B9=BD</a>
+                        <!--[if !IE]> -->
+                        <button class=3D"btn-search" title=3D"Search"></but=
+ton>
+                        <!-- <![endif]-->
+                    </li>
+                    <li class=3D"nav-link"><a title=3D"Home" href=3D"https:=
+//keyou.github.io/blog/">Home</a></li>
+                    <li class=3D"nav-link"><a title=3D"Categories" href=3D"=
+https://keyou.github.io/blog/categories/">Categories</a></li>
+                    <li class=3D"nav-link"><a title=3D"Tags" href=3D"https:=
+//keyou.github.io/blog/tags/">Tags</a></li>
+                    <li class=3D"nav-link"><a title=3D"Projects" href=3D"ht=
+tps://keyou.github.io/blog/projects/">Projects</a></li>
+                    <!--[if !IE]> -->
+                    <li class=3D"nav-link"><a title=3D"Search" class=3D"btn=
+-search" href=3D"https://keyou.github.io/blog/2020/06/22/chromium-gpu-image=
+-share/#">Search</a></li>
+                    <!-- <![endif]-->
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+
+        <div class=3D"body animated fadeInDown" role=3D"main">
+            <div class=3D"unit-body">
+                <div class=3D"unit-inner unit-body-inner">
+                    <div class=3D"entry-content">
+                        <article class=3D"unit-article layout-post">
+    <div class=3D"unit-inner unit-article-inner">
+        <div itemscope=3D"" itemtype=3D"http://schema.org/Article" class=3D=
+"content">
+            <header>
+                <div class=3D"unit-head">
+                    <div class=3D"unit-inner unit-head-inner">
+                        <h1 class=3D"entry-title" itemprop=3D"name">Chromiu=
+m GPU Resource Share (Shared Image)</h1>
+                    </div>
+                </div>
+            </header>
+            <div class=3D"bd article-content">
+                <div class=3D"entry-content">
+                    <div class=3D"meta">
+                        <p class=3D"date-publish">
+                            Published:
+                            <time itemprop=3D"datePublished" class=3D"date-=
+pub updated" title=3D"2020-06-22T00:00:00+00:00" datetime=3D"2020-06-22T00:=
+00:00+00:00">June 22, 2020 </time>
+                            by
+                            <a class=3D"author" href=3D"https://keyou.githu=
+b.io/" rel=3D"author" title=3D"Show Author">
+                                <span itemprop=3D"author" itemscope=3D"" it=
+emtype=3D"http://schema.org/Person">
+                                    <span itemprop=3D"name">keyou</span>
+                                </span>
+                            </a>
+                           =20
+                                <a class=3D"license-icon" rel=3D"license" h=
+ref=3D"http://creativecommons.org/licenses/by-sa/4.0/" target=3D"_blank" ti=
+tle=3D"Show License">
+                                    <img alt=3D"Creative Commons Licence" s=
+tyle=3D"border-width:0" src=3D"https://keyou.github.io/assets/images/theme/=
+cc-by-sa.png" height=3D"16" width=3D"80">
+                                </a>
+                           =20
+                           =20
+                        </p>
+                        <ul class=3D"list-category list-linear">
+                            <li class=3D"list-head">Categories: </li>
+                            =20
+   =20
+
+
+
+                        </ul>
+                        <ul class=3D"list-tag list-linear">
+                            <li class=3D"list-head">Tags: </li>
+                            =20
+   =20
+       =20
+        <li>
+            <a href=3D"https://keyou.github.io/blog/tags/#chromium" title=
+=3D"chromium">chromium <span>14</span></a>
+        </li>
+   =20
+       =20
+        <li>
+            <a href=3D"https://keyou.github.io/blog/tags/#graphics" title=
+=3D"graphics">graphics <span>12</span></a>
+        </li>
+   =20
+       =20
+        <li>
+            <a href=3D"https://keyou.github.io/blog/tags/#opengl" title=3D"=
+opengl">opengl <span>5</span></a>
+        </li>
+   =20
+       =20
+        <li>
+            <a href=3D"https://keyou.github.io/blog/tags/#rendering" title=
+=3D"rendering">rendering <span>4</span></a>
+        </li>
+   =20
+
+
+
+
+                        </ul>
+                    </div>
+                    <div itemprop=3D"articleBody">
+                        <blockquote>
+  <p>Update:</p>
+
+  <ul>
+    <li>2020.8.5: =E6=B7=BB=E5=8A=A0=E4=BD=BF=E7=94=A8 GPU-R =E5=92=8C OOP-=
+R =E6=8E=A5=E5=8F=A3=E7=9A=84=E4=BB=A3=E7=A0=81=E7=A4=BA=E4=BE=8B=E3=80=82<=
+/li>
+    <li>2022.7.26: =E4=BF=AE=E6=AD=A3=E5=85=B3=E4=BA=8E OOP-D =E7=9A=84=E9=
+=94=99=E8=AF=AF=E6=8F=8F=E8=BF=B0=E3=80=82</li>
+  </ul>
+</blockquote>
+
+<p>=E8=B5=84=E6=BA=90=E5=85=B1=E4=BA=AB=E6=8C=87=E7=9A=84=E6=98=AF=E5=9C=A8=
+=E4=B8=80=E4=B8=AA Context =E4=B8=AD=E7=9A=84=E5=88=9B=E5=BB=BA=E7=9A=84 Te=
+xture =E8=B5=84=E6=BA=90=E5=8F=AF=E4=BB=A5=E8=A2=AB=E5=85=B6=E4=BB=96 Conte=
+xt =E6=89=80=E4=BD=BF=E7=94=A8=E3=80=82=E4=B8=80=E8=88=AC=E6=9D=A5=E8=AE=B2=
+=E5=8F=AA=E6=9C=89=E7=9B=B8=E5=90=8C <code class=3D"language-plaintext high=
+lighter-rouge">share group</code> Context =E5=88=9B=E5=BB=BA=E7=9A=84 Textu=
+re =E6=89=8D=E5=8F=AF=E4=BB=A5=E8=A2=AB=E5=85=B1=E4=BA=AB=EF=BC=8C=E8=80=8C=
+ Chromium =E8=AE=BE=E8=AE=A1=E4=BA=86=E4=B8=80=E5=A5=97=E5=85=81=E8=AE=B8=
+=E4=B8=8D=E5=90=8C <code class=3D"language-plaintext highlighter-rouge">sha=
+re group</code> =E5=B9=B6=E4=B8=94=E8=B7=A8=E8=BF=9B=E7=A8=8B=E7=9A=84 Text=
+ure =E5=85=B1=E4=BA=AB=E6=9C=BA=E5=88=B6=E3=80=82</p>
+
+<p>Chromium =E4=B8=AD=E6=9C=89=E6=96=B0=E6=97=A7=E4=B8=A4=E5=A5=97=E5=85=B1=
+=E4=BA=AB Texture =E7=9A=84=E6=9C=BA=E5=88=B6=EF=BC=8C=E4=B8=80=E5=A5=97=E6=
+=98=AF Mailbox =E6=9C=BA=E5=88=B6=EF=BC=8C=E4=B8=80=E5=A5=97=E6=98=AF Share=
+dImage =E6=9C=BA=E5=88=B6=E3=80=82</p>
+
+<h2 id=3D"heading-mailbox-=E6=9C=BA=E5=88=B6">Mailbox =E6=9C=BA=E5=88=B6</h=
+2>
+
+<p>Mailbox =E6=9C=BA=E5=88=B6=E7=94=B1 <a href=3D"https://source.chromium.o=
+rg/chromium/chromium/src/+/master:gpu/GLES2/extensions/CHROMIUM/CHROMIUM_te=
+xture_mailbox.txt"><code class=3D"language-plaintext highlighter-rouge">CHR=
+OMIUM_texture_mailbox</code></a> =E6=89=A9=E5=B1=95=E6=8F=90=E4=BE=9B=EF=BC=
+=8C=E5=AE=83=E5=AE=9A=E4=B9=89=E4=BA=86=E4=B8=80=E7=A7=8D=E5=9C=A8=E4=B8=8D=
+=E5=90=8CContext=E4=B9=8B=E9=97=B4=E5=85=B1=E4=BA=AB Texture =E5=AF=B9=E8=
+=B1=A1=E4=B8=AD=E7=9A=84=E5=9B=BE=E7=89=87=E6=95=B0=E6=8D=AE=E7=9A=84=E6=96=
+=B9=E5=BC=8F=EF=BC=8C=E4=B8=8D=E7=AE=A1=E8=BF=99=E4=BA=9BContext=E6=98=AF=
+=E5=90=A6=E5=A4=84=E4=BA=8E=E7=9B=B8=E5=90=8C=E7=9A=84<code class=3D"langua=
+ge-plaintext highlighter-rouge">share group</code>=E3=80=82</p>
+
+<blockquote>
+  <p>=E6=B3=A8=E6=84=8F=EF=BC=9A =E5=85=B1=E4=BA=AB=E7=9A=84=E6=98=AF Textu=
+re =E5=AF=B9=E8=B1=A1=E4=B8=AD=E7=9A=84=E5=9B=BE=E7=89=87=E6=95=B0=E6=8D=AE=
+=EF=BC=8C=E8=80=8C=E4=B8=8D=E6=98=AF Texture =E5=AF=B9=E8=B1=A1=E6=9C=AC=E8=
+=BA=AB=E3=80=82</p>
+</blockquote>
+
+<p>=E5=AE=83=E5=AE=9A=E4=B9=89=E4=BA=862=E4=B8=AA=E6=96=B9=E6=B3=95=EF=BC=
+=9A</p>
+
+<div class=3D"language-c++ highlighter-rouge"><div class=3D"highlight"><pre=
+ class=3D"highlight"><code><span class=3D"kt">void</span> <span class=3D"nf=
+">glProduceTextureDirectCHROMIUM</span><span class=3D"p">(</span><span clas=
+s=3D"n">GLuint</span> <span class=3D"n">texture</span><span class=3D"p">,</=
+span> <span class=3D"n">GLbyte</span> <span class=3D"o">*</span><span class=
+=3D"n">mailbox</span><span class=3D"p">);</span>
+<span class=3D"n">GLuint</span> <span class=3D"nf">glCreateAndConsumeTextur=
+eCHROMIUM</span><span class=3D"p">(</span><span class=3D"k">const</span> <s=
+pan class=3D"n">GLbyte</span> <span class=3D"o">*</span><span class=3D"n">m=
+ailbox</span><span class=3D"p">);</span>
+</code></pre></div></div>
+
+<p><code class=3D"language-plaintext highlighter-rouge">glProduceTextureDir=
+ectCHROMIUM</code> =E6=96=B9=E6=B3=95=E4=BC=A0=E5=85=A5=E4=B8=80=E4=B8=AA=
+=E5=BD=93=E5=89=8DContext=E4=B8=AD=E5=B7=B2=E7=BB=8F=E5=AD=98=E5=9C=A8=E7=
+=9A=84 <code class=3D"language-plaintext highlighter-rouge">texture</code> =
+=E5=AF=B9=E8=B1=A1=EF=BC=8C=E7=84=B6=E5=90=8E=E8=BF=94=E5=9B=9E=E4=B8=80=E4=
+=B8=AA=E6=8C=87=E5=90=91=E8=AF=A5texture=E7=9A=84 <code class=3D"language-p=
+laintext highlighter-rouge">mailbox</code>=E3=80=82=E5=90=8E=E7=BB=AD=E5=8F=
+=AF=E4=BB=A5=E5=9C=A8=E5=85=B6=E4=BB=96=E7=9A=84Context=E4=B8=AD=E4=BD=BF=
+=E7=94=A8 <code class=3D"language-plaintext highlighter-rouge">glCreateAndC=
+onsumeTextureCHROMIUM</code> =E6=96=B9=E6=B3=95=E9=80=9A=E8=BF=87=E8=BF=99=
+=E4=B8=AA <code class=3D"language-plaintext highlighter-rouge">mailbox</cod=
+e> =E5=88=9B=E5=BB=BA=E4=B8=80=E4=B8=AA=E6=96=B0=E7=9A=84 <code class=3D"la=
+nguage-plaintext highlighter-rouge">texture</code> =E5=AF=B9=E8=B1=A1=EF=BC=
+=8C=E6=96=B0=E5=AF=B9=E8=B1=A1=E5=AD=98=E5=9C=A8=E4=BA=8E=E6=96=B0=E7=9A=84=
+ Context =E4=B8=AD=E3=80=82=E7=BB=93=E5=90=88 Command Buffer=EF=BC=8C=E5=8F=
+=AF=E4=BB=A5=E5=AE=9E=E7=8E=B0=E8=B7=A8=E8=BF=9B=E7=A8=8B=E5=85=B1=E4=BA=AB=
+Texture=E7=9A=84=E6=95=88=E6=9E=9C=E3=80=82</p>
+
+<p><code class=3D"language-plaintext highlighter-rouge">Mailbox</code> =E7=
+=B1=BB=E6=9C=AC=E8=BA=AB=E6=98=AF=E4=B8=80=E4=B8=AA=E5=AE=9A=E9=95=BF=E7=9A=
+=84=E5=AD=97=E8=8A=82=E6=95=B0=E7=BB=84=EF=BC=8C=E4=BD=9C=E4=B8=BA=E8=B5=84=
+=E6=BA=90=E7=9A=84=E5=94=AF=E4=B8=80=E6=A0=87=E8=AF=86=E7=AC=A6=EF=BC=8C=E9=
+=BB=98=E8=AE=A4=E6=98=AF16=E5=AD=97=E8=8A=82=EF=BC=8C=E7=B3=BB=E7=BB=9F=E5=
+=85=A8=E5=B1=80=E5=94=AF=E4=B8=80=EF=BC=8C=E5=8F=AF=E4=BB=A5=E8=B7=A8=E8=BF=
+=9B=E7=A8=8B=E3=80=82</p>
+
+<p>Mailbox =E6=9C=BA=E5=88=B6=E4=BD=BF=E7=94=A8=E8=B5=B7=E6=9D=A5=E9=9D=9E=
+=E5=B8=B8=E6=96=B9=E4=BE=BF=EF=BC=8C=E4=BD=86=E6=98=AF=E5=AE=83=E5=AF=B9 se=
+rvice =E7=AB=AF=E7=9A=84=E8=BF=90=E8=A1=8C=E7=8E=AF=E5=A2=83=E4=BE=9D=E8=B5=
+=96=E9=9D=9E=E5=B8=B8=E4=B8=A5=E9=87=8D=EF=BC=8C=E6=AF=94=E5=A6=82=E8=A6=81=
+=E6=B1=82 service =E7=AB=AF=E7=9A=84=E6=89=80=E6=9C=89 Context =E9=83=BD=E5=
+=BF=85=E9=A1=BB=E5=B1=9E=E4=BA=8E=E7=9B=B8=E5=90=8C share group=EF=BC=8C=E8=
+=BF=99=E5=AF=BC=E8=87=B4service=E7=AB=AF=E5=9C=A8=E6=9F=90=E4=BA=9B=E5=B9=
+=B3=E5=8F=B0=E4=B8=8A=E9=9C=80=E8=A6=81=E4=BD=BF=E7=94=A8Virtual Context=E6=
+=88=96=E8=80=85=E5=BE=88=E5=A4=9A=E7=9A=84=E5=90=8C=E6=AD=A5=E6=9C=BA=E5=88=
+=B6=E6=89=8D=E8=83=BD=E5=AE=9E=E7=8E=B0=EF=BC=8C=E8=80=8C=E8=BF=99=E4=BA=9B=
+=E4=BC=9A=E5=AF=BC=E8=87=B4=E6=80=A7=E8=83=BD=E6=8D=9F=E5=A4=B1=E3=80=82=E5=
+=86=8D=E5=8A=A0=E4=B8=8A=E8=BF=99=E7=A7=8D=E6=9C=BA=E5=88=B6=E5=9F=BA=E4=BA=
+=8EGL=EF=BC=8C=E6=97=A0=E6=B3=95=E5=BE=88=E5=A5=BD=E7=9A=84=E6=94=AF=E6=8C=
+=81Vulkan=EF=BC=8C=E5=9B=A0=E6=AD=A4 Mailbox =E6=9C=BA=E5=88=B6=E5=B7=B2=E7=
+=BB=8F=E8=A2=AB=E6=A0=87=E8=AE=B0=E4=B8=BA <code class=3D"language-plaintex=
+t highlighter-rouge">deprecated</code>=EF=BC=8C=E5=9C=A8=E5=BD=93=E5=89=8D=
+=E7=9A=84 Chromium =E4=B8=AD=E5=8F=AA=E6=9C=89 media =E6=A8=A1=E5=9D=97=E8=
+=BF=98=E5=9C=A8=E4=BD=BF=E7=94=A8=E3=80=82=E6=96=B0=E4=BB=A3=E7=A0=81=E5=BA=
+=94=E8=AF=A5=E4=BD=BF=E7=94=A8 <code class=3D"language-plaintext highlighte=
+r-rouge">SharedImage</code> =E6=9C=BA=E5=88=B6=E3=80=82</p>
+
+<h2 id=3D"heading-sharedimage-=E6=9C=BA=E5=88=B6">SharedImage =E6=9C=BA=E5=
+=88=B6</h2>
+
+<p>ShareImage =E6=9C=BA=E5=88=B6=E4=BB=8E2018=E5=B9=B4=E5=BC=80=E5=A7=8B=E5=
+=BC=95=E5=85=A5=EF=BC=8C=E8=AE=BE=E8=AE=A1=E7=94=A8=E6=9D=A5=E5=8F=96=E4=BB=
+=A3 Mailbox =E6=9C=BA=E5=88=B6=E5=B9=B6=E4=B8=94=E6=94=AF=E6=8C=81 Vulkan=
+=E3=80=82=E5=AE=83=E5=BC=95=E5=85=A5=E4=BA=86=E4=B8=80=E5=A5=97 client =E7=
+=AB=AF=E7=9A=84 SharedImage =E6=8E=A5=E5=8F=A3=E4=BB=A5=E5=8F=8A=E4=B8=80=
+=E4=B8=AA=E6=96=B0=E7=9A=84GL=E6=89=A9=E5=B1=95 <code class=3D"language-pla=
+intext highlighter-rouge">CHROMIUM_shared_image</code>=E3=80=82</p>
+
+<h3 id=3D"heading-sharedimage-=E6=8E=A5=E5=8F=A3">SharedImage =E6=8E=A5=E5=
+=8F=A3</h3>
+
+<p>=E4=B8=BB=E8=A6=81=E6=8E=A5=E5=8F=A3=E4=B8=BA <code class=3D"language-pl=
+aintext highlighter-rouge">SharedImageInterface</code>=EF=BC=8C=E7=94=A8=E6=
+=9D=A5=E5=88=9B=E5=BB=BA shared images=EF=BC=8C=E5=AE=9A=E4=B9=89=E5=A6=82=
+=E4=B8=8B=EF=BC=9A</p>
+
+<div class=3D"language-c++ highlighter-rouge"><div class=3D"highlight"><pre=
+ class=3D"highlight"><code><span class=3D"k">class</span> <span class=3D"nc=
+">GPU_EXPORT</span> <span class=3D"n">SharedImageInterface</span> <span cla=
+ss=3D"p">{</span>
+ <span class=3D"nl">public:</span>
+  <span class=3D"k">virtual</span> <span class=3D"n">Mailbox</span> <span c=
+lass=3D"n">CreateSharedImage</span><span class=3D"p">(...)</span> <span cla=
+ss=3D"o">=3D</span> <span class=3D"mi">0</span><span class=3D"p">;</span>
+  <span class=3D"k">virtual</span> <span class=3D"kt">void</span> <span cla=
+ss=3D"n">UpdateSharedImage</span><span class=3D"p">(...)</span> <span class=
+=3D"o">=3D</span> <span class=3D"mi">0</span><span class=3D"p">;</span>
+  <span class=3D"k">virtual</span> <span class=3D"kt">void</span> <span cla=
+ss=3D"n">DestroySharedImage</span><span class=3D"p">(...)</span> <span clas=
+s=3D"o">=3D</span> <span class=3D"mi">0</span><span class=3D"p">;</span>
+
+  <span class=3D"c1">// SwapChain =E5=8F=AA=E5=9C=A8 Windows =E4=B8=8A=E4=
+=BD=BF=E7=94=A8=EF=BC=8C=E8=BF=99=E9=87=8C=E4=B8=8D=E5=81=9A=E4=BB=8B=E7=BB=
+=8D</span>
+  <span class=3D"c1">// virtual SwapChainMailboxes CreateSwapChain(...) =3D=
+ 0;</span>
+  <span class=3D"c1">// virtual void PresentSwapChain(...) =3D 0;</span>
+  <span class=3D"p">...</span>
+<span class=3D"p">};</span>
+</code></pre></div></div>
+
+<p>=E8=BF=99=E6=98=AF=E4=B8=80=E4=B8=AA client =E7=AB=AF=E7=9A=84=E6=8E=A5=
+=E5=8F=A3=EF=BC=8C=E5=8F=AF=E4=BB=A5=E9=80=9A=E8=BF=87 <code class=3D"langu=
+age-plaintext highlighter-rouge">gpu::GpuChannelHost</code> =E6=9D=A5=E8=8E=
+=B7=E5=8F=96=E5=88=B0=E3=80=82=E5=AF=B9=E5=AE=83=E7=9A=84=E8=B0=83=E7=94=A8=
+=E4=BC=9A=E9=80=9A=E8=BF=87 IPC =E6=8E=A5=E5=8F=A3=E5=8F=91=E9=80=81=E5=88=
+=B0 service =E7=AB=AF=EF=BC=8Cservice =E7=AB=AF=E4=BC=9A=E4=BD=BF=E7=94=A8=
+=E5=90=88=E9=80=82=E7=9A=84=E6=9C=BA=E5=88=B6=E6=9D=A5=E5=AD=98=E5=82=A8 Sh=
+aredImage =E7=9A=84=E6=95=B0=E6=8D=AE=EF=BC=8C=E6=AF=94=E5=A6=82GL Texture=
+=EF=BC=8CGMB(GpuMemoryBuffer)=E7=AD=89=E3=80=82</p>
+
+<p><code class=3D"language-plaintext highlighter-rouge">CreateSharedImage</=
+code> =E6=96=B9=E6=B3=95=E5=88=9B=E5=BB=BA=E4=B8=80=E4=B8=AA=E6=96=B0=E7=9A=
+=84 SharedImage =E5=B9=B6=E8=BF=94=E5=9B=9E=E4=B8=80=E4=B8=AA mailbox =E6=
+=8C=87=E5=90=91=E5=AE=83=E3=80=82<code class=3D"language-plaintext highligh=
+ter-rouge">UpdateSharedImage</code> =E6=96=B9=E6=B3=95=E6=9B=B4=E6=96=B0=E6=
+=8C=87=E5=AE=9A=E7=9A=84 SharedImage =E7=9A=84=E5=B1=9E=E6=80=A7=E3=80=82<c=
+ode class=3D"language-plaintext highlighter-rouge">DestroySharedImage</code=
+> =E9=94=80=E6=AF=81=E6=8C=87=E5=AE=9A=E7=9A=84 SharedImage=EF=BC=8C=E9=87=
+=8A=E6=94=BE=E7=9B=B8=E5=85=B3=E5=86=85=E5=AD=98=E3=80=82</p>
+
+<p>=E5=9C=A8client=E7=AB=AF=EF=BC=8C=E9=80=9A=E8=BF=87 <code class=3D"langu=
+age-plaintext highlighter-rouge">CHROMIUM_shared_image</code> =E6=89=A9=E5=
+=B1=95=E6=8F=90=E4=BE=9B=E7=9A=84=E6=96=B9=E6=B3=95=E6=9D=A5=E8=AF=BB=E5=86=
+=99 SharedImage =E6=95=B0=E6=8D=AE=E3=80=82<code class=3D"language-plaintex=
+t highlighter-rouge">Mailbox</code> =E6=9C=BA=E5=88=B6=E4=B8=AD <code class=
+=3D"language-plaintext highlighter-rouge">CHROMIUM_texture_mailbox</code> =
+=E6=89=A9=E5=B1=95=E6=8F=90=E4=BE=9B=E7=9A=84=E6=96=B9=E6=B3=95=E4=B9=9F=E5=
+=8F=AF=E4=BB=A5=E7=94=A8=E6=9D=A5=E8=AE=BF=E9=97=AE <code class=3D"language=
+-plaintext highlighter-rouge">SharedImage</code>=EF=BC=8C=E5=9B=A0=E4=B8=BA=
+ <code class=3D"language-plaintext highlighter-rouge">SharedImage</code> =
+=E6=9C=BA=E5=88=B6=E5=85=BC=E5=AE=B9=E4=BA=86 <code class=3D"language-plain=
+text highlighter-rouge">Mailbox</code> =E6=9C=BA=E5=88=B6=E3=80=82=E4=BD=86=
+=E5=BA=94=E8=AF=A5=E5=B0=BD=E9=87=8F=E6=AF=94=E9=81=BF=E5=85=8D=E8=BF=99=E6=
+=A0=B7=E4=BD=BF=E7=94=A8=EF=BC=8C=E5=9B=A0=E4=B8=BA Mailbox =E6=9C=BA=E5=88=
+=B6=E5=B7=B2=E7=BB=8F=E8=BF=87=E6=97=B6=E4=BA=86=E3=80=82=E5=9C=A8 service =
+=E7=AB=AF=E4=B9=9F=E5=8F=AF=E4=BB=A5=E7=94=A8=E8=BF=99=E7=A7=8D=E6=96=B9=E6=
+=B3=95=E6=9D=A5=E8=AE=BF=E9=97=AE ShareImage=E3=80=82</p>
+
+<p>=E5=9C=A8servcie=E7=AB=AF=EF=BC=8C<code class=3D"language-plaintext high=
+lighter-rouge">SharedImage</code> =E5=AE=9E=E7=8E=B0=E4=BA=86=E5=A4=A7=E6=
+=A6=823=E7=B1=BB=E5=AD=98=E5=82=A8=E6=9C=BA=E5=88=B6=EF=BC=8C=E5=88=86=E5=
+=88=AB=E4=B8=BA GLTexture/EGLImage=EF=BC=8CGMB =E5=92=8C VulkanImage=EF=BC=
+=8C=E8=BF=99=E4=B8=89=E5=A4=A7=E7=B1=BB=E5=8F=88=E8=A2=AB=E6=8A=BD=E8=B1=A1=
+=E4=B8=BA=E4=BA=86=E5=BE=88=E5=A4=9A=E7=A7=8D=E5=B0=8F=E7=B1=BB=E3=80=82=E4=
+=B8=8B=E9=9D=A2=E8=BF=99=E4=BA=9B=E9=83=BD=E6=98=AF <code class=3D"language=
+-plaintext highlighter-rouge">SharedImage</code> =E5=8F=AF=E8=83=BD=E7=9A=
+=84=E5=AD=98=E5=82=A8=E5=90=8E=E7=AB=AF=EF=BC=9A</p>
+
+<div class=3D"language-c++ highlighter-rouge"><div class=3D"highlight"><pre=
+ class=3D"highlight"><code><span class=3D"n">gpu</span><span class=3D"o">::=
+</span><span class=3D"n">SharedImageBackingGLTexture</span>
+<span class=3D"n">gpu</span><span class=3D"o">::</span><span class=3D"n">Sh=
+aredImageBackingGLImage</span>
+<span class=3D"n">gpu</span><span class=3D"o">::</span><span class=3D"n">Sh=
+aredImageBackingEglImage</span>
+<span class=3D"n">gpu</span><span class=3D"o">::</span><span class=3D"n">Sh=
+aredImageBackingAHB</span>
+<span class=3D"n">gpu</span><span class=3D"o">::</span><span class=3D"n">Sh=
+aredImageBackingD3D</span>
+<span class=3D"n">gpu</span><span class=3D"o">::</span><span class=3D"n">Sh=
+aredImageBackingOzone</span>
+<span class=3D"n">gpu</span><span class=3D"o">::</span><span class=3D"n">Ex=
+ternalVkImageBacking</span>
+<span class=3D"n">gpu</span><span class=3D"o">::</span><span class=3D"n">Sh=
+aredImageVideo</span>
+</code></pre></div></div>
+
+<p>=E5=85=B6=E4=B8=AD <code class=3D"language-plaintext highlighter-rouge">=
+gpu::SharedImageBackingGLTexture</code> =E4=BD=BF=E7=94=A8 GL Texture =E6=
+=9D=A5=E5=AD=98=E5=82=A8 SharedImage =E6=95=B0=E6=8D=AE=E3=80=82<code class=
+=3D"language-plaintext highlighter-rouge">gpu::SharedImageBackingEglImage</=
+code> =E4=BD=BF=E7=94=A8 EGLImage =E6=9D=A5=E5=AD=98=E5=82=A8=E6=95=B0=E6=
+=8D=AE=E3=80=82<code class=3D"language-plaintext highlighter-rouge">gpu::Sh=
+aredImageBackingAHB</code> =E4=BB=85=E7=94=A8=E4=BA=8E Android =E5=B9=B3=E5=
+=8F=B0=EF=BC=8C=E4=BD=BF=E7=94=A8 Android =E6=8F=90=E4=BE=9B=E7=9A=84 AHard=
+wareBuffer =E6=9D=A5=E5=AD=98=E5=82=A8=E6=95=B0=E6=8D=AE=E3=80=82<code clas=
+s=3D"language-plaintext highlighter-rouge">gpu::ExternalVkImageBacking</cod=
+e> =E5=AF=B9=E6=8E=A5 Vulkan=E3=80=82<code class=3D"language-plaintext high=
+lighter-rouge">gpu::SharedImageBackingGLImage</code> =E6=AF=94=E8=BE=83=E7=
+=89=B9=E6=AE=8A=EF=BC=8C=E5=AE=83=E8=A1=A8=E7=A4=BA=E4=BD=BF=E7=94=A8 <code=
+ class=3D"language-plaintext highlighter-rouge">gpu::GLImage</code> =E7=B1=
+=BB=E6=9D=A5=E8=BF=9B=E8=A1=8C=E5=AD=98=E5=82=A8=EF=BC=8C<code class=3D"lan=
+guage-plaintext highlighter-rouge">gpu::GLImage</code> =E5=8F=88=E6=8A=BD=
+=E8=B1=A1=E4=BA=86=E4=B8=8D=E5=90=8C=E7=9A=84=E5=AD=98=E5=82=A8=E5=90=8E=E7=
+=AB=AF=EF=BC=8C=E6=9C=80=E7=BB=88=E4=B9=9F=E5=8F=AF=E8=83=BD=E4=BD=BF=E7=94=
+=A8 GL Texture=E3=80=82</p>
+
+<p>SharedImage =E6=9C=BA=E5=88=B6=E6=9C=AC=E8=B4=A8=E4=B8=8A=E6=8A=BD=E8=B1=
+=A1=E4=BA=86 GPU =E7=9A=84<strong>=E6=95=B0=E6=8D=AE=E5=AD=98=E5=82=A8</str=
+ong>=E8=83=BD=E5=8A=9B=E3=80=82=E5=8D=B3=E5=85=81=E8=AE=B8=E5=BA=94=E7=94=
+=A8=E7=9B=B4=E6=8E=A5=E6=8A=8A=E6=95=B0=E6=8D=AE=E5=AD=98=E5=82=A8=E5=88=B0=
+ GPU =EF=BC=88GPU =E8=83=BD=E8=AE=BF=E9=97=AE=E5=88=B0=E7=9A=84=E5=86=85=E5=
+=AD=98=EF=BC=89=E4=B8=AD=EF=BC=8C=E4=BB=A5=E5=8F=8A=E7=9B=B4=E6=8E=A5=E4=BB=
+=8E GPU =E4=B8=AD=E8=AF=BB=E5=8F=96=E6=95=B0=E6=8D=AE=EF=BC=8C=E5=B9=B6=E4=
+=B8=94=E5=85=81=E8=AE=B8=E8=B7=A8=E8=BF=87<code class=3D"language-plaintext=
+ highlighter-rouge">shared group</code>=E8=BE=B9=E7=95=8C=E3=80=82=E7=90=86=
+=E8=A7=A3=E4=BA=86=E8=BF=99=E4=B8=80=E7=82=B9=EF=BC=8C=E5=BA=94=E8=AF=A5=E6=
+=AF=94=E8=BE=83=E5=AE=B9=E6=98=93=E6=83=B3=E5=88=B0=E5=93=AA=E4=BA=9B=E5=9C=
+=BA=E6=99=AF=E5=8F=AF=E4=BB=A5=E4=BD=BF=E7=94=A8 SharedImage =E6=9C=BA=E5=
+=88=B6=EF=BC=8C=E4=B8=8B=E9=9D=A2=E8=BF=99=E4=BA=9B=E6=98=AF Chromium =E4=
+=B8=AD=E4=BD=BF=E7=94=A8 SharedImage =E6=9C=BA=E5=88=B6=E7=9A=84=E4=B8=80=
+=E4=BA=9B=E5=9C=BA=E6=99=AF=EF=BC=9A</p>
+
+<ol>
+  <li>CC=E6=A8=A1=E5=9D=97=EF=BC=9A =E5=85=88=E5=B0=86=E7=94=BB=E9=9D=A2 Ra=
+ster =E5=88=B0 SharedImage=EF=BC=8C=E7=84=B6=E5=90=8E=E5=86=8D=E5=8F=91=E9=
+=80=81=E7=BB=99 Viz =E8=BF=9B=E8=A1=8C=E5=90=88=E6=88=90=E3=80=82</li>
+  <li>OffscreenCanvas=EF=BC=9A =E5=85=88=E5=B0=86 Canvas =E7=9A=84=E5=86=85=
+=E5=AE=B9 Raster =E5=88=B0 SharedImage=EF=BC=8C=E7=84=B6=E5=90=8E=E5=86=8D=
+=E5=8F=91=E9=80=81=E7=BB=99 Viz =E8=BF=9B=E8=A1=8C=E5=90=88=E6=88=90=E3=80=
+=82</li>
+  <li>=E5=9B=BE=E7=89=87=E5=A4=84=E7=90=86/=E6=B8=B2=E6=9F=93=EF=BC=9A =E4=
+=B8=80=E4=B8=AA=E7=BA=BF=E7=A8=8B=E5=B0=86=E5=9B=BE=E7=89=87=E8=A7=A3=E7=A0=
+=81=E5=88=B0 GPU =E4=B8=AD=EF=BC=8C=E5=8F=A6=E4=B8=80=E4=B8=AA=E7=BA=BF=E7=
+=A8=8B=E4=BD=BF=E7=94=A8 GPU =E6=9D=A5=E4=BF=AE=E6=94=B9=E6=88=96=E8=80=85=
+=E6=B8=B2=E6=9F=93=E5=9B=BE=E7=89=87=E3=80=82</li>
+  <li>=E8=A7=86=E9=A2=91=E6=92=AD=E6=94=BE=EF=BC=9A =E4=B8=80=E4=B8=AA=E7=
+=BA=BF=E7=A8=8B=E5=B0=86=E8=A7=86=E9=A2=91=E8=A7=A3=E7=A0=81=E5=88=B0 GPU =
+=E4=B8=AD=EF=BC=8C=E5=8F=A6=E4=B8=80=E4=B8=AA=E7=BA=BF=E7=A8=8B=E6=9D=A5=E6=
+=B8=B2=E6=9F=93=E3=80=82</li>
+</ol>
+
+<p>=E4=B8=8B=E9=9D=A2=E4=BB=8B=E7=BB=8D2=E4=B8=AA=E6=93=8D=E4=BD=9C ShareIm=
+age =E7=9A=84=E6=89=A9=E5=B1=95=E3=80=82=E9=9C=80=E8=A6=81=E6=B3=A8=E6=84=
+=8F=E7=9A=84=E6=98=AF=E5=9C=A8=E4=BD=BF=E7=94=A8=E8=BF=99=E4=BA=9B=E6=89=A9=
+=E5=B1=95=E6=96=B9=E6=B3=95=E4=B9=8B=E5=89=8D=E9=83=BD=E5=85=88=E8=A6=81=E6=
+=9C=89=E4=B8=80=E4=B8=AA=E6=8C=87=E5=90=91 SharedImage =E7=9A=84 mailbox=EF=
+=BC=8C=E5=8F=AF=E4=BB=A5=E4=BD=BF=E7=94=A8 <code class=3D"language-plaintex=
+t highlighter-rouge">SharedImageInterface</code> =E6=8E=A5=E5=8F=A3=E5=88=
+=9B=E5=BB=BA=EF=BC=8C=E4=B9=9F=E5=8F=AF=E4=BB=A5=E6=98=AF=E4=BB=8E=E5=85=B6=
+=E4=BB=96=E5=9C=B0=E6=96=B9=E4=BC=A0=E8=BF=87=E6=9D=A5=E3=80=82</p>
+
+<h3 id=3D"heading-chromium_shared_image-=E6=89=A9=E5=B1=95">CHROMIUM_shared=
+_image =E6=89=A9=E5=B1=95</h3>
+
+<p><a href=3D"https://source.chromium.org/chromium/chromium/src/+/master:gp=
+u/GLES2/extensions/CHROMIUM/CHROMIUM_shared_image.txt"><code class=3D"langu=
+age-plaintext highlighter-rouge">CHROMIUM_shared_image</code></a> =E6=89=A9=
+=E5=B1=95=E5=AE=9A=E4=B9=89=E4=BA=86=E4=BB=A5=E4=B8=8B4=E4=B8=AA=E6=96=B9=
+=E6=B3=95:</p>
+
+<div class=3D"language-c++ highlighter-rouge"><div class=3D"highlight"><pre=
+ class=3D"highlight"><code><span class=3D"c1">// Extension CHROMIUM_shared_=
+image</span>
+<span class=3D"n">GLuint</span> <span class=3D"nf">glCreateAndTexStorage2DS=
+haredImageCHROMIUM</span><span class=3D"p">(</span><span class=3D"k">const<=
+/span> <span class=3D"n">GLbyte</span> <span class=3D"o">*</span><span clas=
+s=3D"n">mailbox</span><span class=3D"p">);</span>
+<span class=3D"n">GLuint</span> <span class=3D"nf">glCreateAndTexStorage2DS=
+haredImageWithInternalFormatCHROMIUM</span><span class=3D"p">(</span>
+                                            <span class=3D"k">const</span> =
+<span class=3D"n">GLbyte</span> <span class=3D"o">*</span><span class=3D"n"=
+>mailbox</span><span class=3D"p">,</span>
+                                            <span class=3D"n">GLenum</span>=
+ <span class=3D"n">internal_format</span><span class=3D"p">);</span>
+<span class=3D"kt">void</span> <span class=3D"nf">glBeginSharedImageAccessD=
+irectCHROMIUM</span><span class=3D"p">(</span><span class=3D"n">GLuint</spa=
+n> <span class=3D"n">texture</span><span class=3D"p">,</span>
+                                            <span class=3D"n">GLenum</span>=
+ <span class=3D"n">mode</span><span class=3D"p">);</span>
+<span class=3D"kt">void</span> <span class=3D"nf">glEndSharedImageAccessDir=
+ectCHROMIUM</span><span class=3D"p">(</span><span class=3D"n">GLuint</span>=
+ <span class=3D"n">texture</span><span class=3D"p">);</span>
+</code></pre></div></div>
+
+<p><code class=3D"language-plaintext highlighter-rouge">glCreateAndTexStora=
+ge2DSharedImageCHROMIUM*</code> =E6=96=B9=E6=B3=95=E6=A0=B9=E6=8D=AE=E4=BC=
+=A0=E5=85=A5=E7=9A=84 <code class=3D"language-plaintext highlighter-rouge">=
+mailbox</code> =E5=88=9B=E5=BB=BA=E4=B8=80=E4=B8=AA=E6=96=B0=E7=9A=84 Textu=
+re =E5=AF=B9=E8=B1=A1=E3=80=82=E7=84=B6=E5=90=8E=E5=BA=94=E7=94=A8=E5=8F=AF=
+=E4=BB=A5=E4=BD=BF=E7=94=A8 <code class=3D"language-plaintext highlighter-r=
+ouge">glBeginSharedImageAccessDirectCHROMIUM</code> =E6=96=B9=E6=B3=95=E8=
+=8E=B7=E5=8F=96=E8=AF=BB/=E5=86=99 <code class=3D"language-plaintext highli=
+ghter-rouge">texture</code> =E5=AF=B9=E8=B1=A1=E7=9A=84=E6=9D=83=E9=99=90=
+=EF=BC=8C=E7=84=B6=E5=90=8E=E4=BD=BF=E7=94=A8=E5=B8=B8=E8=A7=84=E7=9A=84=E8=
+=AF=BB=E5=86=99texture=E7=9A=84GL=E5=91=BD=E4=BB=A4=E8=AE=BF=E9=97=AEtextur=
+e=E7=9A=84=E5=86=85=E5=AE=B9=EF=BC=8C=E6=AF=94=E5=A6=82<code class=3D"langu=
+age-plaintext highlighter-rouge">glGetTexImage</code>=EF=BC=8C<code class=
+=3D"language-plaintext highlighter-rouge">glReadPixels</code>=EF=BC=8C<code=
+ class=3D"language-plaintext highlighter-rouge">glTexImage2D</code>=E7=AD=
+=89=E6=88=96=E8=80=85=E4=BD=BF=E7=94=A8skia=E6=9D=A5=E9=97=B4=E6=8E=A5=E8=
+=AE=BF=E9=97=AEtexture=E7=9A=84=E5=86=85=E5=AE=B9=E3=80=82=E6=93=8D=E4=BD=
+=9C=E7=BB=93=E6=9D=9F=E4=B9=8B=E5=90=8E=EF=BC=8C=E8=B0=83=E7=94=A8 <code cl=
+ass=3D"language-plaintext highlighter-rouge">glEndSharedImageAccessDirectCH=
+ROMIUM</code> =E6=96=B9=E6=B3=95=E9=87=8A=E6=94=BE=E6=9D=83=E9=99=90=E3=80=
+=82</p>
+
+<p><del>=E8=BF=99=E4=BA=9B=E6=8E=A5=E5=8F=A3=E7=94=A8=E4=BA=8E <code class=
+=3D"language-plaintext highlighter-rouge">OOP-D(Out-Of-Process Display Comp=
+ositor)</code> =E6=9C=BA=E5=88=B6=E4=B8=8B=E7=9A=84 Raster=E3=80=82=E5=85=
+=B3=E4=BA=8E OOP-D =E8=A7=81=E5=90=8E=E7=BB=AD=E6=96=87=E6=A1=A3=EF=BC=8C=
+=E4=B8=8B=E9=9D=A2=E7=9A=84=E4=BB=A3=E7=A0=81=E6=BC=94=E7=A4=BA=E4=BD=BF=E7=
+=94=A8 OOP-D =E6=8E=A5=E5=8F=A3=E5=88=9B=E5=BB=BA SharedImage=EF=BC=9A</del=
+></p>
+
+<p>=E8=BF=99=E4=BA=9B=E6=8E=A5=E5=8F=A3=E7=94=A8=E4=BA=8E <code class=3D"la=
+nguage-plaintext highlighter-rouge">GPU-R</code> =E6=9C=BA=E5=88=B6=E4=B8=
+=8B=E7=9A=84 Raster=EF=BC=8C=E8=BF=99=E7=A7=8D Raster =E6=9C=BA=E5=88=B6=E5=
+=B7=B2=E7=BB=8F=E8=A2=AB <code class=3D"language-plaintext highlighter-roug=
+e">OOP-R</code> Raster =E6=9C=BA=E5=88=B6=E6=9B=BF=E4=BB=A3=EF=BC=8C=E5=B9=
+=B6=E4=B8=94=E5=9C=A82022=E5=B9=B42=E6=9C=88=E4=BB=BD=E8=A2=AB=E7=A7=BB=E9=
+=99=A4=EF=BC=8C=E8=BF=99=E9=87=8C=E5=8F=AA=E7=94=A8=E4=BA=8E=E6=BC=94=E7=A4=
+=BA=E6=97=A7=E7=89=88=E6=9C=AC <code class=3D"language-plaintext highlighte=
+r-rouge">GPU-R</code> =E6=96=B9=E5=BC=8F=E7=9A=84 Raster=EF=BC=9A</p>
+
+<div class=3D"language-c++ highlighter-rouge"><div class=3D"highlight"><pre=
+ class=3D"highlight"><code><span class=3D"c1">// cc/raster/gpu_raster_buffe=
+r_provider.cc</span>
+
+<span class=3D"k">static</span> <span class=3D"kt">void</span> <span class=
+=3D"nf">RasterizeSourceGPUR</span><span class=3D"p">(</span><span class=3D"=
+k">const</span> <span class=3D"n">RasterSource</span><span class=3D"o">*</s=
+pan> <span class=3D"n">raster_source</span><span class=3D"p">,...)</span> <=
+span class=3D"p">{</span>
+  <span class=3D"n">gpu</span><span class=3D"o">::</span><span class=3D"n">=
+raster</span><span class=3D"o">::</span><span class=3D"n">RasterInterface</=
+span><span class=3D"o">*</span> <span class=3D"n">ri</span> <span class=3D"=
+o">=3D</span> <span class=3D"n">context_provider</span><span class=3D"o">-&=
+gt;</span><span class=3D"n">RasterInterface</span><span class=3D"p">();</sp=
+an>
+  <span class=3D"k">auto</span><span class=3D"o">*</span> <span class=3D"n"=
+>sii</span> <span class=3D"o">=3D</span> <span class=3D"n">context_provider=
+</span><span class=3D"o">-&gt;</span><span class=3D"n">SharedImageInterface=
+</span><span class=3D"p">();</span>
+
+  <span class=3D"c1">// =E5=88=9B=E5=BB=BA=E7=A9=BA=E7=9A=84 SharedImage</s=
+pan>
+  <span class=3D"k">auto</span> <span class=3D"n">mailbox</span> <span clas=
+s=3D"o">=3D</span> <span class=3D"n">sii</span><span class=3D"o">-&gt;</spa=
+n><span class=3D"n">CreateSharedImage</span><span class=3D"p">(</span>
+      <span class=3D"n">resource_format</span><span class=3D"p">,</span> <s=
+pan class=3D"n">resource_size</span><span class=3D"p">,</span> <span class=
+=3D"n">color_space</span><span class=3D"p">,</span> <span class=3D"n">kTopL=
+eft_GrSurfaceOrigin</span><span class=3D"p">,</span>
+      <span class=3D"n">kPremul_SkAlphaType</span><span class=3D"p">,</span=
+> <span class=3D"n">flags</span><span class=3D"p">,</span> <span class=3D"n=
+">gpu</span><span class=3D"o">::</span><span class=3D"n">kNullSurfaceHandle=
+</span><span class=3D"p">);</span>
+  <span class=3D"n">ri</span><span class=3D"o">-&gt;</span><span class=3D"n=
+">WaitSyncTokenCHROMIUM</span><span class=3D"p">(</span><span class=3D"n">s=
+ii</span><span class=3D"o">-&gt;</span><span class=3D"n">GenUnverifiedSyncT=
+oken</span><span class=3D"p">().</span><span class=3D"n">GetConstData</span=
+><span class=3D"p">());</span>
+
+  <span class=3D"c1">// =E4=BD=BF=E7=94=A8 GPU-R =E6=8E=A5=E5=8F=A3=E7=BB=
+=99 SharedImage =E5=A1=AB=E5=85=85=E5=86=85=E5=AE=B9=EF=BC=8C=E5=86=85=E5=
+=AE=B9=E6=9D=A5=E8=87=AA RasterSource</span>
+  <span class=3D"n">GLuint</span> <span class=3D"n">texture_id</span> <span=
+ class=3D"o">=3D</span> <span class=3D"n">ri</span><span class=3D"o">-&gt;<=
+/span><span class=3D"n">CreateAndConsumeForGpuRaster</span><span class=3D"p=
+">(</span><span class=3D"n">mailbox</span><span class=3D"p">);</span>
+  <span class=3D"n">ri</span><span class=3D"o">-&gt;</span><span class=3D"n=
+">BeginSharedImageAccessDirectCHROMIUM</span><span class=3D"p">(</span>
+      <span class=3D"n">texture_id</span><span class=3D"p">,</span> <span c=
+lass=3D"n">GL_SHARED_IMAGE_ACCESS_MODE_READWRITE_CHROMIUM</span><span class=
+=3D"p">);</span>
+  <span class=3D"p">{</span>
+    <span class=3D"c1">// =E4=BD=BF=E7=94=A8 texture_id =E4=BD=9C=E4=B8=BA=
+=E6=B8=B2=E6=9F=93=E7=9B=AE=E6=A0=87</span>
+    <span class=3D"n">viz</span><span class=3D"o">::</span><span class=3D"n=
+">ClientResourceProvider</span><span class=3D"o">::</span><span class=3D"n"=
+>ScopedSkSurface</span> <span class=3D"n">scoped_surface</span><span class=
+=3D"p">(</span><span class=3D"n">texture_id</span><span class=3D"p">,...);<=
+/span>
+    <span class=3D"n">SkSurface</span><span class=3D"o">*</span> <span clas=
+s=3D"n">surface</span> <span class=3D"o">=3D</span> <span class=3D"n">scope=
+d_surface</span><span class=3D"o">-&gt;</span><span class=3D"n">surface</sp=
+an><span class=3D"p">();</span>
+    <span class=3D"n">SkCanvas</span><span class=3D"o">*</span> <span class=
+=3D"n">canvas</span> <span class=3D"o">=3D</span> <span class=3D"n">surface=
+</span><span class=3D"o">-&gt;</span><span class=3D"n">getCanvas</span><spa=
+n class=3D"p">();</span>
+    <span class=3D"c1">// =E5=B0=86 RasterSource =E4=B8=AD=E7=9A=84 Display=
+Item =E5=BA=94=E7=94=A8=E5=88=B0 Canvas =E4=B8=AD</span>
+    <span class=3D"n">raster_source</span><span class=3D"o">-&gt;</span><sp=
+an class=3D"n">PlaybackToCanvas</span><span class=3D"p">(</span><span class=
+=3D"n">canvas</span><span class=3D"p">,...);</span>
+  <span class=3D"p">}</span>
+  <span class=3D"n">ri</span><span class=3D"o">-&gt;</span><span class=3D"n=
+">EndSharedImageAccessDirectCHROMIUM</span><span class=3D"p">(</span><span =
+class=3D"n">texture_id</span><span class=3D"p">);</span>
+  <span class=3D"n">ri</span><span class=3D"o">-&gt;</span><span class=3D"n=
+">DeleteGpuRasterTexture</span><span class=3D"p">(</span><span class=3D"n">=
+texture_id</span><span class=3D"p">);</span>
+ =20
+  <span class=3D"c1">// =E5=90=8E=E7=BB=AD=E5=B0=B1=E5=8F=AF=E4=BB=A5=E4=BD=
+=BF=E7=94=A8 SharedImage =E5=88=9B=E5=BB=BA TransferableResource</span>
+  <span class=3D"p">...</span>
+<span class=3D"p">}</span>
+</code></pre></div></div>
+
+<h3 id=3D"heading-chromium_raster_transport">CHROMIUM_raster_transport</h3>
+
+<div class=3D"language-c++ highlighter-rouge"><div class=3D"highlight"><pre=
+ class=3D"highlight"><code><span class=3D"c1">// Extension CHROMIUM_raster_=
+transport</span>
+<span class=3D"kt">void</span> <span class=3D"nf">glBeginRasterCHROMIUM</sp=
+an><span class=3D"p">(</span><span class=3D"n">GLuint</span> <span class=3D=
+"n">sk_color</span><span class=3D"p">,</span> <span class=3D"n">GLuint</spa=
+n> <span class=3D"n">msaa_sample_count</span><span class=3D"p">,</span> <sp=
+an class=3D"n">GLboolean</span> <span class=3D"n">can_use_lcd_text</span><s=
+pan class=3D"p">,</span> <span class=3D"k">const</span> <span class=3D"n">G=
+Lbyte</span><span class=3D"o">*</span> <span class=3D"n">mailbox</span><spa=
+n class=3D"p">);</span>
+<span class=3D"kt">void</span> <span class=3D"nf">glRasterCHROMIUM</span><s=
+pan class=3D"p">(</span><span class=3D"n">GLuint</span> <span class=3D"n">r=
+aster_shm_id</span><span class=3D"p">,</span> <span class=3D"n">GLuint</spa=
+n> <span class=3D"n">raster_shm_offset</span><span class=3D"p">,</span> <sp=
+an class=3D"n">GLuint</span> <span class=3D"n">raster_shm_size</span><span =
+class=3D"p">,</span> <span class=3D"n">GLuint</span> <span class=3D"n">font=
+_shm_id</span><span class=3D"p">,</span> <span class=3D"n">GLuint</span> <s=
+pan class=3D"n">font_shm_offset</span><span class=3D"p">,</span> <span clas=
+s=3D"n">GLuint</span> <span class=3D"n">font_shm_size</span><span class=3D"=
+p">);</span>
+<span class=3D"kt">void</span> <span class=3D"nf">glEndRasterCHROMIUM</span=
+><span class=3D"p">(</span><span class=3D"kt">void</span><span class=3D"p">=
+);</span>
+</code></pre></div></div>
+
+<p><code class=3D"language-plaintext highlighter-rouge">glBeginRasterCHROMI=
+UM</code> =E6=96=B9=E6=B3=95=E8=A1=A8=E7=A4=BA=E8=A6=81=E5=BC=80=E5=A7=8B=
+=E6=89=A7=E8=A1=8C Raster =E6=93=8D=E4=BD=9C=E4=BA=86=EF=BC=8CRaster=E7=9A=
+=84=E7=BB=93=E6=9E=9C=E5=AD=98=E6=94=BE=E5=88=B0=E4=BC=A0=E5=85=A5=E7=9A=84=
+ <code class=3D"language-plaintext highlighter-rouge">mailbox</code> =E5=AF=
+=B9=E5=BA=94=E7=9A=84 SharedImage =E4=B8=AD=E3=80=82<code class=3D"language=
+-plaintext highlighter-rouge">glRasterCHROMIUM</code> =E5=B0=86 <code class=
+=3D"language-plaintext highlighter-rouge">cc::DisplayItemList</code> =E5=BA=
+=8F=E5=88=97=E5=8C=96=E5=90=8E=E5=8F=91=E9=80=81=E5=88=B0service=E7=AB=AF=
+=E3=80=82=E5=8F=82=E6=95=B0<code class=3D"language-plaintext highlighter-ro=
+uge">raster_shm_id</code>=E6=8C=87=E5=90=91=E5=AD=98=E5=82=A8 <code class=
+=3D"language-plaintext highlighter-rouge">cc::DisplayItemList</code> =E5=BA=
+=8F=E5=88=97=E5=8C=96=E6=95=B0=E6=8D=AE=E7=9A=84=E5=85=B1=E4=BA=AB=E5=86=85=
+=E5=AD=98=E3=80=82<code class=3D"language-plaintext highlighter-rouge">glEn=
+dRasterCHROMIUM</code> =E7=BB=93=E6=9D=9F Raster =E6=93=8D=E4=BD=9C=E3=80=
+=82</p>
+
+<p>=E8=BF=99=E4=BA=9B=E6=8E=A5=E5=8F=A3=E7=94=A8=E4=BA=8E <code class=3D"la=
+nguage-plaintext highlighter-rouge">OOP-R(Out-Of-Process Raster)</code> =E6=
+=9C=BA=E5=88=B6=E4=B8=8B=E7=9A=84 Raster=E3=80=82=E5=85=B3=E4=BA=8E OOP-R =
+=E8=A7=81=E5=90=8E=E7=BB=AD=E6=96=87=E6=A1=A3=EF=BC=8C
+=E4=B8=8B=E9=9D=A2=E7=9A=84=E4=BB=A3=E7=A0=81=E6=BC=94=E7=A4=BA=E4=BD=BF=E7=
+=94=A8 OOP-R =E6=8E=A5=E5=8F=A3=E5=88=9B=E5=BB=BA SharedImage=EF=BC=9A</p>
+
+<div class=3D"language-c++ highlighter-rouge"><div class=3D"highlight"><pre=
+ class=3D"highlight"><code><span class=3D"c1">// cc/raster/gpu_raster_buffe=
+r_provider.cc</span>
+
+<span class=3D"c1">// OOPR Raster</span>
+<span class=3D"k">static</span> <span class=3D"kt">void</span> <span class=
+=3D"nf">RasterizeSourceOOP</span><span class=3D"p">(</span><span class=3D"k=
+">const</span> <span class=3D"n">cc</span><span class=3D"o">::</span><span =
+class=3D"n">RasterSource</span><span class=3D"o">*</span> <span class=3D"n"=
+>raster_source</span><span class=3D"p">,...)</span> <span class=3D"p">{</sp=
+an>
+  <span class=3D"n">gpu</span><span class=3D"o">::</span><span class=3D"n">=
+raster</span><span class=3D"o">::</span><span class=3D"n">RasterInterface</=
+span><span class=3D"o">*</span> <span class=3D"n">ri</span> <span class=3D"=
+o">=3D</span> <span class=3D"n">context_provider_</span><span class=3D"o">-=
+&gt;</span><span class=3D"n">RasterInterface</span><span class=3D"p">();</s=
+pan>
+  <span class=3D"k">auto</span><span class=3D"o">*</span> <span class=3D"n"=
+>sii</span> <span class=3D"o">=3D</span> <span class=3D"n">context_provider=
+</span><span class=3D"o">-&gt;</span><span class=3D"n">SharedImageInterface=
+</span><span class=3D"p">();</span>
+ =20
+  <span class=3D"c1">// =E5=88=9B=E5=BB=BA=E7=A9=BA=E7=9A=84 SharedImage</s=
+pan>
+  <span class=3D"k">auto</span> <span class=3D"n">mailbox</span> <span clas=
+s=3D"o">=3D</span> <span class=3D"n">sii</span><span class=3D"o">-&gt;</spa=
+n><span class=3D"n">CreateSharedImage</span><span class=3D"p">(</span>
+        <span class=3D"n">resource_format</span><span class=3D"p">,</span> =
+<span class=3D"n">resource_size</span><span class=3D"p">,</span> <span clas=
+s=3D"n">color_space</span><span class=3D"p">,</span> <span class=3D"n">kTop=
+Left_GrSurfaceOrigin</span><span class=3D"p">,</span>
+        <span class=3D"n">kPremul_SkAlphaType</span><span class=3D"p">,</sp=
+an> <span class=3D"n">flags</span><span class=3D"p">,</span> <span class=3D=
+"n">gpu</span><span class=3D"o">::</span><span class=3D"n">kNullSurfaceHand=
+le</span><span class=3D"p">);</span>
+  <span class=3D"n">ri</span><span class=3D"o">-&gt;</span><span class=3D"n=
+">WaitSyncTokenCHROMIUM</span><span class=3D"p">(</span><span class=3D"n">s=
+ii</span><span class=3D"o">-&gt;</span><span class=3D"n">GenUnverifiedSyncT=
+oken</span><span class=3D"p">().</span><span class=3D"n">GetConstData</span=
+><span class=3D"p">());</span>
+
+  <span class=3D"c1">// =E4=BD=BF=E7=94=A8 OOP-R =E6=8E=A5=E5=8F=A3=E7=BB=
+=99 SharedImage =E5=A1=AB=E5=85=85=E5=86=85=E5=AE=B9=EF=BC=8C=E5=86=85=E5=
+=AE=B9=E6=9D=A5=E8=87=AA RasterSource</span>
+  <span class=3D"n">ri</span><span class=3D"o">-&gt;</span><span class=3D"n=
+">BeginRasterCHROMIUM</span><span class=3D"p">(</span>
+      <span class=3D"n">raster_source</span><span class=3D"o">-&gt;</span><=
+span class=3D"n">background_color</span><span class=3D"p">(),</span> <span =
+class=3D"n">playback_settings</span><span class=3D"p">.</span><span class=
+=3D"n">msaa_sample_count</span><span class=3D"p">,</span>
+      <span class=3D"n">playback_settings</span><span class=3D"p">.</span><=
+span class=3D"n">use_lcd_text</span><span class=3D"p">,</span> <span class=
+=3D"n">color_space</span><span class=3D"p">,</span> <span class=3D"n">mailb=
+ox</span><span class=3D"p">.</span><span class=3D"n">name</span><span class=
+=3D"p">);</span>
+  <span class=3D"c1">// =E6=B3=A8=E6=84=8F=E8=BF=99=E9=87=8C=E7=9B=B4=E6=8E=
+=A5=E5=B0=86 DisplayItemList =E4=BC=A0=E5=88=B0 Service =E7=AB=AF=E8=BF=9B=
+=E8=A1=8C Raster=EF=BC=8C</span>
+  <span class=3D"c1">// =E8=BF=99=E6=98=AF OOP-R =E5=92=8C GPU-R =E7=9A=84=
+=E6=9C=AC=E8=B4=A8=E5=8C=BA=E5=88=AB=E3=80=82</span>
+  <span class=3D"n">ri</span><span class=3D"o">-&gt;</span><span class=3D"n=
+">RasterCHROMIUM</span><span class=3D"p">(</span><span class=3D"n">raster_s=
+ource</span><span class=3D"o">-&gt;</span><span class=3D"n">GetDisplayItemL=
+ist</span><span class=3D"p">().</span><span class=3D"n">get</span><span cla=
+ss=3D"p">(),...);</span>
+  <span class=3D"n">ri</span><span class=3D"o">-&gt;</span><span class=3D"n=
+">EndRasterCHROMIUM</span><span class=3D"p">();</span>
+ =20
+  <span class=3D"c1">// =E5=90=8E=E7=BB=AD=E5=B0=B1=E5=8F=AF=E4=BB=A5=E4=BD=
+=BF=E7=94=A8 SharedImage =E5=88=9B=E5=BB=BA TransferableResource</span>
+  <span class=3D"p">...</span>
+<span class=3D"p">}</span>
+</code></pre></div></div>
+
+<h3 id=3D"heading-sharedimage-=E6=9E=B6=E6=9E=84=E8=AE=BE=E8=AE=A1">SharedI=
+mage =E6=9E=B6=E6=9E=84=E8=AE=BE=E8=AE=A1</h3>
+
+<p><img src=3D"https://keyou.github.io/data/gpu_share_image_arch.svg" alt=
+=3D"sharedimage"></p>
+
+<p>SharedImage =E8=A2=AB=E8=AE=BE=E8=AE=A1=E7=94=A8=E4=BA=8E=E5=A4=9A=E8=BF=
+=9B=E7=A8=8B=E6=9E=B6=E6=9E=84=EF=BC=8CClient =E7=AB=AF=E5=8F=AF=E4=BB=A5=
+=E6=9C=89=E5=A4=9A=E4=B8=AA=EF=BC=8C=E6=AF=94=E5=A6=82 Browser/Render/Gpu =
+=E8=BF=9B=E7=A8=8B=E9=83=BD=E5=8F=AF=E4=BB=A5=E4=BD=9C=E4=B8=BA Client =E7=
+=AB=AF=EF=BC=8CService =E7=AB=AF=E5=8F=AA=E8=83=BD=E6=9C=89=E4=B8=80=E4=B8=
+=AA=EF=BC=8C=E5=AE=83=E8=BF=90=E8=A1=8C=E5=9C=A8 Gpu =E8=BF=9B=E7=A8=8B=E4=
+=B8=AD=E3=80=82Client =E5=92=8C Servcie =E9=80=9A=E8=BF=87 IPC =E8=BF=9B=E8=
+=A1=8C=E9=80=9A=E4=BF=A1=E3=80=82Client =E7=AB=AF=E7=9A=84=E6=8E=A5=E5=8F=
+=A3=E4=B8=BB=E8=A6=81=E5=8C=85=E6=8B=AC SharedImageInterface =E5=92=8C 2 =
+=E4=B8=AA=E6=89=A9=E5=B1=95=E3=80=82Service =E7=AB=AF=E5=B0=86=E6=95=B0=E6=
+=8D=AE=E5=AD=98=E5=82=A8=E5=9C=A8=E5=9F=BA=E4=BA=8E=E4=B8=8D=E5=90=8C=E6=8A=
+=80=E6=9C=AF=E5=AE=9E=E7=8E=B0=E7=9A=84 SharedImageBacking =E4=B8=AD=E3=80=
+=82</p>
+
+<h3 id=3D"heading-sharedimage-=E5=AE=9E=E7=8E=B0=E5=8E=9F=E7=90=86">SharedI=
+mage =E5=AE=9E=E7=8E=B0=E5=8E=9F=E7=90=86</h3>
+
+<p>SharedImage =E9=83=A8=E5=88=86=E7=9A=84=E7=B1=BB=E5=9B=BE=E5=A6=82=E4=B8=
+=8B=EF=BC=88=E5=8D=95=E5=87=BB=E6=9F=A5=E7=9C=8B=E5=A4=A7=E5=9B=BE=EF=BC=89=
+=EF=BC=9A</p>
+
+<p><a href=3D"https://keyou.github.io/data/gpu_share_image.svg"><img src=3D=
+"https://keyou.github.io/data/gpu_share_image.svg" alt=3D"sharedimage"></a>=
+</p>
+
+<p>client =E7=AB=AF=EF=BC=9A</p>
+
+<p>=E5=BA=94=E7=94=A8=E8=B0=83=E7=94=A8 <code class=3D"language-plaintext h=
+ighlighter-rouge">gpu::SharedImageInterface::CreateSharedImage</code> =E6=
+=8E=A5=E5=8F=A3=E6=9D=A5=E5=88=9B=E5=BB=BA=E4=B8=80=E4=B8=AA=E6=96=B0=E7=9A=
+=84 SharedImage=EF=BC=8C=E8=BF=94=E5=9B=9E=E4=B8=80=E4=B8=AA mailbox =E6=8C=
+=87=E5=90=91=E5=AE=83=E3=80=82=E8=AF=A5=E8=B0=83=E7=94=A8=E9=80=9A=E8=BF=87=
+=E5=90=91 service =E7=AB=AF=E5=8F=91=E9=80=81 <code class=3D"language-plain=
+text highlighter-rouge">GpuChannelMsg_CreateSharedImage</code> =E6=88=96=E8=
+=80=85 <code class=3D"language-plaintext highlighter-rouge">GpuChannelMsg_C=
+reateGMBSharedImage</code> =E6=B6=88=E6=81=AF=E6=9D=A5=E5=88=9B=E5=BB=BA Sh=
+areImage=E3=80=82</p>
+
+<p>=E5=BA=94=E7=94=A8=E9=80=9A=E8=BF=87 <code class=3D"language-plaintext h=
+ighlighter-rouge">CHROMIUM_shared_image</code> =E5=92=8C <code class=3D"lan=
+guage-plaintext highlighter-rouge">CHROMIUM_raster_transport</code> =E6=89=
+=A9=E5=B1=95=E6=9D=A5=E8=AF=BB/=E5=86=99 SharedImage =E4=B8=AD=E7=9A=84=E6=
+=95=B0=E6=8D=AE=EF=BC=8C=E8=BF=99=E4=B8=A4=E4=B8=AA=E6=89=A9=E5=B1=95=E7=9A=
+=84=E5=AE=9E=E7=8E=B0=E5=88=86=E5=88=AB=E4=BD=8D=E4=BA=8E <code class=3D"la=
+nguage-plaintext highlighter-rouge">gpu::GLES2Interface</code> =E5=92=8C <c=
+ode class=3D"language-plaintext highlighter-rouge">gpu::RasterInterface</co=
+de> =E6=8E=A5=E5=8F=A3=EF=BC=8C=E8=BF=99=E4=B8=A4=E4=B8=AA=E6=8E=A5=E5=8F=
+=A3=E6=98=AF Command Buffer =E6=9C=BA=E5=88=B6=E7=9A=84=E5=85=A5=E5=8F=A3=
+=EF=BC=8C=E5=9B=A0=E6=AD=A4=EF=BC=8C=E5=AF=B9=E8=BF=99=E4=B8=A4=E4=B8=AA=E6=
+=89=A9=E5=B1=95=E7=9A=84=E8=B0=83=E7=94=A8=E4=BC=9A=E9=80=9A=E8=BF=87 Comma=
+nd Buffer =E6=9C=BA=E5=88=B6=E5=8F=91=E9=80=81=E5=88=B0 servcie =E7=AB=AF=
+=E3=80=82</p>
+
+<p>servcie =E7=AB=AF=EF=BC=9A</p>
+
+<p>client =E7=AB=AF=E5=8F=91=E9=80=81=E7=9A=84 <code class=3D"language-plai=
+ntext highlighter-rouge">GpuChannelMsg_CreateSharedImage</code> IPC =E6=B6=
+=88=E6=81=AF=E4=BC=9A=E8=A2=AB=E8=B7=AF=E7=94=B1=E5=88=B0 <code class=3D"la=
+nguage-plaintext highlighter-rouge">gpu::SharedImageStub</code> =E7=B1=BB=
+=EF=BC=8C=E8=AF=A5=E7=B1=BB=E9=80=9A=E8=BF=87=E7=94=A8 <code class=3D"langu=
+age-plaintext highlighter-rouge">gpu::SharedImageFactory</code> =E6=9D=A5=
+=E5=88=9B=E5=BB=BA SharedImage=E3=80=82=E6=B3=A8=E6=84=8F=E6=B2=A1=E6=9C=89=
+=E4=B8=80=E4=B8=AA=E5=90=8D=E4=B8=BA SharedImage =E7=9A=84=E7=B1=BB=EF=BC=
+=8C=E5=9C=A8 SharedImage =E6=9C=BA=E5=88=B6=E4=B8=8B=EF=BC=8C=E4=BB=A3=E8=
+=A1=A8=E6=95=B0=E6=8D=AE=E7=9A=84 SharedImage =E7=B1=BB=E8=A2=AB=E5=88=86=
+=E4=B8=BA=E4=BA=862=E4=B8=AA=E6=A6=82=E5=BF=B5=EF=BC=8C=E4=B8=80=E4=B8=AA=
+=E6=98=AF <code class=3D"language-plaintext highlighter-rouge">SharedImageR=
+epresentation</code>=EF=BC=88=E7=AE=80=E7=A7=B0 Representation =E7=B1=BB=EF=
+=BC=89=EF=BC=8C=E4=B8=80=E4=B8=AA=E6=98=AF <code class=3D"language-plaintex=
+t highlighter-rouge">SharedImageBacking</code>=EF=BC=88=E7=AE=80=E7=A7=B0 B=
+acking =E7=B1=BB=EF=BC=89=EF=BC=8CRepresentation =E7=B1=BB=E6=98=AF SharedI=
+mage =E6=A1=86=E6=9E=B6=E5=A4=96=E5=8F=AF=E8=A7=81=E7=9A=84=E7=B1=BB=EF=BC=
+=8C=E5=AE=83=E5=8C=85=E8=A3=85=E4=BA=86 Backing =E7=B1=BB=E3=80=82Backing =
+=E7=B1=BB=E6=98=AF=E7=BB=B4=E6=8A=A4=E6=9C=80=E7=BB=88=E5=AD=98=E5=82=A8=E7=
+=A9=BA=E9=97=B4=E7=9A=84=E7=B1=BB=E3=80=82=E6=89=80=E4=BB=A5=E5=8F=AF=E4=BB=
+=A5=E8=AF=B4=E4=B8=80=E4=B8=AA <code class=3D"language-plaintext highlighte=
+r-rouge">SharedIamgeBacking</code> =E5=AF=B9=E8=B1=A1=E5=B0=B1=E8=A1=A8=E7=
+=A4=BA=E4=B8=80=E4=B8=AA SharedImage=E3=80=82
+=E6=89=80=E6=9C=89=E7=9A=84 <code class=3D"language-plaintext highlighter-r=
+ouge">SharedImageBacking</code> =E5=AF=B9=E8=B1=A1=E5=9C=A8=E5=88=9B=E5=BB=
+=BA=E5=90=8E=E9=83=BD=E4=BC=9A=E9=80=9A=E8=BF=87 <code class=3D"language-pl=
+aintext highlighter-rouge">gpu::SharedImageManager::Register</code> =E6=B3=
+=A8=E5=86=8C=E5=88=B0 SharedImageManager =E4=B8=AD=E3=80=82</p>
+
+<p>=E5=9C=A8 <code class=3D"language-plaintext highlighter-rouge">CHROMIUM_=
+shared_image</code> =E5=92=8C <code class=3D"language-plaintext highlighter=
+-rouge">CHROMIUM_raster_transport</code> =E6=89=A9=E5=B1=95=E6=96=B9=E6=B3=
+=95=E7=9A=84=E5=AE=9E=E7=8E=B0=E4=B8=AD=EF=BC=8C=E4=BC=9A=E4=BD=BF=E7=94=A8=
+ <code class=3D"language-plaintext highlighter-rouge">gpu::SharedImageManag=
+er</code> =E7=B1=BB=E6=9D=A5=E6=93=8D=E4=BD=9C <code class=3D"language-plai=
+ntext highlighter-rouge">SharedImageBacking</code>=E3=80=82</p>
+
+<p>=E6=89=80=E4=BB=A5=E4=B8=8D=E7=AE=A1=E6=98=AF SharedImageInterface =E8=
+=BF=98=E6=98=AF=E8=BF=99=E4=B8=A4=E4=B8=AA=E6=89=A9=E5=B1=95=E6=9C=80=E7=BB=
+=88=E9=83=BD=E6=98=AF=E5=9C=A8=E6=93=8D=E4=BD=9C <code class=3D"language-pl=
+aintext highlighter-rouge">SharedImagebacking</code>=E3=80=82=E5=9B=A0=E4=
+=B8=BA=E5=AE=83=E6=98=AF=E7=9C=9F=E6=AD=A3=E5=AD=98=E5=82=A8=E6=95=B0=E6=8D=
+=AE=E7=9A=84=E5=9C=B0=E6=96=B9=E3=80=82</p>
+
+<p>=E5=8F=A6=E5=A4=96=EF=BC=8C<code class=3D"language-plaintext highlighter=
+-rouge">gpu::GpuMemoryBufferFactory</code> =E7=94=A8=E6=9D=A5=E7=94=B3=E8=
+=AF=B7 Gpu =E5=8F=AF=E4=BB=A5=E8=AE=BF=E9=97=AE=E5=88=B0=E7=9A=84=E5=86=85=
+=E5=AD=98=EF=BC=8C=E5=9C=A8=E4=B8=8D=E5=90=8C=E5=B9=B3=E5=8F=B0=E4=B8=8A=E6=
+=9C=89=E4=B8=8D=E5=90=8C=E7=9A=84=E6=9C=BA=E5=88=B6=EF=BC=8C=E5=9C=A8 Andro=
+id =E4=B8=8A=E6=98=AF AHardwareBuffer=EF=BC=8C=E5=9C=A8 Linux =E4=B8=8A=E6=
+=98=AF DMA buffer,=E8=80=8C Windows =E4=B8=8A=E4=BD=BF=E7=94=A8 DXGI=E3=80=
+=82</p>
+
+<h2 id=3D"heading-=E6=80=BB=E7=BB=93">=E6=80=BB=E7=BB=93</h2>
+
+<p>=E5=9C=A8=E5=BD=93=E5=89=8D=E7=9A=84 Chromium =E4=B8=AD=EF=BC=8CMailbox =
+=E6=9C=BA=E5=88=B6=E6=98=AF=E5=BB=BA=E7=AB=8B=E5=9C=A8 SharedImage =E6=9C=
+=BA=E5=88=B6=E4=B9=8B=E4=B8=8A=E7=9A=84=E3=80=82=E6=97=A7=E7=9A=84 Mailbox =
+=E6=9C=BA=E5=88=B6=E7=9A=84=E6=8E=A5=E5=8F=A3=E6=AD=A3=E5=9C=A8=E8=A2=AB=E5=
+=BA=9F=E5=BC=83=EF=BC=88Mailbox =E7=B1=BB=E6=9C=AC=E8=BA=AB=E5=B9=B6=E4=B8=
+=8D=E4=BC=9A=E8=A2=AB=E5=BA=9F=E5=BC=83=EF=BC=89=EF=BC=8C=E5=9C=A8=E6=96=B0=
+=E7=9A=84=E4=BB=A3=E7=A0=81=E4=B8=AD=E5=BA=94=E8=AF=A5=E4=BD=BF=E7=94=A8=E6=
+=96=B0=E7=9A=84 SharedImage =E6=8E=A5=E5=8F=A3=E3=80=82</p>
+
+<p>=E5=9C=A8=E6=89=80=E6=9C=89=E9=9C=80=E8=A6=81=E2=80=9C=E5=88=86=E9=98=B6=
+=E6=AE=B5=E2=80=9D=E6=B8=B2=E6=9F=93=E7=9A=84=E5=9C=BA=E5=90=88=E9=83=BD=E5=
+=8F=AF=E4=BB=A5=E4=BD=BF=E7=94=A8 SharedImage =E6=9C=BA=E5=88=B6=EF=BC=8C=
+=E5=9C=A8=E9=9C=80=E8=A6=81=E4=BB=8E GPU =E8=AF=BB=E5=8F=96=E6=95=B0=E6=8D=
+=AE=E7=9A=84=E5=9C=BA=E5=90=88=E4=B9=9F=E5=8F=AF=E4=BB=A5=E4=BD=BF=E7=94=A8=
+ SharedImage =E6=9C=BA=E5=88=B6=E3=80=82SharedImage =E6=9C=BA=E5=88=B6=E5=
+=8F=AA=E6=8F=90=E4=BE=9B=E5=86=85=E5=AD=98=E7=9A=84=E7=AE=A1=E7=90=86=EF=BC=
+=8C=E5=BA=94=E7=94=A8=E5=8F=AF=E4=BB=A5=E4=BD=BF=E7=94=A8=E5=B8=B8=E8=A7=84=
+=E7=9A=84=E8=AF=BB=E5=86=99GPU=E6=95=B0=E6=8D=AE=E7=9A=84=E6=96=B9=E5=BC=8F=
+=E6=9D=A5=E8=AF=BB=E5=86=99SharedImage=E4=B8=AD=E7=9A=84=E6=95=B0=E6=8D=AE=
+=E3=80=82</p>
+
+<hr>
+
+<p>=E5=8F=82=E8=80=83=E6=96=87=E6=A1=A3=EF=BC=9A</p>
+
+<ul>
+  <li><a href=3D"https://docs.google.com/document/d/12qYPeN819JkdNGbPcKBA0r=
+fPXSOIE3aIaQVrAZ4I1lM/edit#">Shared images and synchronization - Google Doc=
+s</a></li>
+  <li><a href=3D"https://bugs.chromium.org/p/chromium/issues/detail?id=3D78=
+9238">789238 - Use RasterDecoder instead of GLES2Decoder for oop-rasterizat=
+ion - chromium</a></li>
+</ul>
+
+                    </div>
+                </div>
+            </div>
+            <footer class=3D"unit-foot" style=3D"top: 20px;">
+                <div class=3D"unit-inner unit-foot-inner">
+                    <div class=3D"post-buttons">
+                        <a class=3D"internal gotop" href=3D"https://keyou.g=
+ithub.io/blog/2020/06/22/chromium-gpu-image-share/#page" title=3D"Back to T=
+op">Back to Top</a>
+                       =20
+                    </div>
+                    <nav class=3D"pagination">
+                       =20
+                            <a class=3D"internal" rel=3D"prev" href=3D"http=
+s://keyou.github.io/blog/2020/06/18/chromium-gpu-sync/" title=3D" 'Chromium=
+ GPU Synchronization'"> =E2=86=90 Chromium GPU Synchronization</a>
+                       =20
+                       =20
+                            <a class=3D"internal" rel=3D"next" href=3D"http=
+s://keyou.github.io/blog/2020/06/22/gl-extensions/" title=3D"Next Post '=E5=
+=B8=B8=E8=A7=81 GL =E6=89=A9=E5=B1=95=E5=89=8D=E7=BC=80'">=E5=B8=B8=E8=A7=
+=81 GL =E6=89=A9=E5=B1=95=E5=89=8D=E7=BC=80 =E2=86=92 </a>
+                       =20
+                    </nav>
+                </div>
+            </footer>
+            <div class=3D"misc-content">
+               =20
+            </div>
+        </div>
+    </div>
+</article>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class=3D"the-footer" style=3D"top: 20px;">
+    <div class=3D"unit-foot">
+        <div class=3D"unit-inner unit-foot-inner">
+            <div class=3D"misc vcard">
+                <div class=3D"about">
+                    <h4><a href=3D"https://keyou.github.io/">About</a></h4>
+                   =20
+                        <p>=E8=AE=B0=E5=BD=95=E6=88=90=E9=95=BF=EF=BC=8C=E5=
+=88=86=E4=BA=AB=E7=94=9F=E6=B4=BB=EF=BC=8C=E5=B2=81=E6=9C=88=E5=A4=9A=E7=A3=
+=A8=EF=BC=8C=E7=8F=8D=E6=83=9C=E7=8E=B0=E5=9C=A8</p>
+                   =20
+                    <p><small> Customized by <a href=3D"https://keyou.githu=
+b.io/">Keyou</a> based on theme <a href=3D"https://github.com/yizeng/jekyll=
+-theme-simple-texture" target=3D"_blank">simple-texture</a>.</small></p>
+                </div>
+                <div class=3D"social-links">
+                   =20
+                    <a class=3D"ico-rss" href=3D"https://keyou.github.io/fe=
+ed.xml" rel=3D"me" target=3D"_blank" title=3D"feed"></a>
+                   =20
+                       =20
+                            <a class=3D"ico-github" href=3D"https://github.=
+com/keyou" rel=3D"me" target=3D"_blank" title=3D"github"></a>
+                       =20
+                   =20
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href=3D"https://keyou.github.io/blog/2020/06/22/chromium-gpu-image-s=
+hare/#" class=3D"internal back-to-top" style=3D"display: inline;">Back to T=
+op</a>
+</footer>
+
+    </div>
+
+   =20
+
+<!-- Show menu overlay + Jekyll Simple Search option -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>
+------MultipartBoundary--FDiXNbHWeOrFaggulQYLeYkPS7C25rsQck0ENczq8g----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://keyou.github.io/assets/stylesheets/blog.css
+
+@charset "utf-8";
+
+button, hr, input { overflow: visible; }
+
+audio, canvas, progress, video { display: inline-block; }
+
+progress, sub, sup { vertical-align: baseline; }
+
+html { font-family: sans-serif; line-height: 1.15; text-size-adjust: 100%; =
+}
+
+body { margin: 0px; }
+
+menu, article, aside, details, footer, header, nav, section { display: bloc=
+k; }
+
+h1 { font-size: 2em; margin: 0.67em 0px; }
+
+figcaption, figure, main { display: block; }
+
+figure { margin: 1em 40px; }
+
+hr { box-sizing: content-box; height: 0px; }
+
+code, kbd, pre, samp { font-family: monospace, monospace; font-size: 1em; }
+
+a { background-color: transparent; }
+
+a:active, a:hover { outline-width: 0px; }
+
+abbr[title] { border-bottom: none; text-decoration: underline dotted; }
+
+b, strong { font-weight: bolder; }
+
+dfn { font-style: italic; }
+
+mark { background-color: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+
+small { font-size: 80%; }
+
+sub, sup { font-size: 75%; line-height: 0; position: relative; }
+
+sub { bottom: -0.25em; }
+
+sup { top: -0.5em; }
+
+audio:not([controls]) { display: none; height: 0px; }
+
+img { border-style: none; }
+
+svg:not(:root) { overflow: hidden; }
+
+button, input, optgroup, select, textarea { font-family: sans-serif; font-s=
+ize: 100%; line-height: 1.15; margin: 0px; }
+
+button, select { text-transform: none; }
+
+[type=3D"submit"], [type=3D"reset"], button, html [type=3D"button"] { appea=
+rance: button; }
+
+fieldset { border: 1px solid silver; margin: 0px 2px; padding: 0.35em 0.625=
+em 0.75em; }
+
+legend { box-sizing: border-box; color: inherit; display: table; max-width:=
+ 100%; padding: 0px; white-space: normal; }
+
+textarea { overflow: auto; }
+
+[type=3D"checkbox"], [type=3D"radio"] { box-sizing: border-box; padding: 0p=
+x; }
+
+[type=3D"number"]::-webkit-inner-spin-button, [type=3D"number"]::-webkit-ou=
+ter-spin-button { height: auto; }
+
+[type=3D"search"] { appearance: textfield; outline-offset: -2px; }
+
+[type=3D"search"]::-webkit-search-cancel-button, [type=3D"search"]::-webkit=
+-search-decoration { appearance: none; }
+
+::-webkit-file-upload-button { appearance: button; font: inherit; }
+
+summary { display: list-item; }
+
+[hidden], template { display: none; }
+
+.animated { animation-duration: 1s; animation-fill-mode: both; }
+
+@-webkit-keyframes bounce {=20
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0px); }
+  40% { transform: translateY(-30px); }
+  60% { transform: translateY(-15px); }
+}
+
+@keyframes bounce {=20
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0px); }
+  40% { transform: translateY(-30px); }
+  60% { transform: translateY(-15px); }
+}
+
+.bounce { animation-name: bounce; }
+
+@-webkit-keyframes fadeInDown {=20
+  0% { transform: translateY(-20px); opacity: 0; }
+  100% { transform: translateY(0px); opacity: 1; }
+}
+
+@keyframes fadeInDown {=20
+  0% { transform: translateY(-20px); opacity: 0; }
+  100% { transform: translateY(0px); opacity: 1; }
+}
+
+.fadeInDown { animation-name: fadeInDown; }
+
+@-webkit-keyframes fadeInLeft {=20
+  0% { transform: translateX(-20px); opacity: 0; }
+  100% { transform: translateX(0px); opacity: 1; }
+}
+
+@keyframes fadeInLeft {=20
+  0% { transform: translateX(-20px); opacity: 0; }
+  100% { transform: translateX(0px); opacity: 1; }
+}
+
+.fadeInLeft { animation-name: fadeInLeft; }
+
+@-webkit-keyframes fadeInUp {=20
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0px); opacity: 1; }
+}
+
+@keyframes fadeInUp {=20
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0px); opacity: 1; }
+}
+
+.fadeInUp { animation-name: fadeInUp; }
+
+@font-face { font-family: Bitter; font-weight: normal; font-style: normal; =
+src: url("../fonts/bitter-regular-webfont.woff") format("woff"), url("../fo=
+nts/bitter-regular-webfont.ttf") format("truetype"); }
+
+@font-face { font-family: "Junge Regular"; font-weight: normal; font-style:=
+ normal; src: url("../fonts/junge-regular-webfont.woff") format("woff"), ur=
+l("../fonts/junge-regular-webfont.ttf") format("truetype"); }
+
+@font-face { font-family: "Ubuntu Condensed"; font-weight: normal; font-sty=
+le: normal; src: url("../fonts/ubuntu-c-webfont.woff") format("woff"), url(=
+"../fonts/ubuntu-c-webfont.ttf") format("truetype"); }
+
+.ir { display: block; overflow: hidden; text-align: left; text-indent: -999=
+em; border: none; background-color: transparent; background-repeat: no-repe=
+at; direction: ltr; }
+
+.ir br { display: none; }
+
+.hidden { display: none !important; visibility: hidden; }
+
+.visuallyhidden { position: absolute; overflow: hidden; clip: rect(0px, 0px=
+, 0px, 0px); width: 1px; height: 1px; margin: -1px; padding: 0px; border: n=
+one; }
+
+.visuallyhidden.focusable:active, .visuallyhidden.focusable:focus { positio=
+n: static; overflow: visible; clip: auto; width: auto; height: auto; margin=
+: 0px; }
+
+.invisible { visibility: hidden; }
+
+hr { }
+
+#page::after, #page::before, .cf::after, .cf::before, .clearfix::after, .cl=
+earfix::before, .hasGrid::after, .hasGrid::before, .tag_box::after, .tag_bo=
+x::before, .unit-inner::after, .unit-inner::before { display: table; conten=
+t: ""; }
+
+#page::after, .cf::after, .clearfix::after, .hasGrid::after, .tag_box::afte=
+r, .unit-inner::after { clear: both; }
+
+#page, .cf, .clearfix, .hasGrid, .tag_box, .unit-inner { }
+
+.left { float: left; }
+
+.right { float: right; }
+
+input:focus { outline: 0px; box-shadow: none; }
+
+.highlight .hll { background-color: rgb(255, 255, 204); }
+
+.highlight { background: rgb(248, 248, 248); }
+
+.highlight .c { color: rgb(106, 115, 125); }
+
+.highlight .k { color: rgb(215, 58, 73); }
+
+.highlight .ch { color: rgb(106, 115, 125); }
+
+.highlight .cm { color: rgb(106, 115, 125); }
+
+.highlight .cp { color: rgb(215, 58, 73); }
+
+.highlight .cpf { color: rgb(3, 47, 98); }
+
+.highlight .c1 { color: rgb(106, 115, 125); }
+
+.highlight .cs { color: rgb(106, 115, 125); }
+
+.highlight .gd { color: rgb(179, 29, 40); background-color: rgb(255, 238, 2=
+40); }
+
+.highlight .gh { color: rgb(0, 92, 197); }
+
+.highlight .gi { color: rgb(34, 134, 58); background-color: rgb(240, 255, 2=
+44); }
+
+.highlight .gs { font-weight: bold; }
+
+.highlight .gu { color: rgb(111, 66, 193); font-weight: bold; }
+
+.highlight .gt { color: rgb(0, 68, 221); }
+
+.highlight .kc { color: rgb(0, 92, 197); }
+
+.highlight .kd { color: rgb(215, 58, 73); }
+
+.highlight .kn { color: rgb(215, 58, 73); }
+
+.highlight .kp { color: rgb(215, 58, 73); }
+
+.highlight .kr { color: rgb(215, 58, 73); }
+
+.highlight .kt { color: rgb(215, 58, 73); }
+
+.highlight .m { color: rgb(102, 102, 102); }
+
+.highlight .s { color: rgb(3, 47, 98); }
+
+.highlight .nb { color: rgb(0, 92, 197); }
+
+.highlight .nc { color: rgb(111, 66, 193); }
+
+.highlight .no { color: rgb(0, 92, 197); }
+
+.highlight .nd { color: rgb(111, 66, 193); }
+
+.highlight .ni { color: rgb(0, 92, 197); }
+
+.highlight .ne { color: rgb(0, 92, 197); }
+
+.highlight .nf { color: rgb(111, 66, 193); }
+
+.highlight .nl { color: rgb(0, 92, 197); }
+
+.highlight .nn { color: rgb(111, 66, 193); }
+
+.highlight .nt { color: rgb(34, 134, 58); }
+
+.highlight .nv { color: rgb(36, 41, 46); }
+
+.highlight .ow { color: rgb(215, 58, 73); }
+
+.highlight .w { color: rgb(187, 187, 187); }
+
+.highlight .mb { color: rgb(0, 92, 197); }
+
+.highlight .mf { color: rgb(0, 92, 197); }
+
+.highlight .mh { color: rgb(0, 92, 197); }
+
+.highlight .mi { color: rgb(0, 92, 197); }
+
+.highlight .mo { color: rgb(0, 92, 197); }
+
+.highlight .sa { color: rgb(215, 58, 73); }
+
+.highlight .sb { color: rgb(3, 47, 98); }
+
+.highlight .sc { color: rgb(3, 47, 98); }
+
+.highlight .dl { color: rgb(215, 58, 73); }
+
+.highlight .sd { color: rgb(3, 47, 98); }
+
+.highlight .s2 { color: rgb(3, 47, 98); }
+
+.highlight .se { color: rgb(3, 47, 98); }
+
+.highlight .sh { color: rgb(3, 47, 98); }
+
+.highlight .si { color: rgb(0, 92, 197); }
+
+.highlight .sx { color: rgb(3, 47, 98); }
+
+.highlight .sr { color: rgb(3, 47, 98); }
+
+.highlight .s1 { color: rgb(3, 47, 98); }
+
+.highlight .ss { color: rgb(0, 92, 197); }
+
+.highlight .bp { color: rgb(0, 92, 197); }
+
+.highlight .fm { color: rgb(0, 92, 197); }
+
+.highlight .vc { color: rgb(36, 41, 46); }
+
+.highlight .vg { color: rgb(36, 41, 46); }
+
+.highlight .vi { color: rgb(36, 41, 46); }
+
+.highlight .vm { color: rgb(0, 92, 197); }
+
+.highlight .il { color: rgb(0, 92, 197); }
+
+.pace { user-select: none; pointer-events: none; }
+
+.pace-inactive { display: none; }
+
+.pace .pace-progress { position: fixed; z-index: 2000; top: 0px; right: 100=
+%; width: 100%; height: 2px; background: rgb(255, 153, 0); }
+
+.pace .pace-progress-inner { position: absolute; right: 0px; display: block=
+; width: 100px; height: 100%; transform: rotate(3deg) translate(0px, -4px);=
+ opacity: 1; box-shadow: rgb(255, 153, 0) 0px 0px 10px, rgb(255, 153, 0) 0p=
+x 0px 5px; }
+
+.pace .pace-activity { position: fixed; z-index: 2000; top: 15px; right: 15=
+px; display: block; width: 14px; height: 14px; animation: 400ms linear 0s i=
+nfinite normal none running pace-spinner; border-width: 2px; border-style: =
+solid; border-color: rgb(255, 153, 0) transparent transparent rgb(255, 153,=
+ 0); border-image: initial; border-radius: 10px; }
+
+@-webkit-keyframes pace-spinner {=20
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pace-spinner {=20
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+body { font-family: Bitter, "Palatino Linotype", "Book Antiqua", Palatino, =
+serif; font-size: 18px; line-height: 32px; color: rgba(0, 0, 0, 0.8); }
+
+.body .unit-body { padding: 12px 26px 26px 36px; border-top: 1px solid rgba=
+(255, 255, 255, 0.6); background: rgb(255, 255, 255); }
+
+.h1, .h2, .h3, .h4, h1, h2, h3, h4 { font-family: "Ubuntu Condensed", Helve=
+tica, sans-serif; }
+
+.h1, h1 { font-size: 1.725em; line-height: 42px; margin-top: 42px; margin-b=
+ottom: 26px; }
+
+.h2, h2 { font-size: 1.575em; line-height: 42px; margin-top: 34px; margin-b=
+ottom: 16px; }
+
+.h3, h3 { font-size: 1.325em; line-height: 26px; margin-top: 26px; margin-b=
+ottom: 20px; }
+
+.h4, h4 { font-size: 1em; line-height: 26px; margin-top: 26px; margin-botto=
+m: 12px; }
+
+.small, aside, small { font-size: 0.75em; }
+
+a:hover, a:link, a:visited { text-decoration: none; }
+
+img { max-width: 95%; }
+
+button, input, optgroup, select, textarea { font-family: Bitter, "Palatino =
+Linotype", "Book Antiqua", Palatino, serif; }
+
+.site-notice { text-align: center; color: rgba(0, 0, 0, 0.8); }
+
+.site-notice a { font-size: 0.95em; padding-right: 3px; padding-left: 3px; =
+color: rgb(0, 119, 204); border-bottom: 1px dotted rgb(255, 209, 141); }
+
+.site-notice a:hover { transition: all 0.3s ease-out 0s; color: rgba(0, 0, =
+0, 0.8); background-color: rgb(255, 153, 0); }
+
+.site-notice a:visited { color: rgb(74, 107, 130); }
+
+body.nav-overlay, body.search-overlay { overflow: hidden; }
+
+body.nav-overlay::after, body.search-overlay::after { position: fixed; z-in=
+dex: 9001; top: 0px; left: 0px; width: 100%; height: 100%; min-height: 100%=
+; content: ""; background-color: rgba(25, 25, 25, 0.95); }
+
+.overlay-wrapper { position: absolute; top: 50px; display: none; zoom: 1; w=
+idth: 90%; padding-right: 5%; padding-left: 5%; }
+
+.overlay-form { position: relative; z-index: 9002; top: 0px; left: -200px; =
+width: 100%; opacity: 0; }
+
+.overlay-form.active { top: 0px; left: 0px; opacity: 1; }
+
+.overlay-form a, .overlay-form h1, .overlay-form h2, .overlay-form h3, .ove=
+rlay-form h4, .overlay-form li, .overlay-form ol, .overlay-form dl, .overla=
+y-form p, .overlay-form span, .overlay-form button, .overlay-form input { c=
+olor: rgb(255, 255, 255); }
+
+.overlay-form .overlay-header { font-size: 2em; border-top: none; border-ri=
+ght: none; border-left: none; border-image: initial; border-bottom: 1px sol=
+id rgb(255, 255, 255); background-color: transparent; }
+
+.overlay-form .search-field { width: 100%; padding-bottom: 12px; background=
+-clip: padding-box; box-shadow: none; appearance: none; }
+
+.overlay-form .menu { display: block; margin-left: 18px; padding-bottom: 16=
+px; text-align: center; }
+
+.overlay-form .btn-close { position: absolute; z-index: 1; top: 0.6rem; rig=
+ht: 1rem; display: block; width: auto; height: auto; cursor: pointer; text-=
+align: center; }
+
+.overlay-form .btn-close:hover { font-weight: bold; transition: all 0.3s ea=
+se-in-out 0s; }
+
+.overlay-form .results { position: absolute; width: 100%; margin: 0px; padd=
+ing: 0px; outline: 0px; text-shadow: none; }
+
+.overlay-form .results .entry-date { display: none; float: right; }
+
+.overlay-form .results li { font-size: 1em; margin-left: 12px; padding: 3px=
+; }
+
+.overlay-form .results li:hover { transition: all 0.3s ease-in-out 0s; bord=
+er: 1px dashed rgb(255, 255, 255); }
+
+.nav-form .results ul { padding: 0px; }
+
+.nav-form .results ul li { list-style: none; }
+
+.nav-form .results ul li a { display: block; margin-right: auto; margin-lef=
+t: auto; text-align: center; }
+
+.the-header .unit-head { padding: 26px 26px 12px; text-align: center; }
+
+.the-header .unit-head .nav-global .logo { font-family: "Ubuntu Condensed",=
+ Helvetica, sans-serif; font-weight: bold; display: block; padding-bottom: =
+18px; }
+
+.the-header .unit-head .nav-global .logo a { font-size: 1.5em; line-height:=
+ 0; display: inline; margin-left: 8px; }
+
+.the-header .unit-head .nav-global .logo a:hover { color: rgb(255, 153, 0);=
+ background-color: transparent; }
+
+.the-header .unit-head .nav-global .logo button { display: none; width: 24p=
+x; height: 24px; border: none; }
+
+.the-header .unit-head .nav-global .logo .btn-menu { float: left; backgroun=
+d: url("../images/theme/btn-menu.png") no-repeat; }
+
+.the-header .unit-head .nav-global .logo .btn-search { float: right; backgr=
+ound: url("../images/theme/btn-search.png") no-repeat; }
+
+.the-header .unit-head .nav-global ul { margin: 0px; padding: 0px; }
+
+.the-header .unit-head .nav-global ul li { display: inline; }
+
+.the-header .unit-head .nav-global ul li a { padding: 12px 12px 18px; color=
+: rgba(0, 0, 0, 0.8); }
+
+.the-header .unit-head .nav-global ul li a:active, .the-header .unit-head .=
+nav-global ul li a:hover { cursor: pointer; transition: all 0.3s ease-in-ou=
+t 0s; background-color: rgb(255, 153, 0); }
+
+.the-footer { font-size: 0.9em; line-height: 1.6em; padding: 26px; text-ali=
+gn: center; }
+
+.the-footer a { color: rgba(0, 0, 0, 0.8); }
+
+.the-footer a:hover { transition: all 0.3s ease-in-out 0s; color: rgb(255, =
+153, 0); }
+
+.the-footer p a { padding: 2px 3px; color: rgb(0, 119, 204); border-bottom:=
+ 1px dotted rgb(255, 209, 141); }
+
+.the-footer p a:visited { color: rgb(74, 107, 130); }
+
+.the-footer p a:hover { color: rgba(0, 0, 0, 0.8); background-color: rgba(2=
+55, 153, 0, 0.7); }
+
+.the-footer h4 { margin-top: 0px; }
+
+.the-footer h4 a:hover { font-weight: bold; }
+
+.the-footer .back-to-top { font-size: 0.9em; position: fixed; right: 0.25em=
+; bottom: 0.5em; display: none; padding: 1.2em 1.2em 0.2em; text-decoration=
+: none; background-color: transparent; }
+
+.the-footer .social-links { margin-top: 12px; }
+
+.the-footer .social-links a { display: inline-block; width: 42px; height: 4=
+2px; margin: 1.5px; background-size: 42px 42px; }
+
+.social-links a { text-indent: -9999em; opacity: 0.3; background-repeat: no=
+-repeat; background-position: center center; }
+
+.social-links a:hover { transition: all 0.3s ease-out 0s; opacity: 1; }
+
+.social-links .ico-facebook { background-image: url("../images/simple-icons=
+/facebook-48.png"); background-color: rgb(59, 89, 152); }
+
+.social-links .ico-github { background-image: url("../images/simple-icons/g=
+ithub-48.png"); background-color: rgb(24, 23, 23); }
+
+.social-links .ico-gmail { background-image: url("../images/simple-icons/gm=
+ail-48.png"); background-color: rgb(209, 72, 54); }
+
+.social-links .ico-instagram { background-image: url("../images/simple-icon=
+s/instagram-48.png"); background-color: rgb(228, 64, 95); }
+
+.social-links .ico-linkedin { background-image: url("../images/simple-icons=
+/linkedin-48.png"); background-color: rgb(0, 119, 181); }
+
+.social-links .ico-rss { background-image: url("../images/simple-icons/rss-=
+48.png"); background-color: rgb(255, 165, 0); }
+
+.social-links .ico-stackoverflow { background-image: url("../images/simple-=
+icons/stackoverflow-48.png"); background-color: rgb(254, 122, 22); }
+
+.social-links .ico-twitter { background-image: url("../images/simple-icons/=
+twitter-48.png"); background-color: rgb(29, 161, 242); }
+
+.social-links .ico-vk { background-image: url("../images/simple-icons/vk-48=
+.png"); background-color: rgb(99, 131, 168); }
+
+.unit-article a { font-size: 0.95em; padding: 2px; color: rgb(0, 119, 204);=
+ border-bottom: 1px dotted rgb(255, 209, 141); }
+
+.unit-article a:hover { transition: all 0.3s ease-in-out 0s; color: rgba(0,=
+ 0, 0, 0.8); background-color: rgba(255, 153, 0, 0.7); }
+
+.unit-article a:visited { color: rgb(74, 107, 130); }
+
+.unit-article a.internal { color: rgba(0, 0, 0, 0.8); }
+
+.unit-article a.internal:active, .unit-article a.internal:hover, .unit-arti=
+cle a.internal:visited { color: rgba(0, 0, 0, 0.8); }
+
+.unit-article .button, .unit-article button { line-height: 1.45em; display:=
+ inline-block; margin-left: 8px; padding: 2px 24px; cursor: pointer; transi=
+tion: all 0.3s ease-in-out 0s; text-align: center; vertical-align: inherit;=
+ white-space: nowrap; text-decoration: none; color: rgba(0, 0, 0, 0.8); bor=
+der: 2px solid rgba(0, 0, 0, 0.8); outline: 0px; background: padding-box tr=
+ansparent; text-shadow: none; }
+
+.unit-article .button:hover, .unit-article button:hover { color: rgb(255, 1=
+53, 0); border-color: rgb(255, 153, 0); background-color: rgb(255, 255, 255=
+); }
+
+.unit-article img { max-width: 100%; height: auto; border: 5px solid transp=
+arent; }
+
+.unit-article ul li { list-style: disc; }
+
+.unit-article ul li li { list-style: circle; }
+
+.unit-article ul li li li { list-style: square; }
+
+.unit-article ol { list-style: decimal; }
+
+.unit-article table { overflow: auto; border-collapse: collapse; border: 2p=
+x solid rgb(173, 173, 173); background-color: rgb(255, 255, 255); }
+
+.unit-article table td, .unit-article table th { padding: 3px 12px; border:=
+ 1px dashed rgba(175, 175, 175, 0.5); }
+
+.unit-article table tr:nth-child(2n) td { background-color: rgb(234, 234, 2=
+34); }
+
+.unit-article table a { font-size: 1em; border-bottom: none; }
+
+.unit-article table .center, .unit-article table th { text-align: center; }
+
+.unit-article table .bold { font-weight: bold; }
+
+.unit-article blockquote, .unit-article code, .unit-article kbd, .unit-arti=
+cle pre, .unit-article samp { font-family: Monaco, "Lucida Console", monosp=
+ace; font-size: 12px; line-height: 20px; }
+
+.unit-article table, .unit-article blockquote, .unit-article figure, .unit-=
+article .highlighter-rouge { margin: 12px; }
+
+.unit-article code.highlighter-rouge { margin: 0px; padding: 4px; white-spa=
+ce: nowrap; background-color: rgb(234, 234, 234); }
+
+.unit-article pre { overflow: auto; padding: 24px; }
+
+.unit-article pre code { white-space: pre; }
+
+.unit-article pre table { margin: 0px; border: none; background-color: rgb(=
+39, 40, 34); }
+
+.unit-article pre table:hover { border: none; }
+
+.unit-article pre table td { border: none; background-color: rgb(39, 40, 34=
+); }
+
+.unit-article pre table .gutter { padding-right: 0px; padding-left: 0px; }
+
+.unit-article pre.lineno { overflow: visible; padding-right: 10px; padding-=
+left: 10px; }
+
+.unit-article pre pre { margin: 0px; padding: 0px; }
+
+.unit-article pre pre.lineno { padding-left: 0px; }
+
+.unit-article pre::-webkit-scrollbar { height: 6px; border-radius: 5px; }
+
+.unit-article pre::-webkit-scrollbar-track { border-radius: 5px; background=
+-color: rgb(39, 40, 34); }
+
+.unit-article pre::-webkit-scrollbar-thumb:horizontal { border-radius: 5px;=
+ background-color: rgb(173, 173, 173); }
+
+.unit-article blockquote { overflow: auto; padding: 6px 18px; border-width:=
+ 1px 1px 1px 8px; border-style: dashed dashed dashed solid; border-color: r=
+gb(173, 173, 173); border-image: initial; background-color: rgb(234, 234, 2=
+34); }
+
+.unit-article blockquote p { margin: 12px 0px !important; }
+
+.unit-article blockquote dl, .unit-article blockquote ol, .unit-article blo=
+ckquote ul { margin-top: 0px; margin-bottom: 0px; padding: 8px 24px; }
+
+.unit-article .center-block { display: block; margin-right: auto; margin-le=
+ft: auto; }
+
+.unit-article li > p { margin: 0px; }
+
+.unit-article .footnote, .unit-article .reversefootnote { padding: 0px 2px;=
+ border: none; }
+
+.unit-article .footnotes { font-size: 0.9em; line-height: 1.2em; margin-top=
+: 26px; border-top: 1px dashed rgba(0, 0, 0, 0.8); }
+
+.unit-article .footnotes ol { margin-top: 26px; padding-left: 18px; }
+
+.unit-article .footnotes ol p { margin-top: 12px; margin-bottom: 12px; padd=
+ing-left: 6px; }
+
+.unit-article .toc { display: inline-block; min-width: 195px; margin: 8px 0=
+px; padding: 12px 24px; text-align: left; border: 1px dashed rgb(173, 173, =
+173); }
+
+.unit-article .toc a { color: rgba(0, 0, 0, 0.8); border: none; }
+
+.unit-article .toc a:active, .unit-article .toc a:hover, .unit-article .toc=
+ a:visited { color: rgba(0, 0, 0, 0.8); }
+
+.unit-article .toc li, .unit-article .toc ol, .unit-article .toc ul { margi=
+n-left: 0.8em; padding-left: 0px; }
+
+.unit-article .toc:hover { border-width: 1.5px; }
+
+.unit-article .data-table { overflow: auto; }
+
+.unit-article .data-table::-webkit-scrollbar { height: 8px; border-radius: =
+5px; }
+
+.unit-article .data-table::-webkit-scrollbar-track { border-radius: 5px; ba=
+ckground-color: rgb(173, 173, 173); }
+
+.unit-article .data-table::-webkit-scrollbar-thumb:horizontal { border-radi=
+us: 5px; background-color: rgb(121, 121, 121); }
+
+.unit-article .gist .gist-file { font-family: Monaco, "Lucida Console", mon=
+ospace !important; border: none !important; }
+
+.unit-article .gist .gist-file .gist-data { font-size: 12px; margin: 12px; =
+background-color: rgb(39, 40, 34); }
+
+.unit-article .gist .gist-file .gist-data .data { padding: 20px 20px 20px 1=
+2px; }
+
+.unit-article .gist .gist-file .gist-data .data::-webkit-scrollbar { height=
+: 6px; border-radius: 5px; }
+
+.unit-article .gist .gist-file .gist-data .data::-webkit-scrollbar-track { =
+border-radius: 5px; background-color: rgb(39, 40, 34); }
+
+.unit-article .gist .gist-file .gist-data .data::-webkit-scrollbar-thumb:ho=
+rizontal { border-radius: 5px; background-color: rgb(173, 173, 173); }
+
+.unit-article .gist .gist-file .gist-data .data table { border: none; backg=
+round-color: rgb(39, 40, 34); }
+
+.unit-article .gist .gist-file .gist-data .data table td { font-family: Mon=
+aco, "Lucida Console", monospace; font-size: 12px; line-height: 20px; borde=
+r: none; background-color: rgb(39, 40, 34); }
+
+.unit-article .gist .gist-file .gist-data .data .blob-code-inner, .unit-art=
+icle .gist .gist-file .gist-data .data .blob-num { color: rgb(255, 255, 255=
+); }
+
+.unit-article .gist .gist-file .gist-data .data .blob-num:hover { cursor: d=
+efault; }
+
+.unit-article .gist .gist-file .gist-data .data .pl-s, .unit-article .gist =
+.gist-file .gist-data .data .pl-pds, .unit-article .gist .gist-file .gist-d=
+ata .data .pl-s .pl-pse .pl-s1, .unit-article .gist .gist-file .gist-data .=
+data .pl-sr, .unit-article .gist .gist-file .gist-data .data .pl-sr .pl-cce=
+, .unit-article .gist .gist-file .gist-data .data .pl-sr .pl-sre, .unit-art=
+icle .gist .gist-file .gist-data .data .pl-sr .pl-sra { color: rgb(236, 172=
+, 41); }
+
+.unit-article .gist .gist-file .gist-data .data .pl-k, .unit-article .gist =
+.gist-file .gist-data .data .pl-smi, .unit-article .gist .gist-file .gist-d=
+ata .data .pl-e { color: rgb(102, 217, 239); }
+
+.unit-article .gist .gist-file .gist-data .data .pl-c1 { color: rgb(248, 24=
+8, 242); }
+
+.unit-article .gist .gist-file .gist-data .data .pl-en, .unit-article .gist=
+ .gist-file .gist-data .data .pl-ent { color: rgb(166, 226, 46); }
+
+.unit-article .gist .gist-file .gist-meta { display: none; visibility: hidd=
+en; }
+
+.unit-article .tag_box { padding: 0.8125em; list-style: none; background: u=
+rl("../images/theme/noisy_texture_section0-200x200.png") repeat padding-box=
+ rgb(240, 240, 240); box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 3px inset, rgba=
+(255, 255, 255, 0.4) 0px 3px 0px; }
+
+.unit-article .tag_box li { line-height: normal; display: inline; vertical-=
+align: middle; }
+
+.unit-article .tag_box li a { float: left; margin: 5px; padding: 3px 6px; u=
+ser-select: none; transition-duration: 0.2s; vertical-align: bottom; color:=
+ rgba(0, 0, 0, 0.8); border: 1px solid rgba(0, 0, 0, 0.8); background-color=
+: rgb(234, 234, 234); background-clip: padding-box; text-shadow: rgba(255, =
+255, 255, 0.2) 0px -1px 0px; }
+
+.unit-article .tag_box li a:hover { color: rgba(0, 0, 0, 0.8); border: 1px =
+solid rgba(0, 0, 0, 0.8); background-color: rgb(255, 153, 0); }
+
+.unit-article .tag_box li a:hover span { border: 1px solid rgba(0, 0, 0, 0.=
+8); background-color: rgb(255, 153, 0); }
+
+.unit-article .tag_box li a span { font-size: 0.875em; font-weight: bold; p=
+osition: relative; top: -2px; display: inline-block; padding: 1px 5px; vert=
+ical-align: middle; border: 1px solid rgba(0, 0, 0, 0.8); border-radius: 10=
+px; background-color: rgb(234, 234, 234); }
+
+.unit-article.layout-page .year { margin-top: 24px; }
+
+.unit-article.layout-page .post-list { margin: 0px; padding: 0px 0px 0px 1.=
+05em; list-style-type: disc; }
+
+.unit-article.layout-page .post-list li { margin-top: 8px; margin-bottom: 8=
+px; }
+
+.unit-article.layout-page .post-list li a { font-size: 1em; line-height: 1.=
+525em; border-bottom: none; }
+
+.unit-article.layout-page .post-list li .date { font-size: 0.8em; float: ri=
+ght; }
+
+.unit-article.layout-page .post-list li .description { font-size: 0.8em; }
+
+.unit-article.layout-post iframe { display: block; width: 100%; height: 180=
+px; margin-right: auto; margin-left: auto; }
+
+.unit-article.layout-post .misc-content { margin-top: 48px; }
+
+.unit-article.layout-post .license-icon { float: right; border-bottom: none=
+; background-color: transparent; }
+
+.unit-article.layout-post .meta { margin-bottom: 26px; border-bottom: 1px d=
+otted rgba(21, 25, 25, 0.8); }
+
+.unit-article.layout-post .meta .date-publish { margin-bottom: 0px; }
+
+.unit-article.layout-post .meta .list-category { margin-top: 0px; margin-bo=
+ttom: 0px; }
+
+.unit-article.layout-post .meta .list-linear { margin-top: 0px; padding-lef=
+t: 0px; list-style: none; letter-spacing: -0.31em; word-spacing: -0.43em; }
+
+.unit-article.layout-post .meta .list-linear .list-head { margin-right: 10p=
+x; padding-right: 4px; }
+
+.unit-article.layout-post .meta .list-linear a { border: none; background-c=
+olor: transparent; color: rgba(0, 0, 0, 0.8); }
+
+.unit-article.layout-post .meta .list-linear a:hover span { background-colo=
+r: rgb(255, 153, 0); }
+
+.unit-article.layout-post .meta .list-linear span { font-size: 0.875em; fon=
+t-weight: bold; position: relative; top: -2px; display: inline-block; margi=
+n: 0px 6px 0px 0px; padding: 1px 5px; vertical-align: middle; text-transfor=
+m: uppercase; color: white; border-radius: 10px; background-color: rgb(255,=
+ 153, 0); }
+
+.unit-article.layout-post .meta .list-linear li { line-height: normal; disp=
+lay: inline-block; zoom: 1; margin-right: 16px; vertical-align: middle; let=
+ter-spacing: normal; word-spacing: normal; }
+
+.unit-article.layout-post .meta .list-linear li:last-child { margin-right: =
+0px; }
+
+.unit-article.layout-post .meta .list-linear li a:hover { color: rgb(121, 1=
+21, 121); }
+
+.unit-article.layout-post .post-image:visited { border-bottom: none; }
+
+.unit-article.layout-post .post-image:hover { background-color: transparent=
+; }
+
+.unit-article.layout-post .post-image img { display: block; margin-right: a=
+uto; margin-left: auto; }
+
+.unit-article.layout-post .post-image img:hover { transition: all 0.1s ease=
+-out 0s; background-color: transparent; }
+
+.unit-article .unit-head { border-bottom: 5px solid rgba(0, 0, 0, 0.8); }
+
+.unit-article .unit-head h1 { margin-top: 0px; margin-bottom: 8px; }
+
+.unit-article .unit-foot { top: auto; margin-top: 26px; padding-top: 12px; =
+border-top: 3px solid rgba(0, 0, 0, 0.8); }
+
+.unit-article .unit-foot nav { display: block; }
+
+.unit-article .unit-foot nav a[rel=3D"prev"] { line-height: 1.325em; float:=
+ left; padding: 4px; }
+
+.unit-article .unit-foot nav a[rel=3D"next"] { line-height: 1.325em; float:=
+ right; padding: 4px; }
+
+.unit-article .unit-foot .post-buttons { margin-bottom: 18px; }
+
+.unit-article .unit-foot .post-buttons .addthis_toolbox { float: right; }
+
+.unit-article .unit-foot .post-buttons .addthis_toolbox a { opacity: 0.3; b=
+order: none; }
+
+.unit-article .unit-foot .post-buttons .addthis_toolbox a:hover { transitio=
+n: all 0.3s ease-out 0s; opacity: 1; background: transparent; }
+
+.unit-article .unit-foot .post-buttons .addthis_toolbox .label { float: lef=
+t; margin-right: 6px; }
+
+@media only screen and (max-width: 640px) {
+  body { font-size: 0.8em; line-height: 24px; }
+  h2, h3, h4 { margin-top: 16px; margin-bottom: 16px; }
+  h1, h2 { line-height: 32px; }
+  .the-header .unit-head { padding: 16px 16px 8px; }
+  .the-header .unit-head .nav-global .logo { padding-bottom: 0px; }
+  .the-header .unit-head .nav-global .logo a { margin-left: 14px; padding-t=
+op: 6px; padding-bottom: 6px; }
+  .the-header .unit-head .nav-global .logo .btn-menu, .the-header .unit-hea=
+d .nav-global .logo .btn-search { display: inline; cursor: pointer; }
+  .the-header .unit-head .nav-global ul li { display: none; }
+  .the-header .unit-head .nav-global ul li .btn-search { display: none; }
+  .the-footer .social-links a { width: 32px; height: 32px; background-size:=
+ 32px 32px; }
+}
+
+@media only screen and (max-width: 1200px) {
+  .unit-article .year, .unit-article header h1 { text-align: center; }
+  .unit-article .date { display: none; }
+}
+
+@media only screen and (min-width: 1200px) {
+  .unit-body { max-width: 980px; margin: auto; }
+  .the-footer h4 a { font-size: 1.25em; }
+  .search-form .results .entry-date { display: block; float: right; }
+}
+------MultipartBoundary--FDiXNbHWeOrFaggulQYLeYkPS7C25rsQck0ENczq8g----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: https://keyou.github.io/assets/images/simple-icons/github-48.png
+
+iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAACZUlEQVR42u3YT0iTcRzH8R/bQrIy
+hYLC7BKBJjUsopDqElRSZH8w+nMo6TyrU3gKCoIudimLYBl0KIgQYR4UoaJTjEaYZRAVWZAUkZEQ
+2OzpffgdHr78enTbd3PR84YXwuN+sA8+jPkYz/P+aeGAcEA4IBwQDggHaKrCViTQhR7rMhLYhqpy
+HLAe3RjDTI3hGjaUw4BaJJFFrmVxE7VzNWAXPqDQPqKl1AOOIwutptFeqgEHUKzaij2gAT/g2X4j
+iQFMYbZNYRBJTPuuT2JNsQZE8Qj+RmCsdbiDCTxHP25bKXttAncRh7GG4e8xosUYcAiyPhhhOSIw
+QsT+zgi9kB3RHhBFGrIhmAINQpZBVHPARrgaQQwmTzEMw9UmzQHn4Go/TIFa4eq85oAByNIwSp5A
+NqQ1IIbXkF1SHHARsjeYpzGgGl8gO6M44BRkX1GjMWAJvkHWqTjgLGTfsVRjwCKMQ3ZdcUA3ZJ+x
+WGNABC8ge6Y4IAPZKKJan0L34WqLwptvhqtezY/RBFw9xUKYPC1AGq5Oaw5YhV9w9RD1MDmqxwO4
+ymK12gCrD54dcgwdmIRnf/bgIBpRASNUYC3acMt31lUKRnvAZnHrLMN2yDJw3VZc49zsatYaIN1w
+fJXohL9EwPkOzFSymP+RVeMlPNs+37fVk9iN+QHndyKoV6jRHiA14BM8eo+mHM7uwN8aR2OpnkrE
+8RYe/cQ9XEAX4nn8Bd6hqdTPhVYgBdnegDMtkPWjbi4fLZ7AKDxba8Br94j7vb1cno1W4jCuYGXA
+6+pwFUdRGT5eDweEA8IB4YBwwH8/4A8XemfEMmfwuAAAAABJRU5ErkJggg==
+
+------MultipartBoundary--FDiXNbHWeOrFaggulQYLeYkPS7C25rsQck0ENczq8g----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: https://keyou.github.io/assets/images/simple-icons/rss-48.png
+
+iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAACXElEQVR42u3ZTWsTURyFcdOCaTVG
+YyK2oBQKgrVKVdyLG9FGcaMrUasIfgNRKCIuXYi4EVeCWRiVSClIF0HB+i7tyiKWgkpFRI2p2tDW
+F4jP+nLPTCK50wnMgd8q/ztwkszcmWRJtVptalGBqEBUICoQFXBeIIYUkljajAVSmMQnTOEZ8jiH
+/Vgf9gKr8QMqs3iI09gY1gLfUEsWMIz+5imgM4q9YSiQxjz+N7fQvZgFVqCAJ3iNr6g3JQyEYR9o
+RRpbcQzX8Q615iriYdvIEsjiDn7DL0VkwroT9yEHv4yhMwQFpF0Yh1fGkQ6iwEqMoIgcBtGPDp91
+y3AZXrmPuOsCGSzATBlDOIQ2j/UnfM6Na0HsA2V4ZQIDiIljZDEHlaPBFtB5gC2yhP4kZtDl8itU
+Qa35iSPiWMehctfl7fQEvqOenBXHuwKV3a4eaBLowHacRAGz8MsZy/Ha8UrMP0dLUPtANy5iDl45
+bFm7Eyp7gt7I+vAYKhVssqzLi/kRdwW0dtyAyiO0Gms24y/M/MEGdwW0GHJ1XuuH1LnjssBywPpa
+G17AlinLjp0Vs09dFOjFbXzANPLoEXPqCe6g5X7pI8zMY10jC/SiBDNfxC8Rl2DLPcusOncONLLA
+MFQKlvku8SlUsLbG3flCowokUYLKZyTqKL3PmNum3pjFLnBKzJ+33CzOwMxY0F8h0w4xf9PyQ8Ek
+zLxHPIiTuEes6cQvmBm1zL4Ut9irXFxGp83LqJDEG5QNRbGhmXNvkXa/kWkxpLHGkBLP3eZcBi3R
+HxxRgahAVCAqEBXw8g/FMKWMNpbR1QAAAABJRU5ErkJggg==
+
+------MultipartBoundary--FDiXNbHWeOrFaggulQYLeYkPS7C25rsQck0ENczq8g----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://keyou.github.io/assets/javascripts/fancybox/jquery.fancybox.css?v=2.1.4
+
+@charset "utf-8";
+
+.fancybox-wrap, .fancybox-skin, .fancybox-outer, .fancybox-inner, .fancybox=
+-image, .fancybox-wrap iframe, .fancybox-wrap object, .fancybox-nav, .fancy=
+box-nav span, .fancybox-tmp { padding: 0px; margin: 0px; border: 0px; outli=
+ne: none; vertical-align: top; }
+
+.fancybox-wrap { position: absolute; top: 0px; left: 0px; z-index: 8020; }
+
+.fancybox-skin { position: relative; background: rgb(249, 249, 249); color:=
+ rgb(68, 68, 68); text-shadow: none; border-radius: 4px; }
+
+.fancybox-opened { z-index: 8030; }
+
+.fancybox-opened .fancybox-skin { box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 2=
+5px; }
+
+.fancybox-outer, .fancybox-inner { position: relative; }
+
+.fancybox-inner { overflow: hidden; }
+
+.fancybox-type-iframe .fancybox-inner { }
+
+.fancybox-error { color: rgb(68, 68, 68); font: 14px / 20px "Helvetica Neue=
+", Helvetica, Arial, sans-serif; margin: 0px; padding: 15px; white-space: n=
+owrap; }
+
+.fancybox-image, .fancybox-iframe { display: block; width: 100%; height: 10=
+0%; }
+
+.fancybox-image { max-width: 100%; max-height: 100%; }
+
+#fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next spa=
+n { background-image: url("fancybox_sprite.png"); }
+
+#fancybox-loading { position: fixed; top: 50%; left: 50%; margin-top: -22px=
+; margin-left: -22px; background-position: 0px -108px; opacity: 0.8; cursor=
+: pointer; z-index: 8060; }
+
+#fancybox-loading div { width: 44px; height: 44px; background: url("fancybo=
+x_loading.gif") center center no-repeat; }
+
+.fancybox-close { position: absolute; top: -18px; right: -18px; width: 36px=
+; height: 36px; cursor: pointer; z-index: 8040; }
+
+.fancybox-nav { position: absolute; top: 0px; width: 40%; height: 100%; cur=
+sor: pointer; text-decoration: none; background: url("blank.gif") transpare=
+nt; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); z-index: 8040; }
+
+.fancybox-prev { left: 0px; }
+
+.fancybox-next { right: 0px; }
+
+.fancybox-nav span { position: absolute; top: 50%; width: 36px; height: 34p=
+x; margin-top: -18px; cursor: pointer; z-index: 8040; visibility: hidden; }
+
+.fancybox-prev span { left: 10px; background-position: 0px -36px; }
+
+.fancybox-next span { right: 10px; background-position: 0px -72px; }
+
+.fancybox-nav:hover span { visibility: visible; }
+
+.fancybox-tmp { position: absolute; top: -99999px; left: -99999px; visibili=
+ty: hidden; max-width: 99999px; max-height: 99999px; overflow: visible !imp=
+ortant; }
+
+.fancybox-lock { width: auto; overflow: hidden !important; }
+
+.fancybox-lock body { overflow: hidden !important; }
+
+.fancybox-lock-test { overflow-y: hidden !important; }
+
+.fancybox-overlay { position: absolute; top: 0px; left: 0px; overflow: hidd=
+en; display: none; z-index: 8010; background: url("fancybox_overlay.png"); =
+}
+
+.fancybox-overlay-fixed { position: fixed; bottom: 0px; right: 0px; }
+
+.fancybox-lock .fancybox-overlay { overflow: auto scroll; }
+
+.fancybox-title { visibility: hidden; font: 13px / 20px "Helvetica Neue", H=
+elvetica, Arial, sans-serif; position: relative; text-shadow: none; z-index=
+: 8050; }
+
+.fancybox-opened .fancybox-title { visibility: visible; }
+
+.fancybox-title-float-wrap { position: absolute; bottom: 0px; right: 50%; m=
+argin-bottom: -35px; z-index: 8050; text-align: center; }
+
+.fancybox-title-float-wrap .child { display: inline-block; margin-right: -1=
+00%; padding: 2px 20px; background: rgba(0, 0, 0, 0.8); border-radius: 15px=
+; text-shadow: rgb(34, 34, 34) 0px 1px 2px; color: rgb(255, 255, 255); font=
+-weight: bold; line-height: 24px; white-space: nowrap; }
+
+.fancybox-title-outside-wrap { position: relative; margin-top: 10px; color:=
+ rgb(255, 255, 255); }
+
+.fancybox-title-inside-wrap { padding-top: 10px; }
+
+.fancybox-title-over-wrap { position: absolute; bottom: 0px; left: 0px; col=
+or: rgb(255, 255, 255); padding: 10px; background: rgba(0, 0, 0, 0.8); }
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen a=
+nd (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ra=
+tio: 1.5) {
+  #fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next s=
+pan { background-image: url("fancybox_sprite@2x.png"); background-size: 44p=
+x 152px; }
+  #fancybox-loading div { background-image: url("fancybox_loading@2x.gif");=
+ background-size: 24px 24px; }
+}
+------MultipartBoundary--FDiXNbHWeOrFaggulQYLeYkPS7C25rsQck0ENczq8g----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://keyou.github.io/assets/javascripts/fancybox/helpers/jquery.fancybox-buttons.css?v=1.0.5
+
+@charset "utf-8";
+
+#fancybox-buttons { position: fixed; left: 0px; width: 100%; z-index: 8050;=
+ }
+
+#fancybox-buttons.top { top: 10px; }
+
+#fancybox-buttons.bottom { bottom: 10px; }
+
+#fancybox-buttons ul { display: block; width: 166px; height: 30px; margin: =
+0px auto; padding: 0px; list-style: none; border: 1px solid rgb(17, 17, 17)=
+; border-radius: 3px; box-shadow: rgba(255, 255, 255, 0.05) 0px 0px 0px 1px=
+ inset; background: -webkit-linear-gradient(top, rgb(68, 68, 68) 0%, rgb(52=
+, 52, 52) 50%, rgb(41, 41, 41) 50%, rgb(51, 51, 51) 100%); }
+
+#fancybox-buttons ul li { float: left; margin: 0px; padding: 0px; }
+
+#fancybox-buttons a { display: block; width: 30px; height: 30px; text-inden=
+t: -9999px; background-color: transparent; background-image: url("fancybox_=
+buttons.png"); background-repeat: no-repeat; outline: none; opacity: 0.8; }
+
+#fancybox-buttons a:hover { opacity: 1; }
+
+#fancybox-buttons a.btnPrev { background-position: 5px 0px; }
+
+#fancybox-buttons a.btnNext { background-position: -33px 0px; border-right:=
+ 1px solid rgb(62, 62, 62); }
+
+#fancybox-buttons a.btnPlay { background-position: 0px -30px; }
+
+#fancybox-buttons a.btnPlayOn { background-position: -30px -30px; }
+
+#fancybox-buttons a.btnToggle { background-position: 3px -60px; border-left=
+: 1px solid rgb(17, 17, 17); border-right: 1px solid rgb(62, 62, 62); width=
+: 35px; }
+
+#fancybox-buttons a.btnToggleOn { background-position: -27px -60px; }
+
+#fancybox-buttons a.btnClose { border-left: 1px solid rgb(17, 17, 17); widt=
+h: 35px; background-position: -56px 0px; }
+
+#fancybox-buttons a.btnDisabled { opacity: 0.4; cursor: default; }
+------MultipartBoundary--FDiXNbHWeOrFaggulQYLeYkPS7C25rsQck0ENczq8g----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: https://keyou.github.io/assets/images/theme/cc-by-sa.png
+
+iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAIAAAD8q9/YAAAABGdBTUEAANbY1E9YMgAAABl0RVh0
+U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAIySURBVHjaYmAYYYARiP///z9SfMvIyAJh
+rdm0Glliz669M6fO7OjoKC8vx9Tm6up66tSptu5WcQlxIFdeVsHVyfXjh4+D3LeQeGXClHj54uXy
+xctx+RYIdu/ebWZmNrl/CoT74eOHwoLCoRLJWDy8fMkKYWFhXL6FAGBw3Lxxc8PajUD2x08fPHw8
+vH28h6qHL128lJ6eDmScPXtWWVkZmO6Bafj9+/dAEsgGigDFjY2NXVxcrl29BjWFiQnIRUs/EICc
+nDDZ+LXQonBhwvDt5c+fPgP9A2SHhYUBGUBbgWRnZyfQn+/evQPG/L1794CyQME7t+/AUzUwkWOW
+EEAAcTScASSBbKy+ZYQBZC7V/Yzu4a9fvgBJQUFBYJQCPQbxOTABA9lKSkpA8bS0tNDQUFgRD3X6
+z58/GFkYscYY3HsQ18O5aPEJkUVLCPSIYW4eHiAJ9C3Qb0AfAmMVUiwDuUA/A8UrKipmzZqFljjZ
+2Tn+//mPJ4ax1hDw+MSqHk2WVh7W09fl5eWF+BMYsXv27AHaCvQ5kA2MbSEhIaAIJLueOXNGUVkR
+okuAXwBYUeGPYYJ1BknqKW14INfDfV39z58+v3//Ph5twBAxMTGJjosOCPYHcmWl5Zobmrdu2TrI
+62FgaGIppaPjot6+fQOMUjyay8rKVFSVIb7l5xPYsWXHIPctvmoJ2H5KzUytrKxsb2/HqsfJ2en6
+9esFJQXw9Nw/oX+0LT1I29IjrbPEABBgAEdwNeO7yfOaAAAAAElFTkSuQmCC
+
+------MultipartBoundary--FDiXNbHWeOrFaggulQYLeYkPS7C25rsQck0ENczq8g----
+Content-Type: image/svg+xml
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://keyou.github.io/data/gpu_share_image_arch.svg
+
+<?xml version=3D"1.0" encoding=3D"UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/=
+SVG/1.1/DTD/svg11.dtd">
+<svg xmlns=3D"http://www.w3.org/2000/svg" xmlns:xlink=3D"http://www.w3.org/=
+1999/xlink" version=3D"1.1" width=3D"422px" height=3D"302px" viewBox=3D"-0.=
+5 -0.5 422 302" content=3D"&lt;mxfile host=3D&quot;app.diagrams.net&quot; m=
+odified=3D&quot;2020-06-28T02:28:22.205Z&quot; agent=3D&quot;5.0 (X11; Linu=
+x x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safar=
+i/537.36&quot; version=3D&quot;13.2.6&quot; etag=3D&quot;VDLE7IZ9jRAyUO12jr=
+7l&quot; type=3D&quot;google&quot;&gt;&lt;diagram id=3D&quot;HObqjEVhWh_-Mq=
+00TO8L&quot;&gt;7ZjbjpswEIafhnswhGUvN+dIiVo1rdq7lYMNWGswMmZJ+vS1wRyyJMpGoqm=
+qhORi+D3GY38zdohhT+L9gsM02jCEqQFMtDfsqQEAcAEw1NdEh0qxRmBUKSEnSGutsCW/sRZNre=
+YE4ezIUTBGBUmPRZ8lCfbFkQY5Z8WxW8Do8agpDPWIZitsfUhxz+0nQSKqVA88tfoSkzCqR7bc5=
+6olhrWzfnAWQcSKjmTPDHvCGROVFe8nmKrVq9el6jc/09oExnEiPtNBk3iHNNdz22L+TnyswxOH=
+es6c5QnCqptp2OMiIgJvU+ir1kJillokYirvLGk201K+IYVZpm2fxcTXdiY4e2sWUE59HLBEaNp=
+WfT9hlPEyBLu6pA4pCROpURwI5UYo7bgFI/VpBui0uOUlW/SsMRd4f3blrIaHzGTMYiz4QbrUHT=
+yNsE5i29FC0aaEY2ot6qaDq0Wo0zBsHt6SkoaGdRqc3QM3oUSF/uB2JbemFi9yAwNwc/oFF8nY0=
+SpWew4wV4nAPICDFuAFPGZ5dfD4WAVxVQYMAAY4H8GcKKimdrpgvAG4jPr1tPz2ZbP6sXnNSkCv=
+pCLkUpW6Oy6tUFmNG4eZXLVXwWGSpYwPWYn/B8CmaK4G6AwA0O0DZHEMEyTFcR4Ecj2AucQ0Vcb=
+dk/FuSOapR2aNQ5j4KsDV18lfpNFb9Q8nDhphDzmnThwP7OzyxPm3W6B94mxqtKE5eReOpq3Id3=
+dXOn0k7g1L5/kzm9oU+/IV67Gr3RZN/S56tlzG0H8jSXh3WHoV03C6xSZmWT0si/V3vBc5l1Dms=
+8Va85m/LCFHhZxWXUjz6ealU1fz6a/F6kHPOfEjbih68rb9q6Ns6/xjZM/+AA=3D=3D&lt;/dia=
+gram&gt;&lt;/mxfile&gt;" style=3D"background-color: rgb(255, 255, 255);"><d=
+efs/><g><rect x=3D"11" y=3D"131" width=3D"400" height=3D"160" fill=3D"#f5f5=
+f5" stroke=3D"#666666" stroke-width=3D"2" pointer-events=3D"all"/><g transf=
+orm=3D"translate(-0.5 -0.5)"><switch><foreignObject style=3D"overflow: visi=
+ble; text-align: left;" pointer-events=3D"none" width=3D"100%" height=3D"10=
+0%" requiredFeatures=3D"http://www.w3.org/TR/SVG11/feature#Extensibility"><=
+div xmlns=3D"http://www.w3.org/1999/xhtml" style=3D"display: flex; align-it=
+ems: unsafe center; justify-content: unsafe flex-start; width: 398px; heigh=
+t: 1px; padding-top: 211px; margin-left: 13px;"><div style=3D"box-sizing: b=
+order-box; font-size: 0; text-align: left; "><div style=3D"display: inline-=
+block; font-size: 12px; font-family: Helvetica; color: #333333; line-height=
+: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">Servi=
+ce</div></div></div></foreignObject><text x=3D"13" y=3D"215" fill=3D"#33333=
+3" font-family=3D"Helvetica" font-size=3D"12px">Service</text></switch></g>=
+<rect x=3D"11" y=3D"11" width=3D"400" height=3D"120" fill=3D"#f5f5f5" strok=
+e=3D"#666666" stroke-width=3D"2" pointer-events=3D"all"/><g transform=3D"tr=
+anslate(-0.5 -0.5)"><switch><foreignObject style=3D"overflow: visible; text=
+-align: left;" pointer-events=3D"none" width=3D"100%" height=3D"100%" requi=
+redFeatures=3D"http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns=
+=3D"http://www.w3.org/1999/xhtml" style=3D"display: flex; align-items: unsa=
+fe center; justify-content: unsafe flex-start; width: 398px; height: 1px; p=
+adding-top: 71px; margin-left: 13px;"><div style=3D"box-sizing: border-box;=
+ font-size: 0; text-align: left; "><div style=3D"display: inline-block; fon=
+t-size: 12px; font-family: Helvetica; color: #333333; line-height: 1.2; poi=
+nter-events: all; white-space: normal; word-wrap: normal; ">Client</div></d=
+iv></div></foreignObject><text x=3D"13" y=3D"75" fill=3D"#333333" font-fami=
+ly=3D"Helvetica" font-size=3D"12px">Client</text></switch></g><rect x=3D"71=
+" y=3D"31" width=3D"160" height=3D"80" fill=3D"#ffffff" stroke=3D"#000000" =
+stroke-width=3D"2" pointer-events=3D"all"/><g transform=3D"translate(-0.5 -=
+0.5)"><switch><foreignObject style=3D"overflow: visible; text-align: left;"=
+ pointer-events=3D"none" width=3D"100%" height=3D"100%" requiredFeatures=3D=
+"http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns=3D"http://www=
+.w3.org/1999/xhtml" style=3D"display: flex; align-items: unsafe center; jus=
+tify-content: unsafe center; width: 158px; height: 1px; padding-top: 71px; =
+margin-left: 72px;"><div style=3D"box-sizing: border-box; font-size: 0; tex=
+t-align: center; "><div style=3D"display: inline-block; font-size: 12px; fo=
+nt-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all=
+; white-space: normal; word-wrap: normal; ">SharedImage Interface</div></di=
+v></div></foreignObject><text x=3D"151" y=3D"75" fill=3D"#000000" font-fami=
+ly=3D"Helvetica" font-size=3D"12px" text-anchor=3D"middle">SharedImage Inte=
+rface</text></switch></g><rect x=3D"231" y=3D"31" width=3D"160" height=3D"4=
+0" fill=3D"#ffffff" stroke=3D"#000000" stroke-width=3D"2" pointer-events=3D=
+"all"/><g transform=3D"translate(-0.5 -0.5)"><switch><foreignObject style=
+=3D"overflow: visible; text-align: left;" pointer-events=3D"none" width=3D"=
+100%" height=3D"100%" requiredFeatures=3D"http://www.w3.org/TR/SVG11/featur=
+e#Extensibility"><div xmlns=3D"http://www.w3.org/1999/xhtml" style=3D"displ=
+ay: flex; align-items: unsafe center; justify-content: unsafe center; width=
+: 158px; height: 1px; padding-top: 51px; margin-left: 232px;"><div style=3D=
+"box-sizing: border-box; font-size: 0; text-align: center; "><div style=3D"=
+display: inline-block; font-size: 12px; font-family: Helvetica; color: #000=
+000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap:=
+ normal; ">CHROMIUM_shared_image<br />CHROMIUM_raster_transport</div></div>=
+</div></foreignObject><text x=3D"311" y=3D"55" fill=3D"#000000" font-family=
+=3D"Helvetica" font-size=3D"12px" text-anchor=3D"middle">CHROMIUM_shared_im=
+age...</text></switch></g><rect x=3D"231" y=3D"71" width=3D"160" height=3D"=
+40" fill=3D"#ffffff" stroke=3D"#000000" stroke-width=3D"2" pointer-events=
+=3D"all"/><g transform=3D"translate(-0.5 -0.5)"><switch><foreignObject styl=
+e=3D"overflow: visible; text-align: left;" pointer-events=3D"none" width=3D=
+"100%" height=3D"100%" requiredFeatures=3D"http://www.w3.org/TR/SVG11/featu=
+re#Extensibility"><div xmlns=3D"http://www.w3.org/1999/xhtml" style=3D"disp=
+lay: flex; align-items: unsafe center; justify-content: unsafe center; widt=
+h: 158px; height: 1px; padding-top: 91px; margin-left: 232px;"><div style=
+=3D"box-sizing: border-box; font-size: 0; text-align: center; "><div style=
+=3D"display: inline-block; font-size: 12px; font-family: Helvetica; color: =
+#000000; line-height: 1.2; pointer-events: all; white-space: normal; word-w=
+rap: normal; ">Command Buffer Helper</div></div></div></foreignObject><text=
+ x=3D"311" y=3D"95" fill=3D"#000000" font-family=3D"Helvetica" font-size=3D=
+"12px" text-anchor=3D"middle">Command Buffer Helper</text></switch></g><rec=
+t x=3D"71" y=3D"111" width=3D"320" height=3D"40" fill=3D"#d5e8d4" stroke=3D=
+"#82b366" stroke-width=3D"2" pointer-events=3D"all"/><g transform=3D"transl=
+ate(-0.5 -0.5)"><switch><foreignObject style=3D"overflow: visible; text-ali=
+gn: left;" pointer-events=3D"none" width=3D"100%" height=3D"100%" requiredF=
+eatures=3D"http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns=3D"=
+http://www.w3.org/1999/xhtml" style=3D"display: flex; align-items: unsafe c=
+enter; justify-content: unsafe center; width: 318px; height: 1px; padding-t=
+op: 131px; margin-left: 72px;"><div style=3D"box-sizing: border-box; font-s=
+ize: 0; text-align: center; "><div style=3D"display: inline-block; font-siz=
+e: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-=
+events: all; white-space: normal; word-wrap: normal; ">Legancy IPC</div></d=
+iv></div></foreignObject><text x=3D"231" y=3D"135" fill=3D"#000000" font-fa=
+mily=3D"Helvetica" font-size=3D"12px" text-anchor=3D"middle">Legancy IPC</t=
+ext></switch></g><rect x=3D"71" y=3D"151" width=3D"160" height=3D"40" fill=
+=3D"#ffffff" stroke=3D"#000000" stroke-width=3D"2" pointer-events=3D"all"/>=
+<g transform=3D"translate(-0.5 -0.5)"><switch><foreignObject style=3D"overf=
+low: visible; text-align: left;" pointer-events=3D"none" width=3D"100%" hei=
+ght=3D"100%" requiredFeatures=3D"http://www.w3.org/TR/SVG11/feature#Extensi=
+bility"><div xmlns=3D"http://www.w3.org/1999/xhtml" style=3D"display: flex;=
+ align-items: unsafe center; justify-content: unsafe center; width: 158px; =
+height: 1px; padding-top: 171px; margin-left: 72px;"><div style=3D"box-sizi=
+ng: border-box; font-size: 0; text-align: center; "><div style=3D"display: =
+inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line=
+-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; =
+">SharedImage Stub</div></div></div></foreignObject><text x=3D"151" y=3D"17=
+5" fill=3D"#000000" font-family=3D"Helvetica" font-size=3D"12px" text-ancho=
+r=3D"middle">SharedImage Stub</text></switch></g><rect x=3D"231" y=3D"151" =
+width=3D"160" height=3D"40" fill=3D"#ffffff" stroke=3D"#000000" stroke-widt=
+h=3D"2" pointer-events=3D"all"/><g transform=3D"translate(-0.5 -0.5)"><swit=
+ch><foreignObject style=3D"overflow: visible; text-align: left;" pointer-ev=
+ents=3D"none" width=3D"100%" height=3D"100%" requiredFeatures=3D"http://www=
+.w3.org/TR/SVG11/feature#Extensibility"><div xmlns=3D"http://www.w3.org/199=
+9/xhtml" style=3D"display: flex; align-items: unsafe center; justify-conten=
+t: unsafe center; width: 158px; height: 1px; padding-top: 171px; margin-lef=
+t: 232px;"><div style=3D"box-sizing: border-box; font-size: 0; text-align: =
+center; "><div style=3D"display: inline-block; font-size: 12px; font-family=
+: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-s=
+pace: normal; word-wrap: normal; ">Command Buffer Decoder</div></div></div>=
+</foreignObject><text x=3D"311" y=3D"175" fill=3D"#000000" font-family=3D"H=
+elvetica" font-size=3D"12px" text-anchor=3D"middle">Command Buffer Decoder<=
+/text></switch></g><rect x=3D"71" y=3D"191" width=3D"320" height=3D"40" fil=
+l=3D"#ffffff" stroke=3D"#000000" stroke-width=3D"2" pointer-events=3D"all"/=
+><g transform=3D"translate(-0.5 -0.5)"><switch><foreignObject style=3D"over=
+flow: visible; text-align: left;" pointer-events=3D"none" width=3D"100%" he=
+ight=3D"100%" requiredFeatures=3D"http://www.w3.org/TR/SVG11/feature#Extens=
+ibility"><div xmlns=3D"http://www.w3.org/1999/xhtml" style=3D"display: flex=
+; align-items: unsafe center; justify-content: unsafe center; width: 318px;=
+ height: 1px; padding-top: 211px; margin-left: 72px;"><div style=3D"box-siz=
+ing: border-box; font-size: 0; text-align: center; "><div style=3D"display:=
+ inline-block; font-size: 12px; font-family: Helvetica; color: #000000; lin=
+e-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal;=
+ ">SharedImage Backing</div></div></div></foreignObject><text x=3D"231" y=
+=3D"215" fill=3D"#000000" font-family=3D"Helvetica" font-size=3D"12px" text=
+-anchor=3D"middle">SharedImage Backing</text></switch></g><rect x=3D"71" y=
+=3D"231" width=3D"320" height=3D"40" fill=3D"#ffffff" stroke=3D"#000000" st=
+roke-width=3D"2" pointer-events=3D"all"/><g transform=3D"translate(-0.5 -0.=
+5)"><switch><foreignObject style=3D"overflow: visible; text-align: left;" p=
+ointer-events=3D"none" width=3D"100%" height=3D"100%" requiredFeatures=3D"h=
+ttp://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns=3D"http://www.w=
+3.org/1999/xhtml" style=3D"display: flex; align-items: unsafe center; justi=
+fy-content: unsafe center; width: 318px; height: 1px; padding-top: 251px; m=
+argin-left: 72px;"><div style=3D"box-sizing: border-box; font-size: 0; text=
+-align: center; "><div style=3D"display: inline-block; font-size: 12px; fon=
+t-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all;=
+ white-space: normal; word-wrap: normal; ">GLTexture/EGLImage/AHardwareBuff=
+er/DMA Buffer/DXGI</div></div></div></foreignObject><text x=3D"231" y=3D"25=
+5" fill=3D"#000000" font-family=3D"Helvetica" font-size=3D"12px" text-ancho=
+r=3D"middle">GLTexture/EGLImage/AHardwareBuffer/DMA Buffer/DXGI</text></swi=
+tch></g></g><switch><g requiredFeatures=3D"http://www.w3.org/TR/SVG11/featu=
+re#Extensibility"/><a transform=3D"translate(0,-5)" xlink:href=3D"https://d=
+esk.draw.io/support/solutions/articles/16000042487" target=3D"_blank"><text=
+ text-anchor=3D"middle" font-size=3D"10px" x=3D"50%" y=3D"100%">Viewer does=
+ not support full SVG 1.1</text></a></switch></svg>
+------MultipartBoundary--FDiXNbHWeOrFaggulQYLeYkPS7C25rsQck0ENczq8g----
+Content-Type: image/svg+xml
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://keyou.github.io/data/gpu_share_image.svg
+
+<?xml version=3D"1.0" encoding=3D"UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/=
+SVG/1.1/DTD/svg11.dtd">
+<svg xmlns=3D"http://www.w3.org/2000/svg" xmlns:xlink=3D"http://www.w3.org/=
+1999/xlink" version=3D"1.1" width=3D"1224px" height=3D"1063px" viewBox=3D"-=
+0.5 -0.5 1224 1063" content=3D"&lt;mxfile host=3D&quot;app.diagrams.net&quo=
+t; modified=3D&quot;2020-06-24T08:34:10.363Z&quot; agent=3D&quot;5.0 (X11; =
+Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 S=
+afari/537.36&quot; version=3D&quot;13.2.6&quot; etag=3D&quot;TwUqDdRxcgcDMJ=
+_Ufq9n&quot; type=3D&quot;google&quot;&gt;&lt;diagram id=3D&quot;2X4g7694D8=
+HuFvLoBHjp&quot;&gt;7V1rc6O4Ev01VGW2alPmafgIfiSuim9S8ezM3I8EFJsbDL4YT+z59as=
+nLwkbOzZkvJts7YBoCSGpj7pPN0RSB8vtXeKuFtPYB6Gk9PytpA4lRVH1fg/+g0p2pETp9UxSMk=
+8Cn5TJecEs+AVoIa043wQ+WJcE0zgO02BVLvTiKAJeWipzkyR+L4u9xmH5rit3Tu/YywtmnhsCT=
+ux74KcLUmoq/bz8HgTzBbuzbFjkytJlwrTh9cL14/dCkTqS1EESxyk5Wm4HIESjx8aF1BvXXM06=
+loAobVJBIRV+uuGGPtt8tZFUG/43W8BW/MkSPswkSkHy6npAUowQtuu8JPBojo4GCXBTUJC9+QL=
+rTt0gfIm3vPgdiP6AvfnuBulsF3lf4zcQwRqcnDQyJUeTrDE9sNXCLaRRX7JsydSkkS6ZpmQ56M=
+BxJMfGJWPJtJEMKoEyBjq1NUkZoKv2SDJVKmbD5jUkZuuoxBpItolvOMZt9tGpCQ8syerjpmAte=
+CMZ14JtOrhN2BmNFUL5Hj2ws1GAPbCG+B6wVMb36KMOwSZIn6pdgWIKap00jeSxsDnCJQ5qnXZF=
+zcbi7gHOo/00oesq3bHFmsSbyAdovmU4sO+LAE7XCs2lOnyH+gnLFukypJdfgzAcxGGc4Lrqq+k=
+Bz4Pl6zSBU1W48mLqmt5DM0UWEEhSsK1dhHK2tCEogHgJ0mQHRRgiGFQbKB5o9PQ9162sbFHQK5=
+OWuVSd51nL+YqHB3TRixVA5cYL+FDX6WmcpIt4HkduOMpLnXxE0QDkMg9xvKLj+D+QpjsKXO4mj=
+cuj7LvrRTYj69RNUhuhEizwA3cZR/7XRRCxS+MAdX6YjzXqYGmk1/Em8WiRTuHQTeaADVPj+UhA=
+6KbBz3LrHxldjYOXLoa7NMJRHAHB0ILIZxIvYey9kaKCAKcBPfyDdCaOUlH5abOldDdbev1mMAg=
+D2J1mWwIrQeOCN2E2NMb/NzERUA2AfotFpO7e3ecpibc71jp8GHKD8k3zbni4yxhqHQyvhU0Dbg=
+IWBlMIqQ4E7LHkDCRzgHF2iOCfIe/kCQO0pcCra5D8DDxQaNFCaA8bRdXGCNo/hL0XQFLZaBFKD=
+W75PIC56+34qUGj2gEOwEFMdj9Q/Vudnf430394MtyWznb0rB6uvdBdrwOvgidyM+U3eeWX+41n=
+/Oza3+9kSrZBSmZE0elpNiPwOJ8QdLIrzk6xFptI+cBEHrkR5LObbwXypbYCwWrQu1sMZv1WcLf=
+aDBYudKzC+3id1nkE9RsGMvfPaKL6OjB9TTQrpvKiGga6wpysC9mrGXq2gbLW74ScR9i2JZBtoC=
++yKrCdeo2n8uwaw7iJgsrAJ7Gjzg3e+mGXm8HdiZMhdwhfMm+KtbiZsWOsIbd9trEd2sxKilXY2=
+S67mZ2qalqHs9uJFymeXeW02T1qcvcDZ4M5Pge2qh06pqw/B2jKG8f13oJo/mXsemmcCBwPEVvJ=
+CUE309944O7hK9immwR6qeM/mnGUYj7SsSTHQCSgo2IuD8oY0J0s9IL2m1Z3erOJM3UjeCEpuKY=
+GcjnNccYuQiHsgarIZUU+7RjdCd3PRr4rx0YuGSf7yXxUo03rSeYZKTiOdw+EV+7SspKlD8D/hx=
+Ei88OO2bqqZLGOfkWWuIN/ef8oK2+ASWrvk21Ce9gygWofYMmEzFm+EhlNhi78ucZryYYCsrLaN=
+uPQnsEqAWs4SHAQ4qgxh1Yj2BQhMURVYx51gRx7KFkEHRUKk1aPhjwo3UahcDZ5FrQ6KUeFIDAO=
+C1W5wEupMR0BrEkCLyo+IPEWAz9AhsBN+pgFc0yGzAaqYo8LgzW4m6LI0be3bBBguybv2H3+yE2=
+G3Z1guXGFrnBTC60vcLisDtGwX4+GOWHUwCCbpZuX9hmiC5g1WptRTNnsQhXOvKQtwZJWO1zSVq=
+MNHi1Yfl2v0Ubrwdpkgd/kOiDYJh+jKViv8S7tAfgIvmgvfYx45+V7kC6Gbup+OYN7Uk2XKG7Tv=
+9/GVNVGvc1AmMJTgdnKwQNa658WMXMKllDG2by+guSAQ0sajZO76S2Rx0k485C2xbybA4v0P1h/=
+vu5WQq+YyFT6Re7zuqU3mjq3927kh4J72evik+N6+4eiyfJFdhSLzrKnZOZadq6hcxqkLcV2ce0=
+sNYc37uAlHUeHDWRL2qOPqcEFFrXZa7ioZeUcq7obTrXG3DpzqE+c89Fg11IUgVvaYRiC9afGEB=
+OAyuRxtqnJ5DhQc/jjbnJ0JTvykzjw72+d26PrEoR6CrZLqF0CxMhIMAM5ZbbOSLAh89QGbMNjG=
+YBIvVkC3bTs6+FswIcg2mxFlQjNhnHDkRFiCLJKqOc3nObuJn367Jp9n9/0exChMGVWDY/uOXfe=
+Wn7GwD88P0N+LgNeVqs7cidpfmch/0+P7IgDFvspvSaI1xIRR6s+xQEmwxjj0KvsgdXlQbpKa1V=
+WSNaNZouG54oPmlSzRbwJfQdq8mMyiFc7oSUFy+G9kdBXsL2ZbV6+1MYixuFmvRBb99hORwSTiR=
+DIlguZwGVLSJRhnCUWF+yfim319BdvMmX3YFxWfg+RtQZB0DRoZzhrivTKkmkanSln4Y+scRVfU=
+LIHosjI06uZRIEC5Jm5ioHXtTlXJc9aNud4/roLjGzNTjPaQa3Gw89nS1bAZYQy+sd3Dz/g/4kt=
+MB7iWEAFCW4q9ex7N/Hf4SMR00lgZJXli0aVAGgq0sQqOyhGTcqM8q419OYhWCus6iyFTuaSVqp=
+BWHFNctNd5AleOSk4ghVb8Jjow/VYYlXcaWyJnQd3uskzvWwexvkyqUR5oJ36k3wm6M/gV+akzU=
+hO/GS5EpD7hbeV4LYN3SIZKS/JWaCJECbKhUDco4ysDqR1UP6DTMunUjatssc3jQpo51A1nsG+5=
+i1elCHQZRKiuocGFpmwhzfLesP3mDqjeXh8JURUHCMvNFX2yD/+QgujvsZom4IErjoaNK9NqxDd=
+4lvgg1gET1WL4OTUhOvBK7lXcbD7SpvWgSpzOtNZFnULSe8XyN1keZqfBgX3ENIFfWP5jpyWPoN=
+5sE5xqOlgpuYNzXGsF32+c0bLTYizoPJq9fKzt8BFjpf7Dpfg+BGqVugi8uabTT2cppFXLrw6cQ=
+rpns8FuDER52IPGFHCb9mfP/pa9TBajb6q3XK9lTzOT+dgqBqPD5fI7cZVYX+RumQCK0TLrgstV=
+9hdqy9eOOOG8owdzpcK6cGpFLDKU8D/ej8fsSb0Nv0fVb9qd0fAaHaZL6UKGM16e59GdE/zelgo=
+ea9PUvEYDufc1N7nWF+GVqtxacRB6cOZxdRAEPkomTfUY09Z+qIBuxl6DcTI3jXh28sqk3iRnQV=
+c+JdJsJkywqnSOjZorAKOFV5ZodVpYB4aPaURKqdsl1OwrwcEKxSQ0RQCz+NQdUK3ngUDP/AyvX=
+qBb97UWCBKjbvMmiDwfI54tLrnpfzaVz2OBNhyZeL9HF8v85OOr/rNdVfBqX399taYpuIri624Z=
+nVRqK625ncITyvgz972vIlzCit18B2X64FQzo40Wo2Vq518dOHzfrZKEzDtF3AhG39lrBnRnn2B=
+ZBI9JbEH1usap630yT3k7zGtG8TLVZwE0HTB1o5NU2PIVwKvR9uqMasWXTaN53+DyA8S9BXPz6+=
+C5/tg0LGsryZgfbt8Y5/1R5iG/DCaKUPgxT5IxJvuMCZvG9g4Q24G9Q2qrzIs6PKtiHcdxg6YB1=
+FBzPaQmg/x+qmpMor8YypQModQujZKW8OPgzdrGafjkRw77YrwoErntvpqm8Z/+8GLl0s38mHhC=
+01x6pDvPdu35D7Z98g0AU+sdYkogmzcEqLs+SJlRRBiDljWW+AnYc/RyHM07uA3Dswxy9TtU87E=
+Mv55ANTqB9e0Tljk68cXAX2tdZiQq/H09ePj05/w396ziwLQZ9UnIPs66IvG1jL6qnumd9KretP=
+q52A1/pMA/27cbSiW6EuiHWaQantoS6JZTXZuKnlg68a7MBEd3D8/Tid/TUWb6WEJuDsfFtqzJ1=
+PIuOZNmePk2t2V+dzWLomCkz/j9dvAii7g/LpkGPQ9pB/RvgMUQ0OsGMZNZBriRZU7+CfCRKvsg=
+f6pPlpwNTaGLqAbtQ7/zgjrT8V4f/6djXdOcVq13nWeduM1KV99dH2WFnCJR9+3CKkeycqeRUla=
+YH9tS6lfpg0GuDB+umD4WNkHMwP0CuxVA5E1L6pz7cjVeAzX0vlSDHSeZHPQn0tDCjR+hvONDnq=
+CP5FVXRpw2aflJeCGwTxCOAWQtQ8LkHIEnhva9MIy8H0Cv2Ad/HJfcFNo6mnSKGxXdyR9iNqCiL=
+umi+aINXQGpazkm6oCk1dWBWvqHFFonX9jG72k/4+ejwaRif55pgOe5n+Wj6hW/tcN1dHf&lt;/=
+diagram&gt;&lt;/mxfile&gt;" style=3D"background-color: rgb(255, 255, 255);"=
+><defs/><g><rect x=3D"337" y=3D"18" width=3D"240" height=3D"80" rx=3D"12" r=
+y=3D"12" fill=3D"#f8cecc" stroke=3D"#b85450" pointer-events=3D"all"/><g tra=
+nsform=3D"translate(-0.5 -0.5)"><switch><foreignObject style=3D"overflow: v=
+isible; text-align: left;" pointer-events=3D"none" width=3D"100%" height=3D=
+"100%" requiredFeatures=3D"http://www.w3.org/TR/SVG11/feature#Extensibility=
+"><div xmlns=3D"http://www.w3.org/1999/xhtml" style=3D"display: flex; align=
+-items: unsafe center; justify-content: unsafe center; width: 238px; height=
+: 1px; padding-top: 58px; margin-left: 338px;"><div style=3D"box-sizing: bo=
+rder-box; font-size: 0; text-align: center; "><div style=3D"display: inline=
+-block; font-size: 12px; font-family: Helvetica; color: #000000; line-heigh=
+t: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">gpu:=
+:SharedImageInterface<br />CreateSharedImage():Mailbox<br />Gen*/WaitSyncTo=
+ken()<br />=E8=B4=9F=E8=B4=A3SharedImage=E7=9A=84=E5=88=9B=E5=BB=BA=E5=8F=
+=8A=E7=BB=B4=E6=8A=A4,=E5=AE=83=E5=8F=AF=E4=BB=A5=E5=9C=A8=E8=BF=9B=E7=A8=
+=8B=E9=97=B4=E5=85=B1=E4=BA=AB,=E7=94=B1=E4=B8=80=E4=B8=AAMailbox=E6=9D=A5=
+=E8=A1=A8=E7=A4=BA,=E5=8F=AF=E4=BB=A5=E8=A2=AB=E7=94=A8=E4=BA=8E=E7=9B=B8=
+=E5=85=B3=E7=9A=84GL API</div></div></div></foreignObject><text x=3D"457" y=
+=3D"62" fill=3D"#000000" font-family=3D"Helvetica" font-size=3D"12px" text-=
+anchor=3D"middle">gpu::SharedImageInterface...</text></switch></g><path d=
+=3D"M 457 225.99 L 457 251.63" fill=3D"none" stroke=3D"#000000" stroke-mite=
+rlimit=3D"10" stroke-dasharray=3D"3 3" pointer-events=3D"stroke"/><path d=
+=3D"M 457 218.99 L 459.06 222.49 L 457 225.99 L 454.94 222.49 Z" fill=3D"no=
+ne" stroke=3D"#000000" stroke-miterlimit=3D"10" pointer-events=3D"all"/><pa=
+th d=3D"M 457 256.88 L 453.5 249.88 L 457 251.63 L 460.5 249.88 Z" fill=3D"=
+#000000" stroke=3D"#000000" stroke-miterlimit=3D"10" pointer-events=3D"all"=
+/><path d=3D"M 457 138 L 457 106.12" fill=3D"none" stroke=3D"#000000" strok=
+e-miterlimit=3D"10" pointer-events=3D"stroke"/><path d=3D"M 457 99.12 L 460=
+.5 106.12 L 453.5 106.12 Z" fill=3D"none" stroke=3D"#000000" stroke-miterli=
+mit=3D"10" pointer-events=3D"all"/><rect x=3D"337" y=3D"138" width=3D"240" =
+height=3D"80" rx=3D"12" ry=3D"12" fill=3D"#ffffff" stroke=3D"#000000" point=
+er-events=3D"all"/><g transform=3D"translate(-0.5 -0.5)"><switch><foreignOb=
+ject style=3D"overflow: visible; text-align: left;" pointer-events=3D"none"=
+ width=3D"100%" height=3D"100%" requiredFeatures=3D"http://www.w3.org/TR/SV=
+G11/feature#Extensibility"><div xmlns=3D"http://www.w3.org/1999/xhtml" styl=
+e=3D"display: flex; align-items: unsafe center; justify-content: unsafe cen=
+ter; width: 238px; height: 1px; padding-top: 178px; margin-left: 338px;"><d=
+iv style=3D"box-sizing: border-box; font-size: 0; text-align: center; "><di=
+v style=3D"display: inline-block; font-size: 12px; font-family: Helvetica; =
+color: #000000; line-height: 1.2; pointer-events: all; white-space: normal;=
+ word-wrap: normal; ">gpu::ClientSharedImageInterface<br /><font color=3D"#=
+6e6e6e">gpu::SharedImageInterfaceProxy</font><br />client=E7=AB=AF=E7=9A=84=
+=E5=AE=9E=E7=8E=B0=EF=BC=8C=E4=BD=BF=E7=94=A8IPC=E5=92=8Cservice=E7=AB=AF=
+=E9=80=9A=E4=BF=A1</div></div></div></foreignObject><text x=3D"457" y=3D"18=
+2" fill=3D"#000000" font-family=3D"Helvetica" font-size=3D"12px" text-ancho=
+r=3D"middle">gpu::ClientSharedImageInterface...</text></switch></g><path d=
+=3D"M 457 344.37 L 457 411.63" fill=3D"none" stroke=3D"#000000" stroke-mite=
+rlimit=3D"10" stroke-dasharray=3D"3 3" pointer-events=3D"stroke"/><path d=
+=3D"M 457 339.12 L 460.5 346.12 L 457 344.37 L 453.5 346.12 Z" fill=3D"#000=
+000" stroke=3D"#000000" stroke-miterlimit=3D"10" pointer-events=3D"all"/><p=
+ath d=3D"M 457 416.88 L 453.5 409.88 L 457 411.63 L 460.5 409.88 Z" fill=3D=
+"#000000" stroke=3D"#000000" stroke-miterlimit=3D"10" pointer-events=3D"all=
+"/><g transform=3D"translate(-0.5 -0.5)"><switch><foreignObject style=3D"ov=
+erflow: visible; text-align: left;" pointer-events=3D"none" width=3D"100%" =
+height=3D"100%" requiredFeatures=3D"http://www.w3.org/TR/SVG11/feature#Exte=
+nsibility"><div xmlns=3D"http://www.w3.org/1999/xhtml" style=3D"display: fl=
+ex; align-items: unsafe center; justify-content: unsafe center; width: 1px;=
+ height: 1px; padding-top: 378px; margin-left: 457px;"><div style=3D"box-si=
+zing: border-box; font-size: 0; text-align: center; "><div style=3D"display=
+: inline-block; font-size: 11px; font-family: Helvetica; color: #000000; li=
+ne-height: 1.2; pointer-events: all; background-color: #ffffff; white-space=
+: nowrap; ">Legacy<br />IPC</div></div></div></foreignObject><text x=3D"457=
+" y=3D"381" fill=3D"#000000" font-family=3D"Helvetica" font-size=3D"11px" t=
+ext-anchor=3D"middle">Legacy...</text></switch></g><path d=3D"M 397 258 L 3=
+97 224.37" fill=3D"none" stroke=3D"#000000" stroke-miterlimit=3D"10" pointe=
+r-events=3D"stroke"/><path d=3D"M 397 219.12 L 400.5 226.12 L 397 224.37 L =
+393.5 226.12 Z" fill=3D"#000000" stroke=3D"#000000" stroke-miterlimit=3D"10=
+" pointer-events=3D"all"/><rect x=3D"337" y=3D"258" width=3D"240" height=3D=
+"80" rx=3D"12" ry=3D"12" fill=3D"#d5e8d4" stroke=3D"#82b366" pointer-events=
+=3D"all"/><g transform=3D"translate(-0.5 -0.5)"><switch><foreignObject styl=
+e=3D"overflow: visible; text-align: left;" pointer-events=3D"none" width=3D=
+"100%" height=3D"100%" requiredFeatures=3D"http://www.w3.org/TR/SVG11/featu=
+re#Extensibility"><div xmlns=3D"http://www.w3.org/1999/xhtml" style=3D"disp=
+lay: flex; align-items: unsafe center; justify-content: unsafe center; widt=
+h: 238px; height: 1px; padding-top: 298px; margin-left: 338px;"><div style=
+=3D"box-sizing: border-box; font-size: 0; text-align: center; "><div style=
+=3D"display: inline-block; font-size: 12px; font-family: Helvetica; color: =
+#000000; line-height: 1.2; pointer-events: all; white-space: normal; word-w=
+rap: normal; ">gpu::GpuChannelHost<br />CreateClientSharedImageInterface()<=
+/div></div></div></foreignObject><text x=3D"457" y=3D"302" fill=3D"#000000"=
+ font-family=3D"Helvetica" font-size=3D"12px" text-anchor=3D"middle">gpu::G=
+puChannelHost...</text></switch></g><path d=3D"M 457 745.99 L 457 771.63" f=
+ill=3D"none" stroke=3D"#000000" stroke-miterlimit=3D"10" stroke-dasharray=
+=3D"3 3" pointer-events=3D"stroke"/><path d=3D"M 457 738.99 L 459.06 742.49=
+ L 457 745.99 L 454.94 742.49 Z" fill=3D"none" stroke=3D"#000000" stroke-mi=
+terlimit=3D"10" pointer-events=3D"all"/><path d=3D"M 457 776.88 L 453.5 769=
+.88 L 457 771.63 L 460.5 769.88 Z" fill=3D"#000000" stroke=3D"#000000" stro=
+ke-miterlimit=3D"10" pointer-events=3D"all"/><path d=3D"M 584.99 698 L 650.=
+63 698" fill=3D"none" stroke=3D"#000000" stroke-miterlimit=3D"10" pointer-e=
+vents=3D"stroke"/><path d=3D"M 577.99 698 L 581.49 695.94 L 584.99 698 L 58=
+1.49 700.06 Z" fill=3D"#000000" stroke=3D"#000000" stroke-miterlimit=3D"10"=
+ pointer-events=3D"all"/><path d=3D"M 655.88 698 L 648.88 701.5 L 650.63 69=
+8 L 648.88 694.5 Z" fill=3D"#000000" stroke=3D"#000000" stroke-miterlimit=
+=3D"10" pointer-events=3D"all"/><g transform=3D"translate(-0.5 -0.5)"><swit=
+ch><foreignObject style=3D"overflow: visible; text-align: left;" pointer-ev=
+ents=3D"none" width=3D"100%" height=3D"100%" requiredFeatures=3D"http://www=
+.w3.org/TR/SVG11/feature#Extensibility"><div xmlns=3D"http://www.w3.org/199=
+9/xhtml" style=3D"display: flex; align-items: unsafe center; justify-conten=
+t: unsafe center; width: 1px; height: 1px; padding-top: 698px; margin-left:=
+ 617px;"><div style=3D"box-sizing: border-box; font-size: 0; text-align: ce=
+nter; "><div style=3D"display: inline-block; font-size: 11px; font-family: =
+Helvetica; color: #000000; line-height: 1.2; pointer-events: all; backgroun=
+d-color: #ffffff; white-space: nowrap; ">1:n</div></div></div></foreignObje=
+ct><text x=3D"617" y=3D"701" fill=3D"#000000" font-family=3D"Helvetica" fon=
+t-size=3D"11px" text-anchor=3D"middle">1:n</text></switch></g><path d=3D"M =
+577 718 L 617 718 L 617 808 L 650.63 808" fill=3D"none" stroke=3D"#000000" =
+stroke-miterlimit=3D"10" pointer-events=3D"stroke"/><path d=3D"M 655.88 808=
+ L 648.88 811.5 L 650.63 808 L 648.88 804.5 Z" fill=3D"#000000" stroke=3D"#=
+000000" stroke-miterlimit=3D"10" pointer-events=3D"all"/><path d=3D"M 584.9=
+9 678 L 617 678 L 617 578 L 650.63 578" fill=3D"none" stroke=3D"#000000" st=
+roke-miterlimit=3D"10" stroke-dasharray=3D"3 3" pointer-events=3D"stroke"/>=
+<path d=3D"M 577.99 678 L 581.49 675.94 L 584.99 678 L 581.49 680.06 Z" fil=
+l=3D"none" stroke=3D"#000000" stroke-miterlimit=3D"10" pointer-events=3D"al=
+l"/><path d=3D"M 655.88 578 L 648.88 581.5 L 650.63 578 L 648.88 574.5 Z" f=
+ill=3D"#000000" stroke=3D"#000000" stroke-miterlimit=3D"10" pointer-events=
+=3D"all"/><rect x=3D"337" y=3D"658" width=3D"240" height=3D"80" rx=3D"12" r=
+y=3D"12" fill=3D"#ffffff" stroke=3D"#000000" pointer-events=3D"all"/><g tra=
+nsform=3D"translate(-0.5 -0.5)"><switch><foreignObject style=3D"overflow: v=
+isible; text-align: left;" pointer-events=3D"none" width=3D"100%" height=3D=
+"100%" requiredFeatures=3D"http://www.w3.org/TR/SVG11/feature#Extensibility=
+"><div xmlns=3D"http://www.w3.org/1999/xhtml" style=3D"display: flex; align=
+-items: unsafe center; justify-content: unsafe center; width: 238px; height=
+: 1px; padding-top: 698px; margin-left: 338px;"><div style=3D"box-sizing: b=
+order-box; font-size: 0; text-align: center; "><div style=3D"display: inlin=
+e-block; font-size: 12px; font-family: Helvetica; color: #000000; line-heig=
+ht: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">gpu=
+::SharedImage(Backing)Factory<br />CreateSharedImage()<br />ProduceGLTextur=
+e/*()<br />=E8=B4=9F=E8=B4=A3=E5=88=9B=E5=BB=BA=E5=B9=B6=E6=B3=A8=E5=86=8CS=
+haredImageBacking=E5=88=B0SIBManager=EF=BC=8C=E6=AF=8F=E4=B8=AASIB=E9=83=BD=
+=E5=AF=B9=E5=BA=94=E4=B8=80=E4=B8=AAmailbox</div></div></div></foreignObjec=
+t><text x=3D"457" y=3D"702" fill=3D"#000000" font-family=3D"Helvetica" font=
+-size=3D"12px" text-anchor=3D"middle">gpu::SharedImage(Backing)Factory...</=
+text></switch></g><path d=3D"M 969.01 788 L 937 788 L 937 808 L 903.37 808"=
+ fill=3D"none" stroke=3D"#b3b3b3" stroke-miterlimit=3D"10" pointer-events=
+=3D"stroke"/><path d=3D"M 976.01 788 L 972.51 790.06 L 969.01 788 L 972.51 =
+785.94 Z" fill=3D"none" stroke=3D"#b3b3b3" stroke-miterlimit=3D"10" pointer=
+-events=3D"all"/><path d=3D"M 898.12 808 L 905.12 804.5 L 903.37 808 L 905.=
+12 811.5 Z" fill=3D"#b3b3b3" stroke=3D"#b3b3b3" stroke-miterlimit=3D"10" po=
+inter-events=3D"all"/><g transform=3D"translate(-0.5 -0.5)"><switch><foreig=
+nObject style=3D"overflow: visible; text-align: left;" pointer-events=3D"no=
+ne" width=3D"100%" height=3D"100%" requiredFeatures=3D"http://www.w3.org/TR=
+/SVG11/feature#Extensibility"><div xmlns=3D"http://www.w3.org/1999/xhtml" s=
+tyle=3D"display: flex; align-items: unsafe center; justify-content: unsafe =
+center; width: 1px; height: 1px; padding-top: 798px; margin-left: 937px;"><=
+div style=3D"box-sizing: border-box; font-size: 0; text-align: center; "><d=
+iv style=3D"display: inline-block; font-size: 11px; font-family: Helvetica;=
+ color: #B3B3B3; line-height: 1.2; pointer-events: all; background-color: #=
+ffffff; white-space: nowrap; ">SIBGLImage</div></div></div></foreignObject>=
+<text x=3D"937" y=3D"801" fill=3D"#B3B3B3" font-family=3D"Helvetica" font-s=
+ize=3D"11px" text-anchor=3D"middle">SIBGLImage</text></switch></g><rect x=
+=3D"657" y=3D"658" width=3D"240" height=3D"80" rx=3D"12" ry=3D"12" fill=3D"=
+#f8cecc" stroke=3D"#b85450" pointer-events=3D"all"/><g transform=3D"transla=
+te(-0.5 -0.5)"><switch><foreignObject style=3D"overflow: visible; text-alig=
+n: left;" pointer-events=3D"none" width=3D"100%" height=3D"100%" requiredFe=
+atures=3D"http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns=3D"h=
+ttp://www.w3.org/1999/xhtml" style=3D"display: flex; align-items: unsafe ce=
+nter; justify-content: unsafe center; width: 238px; height: 1px; padding-to=
+p: 698px; margin-left: 658px;"><div style=3D"box-sizing: border-box; font-s=
+ize: 0; text-align: center; "><div style=3D"display: inline-block; font-siz=
+e: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-=
+events: all; white-space: normal; word-wrap: normal; ">gpu::SharedImageBack=
+ing<br /><font><font style=3D"font-size: 12px">gpu::SharedImageRepresentati=
+on</font><br /></font>ProduceGLTexture/*()<br />SIB=E8=A1=A8=E7=A4=BAShared=
+Image=E7=9A=84=E5=AD=98=E5=82=A8=E5=90=8E=E7=AB=AF=EF=BC=8CSIR=E8=A1=A8=E7=
+=A4=BASI=E7=9A=84=E5=89=8D=E7=AB=AF=E8=A1=A8=E7=A4=BA=EF=BC=8CSIR=E5=8C=85=
+=E8=A3=85=E4=BA=86SIB=EF=BC=8C=E5=AD=98=E5=82=A8=E5=90=8E=E7=AB=AF=E5=8F=AF=
+=E8=83=BD=E6=98=AFGLTexture,GMB,VkImage=E7=AD=89</div></div></div></foreign=
+Object><text x=3D"777" y=3D"702" fill=3D"#000000" font-family=3D"Helvetica"=
+ font-size=3D"12px" text-anchor=3D"middle">gpu::SharedImageBacking...</text=
+></switch></g><path d=3D"M 457 505.99 L 457 531.63" fill=3D"none" stroke=3D=
+"#000000" stroke-miterlimit=3D"10" pointer-events=3D"stroke"/><path d=3D"M =
+457 498.99 L 459.06 502.49 L 457 505.99 L 454.94 502.49 Z" fill=3D"#000000"=
+ stroke=3D"#000000" stroke-miterlimit=3D"10" pointer-events=3D"all"/><path =
+d=3D"M 457 536.88 L 453.5 529.88 L 457 531.63 L 460.5 529.88 Z" fill=3D"#00=
+0000" stroke=3D"#000000" stroke-miterlimit=3D"10" pointer-events=3D"all"/><=
+rect x=3D"337" y=3D"418" width=3D"240" height=3D"80" rx=3D"12" ry=3D"12" fi=
+ll=3D"#d5e8d4" stroke=3D"#82b366" pointer-events=3D"all"/><g transform=3D"t=
+ranslate(-0.5 -0.5)"><switch><foreignObject style=3D"overflow: visible; tex=
+t-align: left;" pointer-events=3D"none" width=3D"100%" height=3D"100%" requ=
+iredFeatures=3D"http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmln=
+s=3D"http://www.w3.org/1999/xhtml" style=3D"display: flex; align-items: uns=
+afe center; justify-content: unsafe center; width: 238px; height: 1px; padd=
+ing-top: 458px; margin-left: 338px;"><div style=3D"box-sizing: border-box; =
+font-size: 0; text-align: center; "><div style=3D"display: inline-block; fo=
+nt-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; po=
+inter-events: all; white-space: normal; word-wrap: normal; ">gpu::GpuChanne=
+l<br />CreateSharedImageStub()</div></div></div></foreignObject><text x=3D"=
+457" y=3D"462" fill=3D"#000000" font-family=3D"Helvetica" font-size=3D"12px=
+" text-anchor=3D"middle">gpu::GpuChannel...</text></switch></g><path d=3D"M=
+ 457 625.99 L 457 651.63" fill=3D"none" stroke=3D"#000000" stroke-miterlimi=
+t=3D"10" pointer-events=3D"stroke"/><path d=3D"M 457 618.99 L 459.06 622.49=
+ L 457 625.99 L 454.94 622.49 Z" fill=3D"#000000" stroke=3D"#000000" stroke=
+-miterlimit=3D"10" pointer-events=3D"all"/><path d=3D"M 457 656.88 L 453.5 =
+649.88 L 457 651.63 L 460.5 649.88 Z" fill=3D"#000000" stroke=3D"#000000" s=
+troke-miterlimit=3D"10" pointer-events=3D"all"/><rect x=3D"337" y=3D"538" w=
+idth=3D"240" height=3D"80" rx=3D"12" ry=3D"12" fill=3D"#f8cecc" stroke=3D"#=
+b85450" pointer-events=3D"all"/><g transform=3D"translate(-0.5 -0.5)"><swit=
+ch><foreignObject style=3D"overflow: visible; text-align: left;" pointer-ev=
+ents=3D"none" width=3D"100%" height=3D"100%" requiredFeatures=3D"http://www=
+.w3.org/TR/SVG11/feature#Extensibility"><div xmlns=3D"http://www.w3.org/199=
+9/xhtml" style=3D"display: flex; align-items: unsafe center; justify-conten=
+t: unsafe center; width: 238px; height: 1px; padding-top: 578px; margin-lef=
+t: 338px;"><div style=3D"box-sizing: border-box; font-size: 0; text-align: =
+center; "><div style=3D"display: inline-block; font-size: 12px; font-family=
+: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-s=
+pace: normal; word-wrap: normal; ">gpu::SharedImageStub<br />static Create(=
+GpuChannel)<br />OnMessageReceived()<br />OnCreateSharedImage(WithData)()<b=
+r />=E8=B4=9F=E8=B4=A3=E5=88=9B=E5=BB=BA=E5=B9=B6=E7=BB=B4=E6=8A=A4SharedIm=
+age</div></div></div></foreignObject><text x=3D"457" y=3D"582" fill=3D"#000=
+000" font-family=3D"Helvetica" font-size=3D"12px" text-anchor=3D"middle">gp=
+u::SharedImageStub...</text></switch></g><rect x=3D"337" y=3D"778" width=3D=
+"240" height=3D"120" rx=3D"18" ry=3D"18" fill=3D"#ffffff" stroke=3D"#000000=
+" pointer-events=3D"all"/><g transform=3D"translate(-0.5 -0.5)"><switch><fo=
+reignObject style=3D"overflow: visible; text-align: left;" pointer-events=
+=3D"none" width=3D"100%" height=3D"100%" requiredFeatures=3D"http://www.w3.=
+org/TR/SVG11/feature#Extensibility"><div xmlns=3D"http://www.w3.org/1999/xh=
+tml" style=3D"display: flex; align-items: unsafe center; justify-content: u=
+nsafe center; width: 238px; height: 1px; padding-top: 838px; margin-left: 3=
+38px;"><div style=3D"box-sizing: border-box; font-size: 0; text-align: cent=
+er; "><div style=3D"display: inline-block; font-size: 12px; font-family: He=
+lvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space=
+: normal; word-wrap: normal; ">gpu::ImageFactory<br />gpu::GpuMemoryBufferF=
+actory<br />CreateImageForGM.Buffer():gl::GLImage<br />static CreateNativeT=
+ype()<br />CreateGpuMemoryBuffer():gfx::GMB.Handle<br />AsImageFactory():Im=
+ageFactory<br />=E8=B4=9F=E8=B4=A3=E5=88=9B=E5=BB=BAGMB=E5=92=8CGLImage=EF=
+=BC=8CGLImage=E4=BC=9A=E4=BD=BF=E7=94=A8GMB=E6=9D=A5=E5=AD=98=E5=82=A8=E6=
+=95=B0=E6=8D=AE</div></div></div></foreignObject><text x=3D"457" y=3D"842" =
+fill=3D"#000000" font-family=3D"Helvetica" font-size=3D"12px" text-anchor=
+=3D"middle">gpu::ImageFactory...</text></switch></g><path d=3D"M 457 938 L =
+457 906.12" fill=3D"none" stroke=3D"#000000" stroke-miterlimit=3D"10" point=
+er-events=3D"stroke"/><path d=3D"M 457 899.12 L 460.5 906.12 L 453.5 906.12=
+ Z" fill=3D"none" stroke=3D"#000000" stroke-miterlimit=3D"10" pointer-event=
+s=3D"all"/><rect x=3D"337" y=3D"938" width=3D"240" height=3D"80" rx=3D"12" =
+ry=3D"12" fill=3D"#f5f5f5" stroke=3D"#666666" pointer-events=3D"all"/><g tr=
+ansform=3D"translate(-0.5 -0.5)"><switch><foreignObject style=3D"overflow: =
+visible; text-align: left;" pointer-events=3D"none" width=3D"100%" height=
+=3D"100%" requiredFeatures=3D"http://www.w3.org/TR/SVG11/feature#Extensibil=
+ity"><div xmlns=3D"http://www.w3.org/1999/xhtml" style=3D"display: flex; al=
+ign-items: unsafe center; justify-content: unsafe center; width: 238px; hei=
+ght: 1px; padding-top: 978px; margin-left: 338px;"><div style=3D"box-sizing=
+: border-box; font-size: 0; text-align: center; "><div style=3D"display: in=
+line-block; font-size: 12px; font-family: Helvetica; color: #333333; line-h=
+eight: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">=
+gpu::GpuMemoryBufferFactoryIOSurface<br />gpu::GpuMemoryBufferFactoryDXGI<b=
+r />gpu::GpuMemoryBufferFactoryAndroidH.B.<br />gpu::GpuMemoryBufferFactory=
+NativePixmap<br />=E5=AF=B9=E6=8E=A5=E4=B8=8D=E5=90=8C=E5=B9=B3=E5=8F=B0=E7=
+=9A=84GMB=EF=BC=8C=E5=9C=A8Linux=E5=B9=B3=E5=8F=B0=E5=BA=95=E5=B1=82=E5=AE=
+=9E=E7=8E=B0=E6=98=AFDMA=EF=BC=8CAndroid=E6=98=AFAHB=EF=BC=8CWindow=E6=98=
+=AFDXGI</div></div></div></foreignObject><text x=3D"457" y=3D"982" fill=3D"=
+#333333" font-family=3D"Helvetica" font-size=3D"12px" text-anchor=3D"middle=
+">gpu::GpuMemoryBufferFactoryIOSurface...</text></switch></g><path d=3D"M 5=
+77 838 L 650.63 838" fill=3D"none" stroke=3D"#000000" stroke-miterlimit=3D"=
+10" pointer-events=3D"stroke"/><path d=3D"M 655.88 838 L 648.88 841.5 L 650=
+.63 838 L 648.88 834.5 Z" fill=3D"#000000" stroke=3D"#000000" stroke-miterl=
+imit=3D"10" pointer-events=3D"all"/><rect x=3D"657" y=3D"778" width=3D"240"=
+ height=3D"120" rx=3D"18" ry=3D"18" fill=3D"#ffffff" stroke=3D"#000000" poi=
+nter-events=3D"all"/><g transform=3D"translate(-0.5 -0.5)"><switch><foreign=
+Object style=3D"overflow: visible; text-align: left;" pointer-events=3D"non=
+e" width=3D"100%" height=3D"100%" requiredFeatures=3D"http://www.w3.org/TR/=
+SVG11/feature#Extensibility"><div xmlns=3D"http://www.w3.org/1999/xhtml" st=
+yle=3D"display: flex; align-items: unsafe center; justify-content: unsafe c=
+enter; width: 238px; height: 1px; padding-top: 838px; margin-left: 658px;">=
+<div style=3D"box-sizing: border-box; font-size: 0; text-align: center; "><=
+div style=3D"display: inline-block; font-size: 12px; font-family: Helvetica=
+; color: #000000; line-height: 1.2; pointer-events: all; white-space: norma=
+l; word-wrap: normal; ">gl::GLImage<br />ShouldBindOrCopy()<br />Copy/BindT=
+ex(Sub)Image()<br />Flush()<br />=E6=8A=BD=E8=B1=A1=E7=9A=84GLImage=EF=BC=
+=8C=E5=8F=AF=E4=BB=A5=E7=94=A8=E6=9D=A5=E5=88=9B=E5=BB=BAGPU=E4=BD=BF=E7=94=
+=A8=E7=9A=84Texture=EF=BC=8C=E8=B4=9F=E8=B4=A3=E5=B0=86Image=E6=95=B0=E6=8D=
+=AE=E5=8F=91=E9=80=81=E5=88=B0Texture=E3=80=82GLImage=E6=98=AFSharedImageBa=
+ckingGLImage=E7=9A=84=E5=90=8E=E7=AB=AF=E5=AD=98=E5=82=A8</div></div></div>=
+</foreignObject><text x=3D"777" y=3D"842" fill=3D"#000000" font-family=3D"H=
+elvetica" font-size=3D"12px" text-anchor=3D"middle">gl::GLImage...</text></=
+switch></g><path d=3D"M 777 938 L 777 906.12" fill=3D"none" stroke=3D"#0000=
+00" stroke-miterlimit=3D"10" pointer-events=3D"stroke"/><path d=3D"M 777 89=
+9.12 L 780.5 906.12 L 773.5 906.12 Z" fill=3D"none" stroke=3D"#000000" stro=
+ke-miterlimit=3D"10" pointer-events=3D"all"/><rect x=3D"657" y=3D"938" widt=
+h=3D"240" height=3D"120" rx=3D"18" ry=3D"18" fill=3D"#f5f5f5" stroke=3D"#66=
+6666" pointer-events=3D"all"/><g transform=3D"translate(-0.5 -0.5)"><switch=
+><foreignObject style=3D"overflow: visible; text-align: left;" pointer-even=
+ts=3D"none" width=3D"100%" height=3D"100%" requiredFeatures=3D"http://www.w=
+3.org/TR/SVG11/feature#Extensibility"><div xmlns=3D"http://www.w3.org/1999/=
+xhtml" style=3D"display: flex; align-items: unsafe center; justify-content:=
+ unsafe center; width: 238px; height: 1px; padding-top: 998px; margin-left:=
+ 658px;"><div style=3D"box-sizing: border-box; font-size: 0; text-align: ce=
+nter; "><div style=3D"display: inline-block; font-size: 12px; font-family: =
+Helvetica; color: #333333; line-height: 1.2; pointer-events: all; white-spa=
+ce: normal; word-wrap: normal; ">gl::GLImageEGL/GLX/DXGI/D3D<br />(gl::GLIm=
+ageAHardwareBuffer<br />gl::GLImageNativePixmap)<br />gl::GLImageMemory<br =
+/>gl::GLImageSurfaceTexture<br />gpu::gles2::GLStreamTextureImage<br />gpu:=
+:gles2::GLImageSync<br />GLImage=E4=B8=8D=E5=90=8C=E7=9A=84=E5=AD=98=E5=82=
+=A8=E5=90=8E=E7=AB=AF</div></div></div></foreignObject><text x=3D"777" y=3D=
+"1002" fill=3D"#333333" font-family=3D"Helvetica" font-size=3D"12px" text-a=
+nchor=3D"middle">gl::GLImageEGL/GLX/DXGI/D3D...</text></switch></g><path d=
+=3D"M 264.99 838 L 330.63 838" fill=3D"none" stroke=3D"#000000" stroke-mite=
+rlimit=3D"10" pointer-events=3D"stroke"/><path d=3D"M 257.99 838 L 261.49 8=
+35.94 L 264.99 838 L 261.49 840.06 Z" fill=3D"#000000" stroke=3D"#000000" s=
+troke-miterlimit=3D"10" pointer-events=3D"all"/><path d=3D"M 335.88 838 L 3=
+28.88 841.5 L 330.63 838 L 328.88 834.5 Z" fill=3D"#000000" stroke=3D"#0000=
+00" stroke-miterlimit=3D"10" pointer-events=3D"all"/><rect x=3D"17" y=3D"81=
+8" width=3D"240" height=3D"40" rx=3D"6" ry=3D"6" fill=3D"#f5f5f5" stroke=3D=
+"#666666" pointer-events=3D"all"/><g transform=3D"translate(-0.5 -0.5)"><sw=
+itch><foreignObject style=3D"overflow: visible; text-align: left;" pointer-=
+events=3D"none" width=3D"100%" height=3D"100%" requiredFeatures=3D"http://w=
+ww.w3.org/TR/SVG11/feature#Extensibility"><div xmlns=3D"http://www.w3.org/1=
+999/xhtml" style=3D"display: flex; align-items: unsafe center; justify-cont=
+ent: unsafe center; width: 238px; height: 1px; padding-top: 838px; margin-l=
+eft: 18px;"><div style=3D"box-sizing: border-box; font-size: 0; text-align:=
+ center; "><div style=3D"display: inline-block; font-size: 12px; font-famil=
+y: Helvetica; color: #333333; line-height: 1.2; pointer-events: all; white-=
+space: normal; word-wrap: normal; ">viz::GpuServiceImpl<br />=E7=9B=B8=E8=
+=A7=81gpu=E9=83=A8=E5=88=86=E7=B1=BB=E5=9B=BE</div></div></div></foreignObj=
+ect><text x=3D"137" y=3D"842" fill=3D"#333333" font-family=3D"Helvetica" fo=
+nt-size=3D"12px" text-anchor=3D"middle">viz::GpuServiceImpl...</text></swit=
+ch></g><path d=3D"M 977 758 L 937 758 L 937 698 L 905.12 698" fill=3D"none"=
+ stroke=3D"#000000" stroke-miterlimit=3D"10" pointer-events=3D"stroke"/><pa=
+th d=3D"M 898.12 698 L 905.12 694.5 L 905.12 701.5 Z" fill=3D"none" stroke=
+=3D"#000000" stroke-miterlimit=3D"10" pointer-events=3D"all"/><rect x=3D"97=
+7" y=3D"698" width=3D"240" height=3D"120" rx=3D"18" ry=3D"18" fill=3D"#f5f5=
+f5" stroke=3D"#666666" pointer-events=3D"all"/><g transform=3D"translate(-0=
+.5 -0.5)"><switch><foreignObject style=3D"overflow: visible; text-align: le=
+ft;" pointer-events=3D"none" width=3D"100%" height=3D"100%" requiredFeature=
+s=3D"http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns=3D"http:/=
+/www.w3.org/1999/xhtml" style=3D"display: flex; align-items: unsafe center;=
+ justify-content: unsafe center; width: 238px; height: 1px; padding-top: 75=
+8px; margin-left: 978px;"><div style=3D"box-sizing: border-box; font-size: =
+0; text-align: center; "><div style=3D"display: inline-block; font-size: 12=
+px; font-family: Helvetica; color: #333333; line-height: 1.2; pointer-event=
+s: all; white-space: normal; word-wrap: normal; ">gpu::SharedImageBackingGL=
+Texture<br />gpu::SharedImageBackingGLImage<br />gpu::SharedImageBackingEgl=
+Image<br />gpu::SharedImageBackingAHB<br />gpu::SharedImageBackingD3D<br />=
+gpu::SharedImageBackingOzone<br />gpu::ExternalVkImageBacking<br />gpu::Sha=
+redImageVideo<br />=E4=B8=8D=E5=90=8CSharedImage=E7=9A=84=E5=AD=98=E5=82=A8=
+=E5=90=8E=E7=AB=AF</div></div></div></foreignObject><text x=3D"1097" y=3D"7=
+62" fill=3D"#333333" font-family=3D"Helvetica" font-size=3D"12px" text-anch=
+or=3D"middle">gpu::SharedImageBackingGLTexture...</text></switch></g><path =
+d=3D"M 777 625.99 L 777 651.63" fill=3D"none" stroke=3D"#000000" stroke-mit=
+erlimit=3D"10" stroke-dasharray=3D"3 3" pointer-events=3D"stroke"/><path d=
+=3D"M 777 618.99 L 779.06 622.49 L 777 625.99 L 774.94 622.49 Z" fill=3D"no=
+ne" stroke=3D"#000000" stroke-miterlimit=3D"10" pointer-events=3D"all"/><pa=
+th d=3D"M 777 656.88 L 773.5 649.88 L 777 651.63 L 780.5 649.88 Z" fill=3D"=
+#000000" stroke=3D"#000000" stroke-miterlimit=3D"10" pointer-events=3D"all"=
+/><g transform=3D"translate(-0.5 -0.5)"><switch><foreignObject style=3D"ove=
+rflow: visible; text-align: left;" pointer-events=3D"none" width=3D"100%" h=
+eight=3D"100%" requiredFeatures=3D"http://www.w3.org/TR/SVG11/feature#Exten=
+sibility"><div xmlns=3D"http://www.w3.org/1999/xhtml" style=3D"display: fle=
+x; align-items: unsafe center; justify-content: unsafe center; width: 1px; =
+height: 1px; padding-top: 638px; margin-left: 777px;"><div style=3D"box-siz=
+ing: border-box; font-size: 0; text-align: center; "><div style=3D"display:=
+ inline-block; font-size: 11px; font-family: Helvetica; color: #000000; lin=
+e-height: 1.2; pointer-events: all; background-color: #ffffff; white-space:=
+ nowrap; ">1:n</div></div></div></foreignObject><text x=3D"777" y=3D"641" f=
+ill=3D"#000000" font-family=3D"Helvetica" font-size=3D"11px" text-anchor=3D=
+"middle">1:n</text></switch></g><rect x=3D"657" y=3D"538" width=3D"240" hei=
+ght=3D"80" rx=3D"12" ry=3D"12" fill=3D"#f8cecc" stroke=3D"#b85450" pointer-=
+events=3D"all"/><g transform=3D"translate(-0.5 -0.5)"><switch><foreignObjec=
+t style=3D"overflow: visible; text-align: left;" pointer-events=3D"none" wi=
+dth=3D"100%" height=3D"100%" requiredFeatures=3D"http://www.w3.org/TR/SVG11=
+/feature#Extensibility"><div xmlns=3D"http://www.w3.org/1999/xhtml" style=
+=3D"display: flex; align-items: unsafe center; justify-content: unsafe cent=
+er; width: 238px; height: 1px; padding-top: 578px; margin-left: 658px;"><di=
+v style=3D"box-sizing: border-box; font-size: 0; text-align: center; "><div=
+ style=3D"display: inline-block; font-size: 12px; font-family: Helvetica; c=
+olor: #000000; line-height: 1.2; pointer-events: all; white-space: normal; =
+word-wrap: normal; ">gpu::SharedImageManager<br />Register()<br />ProduceGL=
+Texture(mailbox)<br />ProduceRGBEmulationGLTexture()<br />ProduceSkia/Dawn/=
+Overlay/VASurface()<br />=E8=B4=9F=E8=B4=A3=E7=BB=B4=E6=8A=A4SIB=E5=88=B0SI=
+R=E7=9A=84=E8=BD=AC=E6=8D=A2</div></div></div></foreignObject><text x=3D"77=
+7" y=3D"582" fill=3D"#000000" font-family=3D"Helvetica" font-size=3D"12px" =
+text-anchor=3D"middle">gpu::SharedImageManager...</text></switch></g><path =
+d=3D"M 969.01 538 L 947 538 L 947 578 L 903.37 578" fill=3D"none" stroke=3D=
+"#000000" stroke-miterlimit=3D"10" pointer-events=3D"stroke"/><path d=3D"M =
+976.01 538 L 972.51 540.06 L 969.01 538 L 972.51 535.94 Z" fill=3D"#000000"=
+ stroke=3D"#000000" stroke-miterlimit=3D"10" pointer-events=3D"all"/><path =
+d=3D"M 898.12 578 L 905.12 574.5 L 903.37 578 L 905.12 581.5 Z" fill=3D"#00=
+0000" stroke=3D"#000000" stroke-miterlimit=3D"10" pointer-events=3D"all"/><=
+rect x=3D"977" y=3D"518" width=3D"240" height=3D"40" rx=3D"6" ry=3D"6" fill=
+=3D"#f5f5f5" stroke=3D"#666666" pointer-events=3D"all"/><g transform=3D"tra=
+nslate(-0.5 -0.5)"><switch><foreignObject style=3D"overflow: visible; text-=
+align: left;" pointer-events=3D"none" width=3D"100%" height=3D"100%" requir=
+edFeatures=3D"http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns=
+=3D"http://www.w3.org/1999/xhtml" style=3D"display: flex; align-items: unsa=
+fe center; justify-content: unsafe center; width: 238px; height: 1px; paddi=
+ng-top: 538px; margin-left: 978px;"><div style=3D"box-sizing: border-box; f=
+ont-size: 0; text-align: center; "><div style=3D"display: inline-block; fon=
+t-size: 12px; font-family: Helvetica; color: #333333; line-height: 1.2; poi=
+nter-events: all; white-space: normal; word-wrap: normal; ">viz::GpuService=
+Impl<br />=E7=9B=B8=E8=A7=81gpu=E9=83=A8=E5=88=86=E7=B1=BB=E5=9B=BE</div></=
+div></div></foreignObject><text x=3D"1097" y=3D"542" fill=3D"#333333" font-=
+family=3D"Helvetica" font-size=3D"12px" text-anchor=3D"middle">viz::GpuServ=
+iceImpl...</text></switch></g><path d=3D"M 257 678 L 297 678 L 297 698 L 32=
+8.88 698" fill=3D"none" stroke=3D"#000000" stroke-miterlimit=3D"10" pointer=
+-events=3D"stroke"/><path d=3D"M 335.88 698 L 328.88 701.5 L 328.88 694.5 Z=
+" fill=3D"none" stroke=3D"#000000" stroke-miterlimit=3D"10" pointer-events=
+=3D"all"/><rect x=3D"17" y=3D"618" width=3D"240" height=3D"120" rx=3D"18" r=
+y=3D"18" fill=3D"#f5f5f5" stroke=3D"#666666" pointer-events=3D"all"/><g tra=
+nsform=3D"translate(-0.5 -0.5)"><switch><foreignObject style=3D"overflow: v=
+isible; text-align: left;" pointer-events=3D"none" width=3D"100%" height=3D=
+"100%" requiredFeatures=3D"http://www.w3.org/TR/SVG11/feature#Extensibility=
+"><div xmlns=3D"http://www.w3.org/1999/xhtml" style=3D"display: flex; align=
+-items: unsafe center; justify-content: unsafe center; width: 238px; height=
+: 1px; padding-top: 678px; margin-left: 18px;"><div style=3D"box-sizing: bo=
+rder-box; font-size: 0; text-align: center; "><div style=3D"display: inline=
+-block; font-size: 12px; font-family: Helvetica; color: #333333; line-heigh=
+t: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">gpu:=
+:SharedImageBackingFactoryGLTexture<br />gpu::SharedImageBackingFactoryAHB<=
+br />gpu::ExternalVkImageFactory<br />gpu::SharedImageBackingFactoryD3D<br =
+/>gpu::SharedImageBackingFactoryOzone<br />=E4=B8=8D=E5=90=8C=E5=AD=98=E5=
+=82=A8=E5=90=8E=E7=AB=AF=E7=9A=84SharedImage=E7=9A=84Backing Factory=EF=BC=
+=8C=E4=B8=8D=E5=B8=A6Backing=E7=9A=84SharedImageFactory=E5=8F=AA=E6=98=AF=
+=E4=B8=80=E4=B8=AA=E8=BE=85=E5=8A=A9=E7=B1=BB=EF=BC=8C=E6=98=AF=E5=AF=B9SIB=
+ackingFactory=E7=9A=84=E5=8C=85=E8=A3=85</div></div></div></foreignObject><=
+text x=3D"137" y=3D"682" fill=3D"#333333" font-family=3D"Helvetica" font-si=
+ze=3D"12px" text-anchor=3D"middle">gpu::SharedImageBackingFactoryGLTexture.=
+..</text></switch></g><path d=3D"M 977 638 L 937 638 L 937 698 L 905.12 698=
+" fill=3D"none" stroke=3D"#000000" stroke-miterlimit=3D"10" pointer-events=
+=3D"stroke"/><path d=3D"M 898.12 698 L 905.12 694.5 L 905.12 701.5 Z" fill=
+=3D"none" stroke=3D"#000000" stroke-miterlimit=3D"10" pointer-events=3D"all=
+"/><rect x=3D"977" y=3D"578" width=3D"240" height=3D"120" rx=3D"18" ry=3D"1=
+8" fill=3D"#f5f5f5" stroke=3D"#666666" pointer-events=3D"all"/><g transform=
+=3D"translate(-0.5 -0.5)"><switch><foreignObject style=3D"overflow: visible=
+; text-align: left;" pointer-events=3D"none" width=3D"100%" height=3D"100%"=
+ requiredFeatures=3D"http://www.w3.org/TR/SVG11/feature#Extensibility"><div=
+ xmlns=3D"http://www.w3.org/1999/xhtml" style=3D"display: flex; align-items=
+: unsafe center; justify-content: unsafe center; width: 238px; height: 1px;=
+ padding-top: 638px; margin-left: 978px;"><div style=3D"box-sizing: border-=
+box; font-size: 0; text-align: center; "><div style=3D"display: inline-bloc=
+k; font-size: 12px; font-family: Helvetica; color: #333333; line-height: 1.=
+2; pointer-events: all; white-space: normal; word-wrap: normal; ">gpu::Shar=
+edImageRepresentationGLTexture<br />gpu::SharedImageRepresentationSkia<br /=
+>gpu::SharedImageRepresentationOverlay<br />gpu::SharedImageRepresentationV=
+aapi<br />gpu::SharedImageRepresentationSkiaVkAHB<br />gpu::SharedImageRepr=
+esentationSkiaImpl<br />gpu::SharedImageRepresentationSkiaGL<br />gpu::Wrap=
+pedSkImageRepresentation<br />=E4=B8=8D=E5=90=8CSharedImage=E7=9A=84=E5=89=
+=8D=E7=AB=AF=E8=A1=A8=E7=A4=BA</div></div></div></foreignObject><text x=3D"=
+1097" y=3D"642" fill=3D"#333333" font-family=3D"Helvetica" font-size=3D"12p=
+x" text-anchor=3D"middle">gpu::SharedImageRepresentationGLTexture...</text>=
+</switch></g><path d=3D"M 257 78 L 297 78 L 297 58 L 328.88 58" fill=3D"non=
+e" stroke=3D"#000000" stroke-miterlimit=3D"10" pointer-events=3D"stroke"/><=
+path d=3D"M 335.88 58 L 328.88 61.5 L 328.88 54.5 Z" fill=3D"none" stroke=
+=3D"#000000" stroke-miterlimit=3D"10" pointer-events=3D"all"/><rect x=3D"17=
+" y=3D"58" width=3D"240" height=3D"40" rx=3D"6" ry=3D"6" fill=3D"#f5f5f5" s=
+troke=3D"#666666" pointer-events=3D"all"/><g transform=3D"translate(-0.5 -0=
+.5)"><switch><foreignObject style=3D"overflow: visible; text-align: left;" =
+pointer-events=3D"none" width=3D"100%" height=3D"100%" requiredFeatures=3D"=
+http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns=3D"http://www.=
+w3.org/1999/xhtml" style=3D"display: flex; align-items: unsafe center; just=
+ify-content: unsafe center; width: 238px; height: 1px; padding-top: 78px; m=
+argin-left: 18px;"><div style=3D"box-sizing: border-box; font-size: 0; text=
+-align: center; "><div style=3D"display: inline-block; font-size: 12px; fon=
+t-family: Helvetica; color: #333333; line-height: 1.2; pointer-events: all;=
+ white-space: normal; word-wrap: normal; ">gpu::SharedImageInterfaceInProce=
+ss<br />=E7=94=A8=E4=BA=8Eviz=E7=9A=84Comporitor=E7=BA=BF=E7=A8=8B</div></d=
+iv></div></foreignObject><text x=3D"137" y=3D"82" fill=3D"#333333" font-fam=
+ily=3D"Helvetica" font-size=3D"12px" text-anchor=3D"middle">gpu::SharedImag=
+eInterfaceInProcess...</text></switch></g><path d=3D"M 777 498 L 777 531.63=
+" fill=3D"none" stroke=3D"#000000" stroke-miterlimit=3D"10" stroke-dasharra=
+y=3D"3 3" pointer-events=3D"stroke"/><path d=3D"M 777 536.88 L 773.5 529.88=
+ L 777 531.63 L 780.5 529.88 Z" fill=3D"#000000" stroke=3D"#000000" stroke-=
+miterlimit=3D"10" pointer-events=3D"all"/><g transform=3D"translate(-0.5 -0=
+.5)"><switch><foreignObject style=3D"overflow: visible; text-align: left;" =
+pointer-events=3D"none" width=3D"100%" height=3D"100%" requiredFeatures=3D"=
+http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns=3D"http://www.=
+w3.org/1999/xhtml" style=3D"display: flex; align-items: unsafe center; just=
+ify-content: unsafe center; width: 1px; height: 1px; padding-top: 518px; ma=
+rgin-left: 777px;"><div style=3D"box-sizing: border-box; font-size: 0; text=
+-align: center; "><div style=3D"display: inline-block; font-size: 11px; fon=
+t-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all;=
+ background-color: #ffffff; white-space: nowrap; ">indirect</div></div></di=
+v></foreignObject><text x=3D"777" y=3D"521" fill=3D"#000000" font-family=3D=
+"Helvetica" font-size=3D"11px" text-anchor=3D"middle">indirect</text></swit=
+ch></g><rect x=3D"657" y=3D"418" width=3D"240" height=3D"80" rx=3D"12" ry=
+=3D"12" fill=3D"#f5f5f5" stroke=3D"#666666" pointer-events=3D"all"/><g tran=
+sform=3D"translate(-0.5 -0.5)"><switch><foreignObject style=3D"overflow: vi=
+sible; text-align: left;" pointer-events=3D"none" width=3D"100%" height=3D"=
+100%" requiredFeatures=3D"http://www.w3.org/TR/SVG11/feature#Extensibility"=
+><div xmlns=3D"http://www.w3.org/1999/xhtml" style=3D"display: flex; align-=
+items: unsafe center; justify-content: unsafe center; width: 238px; height:=
+ 1px; padding-top: 458px; margin-left: 658px;"><div style=3D"box-sizing: bo=
+rder-box; font-size: 0; text-align: center; "><div style=3D"display: inline=
+-block; font-size: 12px; font-family: Helvetica; color: #333333; line-heigh=
+t: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">gpu:=
+:GLES2DecoderImpl<br />DoCreateAndTexStorage2DSharedImage.()<br />DoBeginSh=
+aredImageAccessDirect.()<br />DoEndSharedImageAccessDirect.()<br />=E8=A7=
+=A3=E7=A0=81GLES2=E5=91=BD=E4=BB=A4</div></div></div></foreignObject><text =
+x=3D"777" y=3D"462" fill=3D"#333333" font-family=3D"Helvetica" font-size=3D=
+"12px" text-anchor=3D"middle">gpu::GLES2DecoderImpl...</text></switch></g><=
+path d=3D"M 777 338 L 777 411.63" fill=3D"none" stroke=3D"#000000" stroke-m=
+iterlimit=3D"10" stroke-dasharray=3D"3 3" pointer-events=3D"stroke"/><path =
+d=3D"M 777 416.88 L 773.5 409.88 L 777 411.63 L 780.5 409.88 Z" fill=3D"#00=
+0000" stroke=3D"#000000" stroke-miterlimit=3D"10" pointer-events=3D"all"/><=
+g transform=3D"translate(-0.5 -0.5)"><switch><foreignObject style=3D"overfl=
+ow: visible; text-align: left;" pointer-events=3D"none" width=3D"100%" heig=
+ht=3D"100%" requiredFeatures=3D"http://www.w3.org/TR/SVG11/feature#Extensib=
+ility"><div xmlns=3D"http://www.w3.org/1999/xhtml" style=3D"display: flex; =
+align-items: unsafe center; justify-content: unsafe center; width: 1px; hei=
+ght: 1px; padding-top: 378px; margin-left: 777px;"><div style=3D"box-sizing=
+: border-box; font-size: 0; text-align: center; "><div style=3D"display: in=
+line-block; font-size: 11px; font-family: Helvetica; color: #000000; line-h=
+eight: 1.2; pointer-events: all; background-color: #ffffff; white-space: no=
+wrap; ">command buffer</div></div></div></foreignObject><text x=3D"777" y=
+=3D"381" fill=3D"#000000" font-family=3D"Helvetica" font-size=3D"11px" text=
+-anchor=3D"middle">command buffer</text></switch></g><rect x=3D"657" y=3D"2=
+58" width=3D"240" height=3D"80" rx=3D"12" ry=3D"12" fill=3D"#f5f5f5" stroke=
+=3D"#666666" pointer-events=3D"all"/><g transform=3D"translate(-0.5 -0.5)">=
+<switch><foreignObject style=3D"overflow: visible; text-align: left;" point=
+er-events=3D"none" width=3D"100%" height=3D"100%" requiredFeatures=3D"http:=
+//www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns=3D"http://www.w3.or=
+g/1999/xhtml" style=3D"display: flex; align-items: unsafe center; justify-c=
+ontent: unsafe center; width: 238px; height: 1px; padding-top: 298px; margi=
+n-left: 658px;"><div style=3D"box-sizing: border-box; font-size: 0; text-al=
+ign: center; "><div style=3D"display: inline-block; font-size: 12px; font-f=
+amily: Helvetica; color: #333333; line-height: 1.2; pointer-events: all; wh=
+ite-space: normal; word-wrap: normal; ">gpu::GLES2Interface<br />gpu::GLES2=
+Implementation<br />CreateAndTexStorage2DSharedImage.()<br />BeginSharedIma=
+geAccessDirect.()<br />EndSharedImageAccessDirect.()<br />=E5=BA=8F=E5=88=
+=97=E5=8C=96GLES2=E5=91=BD=E4=BB=A4</div></div></div></foreignObject><text =
+x=3D"777" y=3D"302" fill=3D"#333333" font-family=3D"Helvetica" font-size=3D=
+"12px" text-anchor=3D"middle">gpu::GLES2Interface...</text></switch></g><pa=
+th d=3D"M 777 218 L 777 251.63" fill=3D"none" stroke=3D"#000000" stroke-mit=
+erlimit=3D"10" stroke-dasharray=3D"3 3" pointer-events=3D"stroke"/><path d=
+=3D"M 777 256.88 L 773.5 249.88 L 777 251.63 L 780.5 249.88 Z" fill=3D"#000=
+000" stroke=3D"#000000" stroke-miterlimit=3D"10" pointer-events=3D"all"/><r=
+ect x=3D"657" y=3D"138" width=3D"240" height=3D"80" rx=3D"12" ry=3D"12" fil=
+l=3D"#e1d5e7" stroke=3D"#9673a6" pointer-events=3D"all"/><g transform=3D"tr=
+anslate(-0.5 -0.5)"><switch><foreignObject style=3D"overflow: visible; text=
+-align: left;" pointer-events=3D"none" width=3D"100%" height=3D"100%" requi=
+redFeatures=3D"http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns=
+=3D"http://www.w3.org/1999/xhtml" style=3D"display: flex; align-items: unsa=
+fe center; justify-content: unsafe center; width: 238px; height: 1px; paddi=
+ng-top: 178px; margin-left: 658px;"><div style=3D"box-sizing: border-box; f=
+ont-size: 0; text-align: center; "><div style=3D"display: inline-block; fon=
+t-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; poi=
+nter-events: all; white-space: normal; word-wrap: normal; ">GPU-R Raster</d=
+iv></div></div></foreignObject><text x=3D"777" y=3D"182" fill=3D"#000000" f=
+ont-family=3D"Helvetica" font-size=3D"12px" text-anchor=3D"middle">GPU-R Ra=
+ster</text></switch></g><path d=3D"M 1097 338 L 1097 411.63" fill=3D"none" =
+stroke=3D"#000000" stroke-miterlimit=3D"10" stroke-dasharray=3D"3 3" pointe=
+r-events=3D"stroke"/><path d=3D"M 1097 416.88 L 1093.5 409.88 L 1097 411.63=
+ L 1100.5 409.88 Z" fill=3D"#000000" stroke=3D"#000000" stroke-miterlimit=
+=3D"10" pointer-events=3D"all"/><g transform=3D"translate(-0.5 -0.5)"><swit=
+ch><foreignObject style=3D"overflow: visible; text-align: left;" pointer-ev=
+ents=3D"none" width=3D"100%" height=3D"100%" requiredFeatures=3D"http://www=
+.w3.org/TR/SVG11/feature#Extensibility"><div xmlns=3D"http://www.w3.org/199=
+9/xhtml" style=3D"display: flex; align-items: unsafe center; justify-conten=
+t: unsafe center; width: 1px; height: 1px; padding-top: 378px; margin-left:=
+ 1097px;"><div style=3D"box-sizing: border-box; font-size: 0; text-align: c=
+enter; "><div style=3D"display: inline-block; font-size: 11px; font-family:=
+ Helvetica; color: #000000; line-height: 1.2; pointer-events: all; backgrou=
+nd-color: #ffffff; white-space: nowrap; ">command buffer</div></div></div><=
+/foreignObject><text x=3D"1097" y=3D"381" fill=3D"#000000" font-family=3D"H=
+elvetica" font-size=3D"11px" text-anchor=3D"middle">command buffer</text></=
+switch></g><rect x=3D"977" y=3D"258" width=3D"240" height=3D"80" rx=3D"12" =
+ry=3D"12" fill=3D"#f5f5f5" stroke=3D"#666666" pointer-events=3D"all"/><g tr=
+ansform=3D"translate(-0.5 -0.5)"><switch><foreignObject style=3D"overflow: =
+visible; text-align: left;" pointer-events=3D"none" width=3D"100%" height=
+=3D"100%" requiredFeatures=3D"http://www.w3.org/TR/SVG11/feature#Extensibil=
+ity"><div xmlns=3D"http://www.w3.org/1999/xhtml" style=3D"display: flex; al=
+ign-items: unsafe center; justify-content: unsafe center; width: 238px; hei=
+ght: 1px; padding-top: 298px; margin-left: 978px;"><div style=3D"box-sizing=
+: border-box; font-size: 0; text-align: center; "><div style=3D"display: in=
+line-block; font-size: 12px; font-family: Helvetica; color: #333333; line-h=
+eight: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">=
+gpu::RasterInterface<br />gpu::RasterImplementation<br />BeginRasterCHROMIU=
+M()<br />RasterCHROMIUM()<br />EndRasterCHROMIUM()<br />=E5=BA=8F=E5=88=97=
+=E5=8C=96Raster=E5=91=BD=E4=BB=A4</div></div></div></foreignObject><text x=
+=3D"1097" y=3D"302" fill=3D"#333333" font-family=3D"Helvetica" font-size=3D=
+"12px" text-anchor=3D"middle">gpu::RasterInterface...</text></switch></g><p=
+ath d=3D"M 977 458 L 937 458 L 937 558 L 903.37 558" fill=3D"none" stroke=
+=3D"#000000" stroke-miterlimit=3D"10" stroke-dasharray=3D"3 3" pointer-even=
+ts=3D"stroke"/><path d=3D"M 898.12 558 L 905.12 554.5 L 903.37 558 L 905.12=
+ 561.5 Z" fill=3D"#000000" stroke=3D"#000000" stroke-miterlimit=3D"10" poin=
+ter-events=3D"all"/><g transform=3D"translate(-0.5 -0.5)"><switch><foreignO=
+bject style=3D"overflow: visible; text-align: left;" pointer-events=3D"none=
+" width=3D"100%" height=3D"100%" requiredFeatures=3D"http://www.w3.org/TR/S=
+VG11/feature#Extensibility"><div xmlns=3D"http://www.w3.org/1999/xhtml" sty=
+le=3D"display: flex; align-items: unsafe center; justify-content: unsafe ce=
+nter; width: 1px; height: 1px; padding-top: 508px; margin-left: 937px;"><di=
+v style=3D"box-sizing: border-box; font-size: 0; text-align: center; "><div=
+ style=3D"display: inline-block; font-size: 11px; font-family: Helvetica; c=
+olor: #000000; line-height: 1.2; pointer-events: all; background-color: #ff=
+ffff; white-space: nowrap; ">indirect</div></div></div></foreignObject><tex=
+t x=3D"937" y=3D"511" fill=3D"#000000" font-family=3D"Helvetica" font-size=
+=3D"11px" text-anchor=3D"middle">indirect</text></switch></g><rect x=3D"977=
+" y=3D"418" width=3D"240" height=3D"80" rx=3D"12" ry=3D"12" fill=3D"#f5f5f5=
+" stroke=3D"#666666" pointer-events=3D"all"/><g transform=3D"translate(-0.5=
+ -0.5)"><switch><foreignObject style=3D"overflow: visible; text-align: left=
+;" pointer-events=3D"none" width=3D"100%" height=3D"100%" requiredFeatures=
+=3D"http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns=3D"http://=
+www.w3.org/1999/xhtml" style=3D"display: flex; align-items: unsafe center; =
+justify-content: unsafe center; width: 238px; height: 1px; padding-top: 458=
+px; margin-left: 978px;"><div style=3D"box-sizing: border-box; font-size: 0=
+; text-align: center; "><div style=3D"display: inline-block; font-size: 12p=
+x; font-family: Helvetica; color: #333333; line-height: 1.2; pointer-events=
+: all; white-space: normal; word-wrap: normal; ">gpu::RasterDecoderImpl<br =
+/>DoBeginRasterCHROMIUM()<br />DoRasterCHROMIUM()<br />DoEndRasterCHROMIUM(=
+)<br />=E8=A7=A3=E7=A0=81Raster=E5=91=BD=E4=BB=A4</div></div></div></foreig=
+nObject><text x=3D"1097" y=3D"462" fill=3D"#333333" font-family=3D"Helvetic=
+a" font-size=3D"12px" text-anchor=3D"middle">gpu::RasterDecoderImpl...</tex=
+t></switch></g><path d=3D"M 1097 218 L 1097 251.63" fill=3D"none" stroke=3D=
+"#000000" stroke-miterlimit=3D"10" stroke-dasharray=3D"3 3" pointer-events=
+=3D"stroke"/><path d=3D"M 1097 256.88 L 1093.5 249.88 L 1097 251.63 L 1100.=
+5 249.88 Z" fill=3D"#000000" stroke=3D"#000000" stroke-miterlimit=3D"10" po=
+inter-events=3D"all"/><rect x=3D"977" y=3D"138" width=3D"240" height=3D"80"=
+ rx=3D"12" ry=3D"12" fill=3D"#e1d5e7" stroke=3D"#9673a6" pointer-events=3D"=
+all"/><g transform=3D"translate(-0.5 -0.5)"><switch><foreignObject style=3D=
+"overflow: visible; text-align: left;" pointer-events=3D"none" width=3D"100=
+%" height=3D"100%" requiredFeatures=3D"http://www.w3.org/TR/SVG11/feature#E=
+xtensibility"><div xmlns=3D"http://www.w3.org/1999/xhtml" style=3D"display:=
+ flex; align-items: unsafe center; justify-content: unsafe center; width: 2=
+38px; height: 1px; padding-top: 178px; margin-left: 978px;"><div style=3D"b=
+ox-sizing: border-box; font-size: 0; text-align: center; "><div style=3D"di=
+splay: inline-block; font-size: 12px; font-family: Helvetica; color: #00000=
+0; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: n=
+ormal; ">OOP-R Raster</div></div></div></foreignObject><text x=3D"1097" y=
+=3D"182" fill=3D"#000000" font-family=3D"Helvetica" font-size=3D"12px" text=
+-anchor=3D"middle">OOP-R Raster</text></switch></g><path d=3D"M 27 398 L 12=
+17 398" fill=3D"none" stroke=3D"#000000" stroke-width=3D"2" stroke-miterlim=
+it=3D"10" stroke-dasharray=3D"6 6" pointer-events=3D"stroke"/><rect x=3D"47=
+" y=3D"358" width=3D"130" height=3D"20" fill=3D"none" stroke=3D"none" point=
+er-events=3D"all"/><g transform=3D"translate(-0.5 -0.5)"><switch><foreignOb=
+ject style=3D"overflow: visible; text-align: left;" pointer-events=3D"none"=
+ width=3D"100%" height=3D"100%" requiredFeatures=3D"http://www.w3.org/TR/SV=
+G11/feature#Extensibility"><div xmlns=3D"http://www.w3.org/1999/xhtml" styl=
+e=3D"display: flex; align-items: unsafe center; justify-content: unsafe cen=
+ter; width: 1px; height: 1px; padding-top: 368px; margin-left: 112px;"><div=
+ style=3D"box-sizing: border-box; font-size: 0; text-align: center; "><div =
+style=3D"display: inline-block; font-size: 12px; font-family: Helvetica; co=
+lor: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; "=
+>Browser/Render =E8=BF=9B=E7=A8=8B</div></div></div></foreignObject><text x=
+=3D"112" y=3D"372" fill=3D"#000000" font-family=3D"Helvetica" font-size=3D"=
+12px" text-anchor=3D"middle">Browser/Render =E8=BF=9B=E7=A8=8B</text></swit=
+ch></g><rect x=3D"57" y=3D"418" width=3D"70" height=3D"20" fill=3D"none" st=
+roke=3D"none" pointer-events=3D"all"/><g transform=3D"translate(-0.5 -0.5)"=
+><switch><foreignObject style=3D"overflow: visible; text-align: left;" poin=
+ter-events=3D"none" width=3D"100%" height=3D"100%" requiredFeatures=3D"http=
+://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns=3D"http://www.w3.o=
+rg/1999/xhtml" style=3D"display: flex; align-items: unsafe center; justify-=
+content: unsafe center; width: 1px; height: 1px; padding-top: 428px; margin=
+-left: 92px;"><div style=3D"box-sizing: border-box; font-size: 0; text-alig=
+n: center; "><div style=3D"display: inline-block; font-size: 12px; font-fam=
+ily: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; whit=
+e-space: nowrap; ">GPU =E8=BF=9B=E7=A8=8B</div></div></div></foreignObject>=
+<text x=3D"92" y=3D"432" fill=3D"#000000" font-family=3D"Helvetica" font-si=
+ze=3D"12px" text-anchor=3D"middle">GPU =E8=BF=9B=E7=A8=8B</text></switch></=
+g></g><switch><g requiredFeatures=3D"http://www.w3.org/TR/SVG11/feature#Ext=
+ensibility"/><a transform=3D"translate(0,-5)" xlink:href=3D"https://desk.dr=
+aw.io/support/solutions/articles/16000042487" target=3D"_blank"><text text-=
+anchor=3D"middle" font-size=3D"10px" x=3D"50%" y=3D"100%">Viewer does not s=
+upport full SVG 1.1</text></a></switch></svg>
+------MultipartBoundary--FDiXNbHWeOrFaggulQYLeYkPS7C25rsQck0ENczq8g------

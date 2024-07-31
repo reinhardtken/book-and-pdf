@@ -1,0 +1,1611 @@
+From: <Saved by Blink>
+Snapshot-Content-Location: https://keyou.github.io/blog/2020/07/28/chromium-offscreen-rendering/
+Subject: =?utf-8?Q?Chromium=20Offscreen=20Rendering=20And=20Embedded=20|=20=E6=9F?=
+ =?utf-8?Q?=AF=E5=B9=BD?=
+Date: Mon, 22 Jul 2024 01:06:30 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----MultipartBoundary--IZKByOZGaL6z5tQqMbkrdMpkAIiTYKq2QyFNW3cWka----"
+
+
+------MultipartBoundary--IZKByOZGaL6z5tQqMbkrdMpkAIiTYKq2QyFNW3cWka----
+Content-Type: text/html
+Content-ID: <frame-8EF38FCD842133EBF69E296218CC0A00@mhtml.blink>
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://keyou.github.io/blog/2020/07/28/chromium-offscreen-rendering/
+
+<!DOCTYPE html><!--[if lt IE 7]>      <html class=3D"no-js lt-ie9 lt-ie8 lt=
+-ie7"> <![endif]--><!--[if IE 7]>         <html class=3D"no-js lt-ie9 lt-ie=
+8"> <![endif]--><!--[if IE 8]>         <html class=3D"no-js lt-ie9"> <![end=
+if]--><!--[if gt IE 8]><!--><html class=3D" js flexbox flexboxlegacy canvas=
+ canvastext webgl no-touch geolocation postmessage no-websqldatabase indexe=
+ddb hashchange history draganddrop websockets rgba hsla multiplebgs backgro=
+undsize borderimage borderradius boxshadow textshadow opacity cssanimations=
+ csscolumns cssgradients cssreflections csstransforms csstransforms3d csstr=
+ansitions fontface generatedcontent video audio localstorage sessionstorage=
+ webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang=3D"en=
+" style=3D""><!--<![endif]--><head><meta http-equiv=3D"Content-Type" conten=
+t=3D"text/html; charset=3DUTF-8">
+   =20
+<!--[if IE]><meta http-equiv=3D'X-UA-Compatible' content=3D'IE=3Dedge,chrom=
+e=3D1'><![endif]-->
+<meta name=3D"viewport" content=3D"width=3Ddevice-width,initial-scale=3D1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Chromium Offscreen Rendering And Embedded | =E6=9F=AF=E5=B9=BD</titl=
+e>
+<meta name=3D"generator" content=3D"Jekyll v3.9.3">
+<meta property=3D"og:title" content=3D"Chromium Offscreen Rendering And Emb=
+edded">
+<meta name=3D"author" content=3D"keyou">
+<meta property=3D"og:locale" content=3D"en">
+<meta name=3D"description" content=3D"=E5=9C=A8=E6=9F=90=E4=BA=9B=E5=9C=BA=
+=E6=99=AF=E4=B8=8B=E9=9C=80=E8=A6=81=E5=B0=86 Chromium =E5=B5=8C=E5=85=A5=
+=E5=88=B0=E5=85=B6=E4=BB=96=E5=BA=94=E7=94=A8=E7=A8=8B=E5=BA=8F=E4=B8=AD=EF=
+=BC=8C=E8=BF=99=E4=B8=80=E8=88=AC=E6=98=AF=E9=80=9A=E8=BF=87=E5=B0=86=E6=B5=
+=8F=E8=A7=88=E5=99=A8=E7=AA=97=E5=8F=A3=E5=B5=8C=E5=85=A5=E5=88=B0=E5=BA=94=
+=E7=94=A8=E4=B8=AD=E6=9D=A5=E5=AE=9E=E7=8E=B0=E7=9A=84=EF=BC=8C=E4=BD=86=E6=
+=98=AF=E6=9F=90=E4=BA=9B=E8=87=AA=E7=BB=98=E7=9A=84GUI=E6=A1=86=E6=9E=B6=E6=
+=97=A0=E6=B3=95=E5=B5=8C=E5=85=A5=E5=8E=9F=E7=94=9F=E7=9A=84=E7=AA=97=E5=8F=
+=A3=EF=BC=8C=E6=88=96=E8=80=85=E5=B5=8C=E5=85=A5=E4=B9=8B=E5=90=8E=E6=97=A0=
+=E6=B3=95=E5=BE=88=E5=A5=BD=E7=9A=84=E5=92=8C=E8=BF=99=E4=BA=9BGUI=E6=A1=86=
+=E6=9E=B6=E8=BF=9B=E8=A1=8C=E4=BA=92=E6=93=8D=E4=BD=9C=EF=BC=8C=E6=AF=94=E5=
+=A6=82 Windows =E4=B8=8B=E7=9A=84 WPF =E6=A1=86=E6=9E=B6=E3=80=82=E8=BF=99=
+=E4=B8=AA=E6=97=B6=E5=80=99=E5=B0=B1=E9=9C=80=E8=A6=81=E9=80=9A=E8=BF=87 Ch=
+romium =E7=9A=84=E7=A6=BB=E5=B1=8F=E6=B8=B2=E6=9F=93=E6=96=B9=E5=BC=8F=E6=
+=9D=A5=E8=BF=9B=E8=A1=8C=E5=B5=8C=E5=85=A5=E3=80=82">
+<meta property=3D"og:description" content=3D"=E5=9C=A8=E6=9F=90=E4=BA=9B=E5=
+=9C=BA=E6=99=AF=E4=B8=8B=E9=9C=80=E8=A6=81=E5=B0=86 Chromium =E5=B5=8C=E5=
+=85=A5=E5=88=B0=E5=85=B6=E4=BB=96=E5=BA=94=E7=94=A8=E7=A8=8B=E5=BA=8F=E4=B8=
+=AD=EF=BC=8C=E8=BF=99=E4=B8=80=E8=88=AC=E6=98=AF=E9=80=9A=E8=BF=87=E5=B0=86=
+=E6=B5=8F=E8=A7=88=E5=99=A8=E7=AA=97=E5=8F=A3=E5=B5=8C=E5=85=A5=E5=88=B0=E5=
+=BA=94=E7=94=A8=E4=B8=AD=E6=9D=A5=E5=AE=9E=E7=8E=B0=E7=9A=84=EF=BC=8C=E4=BD=
+=86=E6=98=AF=E6=9F=90=E4=BA=9B=E8=87=AA=E7=BB=98=E7=9A=84GUI=E6=A1=86=E6=9E=
+=B6=E6=97=A0=E6=B3=95=E5=B5=8C=E5=85=A5=E5=8E=9F=E7=94=9F=E7=9A=84=E7=AA=97=
+=E5=8F=A3=EF=BC=8C=E6=88=96=E8=80=85=E5=B5=8C=E5=85=A5=E4=B9=8B=E5=90=8E=E6=
+=97=A0=E6=B3=95=E5=BE=88=E5=A5=BD=E7=9A=84=E5=92=8C=E8=BF=99=E4=BA=9BGUI=E6=
+=A1=86=E6=9E=B6=E8=BF=9B=E8=A1=8C=E4=BA=92=E6=93=8D=E4=BD=9C=EF=BC=8C=E6=AF=
+=94=E5=A6=82 Windows =E4=B8=8B=E7=9A=84 WPF =E6=A1=86=E6=9E=B6=E3=80=82=E8=
+=BF=99=E4=B8=AA=E6=97=B6=E5=80=99=E5=B0=B1=E9=9C=80=E8=A6=81=E9=80=9A=E8=BF=
+=87 Chromium =E7=9A=84=E7=A6=BB=E5=B1=8F=E6=B8=B2=E6=9F=93=E6=96=B9=E5=BC=
+=8F=E6=9D=A5=E8=BF=9B=E8=A1=8C=E5=B5=8C=E5=85=A5=E3=80=82">
+<link rel=3D"canonical" href=3D"https://keyou.github.io/blog/2020/07/28/chr=
+omium-offscreen-rendering/">
+<meta property=3D"og:url" content=3D"https://keyou.github.io/blog/2020/07/2=
+8/chromium-offscreen-rendering/">
+<meta property=3D"og:site_name" content=3D"=E6=9F=AF=E5=B9=BD">
+<meta property=3D"og:type" content=3D"article">
+<meta property=3D"article:published_time" content=3D"2020-07-28T00:00:00+00=
+:00">
+<meta name=3D"twitter:card" content=3D"summary">
+<meta property=3D"twitter:title" content=3D"Chromium Offscreen Rendering An=
+d Embedded">
+
+<!-- End Jekyll SEO tag -->
+
+<meta name=3D"keywords" content=3D"chromium,render">
+
+
+
+
+
+<link type=3D"application/atom+xml" rel=3D"alternate" href=3D"https://keyou=
+.github.io/feed.xml" title=3D"=E6=9F=AF=E5=B9=BD">
+    <link href=3D"https://keyou.github.io/assets/stylesheets/blog.css" rel=
+=3D"stylesheet" type=3D"text/css">
+   =20
+
+
+
+
+
+
+
+
+   =20
+<link rel=3D"stylesheet" href=3D"https://keyou.github.io/assets/javascripts=
+/fancybox/jquery.fancybox.css?v=3D2.1.4" type=3D"text/css"><link rel=3D"sty=
+lesheet" href=3D"https://keyou.github.io/assets/javascripts/fancybox/helper=
+s/jquery.fancybox-buttons.css?v=3D1.0.5" type=3D"text/css"></head>
+
+<body youdao=3D"bind" class=3D"  pace-done"><div class=3D"pace  pace-inacti=
+ve"><div class=3D"pace-progress" data-progress-text=3D"100%" data-progress=
+=3D"99" style=3D"transform: translate3d(100%, 0px, 0px);">
+  <div class=3D"pace-progress-inner"></div>
+</div>
+<div class=3D"pace-activity"></div></div>
+   =20
+
+    <!--[if IE]>
+    <p class=3D"site-notice">You are using an outdated browser. Please <a h=
+ref=3D"http://browsehappy.com/" target=3D"_blank">upgrade your browser</a> =
+or <a href=3D"http://www.google.com/chromeframe/?redirect=3Dtrue" target=3D=
+"_blank">activate Google Chrome Frame</a> to improve your experience.</p>
+<![endif]-->
+
+
+    <div class=3D"nav-wrapper overlay-wrapper">
+    <div class=3D"nav-form overlay-form">
+        <span class=3D"overlay-header menu">Menu</span>
+        <a class=3D"btn-close">Close</a>
+        <div class=3D"results">
+            <ul>
+                <li><a href=3D"https://keyou.github.io/blog/categories/">Ca=
+tegories</a></li>
+                <li><a href=3D"https://keyou.github.io/blog/tags/">Tags</a>=
+</li>
+                <li><a href=3D"https://keyou.github.io/blog/projects/">Proj=
+ects</a></li>
+                <li><a href=3D"https://keyou.github.io/">About</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class=3D"search-wrapper overlay-wrapper">
+    <div class=3D"search-form overlay-form">
+        <input type=3D"text" class=3D"overlay-header search-field" placehol=
+der=3D"Search...">
+        <a class=3D"btn-close">Close</a>
+        <ul class=3D"results"></ul>
+    </div>
+</div>
+
+
+    <div id=3D"page" class=3D"hentry">
+        <header class=3D"the-header">
+    <div class=3D"unit-head">
+        <div class=3D"unit-inner unit-head-inner">
+            <nav class=3D"nav-global">
+                <ul>
+                    <li class=3D"logo nav-link">
+                        <button class=3D"btn-menu" title=3D"Menu"></button>
+                        <a href=3D"https://keyou.github.io/blog/">=E6=9F=AF=
+=E5=B9=BD</a>
+                        <!--[if !IE]> -->
+                        <button class=3D"btn-search" title=3D"Search"></but=
+ton>
+                        <!-- <![endif]-->
+                    </li>
+                    <li class=3D"nav-link"><a title=3D"Home" href=3D"https:=
+//keyou.github.io/blog/">Home</a></li>
+                    <li class=3D"nav-link"><a title=3D"Categories" href=3D"=
+https://keyou.github.io/blog/categories/">Categories</a></li>
+                    <li class=3D"nav-link"><a title=3D"Tags" href=3D"https:=
+//keyou.github.io/blog/tags/">Tags</a></li>
+                    <li class=3D"nav-link"><a title=3D"Projects" href=3D"ht=
+tps://keyou.github.io/blog/projects/">Projects</a></li>
+                    <!--[if !IE]> -->
+                    <li class=3D"nav-link"><a title=3D"Search" class=3D"btn=
+-search" href=3D"https://keyou.github.io/blog/2020/07/28/chromium-offscreen=
+-rendering/#">Search</a></li>
+                    <!-- <![endif]-->
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+
+        <div class=3D"body animated fadeInDown" role=3D"main">
+            <div class=3D"unit-body">
+                <div class=3D"unit-inner unit-body-inner">
+                    <div class=3D"entry-content">
+                        <article class=3D"unit-article layout-post">
+    <div class=3D"unit-inner unit-article-inner">
+        <div itemscope=3D"" itemtype=3D"http://schema.org/Article" class=3D=
+"content">
+            <header>
+                <div class=3D"unit-head">
+                    <div class=3D"unit-inner unit-head-inner">
+                        <h1 class=3D"entry-title" itemprop=3D"name">Chromiu=
+m Offscreen Rendering And Embedded</h1>
+                    </div>
+                </div>
+            </header>
+            <div class=3D"bd article-content">
+                <div class=3D"entry-content">
+                    <div class=3D"meta">
+                        <p class=3D"date-publish">
+                            Published:
+                            <time itemprop=3D"datePublished" class=3D"date-=
+pub updated" title=3D"2020-07-28T00:00:00+00:00" datetime=3D"2020-07-28T00:=
+00:00+00:00">July 28, 2020 </time>
+                            by
+                            <a class=3D"author" href=3D"https://keyou.githu=
+b.io/" rel=3D"author" title=3D"Show Author">
+                                <span itemprop=3D"author" itemscope=3D"" it=
+emtype=3D"http://schema.org/Person">
+                                    <span itemprop=3D"name">keyou</span>
+                                </span>
+                            </a>
+                           =20
+                                <a class=3D"license-icon" rel=3D"license" h=
+ref=3D"http://creativecommons.org/licenses/by-sa/4.0/" target=3D"_blank" ti=
+tle=3D"Show License">
+                                    <img alt=3D"Creative Commons Licence" s=
+tyle=3D"border-width:0" src=3D"https://keyou.github.io/assets/images/theme/=
+cc-by-sa.png" height=3D"16" width=3D"80">
+                                </a>
+                           =20
+                           =20
+                        </p>
+                        <ul class=3D"list-category list-linear">
+                            <li class=3D"list-head">Categories: </li>
+                            =20
+    =20
+        <li>
+            <a href=3D"https://keyou.github.io/blog/categories/#chromium" t=
+itle=3D"chromium">
+            chromium <span>7</span></a>
+        </li>
+    =20
+        <li>
+            <a href=3D"https://keyou.github.io/blog/categories/#render" tit=
+le=3D"render">
+            render <span>1</span></a>
+        </li>
+   =20
+
+
+
+                        </ul>
+                        <ul class=3D"list-tag list-linear">
+                            <li class=3D"list-head">Tags: </li>
+                            =20
+   =20
+       =20
+        <li>
+            <a href=3D"https://keyou.github.io/blog/tags/#chromium" title=
+=3D"chromium">chromium <span>14</span></a>
+        </li>
+   =20
+       =20
+        <li>
+            <a href=3D"https://keyou.github.io/blog/tags/#render" title=3D"=
+render">render <span>1</span></a>
+        </li>
+   =20
+
+
+
+
+                        </ul>
+                    </div>
+                    <div itemprop=3D"articleBody">
+                        <p>=E5=9C=A8=E6=9F=90=E4=BA=9B=E5=9C=BA=E6=99=AF=E4=
+=B8=8B=E9=9C=80=E8=A6=81=E5=B0=86 Chromium =E5=B5=8C=E5=85=A5=E5=88=B0=E5=
+=85=B6=E4=BB=96=E5=BA=94=E7=94=A8=E7=A8=8B=E5=BA=8F=E4=B8=AD=EF=BC=8C=E8=BF=
+=99=E4=B8=80=E8=88=AC=E6=98=AF=E9=80=9A=E8=BF=87=E5=B0=86=E6=B5=8F=E8=A7=88=
+=E5=99=A8=E7=AA=97=E5=8F=A3=E5=B5=8C=E5=85=A5=E5=88=B0=E5=BA=94=E7=94=A8=E4=
+=B8=AD=E6=9D=A5=E5=AE=9E=E7=8E=B0=E7=9A=84=EF=BC=8C=E4=BD=86=E6=98=AF=E6=9F=
+=90=E4=BA=9B=E8=87=AA=E7=BB=98=E7=9A=84GUI=E6=A1=86=E6=9E=B6=E6=97=A0=E6=B3=
+=95=E5=B5=8C=E5=85=A5=E5=8E=9F=E7=94=9F=E7=9A=84=E7=AA=97=E5=8F=A3=EF=BC=8C=
+=E6=88=96=E8=80=85=E5=B5=8C=E5=85=A5=E4=B9=8B=E5=90=8E=E6=97=A0=E6=B3=95=E5=
+=BE=88=E5=A5=BD=E7=9A=84=E5=92=8C=E8=BF=99=E4=BA=9BGUI=E6=A1=86=E6=9E=B6=E8=
+=BF=9B=E8=A1=8C=E4=BA=92=E6=93=8D=E4=BD=9C=EF=BC=8C=E6=AF=94=E5=A6=82 Windo=
+ws =E4=B8=8B=E7=9A=84 WPF =E6=A1=86=E6=9E=B6=E3=80=82=E8=BF=99=E4=B8=AA=E6=
+=97=B6=E5=80=99=E5=B0=B1=E9=9C=80=E8=A6=81=E9=80=9A=E8=BF=87 Chromium =E7=
+=9A=84=E7=A6=BB=E5=B1=8F=E6=B8=B2=E6=9F=93=E6=96=B9=E5=BC=8F=E6=9D=A5=E8=BF=
+=9B=E8=A1=8C=E5=B5=8C=E5=85=A5=E3=80=82</p>
+
+<h2 id=3D"heading-chromium-render-target">Chromium Render Target</h2>
+
+<p>=E6=B8=B2=E6=9F=93=E7=9B=AE=E6=A0=87=E6=8C=87=E7=94=A8=E6=9D=A5=E5=AD=98=
+=E6=94=BE=E6=9C=80=E7=BB=88=E6=B8=B2=E6=9F=93=E7=BB=93=E6=9E=9C=E7=9A=84=E5=
+=9C=B0=E6=96=B9=EF=BC=8C=E6=AF=94=E5=A6=82=E4=B8=80=E4=B8=AA=E7=AA=97=E5=8F=
+=A3=EF=BC=8C=E4=B8=80=E5=9D=97=E5=86=85=E5=AD=98=EF=BC=8C=E4=B8=80=E4=B8=AA=
+=E5=9B=BE=E7=89=87=E6=96=87=E4=BB=B6=E4=BB=A5=E5=8F=8Asystem framebuffer=EF=
+=BC=8Cgl texture=E7=AD=89=E9=83=BD=E5=8F=AF=E4=BB=A5=E4=BD=9C=E4=B8=BA=E6=
+=B8=B2=E6=9F=93=E7=9B=AE=E6=A0=87=E3=80=82=E5=AF=B9=E4=BA=8E=E4=B8=8A=E5=B1=
+=82=E5=BA=94=E7=94=A8=E5=BC=80=E5=8F=91=E8=80=85=E6=9D=A5=E8=AF=B4=EF=BC=8C=
+=E6=B8=B2=E6=9F=93=E7=9B=AE=E6=A0=87=E5=B9=B6=E4=B8=8D=E9=82=A3=E4=B9=88=E9=
+=87=8D=E8=A6=81=EF=BC=8C=E6=AF=94=E5=A6=82=E5=9C=A8Android=E5=BA=94=E7=94=
+=A8=E5=BC=80=E5=8F=91=E4=B8=AD=EF=BC=8C=E5=BC=80=E5=8F=91=E8=80=85=E4=BD=BF=
+=E7=94=A8=E5=A4=A7=E9=87=8F=E7=B3=BB=E7=BB=9F=E6=8F=90=E4=BE=9B=E7=9A=84UI=
+=E7=BB=84=E4=BB=B6=E6=9D=A5=E6=9E=84=E5=BB=BAUI=EF=BC=8C=E6=AD=A4=E6=97=B6=
+=E6=B8=B2=E6=9F=93=E7=9B=AE=E6=A0=87=E6=98=AF=E4=BB=80=E4=B9=88=E5=BC=80=E5=
+=8F=91=E8=80=85=E5=B9=B6=E4=B8=8D=E5=85=B3=E5=BF=83=EF=BC=8C=E5=9B=A0=E4=B8=
+=BA=E8=BF=99=E9=83=A8=E5=88=86=E5=B7=A5=E4=BD=9C=E7=B3=BB=E7=BB=9F=E5=B7=B2=
+=E7=BB=8F=E5=B0=81=E8=A3=85=E4=BA=86=E8=B5=B7=E6=9D=A5=E3=80=82=E4=BD=86=E6=
+=98=AF=E5=9C=A8 Chromium =E4=B8=AD=E5=B9=B6=E4=B8=8D=E6=98=AF=E8=BF=99=E6=
+=A0=B7=EF=BC=8C=E5=9B=A0=E4=B8=BA Chromium =E8=A6=81=E8=80=83=E8=99=91=E8=
+=B7=A8=E5=B9=B3=E5=8F=B0=EF=BC=8C=E5=AE=83=E8=A6=81=E5=B0=BD=E5=8F=AF=E8=83=
+=BD=E4=BD=BF=E7=94=A8=E7=BB=9F=E4=B8=80=E7=9A=84=E6=96=B9=E5=BC=8F=E6=9D=A5=
+=E6=B8=B2=E6=9F=93=E7=BD=91=E9=A1=B5=EF=BC=8C=E6=89=80=E4=BB=A5=E5=AE=83=E8=
+=A6=81=E8=80=83=E8=99=91=E6=B8=B2=E6=9F=93=E7=9B=AE=E6=A0=87=E7=9A=84=E9=97=
+=AE=E9=A2=98=E3=80=82</p>
+
+<p>=E5=9C=A8=E4=B8=8D=E5=90=8C=E7=B3=BB=E7=BB=9F=E4=B8=AD=EF=BC=8C=E4=B8=80=
+=E8=88=AC=E9=83=BD=E4=BC=9A=E6=9C=89=E7=AA=97=E5=8F=A3=E7=9A=84=E6=A6=82=E5=
+=BF=B5=EF=BC=8C=E5=AE=83=E6=98=AF=E6=9C=80=E5=B8=B8=E8=A7=81=E7=9A=84=E6=B8=
+=B2=E6=9F=93=E7=9B=AE=E6=A0=87=E3=80=82=E5=BC=80=E5=8F=91=E8=80=85=E5=9C=A8=
+=E7=AA=97=E5=8F=A3=E4=B8=8A=E7=9A=84=E7=BB=98=E5=88=B6=E4=BC=9A=E8=A2=AB=E7=
+=94=A8=E6=88=B7=E7=9B=B4=E6=8E=A5=E7=9C=8B=E5=88=B0=E3=80=82Chromium =E7=9A=
+=84=E5=B8=B8=E8=A7=84=E6=B8=B2=E6=9F=93=E7=9B=AE=E6=A0=87=E4=B9=9F=E6=98=AF=
+=E7=AA=97=E5=8F=A3=EF=BC=8C=E4=B9=9F=E5=B0=B1=E6=98=AF=E8=AF=B4=E4=B8=80=E8=
+=88=AC=E6=83=85=E5=86=B5=E4=B8=8B Chromium =E9=83=BD=E6=98=AF=E6=8A=8A=E7=
+=BD=91=E9=A1=B5=E6=B8=B2=E6=9F=93=E5=88=B0=E7=AA=97=E5=8F=A3=E4=B8=AD=E3=80=
+=82=E6=89=80=E4=BB=A5=E5=8F=AF=E4=BB=A5=E6=83=B3=E5=88=B0=EF=BC=8CChromium =
+=E5=9C=A8=E5=88=9D=E5=A7=8B=E5=8C=96=E6=97=B6=EF=BC=8C=E5=BF=85=E9=A1=BB=E5=
+=AD=98=E5=9C=A8=E4=B8=80=E4=B8=AA=E7=AA=97=E5=8F=A3=EF=BC=8C=E5=90=A6=E5=88=
+=99 Chromium =E4=B8=8D=E7=9F=A5=E9=81=93=E5=BA=94=E8=AF=A5=E5=B0=86=E7=BD=
+=91=E9=A1=B5=E6=B8=B2=E6=9F=93=E5=88=B0=E4=BB=80=E4=B9=88=E5=9C=B0=E6=96=B9=
+=E3=80=82=E8=BF=99=E4=B8=AA=E8=A6=81=E6=B1=82=E4=B8=80=E8=88=AC=E6=83=85=E5=
+=86=B5=E4=B8=8B=E9=83=BD=E4=B8=8D=E4=BC=9A=E6=9C=89=E4=BB=80=E4=B9=88=E9=97=
+=AE=E9=A2=98=EF=BC=8C=E4=BD=86=E6=98=AF=E5=BD=93=E7=94=A8=E6=88=B7=E6=83=B3=
+=E8=A6=81=E6=8A=8A=E7=BD=91=E9=A1=B5=E5=B5=8C=E5=85=A5=E8=87=AA=E5=B7=B1=E7=
+=9A=84=E5=BA=94=E7=94=A8=E4=B8=AD=E7=9A=84=E6=97=B6=E5=80=99=EF=BC=8C=E4=BA=
+=8B=E6=83=85=E5=B0=B1=E5=A4=8D=E6=9D=82=E4=BA=86=EF=BC=8C=E5=B0=A4=E5=85=B6=
+=E6=98=AF=E5=BD=93=E7=94=A8=E6=88=B7=E4=BD=BF=E7=94=A8<strong>=E8=87=AA=E7=
+=BB=98</strong>=E7=B1=BB=E5=9E=8B=E7=9A=84UI=E6=A1=86=E6=9E=B6=E7=9A=84=E6=
+=97=B6=E5=80=99=EF=BC=8C=E5=A6=82=E6=9E=9C=E8=BF=99=E4=BA=9B=E6=A1=86=E6=9E=
+=B6=E4=B8=8D=E6=94=AF=E6=8C=81=E7=AA=97=E5=8F=A3=E7=9A=84=E5=B5=8C=E5=A5=97=
+=EF=BC=8C=E9=82=A3=E4=B9=88=E5=B0=B1=E6=B2=A1=E5=8A=9E=E6=B3=95=E6=8A=8A=E7=
+=BD=91=E9=A1=B5=E6=89=80=E5=9C=A8=E7=9A=84=E7=AA=97=E5=8F=A3=E5=B5=8C=E5=85=
+=A5=E8=87=AA=E5=B7=B1=E7=9A=84=E7=A8=8B=E5=BA=8F=E3=80=82</p>
+
+<p>=E6=89=80=E4=BB=A5=EF=BC=8C=E5=B0=86=E7=AA=97=E5=8F=A3=E4=BD=9C=E4=B8=BA=
+=E6=B8=B2=E6=9F=93=E7=9B=AE=E6=A0=87=E6=98=BE=E7=84=B6=E6=9C=89=E5=85=B6=E5=
+=B1=80=E9=99=90=E6=80=A7=EF=BC=8C=E5=A6=82=E6=9E=9C=E8=83=BD=E5=A4=9F=E5=85=
+=88=E5=B0=86=E7=BD=91=E9=A1=B5=E6=B8=B2=E6=9F=93=E5=88=B0=E4=B8=80=E4=B8=AA=
+=E4=B8=AD=E9=97=B4=E4=BB=8B=E8=B4=A8=E4=B8=AD=EF=BC=8C=E7=84=B6=E5=90=8E=E5=
+=BC=80=E5=8F=91=E8=80=85=E8=87=AA=E8=A1=8C=E6=8E=A7=E5=88=B6=E5=B0=86=E8=AF=
+=A5=E9=A1=B5=E9=9D=A2=E5=91=88=E7=8E=B0=E7=BB=99=E7=94=A8=E6=88=B7=EF=BC=8C=
+=E9=82=A3Chromium=E5=B0=B1=E5=8F=AF=E4=BB=A5=E8=A2=AB=E6=9B=B4=E5=8A=A0=E7=
+=81=B5=E6=B4=BB=E7=9A=84=E5=B5=8C=E5=85=A5=E5=85=B6=E5=AE=83=E5=BA=94=E7=94=
+=A8=E4=B8=AD=EF=BC=8C=E8=BF=99=E7=A7=8D=E6=B8=B2=E6=9F=93=E6=96=B9=E5=BC=8F=
+=E7=A7=B0=E4=B8=BA<strong>=E7=A6=BB=E5=B1=8F=E6=B8=B2=E6=9F=93</strong>=E3=
+=80=82=E4=B8=80=E8=88=AC=E9=80=89=E7=94=A8=E5=86=85=E5=AD=98=E6=88=96=E8=80=
+=85gl texture=E6=9D=A5=E4=BD=9C=E4=B8=BA=E7=A6=BB=E5=B1=8F=E6=B8=B2=E6=9F=
+=93=E7=9B=AE=E6=A0=87=E3=80=82=E5=9B=A0=E4=B8=BA=E5=AE=83=E4=BB=AC=E5=8F=AF=
+=E4=BB=A5=E8=A2=AB=E6=96=B9=E4=BE=BF=E7=9A=84=E5=B5=8C=E5=85=A5=E5=85=B6=E4=
+=BB=96=E5=BA=94=E7=94=A8=E4=B8=AD=E3=80=82</p>
+
+<h2 id=3D"heading-chromium-offscreen-rendering">Chromium Offscreen Renderin=
+g</h2>
+
+<p><code class=3D"language-plaintext highlighter-rouge">viz</code> =E4=B8=
+=AD=E7=9A=84 <code class=3D"language-plaintext highlighter-rouge">viz::Outp=
+utSurface</code> =E5=B0=81=E8=A3=85=E4=BA=86=E5=90=84=E7=A7=8D=E6=B8=B2=E6=
+=9F=93=E7=9B=AE=E6=A0=87=EF=BC=8C=E5=8C=85=E6=8B=AC=E7=A6=BB=E5=B1=8F=E6=B8=
+=B2=E6=9F=93=E3=80=82=E4=BD=86=E5=8F=AF=E6=83=9C=E7=9A=84=E6=98=AF Chromium=
+ =E5=B9=B6=E6=B2=A1=E6=9C=89=E5=9C=A8=E4=B8=8A=E5=B1=82=E6=8F=90=E4=BE=9BAP=
+I=E5=85=81=E8=AE=B8=E5=BA=94=E7=94=A8=E9=80=89=E6=8B=A9=E5=92=8C=E8=AE=BF=
+=E9=97=AE=E5=BA=95=E5=B1=82=E7=9A=84=E6=B8=B2=E6=9F=93=E7=9B=AE=E6=A0=87=E3=
+=80=82</p>
+
+<blockquote>
+  <p>=E6=88=91=E8=A7=89=E5=BE=97=E8=BF=99=E5=B9=B6=E6=B2=A1=E6=9C=89=E4=BB=
+=80=E4=B9=88=E9=81=93=E7=90=86=EF=BC=8C=E6=9C=89=E4=BA=BA=E8=AF=B4 Chromium=
+ =E5=8F=88=E4=B8=8D=E6=98=AF=E4=B8=BA=E4=BA=86=E8=83=BD=E8=A2=AB=E5=B5=8C=
+=E5=85=A5=E5=85=B6=E4=BB=96=E5=BA=94=E7=94=A8=E8=80=8C=E8=AE=BE=E8=AE=A1=E7=
+=9A=84=EF=BC=8C=E4=B8=8D=E9=9C=80=E8=A6=81=E6=8F=90=E4=BE=9B=E8=BF=99=E6=A0=
+=B7=E7=9A=84=E5=8A=9F=E8=83=BD=EF=BC=8C=E4=BD=86=E4=B8=80=E4=B8=AA=E4=BA=8B=
+=E5=AE=9E=E6=98=AF WebView =E7=9A=84=E5=87=BA=E7=8E=B0=E5=B0=B1=E6=98=AF=E4=
+=B8=BA=E4=BA=86=E8=83=BD=E5=A4=9F=E5=B0=86 Chromium =E5=B5=8C=E5=85=A5=E5=
+=85=B6=E4=BB=96Android=E5=BA=94=E7=94=A8=EF=BC=8C=E4=B8=BA=E4=BB=80=E4=B9=
+=88=E5=B0=B1=E4=B8=8D=E8=83=BD=E8=AE=A9 WebView =E4=B9=9F=E6=94=AF=E6=8C=81=
+=E5=85=A8=E5=B9=B3=E5=8F=B0=E5=91=A2=EF=BC=9F=E8=99=BD=E7=84=B6=E6=9C=89=E7=
+=B1=BB=E4=BC=BC <a href=3D"https://github.com/chromiumembedded/cef-project"=
+>CEF</a> =E8=BF=99=E6=A0=B7=E7=9A=84=E9=A1=B9=E7=9B=AE=E4=B8=93=E9=97=A8=E6=
+=8F=90=E4=BE=9B=E5=B0=86Chromium=E5=B5=8C=E5=85=A5=E5=85=B6=E4=BB=96=E5=BA=
+=94=E7=94=A8=E7=9A=84=E5=8A=9F=E8=83=BD=EF=BC=8C=E4=BD=86=E7=94=B1=E4=BA=8E=
+=E5=AE=83=E5=B1=9E=E4=BA=8E=E7=8B=AC=E7=AB=8B=E7=9A=84=E9=A1=B9=E7=9B=AE=EF=
+=BC=8C=E5=BC=80=E5=8F=91=E5=AE=9E=E5=8A=9B=E8=BF=9C=E8=BF=9C=E6=AF=94=E4=B8=
+=8D=E4=B8=8A Chromium =E9=A1=B9=E7=9B=AE=E3=80=82</p>
+</blockquote>
+
+<p>=E5=9B=A0=E6=AD=A4=EF=BC=8C=E8=A6=81=E6=83=B3=E5=B0=86 Chromium =E4=BB=
+=A5=E7=A6=BB=E5=B1=8F=E6=B8=B2=E6=9F=93=E7=9A=84=E6=96=B9=E5=BC=8F=E5=B5=8C=
+=E5=85=A5=E8=87=AA=E5=B7=B1=E7=9A=84=E5=BA=94=E7=94=A8=EF=BC=8C=E9=9C=80=E8=
+=A6=81=E5=B0=86Chromium=E4=B8=AD=E7=9A=84=E7=A6=BB=E5=B1=8F=E6=B8=B2=E6=9F=
+=93=E7=9B=AE=E6=A0=87=E6=9A=B4=E9=9C=B2=E5=87=BA=E6=9D=A5=EF=BC=8C=E5=85=81=
+=E8=AE=B8=E4=B8=8A=E5=B1=82=E5=BA=94=E7=94=A8=E8=AE=BF=E9=97=AE=E3=80=82=E5=
+=A6=82=E6=9E=9C=E9=80=89=E6=8B=A9=E5=86=85=E5=AD=98=E4=BD=9C=E4=B8=BA=E7=A6=
+=BB=E5=B1=8F=E6=B8=B2=E6=9F=93=E7=9B=AE=E6=A0=87=EF=BC=8C=E5=8F=AF=E4=BB=A5=
+=E4=BD=BF=E7=94=A8=E5=85=B1=E4=BA=AB=E5=86=85=E5=AD=98=E6=9D=A5=E5=AD=98=E5=
+=82=A8=E6=B8=B2=E6=9F=93=E7=BB=93=E6=9E=9C=EF=BC=8CCEF =E7=9A=84=E7=A6=BB=
+=E5=B1=8F=E6=B8=B2=E6=9F=93=E5=B0=B1=E6=98=AF=E9=80=9A=E8=BF=87=E8=BF=99=E7=
+=A7=8D=E6=96=B9=E5=BC=8F=EF=BC=8C=E4=BD=86=E8=BF=99=E7=A7=8D=E6=96=B9=E5=BC=
+=8F=E5=8F=AA=E6=94=AF=E6=8C=81=E8=BD=AF=E4=BB=B6=E6=B8=B2=E6=9F=93=EF=BC=8C=
+=E6=80=A7=E8=83=BD=E4=B8=80=E8=88=AC=E3=80=82=E5=A6=82=E6=9E=9C=E9=80=89=E6=
+=8B=A9=E4=BB=A5 gl texture =E4=BD=9C=E4=B8=BA=E7=A6=BB=E5=B1=8F=E6=B8=B2=E6=
+=9F=93=E7=9B=AE=E6=A0=87=EF=BC=8C=E9=9C=80=E8=A6=81=E4=BD=BF=E7=94=A8=E5=85=
+=B1=E4=BA=ABContext=E6=9D=A5=E5=AE=9E=E7=8E=B0=E8=B5=84=E6=BA=90=E7=9A=84=
+=E5=85=B1=E4=BA=AB=EF=BC=8C=E4=BB=A3=E7=A0=81=E6=BC=94=E7=A4=BA=E8=A7=81 <a=
+ href=3D"https://github.com/keyou/chromium_demo/tree/c/80.0.3987/demo_viz">=
+demo_viz_layer_offscreen</a>.=E8=BF=99=E7=A7=8D=E6=96=B9=E5=BC=8F=E6=89=80=
+=E8=83=BD=E5=AE=9E=E7=8E=B0=E7=9A=84=E6=80=A7=E8=83=BD=E6=9B=B4=E9=AB=98=E3=
+=80=82</p>
+
+<p>=E5=85=B3=E4=BA=8E Chromium =E4=B8=AD=E5=90=84=E7=A7=8D=E6=B8=B2=E6=9F=
+=93=E7=9B=AE=E6=A0=87=E7=9A=84=E4=BB=8B=E7=BB=8D=E8=A7=81 <code class=3D"la=
+nguage-plaintext highlighter-rouge">viz</code> =E7=9A=84=E6=96=87=E6=A1=A3 =
+<a href=3D"https://keyou.github.io/blog/2020/07/29/how-viz-works/">How viz =
+works</a>=E3=80=82</p>
+
+                    </div>
+                </div>
+            </div>
+            <footer class=3D"unit-foot" style=3D"top: 20px;">
+                <div class=3D"unit-inner unit-foot-inner">
+                    <div class=3D"post-buttons">
+                        <a class=3D"internal gotop" href=3D"https://keyou.g=
+ithub.io/blog/2020/07/28/chromium-offscreen-rendering/#page" title=3D"Back =
+to Top">Back to Top</a>
+                       =20
+                    </div>
+                    <nav class=3D"pagination">
+                       =20
+                            <a class=3D"internal" rel=3D"prev" href=3D"http=
+s://keyou.github.io/blog/2020/07/02/electron-browser-window/" title=3D" '=
+=E5=9C=A8 Electron =E4=B8=AD=E5=B5=8C=E5=85=A5=E8=87=AA=E5=AE=9A=E4=B9=89=
+=E5=9B=BE=E5=B1=82'"> =E2=86=90 =E5=9C=A8 Electron =E4=B8=AD=E5=B5=8C=E5=85=
+=A5=E8=87=AA=E5=AE=9A=E4=B9=89=E5=9B=BE=E5=B1=82</a>
+                       =20
+                       =20
+                            <a class=3D"internal" rel=3D"next" href=3D"http=
+s://keyou.github.io/blog/2020/07/29/chromium-gpu-workarounds/" title=3D"Nex=
+t Post 'Chromium GPU Workarounds'">Chromium GPU Workarounds =E2=86=92 </a>
+                       =20
+                    </nav>
+                </div>
+            </footer>
+            <div class=3D"misc-content">
+               =20
+            </div>
+        </div>
+    </div>
+</article>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class=3D"the-footer" style=3D"top: 20px;">
+    <div class=3D"unit-foot">
+        <div class=3D"unit-inner unit-foot-inner">
+            <div class=3D"misc vcard">
+                <div class=3D"about">
+                    <h4><a href=3D"https://keyou.github.io/">About</a></h4>
+                   =20
+                        <p>=E8=AE=B0=E5=BD=95=E6=88=90=E9=95=BF=EF=BC=8C=E5=
+=88=86=E4=BA=AB=E7=94=9F=E6=B4=BB=EF=BC=8C=E5=B2=81=E6=9C=88=E5=A4=9A=E7=A3=
+=A8=EF=BC=8C=E7=8F=8D=E6=83=9C=E7=8E=B0=E5=9C=A8</p>
+                   =20
+                    <p><small> Customized by <a href=3D"https://keyou.githu=
+b.io/">Keyou</a> based on theme <a href=3D"https://github.com/yizeng/jekyll=
+-theme-simple-texture" target=3D"_blank">simple-texture</a>.</small></p>
+                </div>
+                <div class=3D"social-links">
+                   =20
+                    <a class=3D"ico-rss" href=3D"https://keyou.github.io/fe=
+ed.xml" rel=3D"me" target=3D"_blank" title=3D"feed"></a>
+                   =20
+                       =20
+                            <a class=3D"ico-github" href=3D"https://github.=
+com/keyou" rel=3D"me" target=3D"_blank" title=3D"github"></a>
+                       =20
+                   =20
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href=3D"https://keyou.github.io/blog/2020/07/28/chromium-offscreen-r=
+endering/#" class=3D"internal back-to-top" style=3D"display: inline;">Back =
+to Top</a>
+</footer>
+
+    </div>
+
+   =20
+
+<!-- Show menu overlay + Jekyll Simple Search option -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>
+------MultipartBoundary--IZKByOZGaL6z5tQqMbkrdMpkAIiTYKq2QyFNW3cWka----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://keyou.github.io/assets/stylesheets/blog.css
+
+@charset "utf-8";
+
+button, hr, input { overflow: visible; }
+
+audio, canvas, progress, video { display: inline-block; }
+
+progress, sub, sup { vertical-align: baseline; }
+
+html { font-family: sans-serif; line-height: 1.15; text-size-adjust: 100%; =
+}
+
+body { margin: 0px; }
+
+menu, article, aside, details, footer, header, nav, section { display: bloc=
+k; }
+
+h1 { font-size: 2em; margin: 0.67em 0px; }
+
+figcaption, figure, main { display: block; }
+
+figure { margin: 1em 40px; }
+
+hr { box-sizing: content-box; height: 0px; }
+
+code, kbd, pre, samp { font-family: monospace, monospace; font-size: 1em; }
+
+a { background-color: transparent; }
+
+a:active, a:hover { outline-width: 0px; }
+
+abbr[title] { border-bottom: none; text-decoration: underline dotted; }
+
+b, strong { font-weight: bolder; }
+
+dfn { font-style: italic; }
+
+mark { background-color: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+
+small { font-size: 80%; }
+
+sub, sup { font-size: 75%; line-height: 0; position: relative; }
+
+sub { bottom: -0.25em; }
+
+sup { top: -0.5em; }
+
+audio:not([controls]) { display: none; height: 0px; }
+
+img { border-style: none; }
+
+svg:not(:root) { overflow: hidden; }
+
+button, input, optgroup, select, textarea { font-family: sans-serif; font-s=
+ize: 100%; line-height: 1.15; margin: 0px; }
+
+button, select { text-transform: none; }
+
+[type=3D"submit"], [type=3D"reset"], button, html [type=3D"button"] { appea=
+rance: button; }
+
+fieldset { border: 1px solid silver; margin: 0px 2px; padding: 0.35em 0.625=
+em 0.75em; }
+
+legend { box-sizing: border-box; color: inherit; display: table; max-width:=
+ 100%; padding: 0px; white-space: normal; }
+
+textarea { overflow: auto; }
+
+[type=3D"checkbox"], [type=3D"radio"] { box-sizing: border-box; padding: 0p=
+x; }
+
+[type=3D"number"]::-webkit-inner-spin-button, [type=3D"number"]::-webkit-ou=
+ter-spin-button { height: auto; }
+
+[type=3D"search"] { appearance: textfield; outline-offset: -2px; }
+
+[type=3D"search"]::-webkit-search-cancel-button, [type=3D"search"]::-webkit=
+-search-decoration { appearance: none; }
+
+::-webkit-file-upload-button { appearance: button; font: inherit; }
+
+summary { display: list-item; }
+
+[hidden], template { display: none; }
+
+.animated { animation-duration: 1s; animation-fill-mode: both; }
+
+@-webkit-keyframes bounce {=20
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0px); }
+  40% { transform: translateY(-30px); }
+  60% { transform: translateY(-15px); }
+}
+
+@keyframes bounce {=20
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0px); }
+  40% { transform: translateY(-30px); }
+  60% { transform: translateY(-15px); }
+}
+
+.bounce { animation-name: bounce; }
+
+@-webkit-keyframes fadeInDown {=20
+  0% { transform: translateY(-20px); opacity: 0; }
+  100% { transform: translateY(0px); opacity: 1; }
+}
+
+@keyframes fadeInDown {=20
+  0% { transform: translateY(-20px); opacity: 0; }
+  100% { transform: translateY(0px); opacity: 1; }
+}
+
+.fadeInDown { animation-name: fadeInDown; }
+
+@-webkit-keyframes fadeInLeft {=20
+  0% { transform: translateX(-20px); opacity: 0; }
+  100% { transform: translateX(0px); opacity: 1; }
+}
+
+@keyframes fadeInLeft {=20
+  0% { transform: translateX(-20px); opacity: 0; }
+  100% { transform: translateX(0px); opacity: 1; }
+}
+
+.fadeInLeft { animation-name: fadeInLeft; }
+
+@-webkit-keyframes fadeInUp {=20
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0px); opacity: 1; }
+}
+
+@keyframes fadeInUp {=20
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0px); opacity: 1; }
+}
+
+.fadeInUp { animation-name: fadeInUp; }
+
+@font-face { font-family: Bitter; font-weight: normal; font-style: normal; =
+src: url("../fonts/bitter-regular-webfont.woff") format("woff"), url("../fo=
+nts/bitter-regular-webfont.ttf") format("truetype"); }
+
+@font-face { font-family: "Junge Regular"; font-weight: normal; font-style:=
+ normal; src: url("../fonts/junge-regular-webfont.woff") format("woff"), ur=
+l("../fonts/junge-regular-webfont.ttf") format("truetype"); }
+
+@font-face { font-family: "Ubuntu Condensed"; font-weight: normal; font-sty=
+le: normal; src: url("../fonts/ubuntu-c-webfont.woff") format("woff"), url(=
+"../fonts/ubuntu-c-webfont.ttf") format("truetype"); }
+
+.ir { display: block; overflow: hidden; text-align: left; text-indent: -999=
+em; border: none; background-color: transparent; background-repeat: no-repe=
+at; direction: ltr; }
+
+.ir br { display: none; }
+
+.hidden { display: none !important; visibility: hidden; }
+
+.visuallyhidden { position: absolute; overflow: hidden; clip: rect(0px, 0px=
+, 0px, 0px); width: 1px; height: 1px; margin: -1px; padding: 0px; border: n=
+one; }
+
+.visuallyhidden.focusable:active, .visuallyhidden.focusable:focus { positio=
+n: static; overflow: visible; clip: auto; width: auto; height: auto; margin=
+: 0px; }
+
+.invisible { visibility: hidden; }
+
+hr { }
+
+#page::after, #page::before, .cf::after, .cf::before, .clearfix::after, .cl=
+earfix::before, .hasGrid::after, .hasGrid::before, .tag_box::after, .tag_bo=
+x::before, .unit-inner::after, .unit-inner::before { display: table; conten=
+t: ""; }
+
+#page::after, .cf::after, .clearfix::after, .hasGrid::after, .tag_box::afte=
+r, .unit-inner::after { clear: both; }
+
+#page, .cf, .clearfix, .hasGrid, .tag_box, .unit-inner { }
+
+.left { float: left; }
+
+.right { float: right; }
+
+input:focus { outline: 0px; box-shadow: none; }
+
+.highlight .hll { background-color: rgb(255, 255, 204); }
+
+.highlight { background: rgb(248, 248, 248); }
+
+.highlight .c { color: rgb(106, 115, 125); }
+
+.highlight .k { color: rgb(215, 58, 73); }
+
+.highlight .ch { color: rgb(106, 115, 125); }
+
+.highlight .cm { color: rgb(106, 115, 125); }
+
+.highlight .cp { color: rgb(215, 58, 73); }
+
+.highlight .cpf { color: rgb(3, 47, 98); }
+
+.highlight .c1 { color: rgb(106, 115, 125); }
+
+.highlight .cs { color: rgb(106, 115, 125); }
+
+.highlight .gd { color: rgb(179, 29, 40); background-color: rgb(255, 238, 2=
+40); }
+
+.highlight .gh { color: rgb(0, 92, 197); }
+
+.highlight .gi { color: rgb(34, 134, 58); background-color: rgb(240, 255, 2=
+44); }
+
+.highlight .gs { font-weight: bold; }
+
+.highlight .gu { color: rgb(111, 66, 193); font-weight: bold; }
+
+.highlight .gt { color: rgb(0, 68, 221); }
+
+.highlight .kc { color: rgb(0, 92, 197); }
+
+.highlight .kd { color: rgb(215, 58, 73); }
+
+.highlight .kn { color: rgb(215, 58, 73); }
+
+.highlight .kp { color: rgb(215, 58, 73); }
+
+.highlight .kr { color: rgb(215, 58, 73); }
+
+.highlight .kt { color: rgb(215, 58, 73); }
+
+.highlight .m { color: rgb(102, 102, 102); }
+
+.highlight .s { color: rgb(3, 47, 98); }
+
+.highlight .nb { color: rgb(0, 92, 197); }
+
+.highlight .nc { color: rgb(111, 66, 193); }
+
+.highlight .no { color: rgb(0, 92, 197); }
+
+.highlight .nd { color: rgb(111, 66, 193); }
+
+.highlight .ni { color: rgb(0, 92, 197); }
+
+.highlight .ne { color: rgb(0, 92, 197); }
+
+.highlight .nf { color: rgb(111, 66, 193); }
+
+.highlight .nl { color: rgb(0, 92, 197); }
+
+.highlight .nn { color: rgb(111, 66, 193); }
+
+.highlight .nt { color: rgb(34, 134, 58); }
+
+.highlight .nv { color: rgb(36, 41, 46); }
+
+.highlight .ow { color: rgb(215, 58, 73); }
+
+.highlight .w { color: rgb(187, 187, 187); }
+
+.highlight .mb { color: rgb(0, 92, 197); }
+
+.highlight .mf { color: rgb(0, 92, 197); }
+
+.highlight .mh { color: rgb(0, 92, 197); }
+
+.highlight .mi { color: rgb(0, 92, 197); }
+
+.highlight .mo { color: rgb(0, 92, 197); }
+
+.highlight .sa { color: rgb(215, 58, 73); }
+
+.highlight .sb { color: rgb(3, 47, 98); }
+
+.highlight .sc { color: rgb(3, 47, 98); }
+
+.highlight .dl { color: rgb(215, 58, 73); }
+
+.highlight .sd { color: rgb(3, 47, 98); }
+
+.highlight .s2 { color: rgb(3, 47, 98); }
+
+.highlight .se { color: rgb(3, 47, 98); }
+
+.highlight .sh { color: rgb(3, 47, 98); }
+
+.highlight .si { color: rgb(0, 92, 197); }
+
+.highlight .sx { color: rgb(3, 47, 98); }
+
+.highlight .sr { color: rgb(3, 47, 98); }
+
+.highlight .s1 { color: rgb(3, 47, 98); }
+
+.highlight .ss { color: rgb(0, 92, 197); }
+
+.highlight .bp { color: rgb(0, 92, 197); }
+
+.highlight .fm { color: rgb(0, 92, 197); }
+
+.highlight .vc { color: rgb(36, 41, 46); }
+
+.highlight .vg { color: rgb(36, 41, 46); }
+
+.highlight .vi { color: rgb(36, 41, 46); }
+
+.highlight .vm { color: rgb(0, 92, 197); }
+
+.highlight .il { color: rgb(0, 92, 197); }
+
+.pace { user-select: none; pointer-events: none; }
+
+.pace-inactive { display: none; }
+
+.pace .pace-progress { position: fixed; z-index: 2000; top: 0px; right: 100=
+%; width: 100%; height: 2px; background: rgb(255, 153, 0); }
+
+.pace .pace-progress-inner { position: absolute; right: 0px; display: block=
+; width: 100px; height: 100%; transform: rotate(3deg) translate(0px, -4px);=
+ opacity: 1; box-shadow: rgb(255, 153, 0) 0px 0px 10px, rgb(255, 153, 0) 0p=
+x 0px 5px; }
+
+.pace .pace-activity { position: fixed; z-index: 2000; top: 15px; right: 15=
+px; display: block; width: 14px; height: 14px; animation: 400ms linear 0s i=
+nfinite normal none running pace-spinner; border-width: 2px; border-style: =
+solid; border-color: rgb(255, 153, 0) transparent transparent rgb(255, 153,=
+ 0); border-image: initial; border-radius: 10px; }
+
+@-webkit-keyframes pace-spinner {=20
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pace-spinner {=20
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+body { font-family: Bitter, "Palatino Linotype", "Book Antiqua", Palatino, =
+serif; font-size: 18px; line-height: 32px; color: rgba(0, 0, 0, 0.8); }
+
+.body .unit-body { padding: 12px 26px 26px 36px; border-top: 1px solid rgba=
+(255, 255, 255, 0.6); background: rgb(255, 255, 255); }
+
+.h1, .h2, .h3, .h4, h1, h2, h3, h4 { font-family: "Ubuntu Condensed", Helve=
+tica, sans-serif; }
+
+.h1, h1 { font-size: 1.725em; line-height: 42px; margin-top: 42px; margin-b=
+ottom: 26px; }
+
+.h2, h2 { font-size: 1.575em; line-height: 42px; margin-top: 34px; margin-b=
+ottom: 16px; }
+
+.h3, h3 { font-size: 1.325em; line-height: 26px; margin-top: 26px; margin-b=
+ottom: 20px; }
+
+.h4, h4 { font-size: 1em; line-height: 26px; margin-top: 26px; margin-botto=
+m: 12px; }
+
+.small, aside, small { font-size: 0.75em; }
+
+a:hover, a:link, a:visited { text-decoration: none; }
+
+img { max-width: 95%; }
+
+button, input, optgroup, select, textarea { font-family: Bitter, "Palatino =
+Linotype", "Book Antiqua", Palatino, serif; }
+
+.site-notice { text-align: center; color: rgba(0, 0, 0, 0.8); }
+
+.site-notice a { font-size: 0.95em; padding-right: 3px; padding-left: 3px; =
+color: rgb(0, 119, 204); border-bottom: 1px dotted rgb(255, 209, 141); }
+
+.site-notice a:hover { transition: all 0.3s ease-out 0s; color: rgba(0, 0, =
+0, 0.8); background-color: rgb(255, 153, 0); }
+
+.site-notice a:visited { color: rgb(74, 107, 130); }
+
+body.nav-overlay, body.search-overlay { overflow: hidden; }
+
+body.nav-overlay::after, body.search-overlay::after { position: fixed; z-in=
+dex: 9001; top: 0px; left: 0px; width: 100%; height: 100%; min-height: 100%=
+; content: ""; background-color: rgba(25, 25, 25, 0.95); }
+
+.overlay-wrapper { position: absolute; top: 50px; display: none; zoom: 1; w=
+idth: 90%; padding-right: 5%; padding-left: 5%; }
+
+.overlay-form { position: relative; z-index: 9002; top: 0px; left: -200px; =
+width: 100%; opacity: 0; }
+
+.overlay-form.active { top: 0px; left: 0px; opacity: 1; }
+
+.overlay-form a, .overlay-form h1, .overlay-form h2, .overlay-form h3, .ove=
+rlay-form h4, .overlay-form li, .overlay-form ol, .overlay-form dl, .overla=
+y-form p, .overlay-form span, .overlay-form button, .overlay-form input { c=
+olor: rgb(255, 255, 255); }
+
+.overlay-form .overlay-header { font-size: 2em; border-top: none; border-ri=
+ght: none; border-left: none; border-image: initial; border-bottom: 1px sol=
+id rgb(255, 255, 255); background-color: transparent; }
+
+.overlay-form .search-field { width: 100%; padding-bottom: 12px; background=
+-clip: padding-box; box-shadow: none; appearance: none; }
+
+.overlay-form .menu { display: block; margin-left: 18px; padding-bottom: 16=
+px; text-align: center; }
+
+.overlay-form .btn-close { position: absolute; z-index: 1; top: 0.6rem; rig=
+ht: 1rem; display: block; width: auto; height: auto; cursor: pointer; text-=
+align: center; }
+
+.overlay-form .btn-close:hover { font-weight: bold; transition: all 0.3s ea=
+se-in-out 0s; }
+
+.overlay-form .results { position: absolute; width: 100%; margin: 0px; padd=
+ing: 0px; outline: 0px; text-shadow: none; }
+
+.overlay-form .results .entry-date { display: none; float: right; }
+
+.overlay-form .results li { font-size: 1em; margin-left: 12px; padding: 3px=
+; }
+
+.overlay-form .results li:hover { transition: all 0.3s ease-in-out 0s; bord=
+er: 1px dashed rgb(255, 255, 255); }
+
+.nav-form .results ul { padding: 0px; }
+
+.nav-form .results ul li { list-style: none; }
+
+.nav-form .results ul li a { display: block; margin-right: auto; margin-lef=
+t: auto; text-align: center; }
+
+.the-header .unit-head { padding: 26px 26px 12px; text-align: center; }
+
+.the-header .unit-head .nav-global .logo { font-family: "Ubuntu Condensed",=
+ Helvetica, sans-serif; font-weight: bold; display: block; padding-bottom: =
+18px; }
+
+.the-header .unit-head .nav-global .logo a { font-size: 1.5em; line-height:=
+ 0; display: inline; margin-left: 8px; }
+
+.the-header .unit-head .nav-global .logo a:hover { color: rgb(255, 153, 0);=
+ background-color: transparent; }
+
+.the-header .unit-head .nav-global .logo button { display: none; width: 24p=
+x; height: 24px; border: none; }
+
+.the-header .unit-head .nav-global .logo .btn-menu { float: left; backgroun=
+d: url("../images/theme/btn-menu.png") no-repeat; }
+
+.the-header .unit-head .nav-global .logo .btn-search { float: right; backgr=
+ound: url("../images/theme/btn-search.png") no-repeat; }
+
+.the-header .unit-head .nav-global ul { margin: 0px; padding: 0px; }
+
+.the-header .unit-head .nav-global ul li { display: inline; }
+
+.the-header .unit-head .nav-global ul li a { padding: 12px 12px 18px; color=
+: rgba(0, 0, 0, 0.8); }
+
+.the-header .unit-head .nav-global ul li a:active, .the-header .unit-head .=
+nav-global ul li a:hover { cursor: pointer; transition: all 0.3s ease-in-ou=
+t 0s; background-color: rgb(255, 153, 0); }
+
+.the-footer { font-size: 0.9em; line-height: 1.6em; padding: 26px; text-ali=
+gn: center; }
+
+.the-footer a { color: rgba(0, 0, 0, 0.8); }
+
+.the-footer a:hover { transition: all 0.3s ease-in-out 0s; color: rgb(255, =
+153, 0); }
+
+.the-footer p a { padding: 2px 3px; color: rgb(0, 119, 204); border-bottom:=
+ 1px dotted rgb(255, 209, 141); }
+
+.the-footer p a:visited { color: rgb(74, 107, 130); }
+
+.the-footer p a:hover { color: rgba(0, 0, 0, 0.8); background-color: rgba(2=
+55, 153, 0, 0.7); }
+
+.the-footer h4 { margin-top: 0px; }
+
+.the-footer h4 a:hover { font-weight: bold; }
+
+.the-footer .back-to-top { font-size: 0.9em; position: fixed; right: 0.25em=
+; bottom: 0.5em; display: none; padding: 1.2em 1.2em 0.2em; text-decoration=
+: none; background-color: transparent; }
+
+.the-footer .social-links { margin-top: 12px; }
+
+.the-footer .social-links a { display: inline-block; width: 42px; height: 4=
+2px; margin: 1.5px; background-size: 42px 42px; }
+
+.social-links a { text-indent: -9999em; opacity: 0.3; background-repeat: no=
+-repeat; background-position: center center; }
+
+.social-links a:hover { transition: all 0.3s ease-out 0s; opacity: 1; }
+
+.social-links .ico-facebook { background-image: url("../images/simple-icons=
+/facebook-48.png"); background-color: rgb(59, 89, 152); }
+
+.social-links .ico-github { background-image: url("../images/simple-icons/g=
+ithub-48.png"); background-color: rgb(24, 23, 23); }
+
+.social-links .ico-gmail { background-image: url("../images/simple-icons/gm=
+ail-48.png"); background-color: rgb(209, 72, 54); }
+
+.social-links .ico-instagram { background-image: url("../images/simple-icon=
+s/instagram-48.png"); background-color: rgb(228, 64, 95); }
+
+.social-links .ico-linkedin { background-image: url("../images/simple-icons=
+/linkedin-48.png"); background-color: rgb(0, 119, 181); }
+
+.social-links .ico-rss { background-image: url("../images/simple-icons/rss-=
+48.png"); background-color: rgb(255, 165, 0); }
+
+.social-links .ico-stackoverflow { background-image: url("../images/simple-=
+icons/stackoverflow-48.png"); background-color: rgb(254, 122, 22); }
+
+.social-links .ico-twitter { background-image: url("../images/simple-icons/=
+twitter-48.png"); background-color: rgb(29, 161, 242); }
+
+.social-links .ico-vk { background-image: url("../images/simple-icons/vk-48=
+.png"); background-color: rgb(99, 131, 168); }
+
+.unit-article a { font-size: 0.95em; padding: 2px; color: rgb(0, 119, 204);=
+ border-bottom: 1px dotted rgb(255, 209, 141); }
+
+.unit-article a:hover { transition: all 0.3s ease-in-out 0s; color: rgba(0,=
+ 0, 0, 0.8); background-color: rgba(255, 153, 0, 0.7); }
+
+.unit-article a:visited { color: rgb(74, 107, 130); }
+
+.unit-article a.internal { color: rgba(0, 0, 0, 0.8); }
+
+.unit-article a.internal:active, .unit-article a.internal:hover, .unit-arti=
+cle a.internal:visited { color: rgba(0, 0, 0, 0.8); }
+
+.unit-article .button, .unit-article button { line-height: 1.45em; display:=
+ inline-block; margin-left: 8px; padding: 2px 24px; cursor: pointer; transi=
+tion: all 0.3s ease-in-out 0s; text-align: center; vertical-align: inherit;=
+ white-space: nowrap; text-decoration: none; color: rgba(0, 0, 0, 0.8); bor=
+der: 2px solid rgba(0, 0, 0, 0.8); outline: 0px; background: padding-box tr=
+ansparent; text-shadow: none; }
+
+.unit-article .button:hover, .unit-article button:hover { color: rgb(255, 1=
+53, 0); border-color: rgb(255, 153, 0); background-color: rgb(255, 255, 255=
+); }
+
+.unit-article img { max-width: 100%; height: auto; border: 5px solid transp=
+arent; }
+
+.unit-article ul li { list-style: disc; }
+
+.unit-article ul li li { list-style: circle; }
+
+.unit-article ul li li li { list-style: square; }
+
+.unit-article ol { list-style: decimal; }
+
+.unit-article table { overflow: auto; border-collapse: collapse; border: 2p=
+x solid rgb(173, 173, 173); background-color: rgb(255, 255, 255); }
+
+.unit-article table td, .unit-article table th { padding: 3px 12px; border:=
+ 1px dashed rgba(175, 175, 175, 0.5); }
+
+.unit-article table tr:nth-child(2n) td { background-color: rgb(234, 234, 2=
+34); }
+
+.unit-article table a { font-size: 1em; border-bottom: none; }
+
+.unit-article table .center, .unit-article table th { text-align: center; }
+
+.unit-article table .bold { font-weight: bold; }
+
+.unit-article blockquote, .unit-article code, .unit-article kbd, .unit-arti=
+cle pre, .unit-article samp { font-family: Monaco, "Lucida Console", monosp=
+ace; font-size: 12px; line-height: 20px; }
+
+.unit-article table, .unit-article blockquote, .unit-article figure, .unit-=
+article .highlighter-rouge { margin: 12px; }
+
+.unit-article code.highlighter-rouge { margin: 0px; padding: 4px; white-spa=
+ce: nowrap; background-color: rgb(234, 234, 234); }
+
+.unit-article pre { overflow: auto; padding: 24px; }
+
+.unit-article pre code { white-space: pre; }
+
+.unit-article pre table { margin: 0px; border: none; background-color: rgb(=
+39, 40, 34); }
+
+.unit-article pre table:hover { border: none; }
+
+.unit-article pre table td { border: none; background-color: rgb(39, 40, 34=
+); }
+
+.unit-article pre table .gutter { padding-right: 0px; padding-left: 0px; }
+
+.unit-article pre.lineno { overflow: visible; padding-right: 10px; padding-=
+left: 10px; }
+
+.unit-article pre pre { margin: 0px; padding: 0px; }
+
+.unit-article pre pre.lineno { padding-left: 0px; }
+
+.unit-article pre::-webkit-scrollbar { height: 6px; border-radius: 5px; }
+
+.unit-article pre::-webkit-scrollbar-track { border-radius: 5px; background=
+-color: rgb(39, 40, 34); }
+
+.unit-article pre::-webkit-scrollbar-thumb:horizontal { border-radius: 5px;=
+ background-color: rgb(173, 173, 173); }
+
+.unit-article blockquote { overflow: auto; padding: 6px 18px; border-width:=
+ 1px 1px 1px 8px; border-style: dashed dashed dashed solid; border-color: r=
+gb(173, 173, 173); border-image: initial; background-color: rgb(234, 234, 2=
+34); }
+
+.unit-article blockquote p { margin: 12px 0px !important; }
+
+.unit-article blockquote dl, .unit-article blockquote ol, .unit-article blo=
+ckquote ul { margin-top: 0px; margin-bottom: 0px; padding: 8px 24px; }
+
+.unit-article .center-block { display: block; margin-right: auto; margin-le=
+ft: auto; }
+
+.unit-article li > p { margin: 0px; }
+
+.unit-article .footnote, .unit-article .reversefootnote { padding: 0px 2px;=
+ border: none; }
+
+.unit-article .footnotes { font-size: 0.9em; line-height: 1.2em; margin-top=
+: 26px; border-top: 1px dashed rgba(0, 0, 0, 0.8); }
+
+.unit-article .footnotes ol { margin-top: 26px; padding-left: 18px; }
+
+.unit-article .footnotes ol p { margin-top: 12px; margin-bottom: 12px; padd=
+ing-left: 6px; }
+
+.unit-article .toc { display: inline-block; min-width: 195px; margin: 8px 0=
+px; padding: 12px 24px; text-align: left; border: 1px dashed rgb(173, 173, =
+173); }
+
+.unit-article .toc a { color: rgba(0, 0, 0, 0.8); border: none; }
+
+.unit-article .toc a:active, .unit-article .toc a:hover, .unit-article .toc=
+ a:visited { color: rgba(0, 0, 0, 0.8); }
+
+.unit-article .toc li, .unit-article .toc ol, .unit-article .toc ul { margi=
+n-left: 0.8em; padding-left: 0px; }
+
+.unit-article .toc:hover { border-width: 1.5px; }
+
+.unit-article .data-table { overflow: auto; }
+
+.unit-article .data-table::-webkit-scrollbar { height: 8px; border-radius: =
+5px; }
+
+.unit-article .data-table::-webkit-scrollbar-track { border-radius: 5px; ba=
+ckground-color: rgb(173, 173, 173); }
+
+.unit-article .data-table::-webkit-scrollbar-thumb:horizontal { border-radi=
+us: 5px; background-color: rgb(121, 121, 121); }
+
+.unit-article .gist .gist-file { font-family: Monaco, "Lucida Console", mon=
+ospace !important; border: none !important; }
+
+.unit-article .gist .gist-file .gist-data { font-size: 12px; margin: 12px; =
+background-color: rgb(39, 40, 34); }
+
+.unit-article .gist .gist-file .gist-data .data { padding: 20px 20px 20px 1=
+2px; }
+
+.unit-article .gist .gist-file .gist-data .data::-webkit-scrollbar { height=
+: 6px; border-radius: 5px; }
+
+.unit-article .gist .gist-file .gist-data .data::-webkit-scrollbar-track { =
+border-radius: 5px; background-color: rgb(39, 40, 34); }
+
+.unit-article .gist .gist-file .gist-data .data::-webkit-scrollbar-thumb:ho=
+rizontal { border-radius: 5px; background-color: rgb(173, 173, 173); }
+
+.unit-article .gist .gist-file .gist-data .data table { border: none; backg=
+round-color: rgb(39, 40, 34); }
+
+.unit-article .gist .gist-file .gist-data .data table td { font-family: Mon=
+aco, "Lucida Console", monospace; font-size: 12px; line-height: 20px; borde=
+r: none; background-color: rgb(39, 40, 34); }
+
+.unit-article .gist .gist-file .gist-data .data .blob-code-inner, .unit-art=
+icle .gist .gist-file .gist-data .data .blob-num { color: rgb(255, 255, 255=
+); }
+
+.unit-article .gist .gist-file .gist-data .data .blob-num:hover { cursor: d=
+efault; }
+
+.unit-article .gist .gist-file .gist-data .data .pl-s, .unit-article .gist =
+.gist-file .gist-data .data .pl-pds, .unit-article .gist .gist-file .gist-d=
+ata .data .pl-s .pl-pse .pl-s1, .unit-article .gist .gist-file .gist-data .=
+data .pl-sr, .unit-article .gist .gist-file .gist-data .data .pl-sr .pl-cce=
+, .unit-article .gist .gist-file .gist-data .data .pl-sr .pl-sre, .unit-art=
+icle .gist .gist-file .gist-data .data .pl-sr .pl-sra { color: rgb(236, 172=
+, 41); }
+
+.unit-article .gist .gist-file .gist-data .data .pl-k, .unit-article .gist =
+.gist-file .gist-data .data .pl-smi, .unit-article .gist .gist-file .gist-d=
+ata .data .pl-e { color: rgb(102, 217, 239); }
+
+.unit-article .gist .gist-file .gist-data .data .pl-c1 { color: rgb(248, 24=
+8, 242); }
+
+.unit-article .gist .gist-file .gist-data .data .pl-en, .unit-article .gist=
+ .gist-file .gist-data .data .pl-ent { color: rgb(166, 226, 46); }
+
+.unit-article .gist .gist-file .gist-meta { display: none; visibility: hidd=
+en; }
+
+.unit-article .tag_box { padding: 0.8125em; list-style: none; background: u=
+rl("../images/theme/noisy_texture_section0-200x200.png") repeat padding-box=
+ rgb(240, 240, 240); box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 3px inset, rgba=
+(255, 255, 255, 0.4) 0px 3px 0px; }
+
+.unit-article .tag_box li { line-height: normal; display: inline; vertical-=
+align: middle; }
+
+.unit-article .tag_box li a { float: left; margin: 5px; padding: 3px 6px; u=
+ser-select: none; transition-duration: 0.2s; vertical-align: bottom; color:=
+ rgba(0, 0, 0, 0.8); border: 1px solid rgba(0, 0, 0, 0.8); background-color=
+: rgb(234, 234, 234); background-clip: padding-box; text-shadow: rgba(255, =
+255, 255, 0.2) 0px -1px 0px; }
+
+.unit-article .tag_box li a:hover { color: rgba(0, 0, 0, 0.8); border: 1px =
+solid rgba(0, 0, 0, 0.8); background-color: rgb(255, 153, 0); }
+
+.unit-article .tag_box li a:hover span { border: 1px solid rgba(0, 0, 0, 0.=
+8); background-color: rgb(255, 153, 0); }
+
+.unit-article .tag_box li a span { font-size: 0.875em; font-weight: bold; p=
+osition: relative; top: -2px; display: inline-block; padding: 1px 5px; vert=
+ical-align: middle; border: 1px solid rgba(0, 0, 0, 0.8); border-radius: 10=
+px; background-color: rgb(234, 234, 234); }
+
+.unit-article.layout-page .year { margin-top: 24px; }
+
+.unit-article.layout-page .post-list { margin: 0px; padding: 0px 0px 0px 1.=
+05em; list-style-type: disc; }
+
+.unit-article.layout-page .post-list li { margin-top: 8px; margin-bottom: 8=
+px; }
+
+.unit-article.layout-page .post-list li a { font-size: 1em; line-height: 1.=
+525em; border-bottom: none; }
+
+.unit-article.layout-page .post-list li .date { font-size: 0.8em; float: ri=
+ght; }
+
+.unit-article.layout-page .post-list li .description { font-size: 0.8em; }
+
+.unit-article.layout-post iframe { display: block; width: 100%; height: 180=
+px; margin-right: auto; margin-left: auto; }
+
+.unit-article.layout-post .misc-content { margin-top: 48px; }
+
+.unit-article.layout-post .license-icon { float: right; border-bottom: none=
+; background-color: transparent; }
+
+.unit-article.layout-post .meta { margin-bottom: 26px; border-bottom: 1px d=
+otted rgba(21, 25, 25, 0.8); }
+
+.unit-article.layout-post .meta .date-publish { margin-bottom: 0px; }
+
+.unit-article.layout-post .meta .list-category { margin-top: 0px; margin-bo=
+ttom: 0px; }
+
+.unit-article.layout-post .meta .list-linear { margin-top: 0px; padding-lef=
+t: 0px; list-style: none; letter-spacing: -0.31em; word-spacing: -0.43em; }
+
+.unit-article.layout-post .meta .list-linear .list-head { margin-right: 10p=
+x; padding-right: 4px; }
+
+.unit-article.layout-post .meta .list-linear a { border: none; background-c=
+olor: transparent; color: rgba(0, 0, 0, 0.8); }
+
+.unit-article.layout-post .meta .list-linear a:hover span { background-colo=
+r: rgb(255, 153, 0); }
+
+.unit-article.layout-post .meta .list-linear span { font-size: 0.875em; fon=
+t-weight: bold; position: relative; top: -2px; display: inline-block; margi=
+n: 0px 6px 0px 0px; padding: 1px 5px; vertical-align: middle; text-transfor=
+m: uppercase; color: white; border-radius: 10px; background-color: rgb(255,=
+ 153, 0); }
+
+.unit-article.layout-post .meta .list-linear li { line-height: normal; disp=
+lay: inline-block; zoom: 1; margin-right: 16px; vertical-align: middle; let=
+ter-spacing: normal; word-spacing: normal; }
+
+.unit-article.layout-post .meta .list-linear li:last-child { margin-right: =
+0px; }
+
+.unit-article.layout-post .meta .list-linear li a:hover { color: rgb(121, 1=
+21, 121); }
+
+.unit-article.layout-post .post-image:visited { border-bottom: none; }
+
+.unit-article.layout-post .post-image:hover { background-color: transparent=
+; }
+
+.unit-article.layout-post .post-image img { display: block; margin-right: a=
+uto; margin-left: auto; }
+
+.unit-article.layout-post .post-image img:hover { transition: all 0.1s ease=
+-out 0s; background-color: transparent; }
+
+.unit-article .unit-head { border-bottom: 5px solid rgba(0, 0, 0, 0.8); }
+
+.unit-article .unit-head h1 { margin-top: 0px; margin-bottom: 8px; }
+
+.unit-article .unit-foot { top: auto; margin-top: 26px; padding-top: 12px; =
+border-top: 3px solid rgba(0, 0, 0, 0.8); }
+
+.unit-article .unit-foot nav { display: block; }
+
+.unit-article .unit-foot nav a[rel=3D"prev"] { line-height: 1.325em; float:=
+ left; padding: 4px; }
+
+.unit-article .unit-foot nav a[rel=3D"next"] { line-height: 1.325em; float:=
+ right; padding: 4px; }
+
+.unit-article .unit-foot .post-buttons { margin-bottom: 18px; }
+
+.unit-article .unit-foot .post-buttons .addthis_toolbox { float: right; }
+
+.unit-article .unit-foot .post-buttons .addthis_toolbox a { opacity: 0.3; b=
+order: none; }
+
+.unit-article .unit-foot .post-buttons .addthis_toolbox a:hover { transitio=
+n: all 0.3s ease-out 0s; opacity: 1; background: transparent; }
+
+.unit-article .unit-foot .post-buttons .addthis_toolbox .label { float: lef=
+t; margin-right: 6px; }
+
+@media only screen and (max-width: 640px) {
+  body { font-size: 0.8em; line-height: 24px; }
+  h2, h3, h4 { margin-top: 16px; margin-bottom: 16px; }
+  h1, h2 { line-height: 32px; }
+  .the-header .unit-head { padding: 16px 16px 8px; }
+  .the-header .unit-head .nav-global .logo { padding-bottom: 0px; }
+  .the-header .unit-head .nav-global .logo a { margin-left: 14px; padding-t=
+op: 6px; padding-bottom: 6px; }
+  .the-header .unit-head .nav-global .logo .btn-menu, .the-header .unit-hea=
+d .nav-global .logo .btn-search { display: inline; cursor: pointer; }
+  .the-header .unit-head .nav-global ul li { display: none; }
+  .the-header .unit-head .nav-global ul li .btn-search { display: none; }
+  .the-footer .social-links a { width: 32px; height: 32px; background-size:=
+ 32px 32px; }
+}
+
+@media only screen and (max-width: 1200px) {
+  .unit-article .year, .unit-article header h1 { text-align: center; }
+  .unit-article .date { display: none; }
+}
+
+@media only screen and (min-width: 1200px) {
+  .unit-body { max-width: 980px; margin: auto; }
+  .the-footer h4 a { font-size: 1.25em; }
+  .search-form .results .entry-date { display: block; float: right; }
+}
+------MultipartBoundary--IZKByOZGaL6z5tQqMbkrdMpkAIiTYKq2QyFNW3cWka----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: https://keyou.github.io/assets/images/simple-icons/github-48.png
+
+iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAACZUlEQVR42u3YT0iTcRzH8R/bQrIy
+hYLC7BKBJjUsopDqElRSZH8w+nMo6TyrU3gKCoIudimLYBl0KIgQYR4UoaJTjEaYZRAVWZAUkZEQ
+2OzpffgdHr78enTbd3PR84YXwuN+sA8+jPkYz/P+aeGAcEA4IBwQDggHaKrCViTQhR7rMhLYhqpy
+HLAe3RjDTI3hGjaUw4BaJJFFrmVxE7VzNWAXPqDQPqKl1AOOIwutptFeqgEHUKzaij2gAT/g2X4j
+iQFMYbZNYRBJTPuuT2JNsQZE8Qj+RmCsdbiDCTxHP25bKXttAncRh7GG4e8xosUYcAiyPhhhOSIw
+QsT+zgi9kB3RHhBFGrIhmAINQpZBVHPARrgaQQwmTzEMw9UmzQHn4Go/TIFa4eq85oAByNIwSp5A
+NqQ1IIbXkF1SHHARsjeYpzGgGl8gO6M44BRkX1GjMWAJvkHWqTjgLGTfsVRjwCKMQ3ZdcUA3ZJ+x
+WGNABC8ge6Y4IAPZKKJan0L34WqLwptvhqtezY/RBFw9xUKYPC1AGq5Oaw5YhV9w9RD1MDmqxwO4
+ymK12gCrD54dcgwdmIRnf/bgIBpRASNUYC3acMt31lUKRnvAZnHrLMN2yDJw3VZc49zsatYaIN1w
+fJXohL9EwPkOzFSymP+RVeMlPNs+37fVk9iN+QHndyKoV6jRHiA14BM8eo+mHM7uwN8aR2OpnkrE
+8RYe/cQ9XEAX4nn8Bd6hqdTPhVYgBdnegDMtkPWjbi4fLZ7AKDxba8Br94j7vb1cno1W4jCuYGXA
+6+pwFUdRGT5eDweEA8IB4YBwwH8/4A8XemfEMmfwuAAAAABJRU5ErkJggg==
+
+------MultipartBoundary--IZKByOZGaL6z5tQqMbkrdMpkAIiTYKq2QyFNW3cWka----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: https://keyou.github.io/assets/images/simple-icons/rss-48.png
+
+iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAACXElEQVR42u3ZTWsTURyFcdOCaTVG
+YyK2oBQKgrVKVdyLG9FGcaMrUasIfgNRKCIuXYi4EVeCWRiVSClIF0HB+i7tyiKWgkpFRI2p2tDW
+F4jP+nLPTCK50wnMgd8q/ztwkszcmWRJtVptalGBqEBUICoQFXBeIIYUkljajAVSmMQnTOEZ8jiH
+/Vgf9gKr8QMqs3iI09gY1gLfUEsWMIz+5imgM4q9YSiQxjz+N7fQvZgFVqCAJ3iNr6g3JQyEYR9o
+RRpbcQzX8Q615iriYdvIEsjiDn7DL0VkwroT9yEHv4yhMwQFpF0Yh1fGkQ6iwEqMoIgcBtGPDp91
+y3AZXrmPuOsCGSzATBlDOIQ2j/UnfM6Na0HsA2V4ZQIDiIljZDEHlaPBFtB5gC2yhP4kZtDl8itU
+Qa35iSPiWMehctfl7fQEvqOenBXHuwKV3a4eaBLowHacRAGz8MsZy/Ha8UrMP0dLUPtANy5iDl45
+bFm7Eyp7gt7I+vAYKhVssqzLi/kRdwW0dtyAyiO0Gms24y/M/MEGdwW0GHJ1XuuH1LnjssBywPpa
+G17AlinLjp0Vs09dFOjFbXzANPLoEXPqCe6g5X7pI8zMY10jC/SiBDNfxC8Rl2DLPcusOncONLLA
+MFQKlvku8SlUsLbG3flCowokUYLKZyTqKL3PmNum3pjFLnBKzJ+33CzOwMxY0F8h0w4xf9PyQ8Ek
+zLxHPIiTuEes6cQvmBm1zL4Ut9irXFxGp83LqJDEG5QNRbGhmXNvkXa/kWkxpLHGkBLP3eZcBi3R
+HxxRgahAVCAqEBXw8g/FMKWMNpbR1QAAAABJRU5ErkJggg==
+
+------MultipartBoundary--IZKByOZGaL6z5tQqMbkrdMpkAIiTYKq2QyFNW3cWka----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://keyou.github.io/assets/javascripts/fancybox/jquery.fancybox.css?v=2.1.4
+
+@charset "utf-8";
+
+.fancybox-wrap, .fancybox-skin, .fancybox-outer, .fancybox-inner, .fancybox=
+-image, .fancybox-wrap iframe, .fancybox-wrap object, .fancybox-nav, .fancy=
+box-nav span, .fancybox-tmp { padding: 0px; margin: 0px; border: 0px; outli=
+ne: none; vertical-align: top; }
+
+.fancybox-wrap { position: absolute; top: 0px; left: 0px; z-index: 8020; }
+
+.fancybox-skin { position: relative; background: rgb(249, 249, 249); color:=
+ rgb(68, 68, 68); text-shadow: none; border-radius: 4px; }
+
+.fancybox-opened { z-index: 8030; }
+
+.fancybox-opened .fancybox-skin { box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 2=
+5px; }
+
+.fancybox-outer, .fancybox-inner { position: relative; }
+
+.fancybox-inner { overflow: hidden; }
+
+.fancybox-type-iframe .fancybox-inner { }
+
+.fancybox-error { color: rgb(68, 68, 68); font: 14px / 20px "Helvetica Neue=
+", Helvetica, Arial, sans-serif; margin: 0px; padding: 15px; white-space: n=
+owrap; }
+
+.fancybox-image, .fancybox-iframe { display: block; width: 100%; height: 10=
+0%; }
+
+.fancybox-image { max-width: 100%; max-height: 100%; }
+
+#fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next spa=
+n { background-image: url("fancybox_sprite.png"); }
+
+#fancybox-loading { position: fixed; top: 50%; left: 50%; margin-top: -22px=
+; margin-left: -22px; background-position: 0px -108px; opacity: 0.8; cursor=
+: pointer; z-index: 8060; }
+
+#fancybox-loading div { width: 44px; height: 44px; background: url("fancybo=
+x_loading.gif") center center no-repeat; }
+
+.fancybox-close { position: absolute; top: -18px; right: -18px; width: 36px=
+; height: 36px; cursor: pointer; z-index: 8040; }
+
+.fancybox-nav { position: absolute; top: 0px; width: 40%; height: 100%; cur=
+sor: pointer; text-decoration: none; background: url("blank.gif") transpare=
+nt; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); z-index: 8040; }
+
+.fancybox-prev { left: 0px; }
+
+.fancybox-next { right: 0px; }
+
+.fancybox-nav span { position: absolute; top: 50%; width: 36px; height: 34p=
+x; margin-top: -18px; cursor: pointer; z-index: 8040; visibility: hidden; }
+
+.fancybox-prev span { left: 10px; background-position: 0px -36px; }
+
+.fancybox-next span { right: 10px; background-position: 0px -72px; }
+
+.fancybox-nav:hover span { visibility: visible; }
+
+.fancybox-tmp { position: absolute; top: -99999px; left: -99999px; visibili=
+ty: hidden; max-width: 99999px; max-height: 99999px; overflow: visible !imp=
+ortant; }
+
+.fancybox-lock { width: auto; overflow: hidden !important; }
+
+.fancybox-lock body { overflow: hidden !important; }
+
+.fancybox-lock-test { overflow-y: hidden !important; }
+
+.fancybox-overlay { position: absolute; top: 0px; left: 0px; overflow: hidd=
+en; display: none; z-index: 8010; background: url("fancybox_overlay.png"); =
+}
+
+.fancybox-overlay-fixed { position: fixed; bottom: 0px; right: 0px; }
+
+.fancybox-lock .fancybox-overlay { overflow: auto scroll; }
+
+.fancybox-title { visibility: hidden; font: 13px / 20px "Helvetica Neue", H=
+elvetica, Arial, sans-serif; position: relative; text-shadow: none; z-index=
+: 8050; }
+
+.fancybox-opened .fancybox-title { visibility: visible; }
+
+.fancybox-title-float-wrap { position: absolute; bottom: 0px; right: 50%; m=
+argin-bottom: -35px; z-index: 8050; text-align: center; }
+
+.fancybox-title-float-wrap .child { display: inline-block; margin-right: -1=
+00%; padding: 2px 20px; background: rgba(0, 0, 0, 0.8); border-radius: 15px=
+; text-shadow: rgb(34, 34, 34) 0px 1px 2px; color: rgb(255, 255, 255); font=
+-weight: bold; line-height: 24px; white-space: nowrap; }
+
+.fancybox-title-outside-wrap { position: relative; margin-top: 10px; color:=
+ rgb(255, 255, 255); }
+
+.fancybox-title-inside-wrap { padding-top: 10px; }
+
+.fancybox-title-over-wrap { position: absolute; bottom: 0px; left: 0px; col=
+or: rgb(255, 255, 255); padding: 10px; background: rgba(0, 0, 0, 0.8); }
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen a=
+nd (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ra=
+tio: 1.5) {
+  #fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next s=
+pan { background-image: url("fancybox_sprite@2x.png"); background-size: 44p=
+x 152px; }
+  #fancybox-loading div { background-image: url("fancybox_loading@2x.gif");=
+ background-size: 24px 24px; }
+}
+------MultipartBoundary--IZKByOZGaL6z5tQqMbkrdMpkAIiTYKq2QyFNW3cWka----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://keyou.github.io/assets/javascripts/fancybox/helpers/jquery.fancybox-buttons.css?v=1.0.5
+
+@charset "utf-8";
+
+#fancybox-buttons { position: fixed; left: 0px; width: 100%; z-index: 8050;=
+ }
+
+#fancybox-buttons.top { top: 10px; }
+
+#fancybox-buttons.bottom { bottom: 10px; }
+
+#fancybox-buttons ul { display: block; width: 166px; height: 30px; margin: =
+0px auto; padding: 0px; list-style: none; border: 1px solid rgb(17, 17, 17)=
+; border-radius: 3px; box-shadow: rgba(255, 255, 255, 0.05) 0px 0px 0px 1px=
+ inset; background: -webkit-linear-gradient(top, rgb(68, 68, 68) 0%, rgb(52=
+, 52, 52) 50%, rgb(41, 41, 41) 50%, rgb(51, 51, 51) 100%); }
+
+#fancybox-buttons ul li { float: left; margin: 0px; padding: 0px; }
+
+#fancybox-buttons a { display: block; width: 30px; height: 30px; text-inden=
+t: -9999px; background-color: transparent; background-image: url("fancybox_=
+buttons.png"); background-repeat: no-repeat; outline: none; opacity: 0.8; }
+
+#fancybox-buttons a:hover { opacity: 1; }
+
+#fancybox-buttons a.btnPrev { background-position: 5px 0px; }
+
+#fancybox-buttons a.btnNext { background-position: -33px 0px; border-right:=
+ 1px solid rgb(62, 62, 62); }
+
+#fancybox-buttons a.btnPlay { background-position: 0px -30px; }
+
+#fancybox-buttons a.btnPlayOn { background-position: -30px -30px; }
+
+#fancybox-buttons a.btnToggle { background-position: 3px -60px; border-left=
+: 1px solid rgb(17, 17, 17); border-right: 1px solid rgb(62, 62, 62); width=
+: 35px; }
+
+#fancybox-buttons a.btnToggleOn { background-position: -27px -60px; }
+
+#fancybox-buttons a.btnClose { border-left: 1px solid rgb(17, 17, 17); widt=
+h: 35px; background-position: -56px 0px; }
+
+#fancybox-buttons a.btnDisabled { opacity: 0.4; cursor: default; }
+------MultipartBoundary--IZKByOZGaL6z5tQqMbkrdMpkAIiTYKq2QyFNW3cWka----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: https://keyou.github.io/assets/images/theme/cc-by-sa.png
+
+iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAIAAAD8q9/YAAAABGdBTUEAANbY1E9YMgAAABl0RVh0
+U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAIySURBVHjaYmAYYYARiP///z9SfMvIyAJh
+rdm0Glliz669M6fO7OjoKC8vx9Tm6up66tSptu5WcQlxIFdeVsHVyfXjh4+D3LeQeGXClHj54uXy
+xctx+RYIdu/ebWZmNrl/CoT74eOHwoLCoRLJWDy8fMkKYWFhXL6FAGBw3Lxxc8PajUD2x08fPHw8
+vH28h6qHL128lJ6eDmScPXtWWVkZmO6Bafj9+/dAEsgGigDFjY2NXVxcrl29BjWFiQnIRUs/EICc
+nDDZ+LXQonBhwvDt5c+fPgP9A2SHhYUBGUBbgWRnZyfQn+/evQPG/L1794CyQME7t+/AUzUwkWOW
+EEAAcTScASSBbKy+ZYQBZC7V/Yzu4a9fvgBJQUFBYJQCPQbxOTABA9lKSkpA8bS0tNDQUFgRD3X6
+z58/GFkYscYY3HsQ18O5aPEJkUVLCPSIYW4eHiAJ9C3Qb0AfAmMVUiwDuUA/A8UrKipmzZqFljjZ
+2Tn+//mPJ4ax1hDw+MSqHk2WVh7W09fl5eWF+BMYsXv27AHaCvQ5kA2MbSEhIaAIJLueOXNGUVkR
+okuAXwBYUeGPYYJ1BknqKW14INfDfV39z58+v3//Ph5twBAxMTGJjosOCPYHcmWl5Zobmrdu2TrI
+62FgaGIppaPjot6+fQOMUjyay8rKVFSVIb7l5xPYsWXHIPctvmoJ2H5KzUytrKxsb2/HqsfJ2en6
+9esFJQXw9Nw/oX+0LT1I29IjrbPEABBgAEdwNeO7yfOaAAAAAElFTkSuQmCC
+
+------MultipartBoundary--IZKByOZGaL6z5tQqMbkrdMpkAIiTYKq2QyFNW3cWka------
