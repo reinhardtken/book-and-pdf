@@ -1,0 +1,2022 @@
+From: <Saved by Blink>
+Snapshot-Content-Location: https://blog.bnorm.dev/writing-your-second-compiler-plugin-part-2
+Subject: =?utf-8?Q?Writing=20Your=20Second=20Kotlin=20Compiler=20Plugin,=20Part=20?=
+ =?utf-8?Q?2=20=E2=80=94=20Inspecting=20Kotlin=20IR=20=C2=B7=20Dev=20Blog?=
+ =?utf-8?Q?=20by=20Brian?=
+Date: Mon, 11 Nov 2024 16:46:34 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----MultipartBoundary--0Gh0FQyan1OnPi87Kyhw2EqHcoLXkvPwRVoZ1ETzki----"
+
+
+------MultipartBoundary--0Gh0FQyan1OnPi87Kyhw2EqHcoLXkvPwRVoZ1ETzki----
+Content-Type: text/html
+Content-ID: <frame-E90DF00DB16ED4B18E315BDA19D26B0B@mhtml.blink>
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://blog.bnorm.dev/writing-your-second-compiler-plugin-part-2
+
+<!DOCTYPE html><html lang=3D"en"><head><meta http-equiv=3D"Content-Type" co=
+ntent=3D"text/html; charset=3DUTF-8">  <meta http-equiv=3D"X-UA-Compatible"=
+ content=3D"IE=3Dedge"> <meta name=3D"viewport" content=3D"width=3Ddevice-w=
+idth, initial-scale=3D1"> <title>Writing Your Second Kotlin Compiler Plugin=
+, Part 2 =E2=80=94 Inspecting Kotlin IR =C2=B7 Dev Blog by Brian</title> <m=
+eta name=3D"description" content=3D" At the time of writing this article, K=
+otlin compatibility for IR backend is in Alpha status andthe compiler plugi=
+n API is Experimental. As such, informatio..."> <link rel=3D"icon" href=3D"=
+https://blog.bnorm.dev/assets/favicon.png"> <link rel=3D"apple-touch-icon" =
+href=3D"https://blog.bnorm.dev/assets/touch-icon.png"> <link rel=3D"stylesh=
+eet" href=3D"https://blog.bnorm.dev/assets/core.css"> <link rel=3D"canonica=
+l" href=3D"https://blog.bnorm.dev/writing-your-second-compiler-plugin-part-=
+2"> <link rel=3D"alternate" type=3D"application/atom+xml" title=3D"Dev Blog=
+ by Brian" href=3D"https://blog.bnorm.dev/feed.xml"> <!-- OpenGraph metadat=
+as --> <meta name=3D"og:type" content=3D"article"> <meta name=3D"og:site_na=
+me" content=3D"Dev Blog by Brian"> <meta name=3D"og:title" content=3D"Writi=
+ng Your Second Kotlin Compiler Plugin, Part 2 =E2=80=94 Inspecting Kotlin I=
+R"> <meta name=3D"og:url" content=3D"https://blog.bnorm.dev/writing-your-se=
+cond-compiler-plugin-part-2"> <meta name=3D"og:description" content=3D"Insp=
+ecting Kotlin IR"> <!-- Twitter cards metadatas --> <meta name=3D"twitter:c=
+ard" content=3D"summary"> <meta name=3D"twitter:site" content=3D"@bnormcode=
+s"> <meta name=3D"twitter:creator" content=3D"@bnormcodes"> <meta name=3D"t=
+witter:title" content=3D"Writing Your Second Kotlin Compiler Plugin, Part 2=
+ =E2=80=94 Inspecting Kotlin IR"> <meta name=3D"twitter:url" content=3D"htt=
+ps://blog.bnorm.dev/writing-your-second-compiler-plugin-part-2"> <meta name=
+=3D"twitter:description" content=3D"Inspecting Kotlin IR"> <!-- Google Anal=
+ytics -->   </head> <body youdao=3D"bind"> <div class=3D"header"> <aside cl=
+ass=3D"logo"> <a href=3D"https://blog.bnorm.dev/"> <img src=3D"https://avat=
+ars2.githubusercontent.com/u/1074449?v=3D4" alt=3D"" class=3D"logo-avatar">=
+ </a> <span class=3D"logo-prompt code">Back to Index</span> </aside> <div c=
+lass=3D"social-media-list"> <div> <a href=3D"https://github.com/bnorm"><svg=
+ class=3D"svg-icon"><use xlink:href=3D"/assets/minima-social-icons.svg#gith=
+ub"></use></svg> bnorm</a> </div> <div> <a href=3D"https://www.twitter.com/=
+bnormcodes"><svg class=3D"svg-icon"><use xlink:href=3D"/assets/minima-socia=
+l-icons.svg#twitter"></use></svg> bnormcodes</a> </div> </div> </div> <div =
+id=3D"content"> <article> <div class=3D"center"> <h1 class=3D"title">Writin=
+g Your Second Kotlin Compiler Plugin, Part 2 =E2=80=94 Inspecting Kotlin IR=
+</h1> <time class=3D"code">November 28, 2020</time> </div> <div class=3D"di=
+vider"></div> <blockquote> <p>At the time of writing this article, <a href=
+=3D"https://kotlinlang.org/docs/reference/evolution/components-stability.ht=
+ml">Kotlin compatibility</a> for IR backend is in Alpha status and the comp=
+iler plugin API is Experimental. As such, information contained in this art=
+icle about IR and compiler plugins could be out-of-date or incorrect. If of=
+ficial documentation exists, please refer to it first.</p> </blockquote> <p=
+>In <a href=3D"https://blog.bnorm.dev/writing-your-second-compiler-plugin-p=
+art-1">Part 1</a> we learned how to set up a Gradle project for building a =
+Kotlin compiler plugin. In this part we will drive right into the structure=
+ of Kotlin IR and what it looks like.</p> <ul> <li><a href=3D"https://blog.=
+bnorm.dev/writing-your-second-compiler-plugin-part-1">Part 1 - Project Setu=
+p</a></li> <li><a href=3D"https://blog.bnorm.dev/writing-your-second-compil=
+er-plugin-part-2">Part 2 - Inspecting Kotlin IR</a></li> <li><a href=3D"htt=
+ps://blog.bnorm.dev/writing-your-second-compiler-plugin-part-3">Part 3 - Na=
+vigating Kotlin IR</a></li> <li><a href=3D"https://blog.bnorm.dev/writing-y=
+our-second-compiler-plugin-part-4">Part 4 - Building Kotlin IR</a></li> <li=
+><a href=3D"https://blog.bnorm.dev/writing-your-second-compiler-plugin-part=
+-5">Part 5 - Transforming Kotlin IR</a></li> <li><a href=3D"https://blog.bn=
+orm.dev/writing-your-second-compiler-plugin-part-6">Part 6 - Support Librar=
+ies, Publishing, and Integration Testing</a></li> </ul> <h1 id=3D"foundatio=
+n">Foundation</h1> <p>Kotlin intermediate representation (IR) is an <a href=
+=3D"https://en.wikipedia.org/wiki/Abstract_syntax_tree">abstract syntax tre=
+e</a> for representing Kotlin code. Kotlin code is represented this way bec=
+ause Kotlin is a high-level programming language, allowing for many advance=
+d programming concepts. Before it can be converted to JVM byte code, JavaSc=
+ript, or LLVM=E2=80=99s own IR, these high-level concepts need to be lowere=
+d. Many of these =E2=80=9Clowerings=E2=80=9D are the same across all Kotlin=
+ platforms - <code class=3D"language-plaintext highlighter-rouge">suspend</=
+code> functions for example - which makes having a common backend represent=
+ation for Kotlin extremely useful. (Not to mention useful for compiler plug=
+ins!)</p> <p>Every node in the Kotlin IR syntax tree implements <a href=3D"=
+https://github.com/JetBrains/kotlin/blob/1.4.20/compiler/ir/ir.tree/src/org=
+/jetbrains/kotlin/ir/IrElement.kt">IrElement</a>. Elements of the syntax tr=
+ee represent things like modules, packages, files, classes, properties, fun=
+ctions, parameters, <code class=3D"language-plaintext highlighter-rouge">if=
+</code> statements, function invocations, and much, much, more. Let=E2=80=
+=99s see what this actually looks like!</p> <h1 id=3D"your-new-best-friend-=
+irelementdump">Your New Best Friend: <code class=3D"language-plaintext high=
+lighter-rouge">IrElement.dump()</code></h1> <p>From <a href=3D"https://blog=
+.bnorm.dev/writing-your-second-compiler-plugin-part-1">Part 1</a> we learne=
+d our entry point into IR is through a <code class=3D"language-plaintext hi=
+ghlighter-rouge">IrGenerationExtension</code> instance. This class must imp=
+lement a function which takes a <code class=3D"language-plaintext highlight=
+er-rouge">IrModuleFragment</code> and <code class=3D"language-plaintext hig=
+hlighter-rouge">IrPluginContext</code> parameter. Given a compiler plugin w=
+ith the following implementation:</p> <div class=3D"language-kotlin highlig=
+hter-rouge"><div class=3D"highlight"><pre class=3D"highlight"><code><span c=
+lass=3D"k">override</span> <span class=3D"k">fun</span> <span class=3D"nf">=
+generate</span><span class=3D"p">(</span><span class=3D"n">moduleFragment</=
+span><span class=3D"p">:</span> <span class=3D"nc">IrModuleFragment</span><=
+span class=3D"p">,</span> <span class=3D"n">pluginContext</span><span class=
+=3D"p">:</span> <span class=3D"nc">IrPluginContext</span><span class=3D"p">=
+)</span> <span class=3D"p">{</span>
+  <span class=3D"nf">println</span><span class=3D"p">(</span><span class=3D=
+"n">moduleFragment</span><span class=3D"p">.</span><span class=3D"nf">dump<=
+/span><span class=3D"p">())</span>
+<span class=3D"p">}</span>
+</code></pre></div></div> <p>And a simple program with the following code:<=
+/p> <div class=3D"language-kotlin highlighter-rouge"><div class=3D"highligh=
+t"><pre class=3D"highlight"><code><span class=3D"k">fun</span> <span class=
+=3D"nf">main</span><span class=3D"p">()</span> <span class=3D"p">{</span>
+  <span class=3D"nf">println</span><span class=3D"p">(</span><span class=3D=
+"nf">debug</span><span class=3D"p">())</span>
+<span class=3D"p">}</span>
+
+<span class=3D"k">fun</span> <span class=3D"nf">debug</span><span class=3D"=
+p">(</span><span class=3D"n">name</span><span class=3D"p">:</span> <span cl=
+ass=3D"nc">String</span> <span class=3D"p">=3D</span> <span class=3D"s">"Wo=
+rld"</span><span class=3D"p">)</span> <span class=3D"p">=3D</span> <span cl=
+ass=3D"s">"Hello, $name!"</span>
+</code></pre></div></div> <p>The compiler plugin will output the following:=
+</p> <div class=3D"language-text highlighter-rouge"><div class=3D"highlight=
+"><pre class=3D"highlight"><code>MODULE_FRAGMENT name:&lt;main&gt;
+  FILE fqName:&lt;root&gt; fileName:/var/folders/dk/9hdq9xms3tv916dk90l98c0=
+1p961px/T/Kotlin-Compilation3223338783072974845/sources/main.kt
+    FUN name:main visibility:public modality:FINAL &lt;&gt; () returnType:k=
+otlin.Unit
+      BLOCK_BODY
+        CALL 'public final fun println (message: kotlin.Any?): kotlin.Unit =
+[inline] declared in kotlin.io.ConsoleKt' type=3Dkotlin.Unit origin=3Dnull
+          message: CALL 'public final fun debug (name: kotlin.String): kotl=
+in.String declared in &lt;root&gt;' type=3Dkotlin.String origin=3Dnull
+    FUN name:debug visibility:public modality:FINAL &lt;&gt; (name:kotlin.S=
+tring) returnType:kotlin.String
+      VALUE_PARAMETER name:name index:0 type:kotlin.String
+        EXPRESSION_BODY
+          CONST String type=3Dkotlin.String value=3D"World"
+      BLOCK_BODY
+        RETURN type=3Dkotlin.Nothing from=3D'public final fun debug (name: =
+kotlin.String): kotlin.String declared in &lt;root&gt;'
+          STRING_CONCATENATION type=3Dkotlin.String
+            CONST String type=3Dkotlin.String value=3D"Hello, "
+            GET_VAR 'name: kotlin.String declared in &lt;root&gt;.debug' ty=
+pe=3Dkotlin.String origin=3Dnull
+            CONST String type=3Dkotlin.String value=3D"!"
+</code></pre></div></div> <p>The extension function <code class=3D"language=
+-plaintext highlighter-rouge">IrElement.dump()</code> has been my favorite =
+tool when developing IR compiler plugins. It allows for dumping an IR tree =
+from any specific point and saving the output from run to run. This has all=
+owed me to write the code I want generated and take a dump of it for compar=
+ing against as I build the IR compiler plugin generation. It has been my be=
+st friend.</p> <p>Let=E2=80=99s break this IR dump down into manageable pie=
+ces and compare it against the simple program.</p> <h1 id=3D"the-pieces">Th=
+e Pieces</h1> <h2 id=3D"fun-main"><code class=3D"language-plaintext highlig=
+hter-rouge">fun main()</code></h2> <div class=3D"language-text highlighter-=
+rouge"><div class=3D"highlight"><pre class=3D"highlight"><code>FUN name:mai=
+n visibility:public modality:FINAL &lt;&gt; () returnType:kotlin.Unit
+</code></pre></div></div> <p>This is the <code class=3D"language-plaintext =
+highlighter-rouge">main()</code> function definition from our simple progra=
+m above. It defines the function with the name, visibility, modality, and t=
+ype signature of the function. We can clearly see that this is a <code clas=
+s=3D"language-plaintext highlighter-rouge">public</code> and <code class=3D=
+"language-plaintext highlighter-rouge">final</code> function named <code cl=
+ass=3D"language-plaintext highlighter-rouge">main</code> which takes no par=
+ameters - value (<code class=3D"language-plaintext highlighter-rouge">()</c=
+ode>) or type (<code class=3D"language-plaintext highlighter-rouge">&lt;&gt=
+;</code>) - and returns <code class=3D"language-plaintext highlighter-rouge=
+">kotlin.Unit</code>.</p> <h2 id=3D"fun-debugname-string--"><code class=3D"=
+language-plaintext highlighter-rouge">fun debug(name: String =3D ...)</code=
+></h2> <div class=3D"language-text highlighter-rouge"><div class=3D"highlig=
+ht"><pre class=3D"highlight"><code>FUN name:debug visibility:public modalit=
+y:FINAL &lt;&gt; (name:kotlin.String) returnType:kotlin.String
+</code></pre></div></div> <p>Vary similar to <code class=3D"language-plaint=
+ext highlighter-rouge">main()</code>, but the function <code class=3D"langu=
+age-plaintext highlighter-rouge">debug()</code> takes a single value parame=
+ter named <code class=3D"language-plaintext highlighter-rouge">name</code> =
+which is of type <code class=3D"language-plaintext highlighter-rouge">Strin=
+g</code> and also returns a <code class=3D"language-plaintext highlighter-r=
+ouge">String</code>. Notice the default value is not included in the functi=
+on definition dump but rather part of the parameter dump. Functions with an=
+d without default parameters have the same signature, they are just called =
+differently as we will see later.</p> <h2 id=3D"name-string--world"><code c=
+lass=3D"language-plaintext highlighter-rouge">name: String =3D "World"</cod=
+e></h2> <div class=3D"language-text highlighter-rouge"><div class=3D"highli=
+ght"><pre class=3D"highlight"><code>VALUE_PARAMETER name:name index:0 type:=
+kotlin.String
+  EXPRESSION_BODY
+    CONST String type=3Dkotlin.String value=3D"World"
+</code></pre></div></div> <p>The value parameter <code class=3D"language-pl=
+aintext highlighter-rouge">name</code> for the function <code class=3D"lang=
+uage-plaintext highlighter-rouge">debug()</code> is defined as having an <c=
+ode class=3D"language-plaintext highlighter-rouge">EXPRESSION_BODY</code> w=
+hich is just the constant string <code class=3D"language-plaintext highligh=
+ter-rouge">World</code>. In Kotlin IR, there are mainly 2 different types o=
+f =E2=80=9Cbodies=E2=80=9D: <code class=3D"language-plaintext highlighter-r=
+ouge">BLOCK_BODY</code> and <code class=3D"language-plaintext highlighter-r=
+ouge">EXPRESSION_BODY</code>. An expression body holds a single expression =
+while a block body can hold multiple statements. <a href=3D"https://blog.ko=
+tlin-academy.com/kotlin-programmer-dictionary-statement-vs-expression-e6743=
+ba1aaa0">Kotlin Academy has a great article</a> on the difference between s=
+tatements and expressions but to simplify: a statement is a line of code an=
+d an expression is a statement which returns a value. The constant string <=
+code class=3D"language-plaintext highlighter-rouge">World</code> is our fir=
+st example of an expression.</p> <h2 id=3D"hello-name"><code class=3D"langu=
+age-plaintext highlighter-rouge">"Hello, $name!"</code></h2> <div class=3D"=
+language-text highlighter-rouge"><div class=3D"highlight"><pre class=3D"hig=
+hlight"><code>FUN name:debug visibility:public modality:FINAL &lt;&gt; (nam=
+e:kotlin.String) returnType:kotlin.String
+  ...
+  BLOCK_BODY
+    RETURN type=3Dkotlin.Nothing from=3D'public final fun debug (name: kotl=
+in.String): kotlin.String declared in &lt;root&gt;'
+      STRING_CONCATENATION type=3Dkotlin.String
+        CONST String type=3Dkotlin.String value=3D"Hello, "
+        GET_VAR 'name: kotlin.String declared in &lt;root&gt;.debug' type=
+=3Dkotlin.String origin=3Dnull
+        CONST String type=3Dkotlin.String value=3D"!"
+</code></pre></div></div> <p>The body of the <code class=3D"language-plaint=
+ext highlighter-rouge">debug()</code> function is a <code class=3D"language=
+-plaintext highlighter-rouge">BLOCK_BODY</code> with a single statement, a =
+<code class=3D"language-plaintext highlighter-rouge">return</code>. Accordi=
+ng to the IR dump, this return has a type of <code class=3D"language-plaint=
+ext highlighter-rouge">Nothing</code> which makes sense if you remember tha=
+t <a href=3D"https://kotlinlang.org/docs/reference/returns.html"><code clas=
+s=3D"language-plaintext highlighter-rouge">return</code> in Kotlin is actua=
+lly an <em>expression</em></a>. The value being returned is also an express=
+ion, in this case a string, which is the concatenation of 3 expressions: <c=
+ode class=3D"language-plaintext highlighter-rouge">"Hello, "</code>, gettin=
+g the value of the <code class=3D"language-plaintext highlighter-rouge">nam=
+e</code> parameter, and <code class=3D"language-plaintext highlighter-rouge=
+">"!"</code>.</p> <h2 id=3D"printlndebug"><code class=3D"language-plaintext=
+ highlighter-rouge">println(debug())</code></h2> <div class=3D"language-tex=
+t highlighter-rouge"><div class=3D"highlight"><pre class=3D"highlight"><cod=
+e>CALL 'public final fun println (message: kotlin.Any?): kotlin.Unit [inlin=
+e] declared in kotlin.io.ConsoleKt' type=3Dkotlin.Unit origin=3Dnull
+  message: CALL 'public final fun debug (name: kotlin.String): kotlin.Strin=
+g declared in &lt;root&gt;' type=3Dkotlin.String origin=3Dnull
+</code></pre></div></div> <p>Function calls include which function is being=
+ called along with any parameters being provided. In this example, the <cod=
+e class=3D"language-plaintext highlighter-rouge">println()</code> call incl=
+udes a single parameter named <code class=3D"language-plaintext highlighter=
+-rouge">message</code>. This parameter value is an expression which is anot=
+her function call to <code class=3D"language-plaintext highlighter-rouge">d=
+ebug()</code>. Notice that no parameter values are defined for the <code cl=
+ass=3D"language-plaintext highlighter-rouge">debug()</code> function even t=
+hough it has a single parameter <code class=3D"language-plaintext highlight=
+er-rouge">name</code>. This is because <code class=3D"language-plaintext hi=
+ghlighter-rouge">name</code> has a default value and therefore specifying a=
+ value is not required.</p> <p>Also note that the <code class=3D"language-p=
+laintext highlighter-rouge">println()</code> function is an <code class=3D"=
+language-plaintext highlighter-rouge">inline</code> function. <a href=3D"ht=
+tps://github.com/JetBrains/kotlin/blob/1.4.20/compiler/ir/backend.common/sr=
+c/org/jetbrains/kotlin/backend/common/lower/inline/FunctionInlining.kt">Inl=
+ining is a =E2=80=9Clowering=E2=80=9D</a> which is performed later in the c=
+ompilation. This allows IR plugins to generate calls to inline functions wi=
+thout having to perform the inlining.</p> <h1 id=3D"dump-the-world">Dump Th=
+e World</h1> <p>Try dumping some simple programs of your own! The <a href=
+=3D"https://github.com/bnorm/kotlin-ir-plugin-template">GitHub template</a>=
+ for Kotlin IR compiler plugins is ready for you to edit the unit tests and=
+ compiler plugin! What code changes cause the IR dump to change? What codes=
+ changes <em>don=E2=80=99t</em> cause the IR dump to change? What does the =
+dump of an <code class=3D"language-plaintext highlighter-rouge">if</code> s=
+tatement in Kotlin IR look like? (hint: how are <code class=3D"language-pla=
+intext highlighter-rouge">when</code> and <code class=3D"language-plaintext=
+ highlighter-rouge">if</code> similar?)</p> <div class=3D"center"> <div cla=
+ss=3D"divider"></div> <span>Join the conversation!</span> <div class=3D"jek=
+yll-twitter-plugin"><div class=3D"twitter-tweet twitter-tweet-rendered" sty=
+le=3D"width: 100%; margin: 10px auto; display: flex; max-width: 550px;"><if=
+rame id=3D"twitter-widget-0" scrolling=3D"no" frameborder=3D"0" allowtransp=
+arency=3D"true" allowfullscreen=3D"true" class=3D"" style=3D"position: stat=
+ic; visibility: visible; width: 550px; height: 847px; display: block; flex-=
+grow: 1;" title=3D"X Post" src=3D"cid:frame-6D058924A4A8FEF08DB4F81E3F945F6=
+9@mhtml.blink" data-tweet-id=3D"1332744643633623041"></iframe></div>  </div=
+> <!-- reddit? --> </div> </article> <div class=3D"page-navigation code"> <=
+a class=3D"next" href=3D"https://blog.bnorm.dev/writing-your-second-compile=
+r-plugin-part-3" title=3D"NEXT: Writing Your Second Kotlin Compiler Plugin,=
+ Part 3 =E2=80=94 Navigating Kotlin IR">&lt;&lt;</a> <span> =C2=B7 </span> =
+<a class=3D"home" href=3D"https://blog.bnorm.dev/" title=3D"Back to Index">=
+Index</a> <span> =C2=B7 </span> <a class=3D"prev" href=3D"https://blog.bnor=
+m.dev/writing-your-second-compiler-plugin-part-1" title=3D"PREV: Writing Yo=
+ur Second Kotlin Compiler Plugin, Part 1 =E2=80=94 Project Setup">&gt;&gt;<=
+/a> </div> </div> <div class=3D"footer"> <span class=3D"block">=C2=A9 2022 =
+Brian Norman</span> <span class=3D"block"><small>&lt;/&gt; Powered by <a hr=
+ef=3D"https://jekyllrb.com/">Jekyll</a> and <a href=3D"https://github.com/h=
+eiswayi/the-plain">The Plain theme</a>.</small></span> </div> =20
+<iframe scrolling=3D"no" frameborder=3D"0" allowtransparency=3D"true" src=
+=3D"cid:frame-7DFC02EBDE3353D67D5BE58848D9E07F@mhtml.blink" title=3D"Twitte=
+r settings iframe" style=3D"display: none;"></iframe><iframe id=3D"rufous-s=
+andbox" scrolling=3D"no" frameborder=3D"0" allowtransparency=3D"true" allow=
+fullscreen=3D"true" style=3D"position: absolute; visibility: hidden; displa=
+y: none; width: 0px; height: 0px; padding: 0px; border: none;" title=3D"Twi=
+tter analytics iframe"></iframe></body></html>
+------MultipartBoundary--0Gh0FQyan1OnPi87Kyhw2EqHcoLXkvPwRVoZ1ETzki----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://blog.bnorm.dev/assets/core.css
+
+@charset "utf-8";
+
+html { margin: 0px; padding: 0px; height: 100%; }
+
+body { font-size: 14px; line-height: 20px; font-weight: normal; font-style:=
+ normal; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto=
+, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Seg=
+oe UI Symbol"; color: rgb(51, 51, 51); padding: 20px; margin: 0px; -webkit-=
+font-smoothing: antialiased; text-size-adjust: 100%; }
+
+@media (min-width: 992px) {
+  body { padding: 35px 50px; }
+}
+
+h1, h2, h3, h4, h5, h6 { margin-bottom: 1rem; line-height: 1.25; color: rgb=
+(49, 49, 49); }
+
+h1 { font-size: 2rem; }
+
+h2 { margin-top: 1rem; font-size: 1.5rem; }
+
+h3 { margin-top: 1.5rem; font-size: 1.25rem; }
+
+h4, h5, h6 { margin-top: 1.1rem; font-size: 1.1rem; }
+
+img { max-width: 100%; }
+
+a { color: inherit; text-decoration: none; border-bottom: 1px solid rgb(85,=
+ 85, 85); }
+
+a.image { display: block; text-align: center; border: 0px; border-radius: 5=
+px; margin: 30px 0px; }
+
+mark { background: rgb(255, 252, 118); padding: 0px 5px; }
+
+blockquote { border-left: 5px solid rgb(204, 204, 204); margin: 40px 0px; p=
+adding: 5px 30px; background: rgb(238, 238, 238); }
+
+.logo { position: relative; margin: 0px auto; text-align: center; animation=
+-duration: 0.7s; animation-fill-mode: both; animation-name: bounce; }
+
+.logo a { background: url("logo_wrapper.png") rgb(221, 221, 221); color: rg=
+b(0, 0, 0); text-decoration: none; font-weight: 700; height: 100px; width: =
+100px; font-size: 1.5em; border-radius: 100%; display: inline-block; text-a=
+lign: center; line-height: 100px; border: 5px solid rgb(255, 255, 255); box=
+-sizing: border-box; }
+
+.logo a:hover, .logo a:focus { background: rgb(241, 78, 50); }
+
+.logo a:hover + .logo-prompt, .logo a:focus + .logo-prompt { display: inlin=
+e-block !important; }
+
+.logo a .logo-avatar { box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px; border-=
+radius: 50%; }
+
+@media (max-width: 480px) {
+  .logo a:hover + .logo-prompt, .logo a:focus + .logo-prompt { display: non=
+e !important; }
+}
+
+.logo .logo-prompt { position: absolute; display: none; vertical-align: mid=
+dle; padding: 5px; border-radius: 3px; background: rgba(0, 0, 0, 0.5); marg=
+in-left: 15px; color: rgb(255, 255, 255); font-size: 0.8235em; text-align: =
+center; line-height: 1.2; top: 50%; margin-top: -10px; }
+
+.logo .logo-prompt::before { content: ""; border-width: 5px 5px 5px 0px; bo=
+rder-style: solid; border-color: transparent rgba(0, 0, 0, 0.5); position: =
+absolute; top: 50%; left: -5px; margin-top: -5px; }
+
+iframe { margin: 45px 0px !important; }
+
+ul, ol { margin: 40px 0px; padding-left: 50px; }
+
+ul li, ol li { overflow-wrap: break-word; }
+
+ul img, ol img { margin: 40px 0px; border-radius: 5px; }
+
+sup { vertical-align: top; position: relative; top: -0.5em; margin-left: 1p=
+x; }
+
+time { color: rgb(85, 85, 85); }
+
+code, pre, .code, .footnotes { font-family: Consolas, monaco, monospace; }
+
+code { color: rgb(241, 78, 50); background: rgb(238, 238, 238); padding: 2p=
+x 6px; font-size: 13px; }
+
+pre { display: block; margin-top: 0px; margin-bottom: 1rem; font-size: 0.8r=
+em; line-height: 1.4; white-space: pre; overflow-x: auto; background-color:=
+ rgb(249, 249, 249); border: 1px solid rgb(221, 221, 221); padding: 1rem; }
+
+pre code { font-size: 100%; color: inherit; background-color: transparent; =
+padding: 0px; }
+
+table { width: 100%; table-layout: fixed; margin: 45px 0px; }
+
+table thead { background: rgb(242, 242, 242); }
+
+table th { text-align: left; padding: 8px 10px; border-bottom: 15px solid r=
+gb(255, 255, 255); }
+
+table td { padding: 4px 0px; }
+
+iframe { width: 100%; }
+
+article { max-width: 680px; margin: 0px auto; }
+
+article h1.title { line-height: 1.4em; text-align: center; font-size: 1.4em=
+; }
+
+article .divider { background: linear-gradient(to right, rgba(255, 255, 255=
+, 0), rgb(204, 204, 204), rgba(255, 255, 255, 0)); height: 1px; margin: 2em=
+ 0px; }
+
+article .center { text-align: center; margin: 0px auto; }
+
+article hr { border-width: 0px 0px 1px; border-top-style: initial; border-r=
+ight-style: initial; border-left-style: initial; border-top-color: initial;=
+ border-right-color: initial; border-left-color: initial; border-image: ini=
+tial; border-bottom-style: solid; border-bottom-color: rgb(0, 0, 0); margin=
+: 30px 0px; }
+
+article p { font-size: 15px; line-height: 1.9em; overflow-wrap: break-word;=
+ }
+
+article .footnote { border: 0px; background-color: rgb(0, 135, 190); color:=
+ rgb(255, 255, 255); padding-left: 2px; padding-right: 2px; }
+
+article .footnotes { margin: 50px auto; display: block; font-size: 0.8em; c=
+olor: rgb(102, 102, 102); }
+
+article .footnotes p { line-height: 1rem; font-weight: normal; }
+
+article .footnotes ol { margin: 0px; padding-left: 15px; }
+
+article .footnotes ol li { font-weight: bold; }
+
+article .footnotes .reversefootnote { border: 0px; color: rgb(0, 135, 190);=
+ }
+
+article a:hover { color: rgb(51, 102, 153); border-color: rgb(51, 102, 153)=
+; }
+
+.back { text-align: center; }
+
+.back a { text-decoration: none; margin: 40px auto 0px; display: inline-blo=
+ck; padding: 10px; border: 0px; }
+
+.back a::before { content: "<<"; margin-right: 5px; color: rgb(0, 0, 0); }
+
+.block { display: block; }
+
+.page-navigation, .header { text-align: center; max-width: 680px; margin: 0=
+px auto 35px; font-size: 0.8rem; color: rgb(119, 119, 119); }
+
+.page-navigation a, .header a { border: none; font-weight: bold; }
+
+.social-media-list { list-style: none; margin-left: 0px; }
+
+.social-media-list a { border: none; font-weight: bold; }
+
+.social-media-list .svg-icon { width: 16px; height: 16px; display: inline-b=
+lock; fill: rgb(130, 130, 130); padding-right: 5px; vertical-align: text-to=
+p; }
+
+.footer { text-align: center; max-width: 680px; margin: 0px auto; font-size=
+: 0.8rem; }
+
+.page-navigation { margin: 50px auto 0px; }
+
+.page-navigation a { display: inline-block; text-decoration: none; border-b=
+ottom: none; }
+
+.page-navigation span { display: inline-block; }
+
+.footer { margin-top: 50px; color: rgb(119, 119, 119); }
+
+.footer a { border: none; font-weight: bold; }
+
+section { max-width: 680px; margin: 0px auto 50px; }
+
+section ul { list-style: none; margin: 0px; padding: 0px; }
+
+section ul li { margin: 25px 0px; }
+
+section ul li .title { max-width: 100%; overflow-wrap: normal !important; }
+
+section ul li a { text-decoration: none; border: 0px; color: rgb(0, 0, 0); =
+box-sizing: border-box; }
+
+section ul li .post-date { float: right; margin: 0px 0px 0px 20px; }
+
+section ul li span { display: inline-block; color: rgb(117, 117, 117); lett=
+er-spacing: 1px; text-transform: uppercase; }
+
+@media (min-width: 992px) {
+  section ul li a { border-bottom: 2px solid transparent; }
+  section ul li a:hover { border-color: rgb(0, 0, 0); }
+}
+
+@keyframes bounce {=20
+  0% { transform: translate3d(0px, -1000px, 0px); }
+  60% { transform: translate3d(0px, 25px, 0px); }
+  75% { transform: translate3d(0px, -10px, 0px); }
+  90% { transform: translate3d(0px, 5px, 0px); }
+  100% { transform: none; }
+}
+
+@-webkit-keyframes bounce {=20
+  0% { transform: translate3d(0px, -1000px, 0px); }
+  60% { transform: translate3d(0px, 25px, 0px); }
+  75% { transform: translate3d(0px, -10px, 0px); }
+  90% { transform: translate3d(0px, 5px, 0px); }
+  100% { transform: none; }
+}
+
+.highlight { margin: 40px 0px; }
+
+.highlight .c { color: rgb(153, 153, 136); font-style: italic; }
+
+.highlight .err { color: rgb(166, 23, 23); background-color: rgb(227, 210, =
+210); }
+
+.highlight .k { font-weight: bold; }
+
+.highlight .o { font-weight: bold; }
+
+.highlight .cm { color: rgb(153, 153, 136); font-style: italic; }
+
+.highlight .cp { color: rgb(153, 153, 153); font-weight: bold; }
+
+.highlight .c1 { color: rgb(153, 153, 136); font-style: italic; }
+
+.highlight .cs { color: rgb(153, 153, 153); font-weight: bold; font-style: =
+italic; }
+
+.highlight .gd { color: rgb(0, 0, 0); background-color: rgb(255, 221, 221);=
+ }
+
+.highlight .gd .x { color: rgb(0, 0, 0); background-color: rgb(255, 170, 17=
+0); }
+
+.highlight .ge { font-style: italic; }
+
+.highlight .gr { color: rgb(170, 0, 0); }
+
+.highlight .gh { color: rgb(153, 153, 153); }
+
+.highlight .gi { color: rgb(0, 0, 0); background-color: rgb(221, 255, 221);=
+ }
+
+.highlight .gi .x { color: rgb(0, 0, 0); background-color: rgb(170, 255, 17=
+0); }
+
+.highlight .go { color: rgb(136, 136, 136); }
+
+.highlight .gp { color: rgb(85, 85, 85); }
+
+.highlight .gs { font-weight: bold; }
+
+.highlight .gu { color: rgb(170, 170, 170); }
+
+.highlight .gt { color: rgb(170, 0, 0); }
+
+.highlight .kc { font-weight: bold; }
+
+.highlight .kd { font-weight: bold; }
+
+.highlight .kp { font-weight: bold; }
+
+.highlight .kr { font-weight: bold; }
+
+.highlight .kt { color: rgb(68, 85, 136); font-weight: bold; }
+
+.highlight .m { color: rgb(0, 153, 153); }
+
+.highlight .s { color: rgb(221, 17, 68); }
+
+.highlight .na { color: rgb(0, 128, 128); }
+
+.highlight .nb { color: rgb(0, 134, 179); }
+
+.highlight .nc { color: rgb(68, 85, 136); font-weight: bold; }
+
+.highlight .no { color: rgb(0, 128, 128); }
+
+.highlight .ni { color: rgb(128, 0, 128); }
+
+.highlight .ne { color: rgb(153, 0, 0); font-weight: bold; }
+
+.highlight .nf { color: rgb(153, 0, 0); font-weight: bold; }
+
+.highlight .nn { color: rgb(85, 85, 85); }
+
+.highlight .nt { color: rgb(0, 0, 128); }
+
+.highlight .nv { color: rgb(0, 128, 128); }
+
+.highlight .ow { font-weight: bold; }
+
+.highlight .w { color: rgb(187, 187, 187); }
+
+.highlight .mf { color: rgb(0, 153, 153); }
+
+.highlight .mh { color: rgb(0, 153, 153); }
+
+.highlight .mi { color: rgb(0, 153, 153); }
+
+.highlight .mo { color: rgb(0, 153, 153); }
+
+.highlight .sb { color: rgb(221, 17, 68); }
+
+.highlight .sc { color: rgb(221, 17, 68); }
+
+.highlight .sd { color: rgb(221, 17, 68); }
+
+.highlight .s2 { color: rgb(221, 17, 68); }
+
+.highlight .se { color: rgb(221, 17, 68); }
+
+.highlight .sh { color: rgb(221, 17, 68); }
+
+.highlight .si { color: rgb(221, 17, 68); }
+
+.highlight .sx { color: rgb(221, 17, 68); }
+
+.highlight .sr { color: rgb(0, 153, 38); }
+
+.highlight .s1 { color: rgb(221, 17, 68); }
+
+.highlight .ss { color: rgb(153, 0, 115); }
+
+.highlight .bp { color: rgb(153, 153, 153); }
+
+.highlight .vc { color: rgb(0, 128, 128); }
+
+.highlight .vg { color: rgb(0, 128, 128); }
+
+.highlight .vi { color: rgb(0, 128, 128); }
+
+.highlight .il { color: rgb(0, 153, 153); }
+------MultipartBoundary--0Gh0FQyan1OnPi87Kyhw2EqHcoLXkvPwRVoZ1ETzki----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: https://blog.bnorm.dev/assets/logo_wrapper.png
+
+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
+/w0AeWoSmgTraN8AAAAASUVORK5CYII=
+
+------MultipartBoundary--0Gh0FQyan1OnPi87Kyhw2EqHcoLXkvPwRVoZ1ETzki----
+Content-Type: image/jpeg
+Content-Transfer-Encoding: base64
+Content-Location: https://avatars2.githubusercontent.com/u/1074449?v=4
+
+/9j/2wCEAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAx
+NDQ0Hyc5PTgyPC4zNDIBCQkJDAsMGA0NGDIhHCEyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIy
+MjIyMjIyMjIyMjIyMjIyMjIyMjIyMv/AABEIAcwBzAMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAA
+AAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGh
+CCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hp
+anN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV
+1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQAC
+AQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXx
+FxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqS
+k5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4+Tl5ufo6ery8/T1
+9vf4+fr/2gAMAwEAAhEDEQA/AMmM7lpxpkP+rzUlYlDKaaeaYTQA001qcaa3SgBneiiigBaKSloA
+KKKKQC0UlLQAtApKKAJBTx0qNaeOlMB61IKiFSDpQBKtTLUK1KtAiZalWolqVaBEgpwpopaAHinC
+mCnigB4p4pgp460APXpTxTBTxQA4UopBThQIUU4U0U4UAKKcKaKdQA6lFNp1ADhThTaWgB2aKSlo
+AKUUlKKAHUUUUALSikFFADqWm0tMBaUGm0uaAHUtNFLmgBaKTNGaAPMbY5hFTVWsjmAVZNDKGGmm
+nmmGkMaaa3SnGmnpQBH3paQ9aKAHCikooADQKKKAFooooAWkoooAetPBqMU8UASCnio1qQA0ASrU
+q1CtP3YoEWVqVaybrVILGMvK30VeSawb3xNeTukVt+5BGSFGWx9aAsdTe61p+nnbc3Cq/wDcHJqm
+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
+
+------MultipartBoundary--0Gh0FQyan1OnPi87Kyhw2EqHcoLXkvPwRVoZ1ETzki----
+Content-Type: text/html
+Content-ID: <frame-7DFC02EBDE3353D67D5BE58848D9E07F@mhtml.blink>
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://platform.twitter.com/widgets/widget_iframe.2f70fb173b9000da126c79afe2098f02.html?origin=https%3A%2F%2Fblog.bnorm.dev
+
+<!DOCTYPE html><html><head><meta http-equiv=3D"Content-Type" content=3D"tex=
+t/html; charset=3DUTF-8"><meta chartset=3D"utf-8">
+<title>Twitter Widget Iframe</title>
+</head><body>
+
+
+</body></html>
+------MultipartBoundary--0Gh0FQyan1OnPi87Kyhw2EqHcoLXkvPwRVoZ1ETzki----
+Content-Type: text/html
+Content-ID: <frame-6D058924A4A8FEF08DB4F81E3F945F69@mhtml.blink>
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://platform.twitter.com/embed/Tweet.html?creatorScreenName=bnormcodes&dnt=false&embedId=twitter-widget-0&features=eyJ0ZndfdGltZWxpbmVfbGlzdCI6eyJidWNrZXQiOltdLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2ZvbGxvd2VyX2NvdW50X3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9iYWNrZW5kIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19yZWZzcmNfc2Vzc2lvbiI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfZm9zbnJfc29mdF9pbnRlcnZlbnRpb25zX2VuYWJsZWQiOnsiYnVja2V0Ijoib24iLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X21peGVkX21lZGlhXzE1ODk3Ijp7ImJ1Y2tldCI6InRyZWF0bWVudCIsInZlcnNpb24iOm51bGx9LCJ0ZndfZXhwZXJpbWVudHNfY29va2llX2V4cGlyYXRpb24iOnsiYnVja2V0IjoxMjA5NjAwLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X3Nob3dfYmlyZHdhdGNoX3Bpdm90c19lbmFibGVkIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19kdXBsaWNhdGVfc2NyaWJlc190b19zZXR0aW5ncyI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdXNlX3Byb2ZpbGVfaW1hZ2Vfc2hhcGVfZW5hYmxlZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdmlkZW9faGxzX2R5bmFtaWNfbWFuaWZlc3RzXzE1MDgyIjp7ImJ1Y2tldCI6InRydWVfYml0cmF0ZSIsInZlcnNpb24iOm51bGx9LCJ0ZndfbGVnYWN5X3RpbWVsaW5lX3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9mcm9udGVuZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9fQ%3D%3D&frame=false&hideCard=false&hideThread=false&id=1332744643633623041&lang=en&origin=https%3A%2F%2Fblog.bnorm.dev%2Fwriting-your-second-compiler-plugin-part-2&sessionId=5dad6cbb40483f78ad6dcd1694a2fbd2a94c27ed&siteScreenName=bnormcodes&theme=light&widgetsVersion=2615f7e52b7e0%3A1702314776716&width=550px
+
+<!DOCTYPE html><html dir=3D"ltr" lang=3D"en" style=3D"overflow-y: scroll; o=
+verscroll-behavior-y: none;"><head><meta http-equiv=3D"Content-Type" conten=
+t=3D"text/html; charset=3DUTF-8"><link rel=3D"stylesheet" type=3D"text/css"=
+ href=3D"cid:css-b4288559-1762-4577-bc24-881f38ffabbf@mhtml.blink" /><link =
+rel=3D"stylesheet" type=3D"text/css" href=3D"cid:css-1fee8c05-6b19-453c-bef=
+3-f538c9665b19@mhtml.blink" /><link rel=3D"stylesheet" type=3D"text/css" hr=
+ef=3D"cid:css-23d10b78-d298-4405-add1-99c763ef3bdc@mhtml.blink" /><title>Tw=
+itter Embed</title></head><body><div id=3D"app"><div class=3D"css-1dbjc4n r=
+-13awgt0 r-12vffkv"><div class=3D"css-1dbjc4n r-13awgt0 r-12vffkv"><div cla=
+ss=3D"css-1dbjc4n r-1ets6dv r-1q9bdsx r-rs99b7 r-1loqt21 r-vakc41 r-y54riw =
+r-1udh08x"><div tabindex=3D"0"></div><article role=3D"article" tabindex=3D"=
+0" class=3D"css-1dbjc4n r-14lw9ot r-1ny4l3l r-iphfwy r-1qhn6m8 r-i023vh r-t=
+tdzmv r-o7ynqc r-6416eg"><a href=3D"https://twitter.com/bnormcodes/status/1=
+332744643633623041?ref_src=3Dtwsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1=
+332744643633623041%7Ctwgr%5E5dad6cbb40483f78ad6dcd1694a2fbd2a94c27ed%7Ctwco=
+n%5Es1_&amp;ref_url=3Dhttps%3A%2F%2Fblog.bnorm.dev%2Fwriting-your-second-co=
+mpiler-plugin-part-2" rel=3D"noopener noreferrer nofollow" target=3D"_blank=
+" aria-label=3D"Visit this post on X" role=3D"link" class=3D"css-4rbku5 css=
+-18t94o4 css-1dbjc4n r-1loqt21"></a><article role=3D"article" tabindex=3D"0=
+" class=3D"css-1dbjc4n r-1ny4l3l"><a href=3D"https://twitter.com/bnormcodes=
+/status/1330241400391262209?ref_src=3Dtwsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ct=
+wterm%5E1332744643633623041%7Ctwgr%5E5dad6cbb40483f78ad6dcd1694a2fbd2a94c27=
+ed%7Ctwcon%5Es2_&amp;ref_url=3Dhttps%3A%2F%2Fblog.bnorm.dev%2Fwriting-your-=
+second-compiler-plugin-part-2" rel=3D"noopener noreferrer nofollow" target=
+=3D"_blank" aria-label=3D"Visit this post on X" role=3D"link" class=3D"css-=
+4rbku5 css-18t94o4 css-1dbjc4n r-1loqt21"></a><div class=3D"css-1dbjc4n r-1=
+8u37iz r-1ny4l3l"><div class=3D"css-1dbjc4n"><div class=3D"css-1dbjc4n r-1n=
+y4l3l"><div class=3D"css-1dbjc4n r-1adg3ll r-bztko3" data-testid=3D"UserAva=
+tar-Container-bnormcodes" style=3D"height: 48px; width: 48px;"><div class=
+=3D"r-1adg3ll r-13qz1uu" style=3D"padding-bottom: 100%;"></div><div class=
+=3D"r-1p0dtai r-1pi2tsx r-1d2f490 r-u8s1d r-ipm5af r-13qz1uu"><div class=3D=
+"css-1dbjc4n r-1adg3ll r-1pi2tsx r-1wyvozj r-bztko3 r-u8s1d r-1v2oles r-des=
+ppf r-13qz1uu"><div class=3D"r-1adg3ll r-13qz1uu" style=3D"padding-bottom: =
+100%;"></div><div class=3D"r-1p0dtai r-1pi2tsx r-1d2f490 r-u8s1d r-ipm5af r=
+-13qz1uu"><div class=3D"css-1dbjc4n r-sdzlij r-ggadg3 r-1udh08x r-u8s1d r-8=
+jfcpp" style=3D"height: calc(100% + 4px); width: calc(100% + 4px);"><a href=
+=3D"https://twitter.com/bnormcodes?ref_src=3Dtwsrc%5Etfw%7Ctwcamp%5Etweetem=
+bed%7Ctwterm%5E1332744643633623041%7Ctwgr%5E5dad6cbb40483f78ad6dcd1694a2fbd=
+2a94c27ed%7Ctwcon%5Es2_&amp;ref_url=3Dhttps%3A%2F%2Fblog.bnorm.dev%2Fwritin=
+g-your-second-compiler-plugin-part-2" rel=3D"noopener noreferrer nofollow" =
+target=3D"_blank" aria-hidden=3D"true" role=3D"link" tabindex=3D"-1" class=
+=3D"css-4rbku5 css-18t94o4 css-1dbjc4n r-1loqt21 r-1pi2tsx r-1ny4l3l r-o7yn=
+qc r-6416eg r-13qz1uu" style=3D"background-color: rgba(0, 0, 0, 0);"><div c=
+lass=3D"css-1dbjc4n r-sdzlij r-1wyvozj r-1udh08x r-633pao r-u8s1d r-1v2oles=
+ r-desppf" style=3D"height: calc(100% - 4px); width: calc(100% - 4px);"><di=
+v class=3D"css-1dbjc4n r-1pi2tsx r-13qz1uu" style=3D"background-color: rgba=
+(0, 0, 0, 0);"></div></div><div class=3D"css-1dbjc4n r-sdzlij r-1wyvozj r-1=
+udh08x r-633pao r-u8s1d r-1v2oles r-desppf" style=3D"height: calc(100% - 4p=
+x); width: calc(100% - 4px);"><div class=3D"css-1dbjc4n r-14lw9ot r-1pi2tsx=
+ r-13qz1uu"></div></div><div class=3D"css-1dbjc4n r-14lw9ot r-sdzlij r-1wyv=
+ozj r-1udh08x r-633pao r-u8s1d r-1v2oles r-desppf" style=3D"height: calc(10=
+0% - 4px); width: calc(100% - 4px);"><div class=3D"css-1dbjc4n r-1adg3ll r-=
+1udh08x" style=3D"background-color: rgb(185, 202, 211);"><div class=3D"r-1a=
+dg3ll r-13qz1uu" style=3D"padding-bottom: 100%;"></div><div class=3D"r-1p0d=
+tai r-1pi2tsx r-1d2f490 r-u8s1d r-ipm5af r-13qz1uu"><div aria-label=3D"" cl=
+ass=3D"css-1dbjc4n r-1p0dtai r-1mlwlqe r-1d2f490 r-1udh08x r-u8s1d r-zchlnj=
+ r-ipm5af r-417010" style=3D""><div class=3D"css-1dbjc4n r-1niwhzg r-vvn4in=
+ r-u6sd8q r-4gszlv r-1p0dtai r-1pi2tsx r-1d2f490 r-u8s1d r-zchlnj r-ipm5af =
+r-13qz1uu r-1wyyakw" style=3D""></div></div></div></div></div><div class=3D=
+"css-1dbjc4n r-sdzlij r-1wyvozj r-1udh08x r-u8s1d r-1v2oles r-desppf" style=
+=3D"height: calc(100% - 4px); width: calc(100% - 4px);"><div class=3D"css-1=
+dbjc4n r-12181gd r-1pi2tsx r-1ny4l3l r-o7ynqc r-6416eg r-13qz1uu"></div></d=
+iv></a></div></div></div></div></div></div><div class=3D"css-1dbjc4n r-1bim=
+lpy r-16y2uox r-15zivkp r-1jgb5lz r-14gqq1x r-yfq7p9 r-m5arl1"></div></div>=
+<div class=3D"css-1dbjc4n r-1iusvr4 r-46vdb2 r-1h0z5md r-6gpygo r-13hce6t">=
+<div class=3D"css-1dbjc4n r-18u37iz"><div class=3D"css-1dbjc4n r-1d09ksm r-=
+eqz5dr r-1777fci r-1aebqfk"><div class=3D"css-1dbjc4n r-1habvwh r-18u37iz r=
+-dnmrzs"><div class=3D"css-1dbjc4n r-dr4v9t r-1ny4l3l"><div class=3D"css-1d=
+bjc4n r-1wbh5a2 r-dnmrzs r-1ny4l3l"><div class=3D"css-1dbjc4n r-1awozwy r-1=
+8u37iz r-1wbh5a2 r-dnmrzs r-1ny4l3l"><a href=3D"https://twitter.com/bnormco=
+des?ref_src=3Dtwsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1332744643633623=
+041%7Ctwgr%5E5dad6cbb40483f78ad6dcd1694a2fbd2a94c27ed%7Ctwcon%5Es2_&amp;ref=
+_url=3Dhttps%3A%2F%2Fblog.bnorm.dev%2Fwriting-your-second-compiler-plugin-p=
+art-2" rel=3D"noopener noreferrer nofollow" target=3D"_blank" role=3D"link"=
+ class=3D"css-4rbku5 css-18t94o4 css-1dbjc4n r-1loqt21 r-1wbh5a2 r-dnmrzs r=
+-1ny4l3l"><div class=3D"css-1dbjc4n r-1awozwy r-18u37iz r-dnmrzs"><div dir=
+=3D"auto" class=3D"css-901oao r-1awozwy r-18jsvk2 r-6koalj r-1qd0xha r-a023=
+e6 r-b88u0q r-rjixqe r-bcqeeo r-1udh08x r-3s2u2q r-qvutc0" style=3D""><span=
+ class=3D"css-901oao css-16my406 css-1hf3ou5 r-poiln3 r-bcqeeo r-qvutc0"><s=
+pan class=3D"css-901oao css-16my406 r-poiln3 r-bcqeeo r-qvutc0">Brian Norma=
+n </span><img alt=3D"=F0=9F=90=A2" draggable=3D"false" src=3D"https://abs-0=
+.twimg.com/emoji/v2/svg/1f422.svg" class=3D"r-4qtqp9 r-dflpy8 r-sjv1od r-zw=
+8f10 r-10akycc r-h9hxbl"><span class=3D"css-901oao css-16my406 r-poiln3 r-b=
+cqeeo r-qvutc0"> (@bnorm@kotlin.social)</span><span class=3D"css-901oao css=
+-16my406 r-poiln3 r-bcqeeo r-1pos5eu r-qvutc0"></span></span></div><div dir=
+=3D"auto" class=3D"css-901oao r-18jsvk2 r-xoduu5 r-18u37iz r-1q142lx r-1qd0=
+xha r-a023e6 r-16dba41 r-rjixqe r-bcqeeo r-qvutc0" style=3D""><span class=
+=3D"css-901oao css-16my406 r-1awozwy r-xoduu5 r-poiln3 r-bcqeeo r-qvutc0"><=
+/span></div></div></a></div></div></div><div class=3D"css-1dbjc4n r-1bqc3p3=
+ r-18u37iz"><div dir=3D"auto" aria-hidden=3D"true" class=3D"css-901oao r-14=
+j79pv r-1q142lx r-1qd0xha r-a023e6 r-16dba41 r-rjixqe r-bcqeeo r-s1qlax r-q=
+vutc0" style=3D""><span class=3D"css-901oao css-16my406 r-poiln3 r-bcqeeo r=
+-qvutc0">=C2=B7</span></div><a href=3D"https://twitter.com/bnormcodes/statu=
+s/1330241400391262209?ref_src=3Dtwsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%=
+5E1332744643633623041%7Ctwgr%5E5dad6cbb40483f78ad6dcd1694a2fbd2a94c27ed%7Ct=
+wcon%5Es2_&amp;ref_url=3Dhttps%3A%2F%2Fblog.bnorm.dev%2Fwriting-your-second=
+-compiler-plugin-part-2" dir=3D"auto" rel=3D"noopener noreferrer nofollow" =
+target=3D"_blank" role=3D"link" class=3D"css-4rbku5 css-18t94o4 css-901oao =
+css-1hf3ou5 r-14j79pv r-1loqt21 r-1qd0xha r-a023e6 r-16dba41 r-rjixqe r-bcq=
+eeo r-qvutc0" style=3D""><span class=3D"css-901oao css-16my406 r-poiln3 r-b=
+cqeeo r-qvutc0">Nov 22, 2020</span></a></div></div><div class=3D"css-1dbjc4=
+n r-18u37iz"><a dir=3D"ltr" href=3D"https://twitter.com/bnormcodes?ref_src=
+=3Dtwsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1332744643633623041%7Ctwgr%=
+5E5dad6cbb40483f78ad6dcd1694a2fbd2a94c27ed%7Ctwcon%5Es2_&amp;ref_url=3Dhttp=
+s%3A%2F%2Fblog.bnorm.dev%2Fwriting-your-second-compiler-plugin-part-2" rel=
+=3D"noopener noreferrer nofollow" target=3D"_blank" role=3D"link" class=3D"=
+css-4rbku5 css-18t94o4 css-901oao css-1hf3ou5 r-14j79pv r-1loqt21 r-18u37iz=
+ r-1qd0xha r-a023e6 r-16dba41 r-rjixqe r-bcqeeo r-qvutc0"><span class=3D"cs=
+s-901oao css-16my406 r-poiln3 r-bcqeeo r-qvutc0">@</span><span class=3D"css=
+-901oao css-16my406 r-poiln3 r-bcqeeo r-qvutc0">bnormcodes</span></a><div d=
+ir=3D"auto" aria-hidden=3D"true" class=3D"css-901oao r-14j79pv r-1q142lx r-=
+1qd0xha r-a023e6 r-16dba41 r-rjixqe r-bcqeeo r-s1qlax r-qvutc0"><span class=
+=3D"css-901oao css-16my406 r-poiln3 r-bcqeeo r-qvutc0">=C2=B7</span></div><=
+a href=3D"https://twitter.com/intent/follow?ref_src=3Dtwsrc%5Etfw%7Ctwcamp%=
+5Etweetembed%7Ctwterm%5E1332744643633623041%7Ctwgr%5E5dad6cbb40483f78ad6dcd=
+1694a2fbd2a94c27ed%7Ctwcon%5Es2_&amp;ref_url=3Dhttps%3A%2F%2Fblog.bnorm.dev=
+%2Fwriting-your-second-compiler-plugin-part-2&amp;screen_name=3Dbnormcodes"=
+ dir=3D"auto" rel=3D"noopener noreferrer nofollow" target=3D"_blank" role=
+=3D"link" class=3D"css-4rbku5 css-18t94o4 css-901oao r-1loqt21 r-1qd0xha r-=
+a023e6 r-b88u0q r-rjixqe r-bcqeeo r-qvutc0" style=3D"color: rgb(0, 111, 214=
+);"><span class=3D"css-901oao css-16my406 r-poiln3 r-bcqeeo r-qvutc0">Follo=
+w</span></a></div></div><a href=3D"https://twitter.com/bnormcodes/status/13=
+30241400391262209?ref_src=3Dtwsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E13=
+32744643633623041%7Ctwgr%5E5dad6cbb40483f78ad6dcd1694a2fbd2a94c27ed%7Ctwcon=
+%5Es2_&amp;ref_url=3Dhttps%3A%2F%2Fblog.bnorm.dev%2Fwriting-your-second-com=
+piler-plugin-part-2" rel=3D"noopener noreferrer nofollow" target=3D"_blank"=
+ aria-label=3D"View on X" role=3D"link" class=3D"css-4rbku5 css-18t94o4 css=
+-1dbjc4n r-sdzlij r-1loqt21 r-1jj8364 r-1ny4l3l r-o7ynqc r-6416eg"><svg vie=
+wBox=3D"0 0 24 24" aria-hidden=3D"true" class=3D"r-18jsvk2 r-4qtqp9 r-yyyyo=
+o r-6zzn7w r-19fsva8 r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-q1j0wu"><g><pat=
+h d=3D"M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 2=
+1.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 =
+4.126H5.117z"></path></g></svg></a></div><div class=3D"css-1dbjc4n"><div di=
+r=3D"auto" lang=3D"en" class=3D"css-901oao r-18jsvk2 r-1dqbpge r-1qd0xha r-=
+a023e6 r-16dba41 r-rjixqe r-bcqeeo r-bnwqim r-qvutc0" data-testid=3D"tweetT=
+ext"><span class=3D"css-901oao css-16my406 r-poiln3 r-bcqeeo r-qvutc0">I'm =
+embarking on a blog series showing how to build a Kotlin IR compiler plugin=
+, join me for part 1! </span><img alt=3D"=F0=9F=A7=A9" draggable=3D"false" =
+src=3D"https://abs-0.twimg.com/emoji/v2/svg/1f9e9.svg" class=3D"r-4qtqp9 r-=
+dflpy8 r-sjv1od r-zw8f10 r-10akycc r-h9hxbl"><span class=3D"css-901oao css-=
+16my406 r-poiln3 r-bcqeeo r-qvutc0"> Hoping to release a new part each week=
+.</span></div></div><div class=3D"css-1dbjc4n r-1s2bzr4"><div aria-labelled=
+by=3D"id__bisigr002xd id__uovcx20v5gb" class=3D"css-1dbjc4n r-1ets6dv r-186=
+7qdf r-1phboty r-rs99b7 r-1ny4l3l r-1udh08x r-o7ynqc r-6416eg"><div aria-hi=
+dden=3D"true" class=3D"css-1dbjc4n r-140t1nj r-pm2fo r-zmljjp r-rull8r r-qk=
+lmqi r-1adg3ll" id=3D"id__bisigr002xd"><a href=3D"https://t.co/qsKhIy6M3O" =
+rel=3D"noopener noreferrer nofollow" target=3D"_blank" role=3D"link" tabind=
+ex=3D"-1" class=3D"css-4rbku5 css-18t94o4 css-1dbjc4n r-1loqt21 r-1ny4l3l r=
+-1udh08x r-o7ynqc r-6416eg r-13qz1uu"><div class=3D"css-1dbjc4n r-1adg3ll r=
+-1udh08x"><div class=3D"r-1adg3ll r-13qz1uu" style=3D"padding-bottom: 52.35=
+6%;"></div><div class=3D"r-1p0dtai r-1pi2tsx r-1d2f490 r-u8s1d r-ipm5af r-1=
+3qz1uu"><div class=3D"css-1dbjc4n r-1awozwy r-6koalj r-1pi2tsx r-1777fci r-=
+13qz1uu"><svg viewBox=3D"0 0 24 24" aria-hidden=3D"true" class=3D"r-jwli3a =
+r-4qtqp9 r-yyyyoo r-jpd7ae r-dnmrzs r-todpsx r-bnwqim r-1plcrui r-lrvibr"><=
+g><path d=3D"M21.04 1.54L17.5 5.09c-.04-.02-.08-.03-.13-.04L14.3 3H9.7l-3 2=
+H5C3.62 5 2.5 6.12 2.5 7.5v11c0 .46.12.88.34 1.25l-1.3 1.29 1.42 1.42 19.5-=
+19.5-1.42-1.42zM13.7 5l2.33 1.56-2 1.99C13.44 8.2 12.74 8 12 8c-2.21 0-4 1.=
+79-4 4 0 .74.2 1.44.55 2.03L4.5 18.09V7.5c0-.28.22-.5.5-.5h2.3l3-2h3.4zM12 =
+10c.18 0 .35.02.52.07l-2.45 2.45c-.05-.17-.07-.34-.07-.52 0-1.1.9-2 2-2zm7 =
+11H7.24l2-2H19c.28 0 .5-.22.5-.5V9h2v9.5c0 1.38-1.12 2.5-2.5 2.5z"></path><=
+/g></svg></div></div></div></a></div><div class=3D"css-1dbjc4n" id=3D"id__u=
+ovcx20v5gb"><a href=3D"https://t.co/qsKhIy6M3O" rel=3D"noopener noreferrer =
+nofollow" target=3D"_blank" role=3D"link" class=3D"css-4rbku5 css-18t94o4 c=
+ss-1dbjc4n r-1loqt21 r-18u37iz r-16y2uox r-1wtj0ep r-1ny4l3l r-o7ynqc r-641=
+6eg"><div class=3D"css-1dbjc4n r-16y2uox r-1wbh5a2 r-z5qs1h r-1777fci r-kzb=
+kwu r-1e081e0 r-ttdzmv"><div dir=3D"auto" class=3D"css-901oao css-1hf3ou5 r=
+-14j79pv r-1qd0xha r-a023e6 r-16dba41 r-rjixqe r-bcqeeo r-qvutc0"><span cla=
+ss=3D"css-901oao css-16my406 r-poiln3 r-bcqeeo r-qvutc0">bnorm.medium.com</=
+span></div><div dir=3D"auto" class=3D"css-901oao css-1hf3ou5 r-18jsvk2 r-1q=
+d0xha r-a023e6 r-16dba41 r-rjixqe r-bcqeeo r-qvutc0"><span class=3D"css-901=
+oao css-16my406 r-poiln3 r-bcqeeo r-qvutc0">Writing Your Second Kotlin Comp=
+iler Plugin, Part 1=E2=80=8A=E2=80=94=E2=80=8AProject Setup</span></div><di=
+v dir=3D"auto" class=3D"css-901oao css-cens5h r-14j79pv r-1qd0xha r-a023e6 =
+r-16dba41 r-rjixqe r-bcqeeo r-qvutc0" style=3D"-webkit-line-clamp: 2;"><spa=
+n class=3D"css-901oao css-16my406 r-poiln3 r-bcqeeo r-qvutc0">At the time o=
+f writing this article, Kotlin compatibility for IR backend is in Alpha sta=
+tus and the compiler plugin API is Experimental=E2=80=A6</span></div></div>=
+</a></div></div></div></div></div></article><div class=3D"css-1dbjc4n r-18u=
+37iz r-kzbkwu"><div class=3D"css-1dbjc4n r-1ny4l3l"><div class=3D"css-1dbjc=
+4n r-1adg3ll r-bztko3" data-testid=3D"UserAvatar-Container-bnormcodes" styl=
+e=3D"height: 48px; width: 48px;"><div class=3D"r-1adg3ll r-13qz1uu" style=
+=3D"padding-bottom: 100%;"></div><div class=3D"r-1p0dtai r-1pi2tsx r-1d2f49=
+0 r-u8s1d r-ipm5af r-13qz1uu"><div class=3D"css-1dbjc4n r-1adg3ll r-1pi2tsx=
+ r-1wyvozj r-bztko3 r-u8s1d r-1v2oles r-desppf r-13qz1uu"><div class=3D"r-1=
+adg3ll r-13qz1uu" style=3D"padding-bottom: 100%;"></div><div class=3D"r-1p0=
+dtai r-1pi2tsx r-1d2f490 r-u8s1d r-ipm5af r-13qz1uu"><div class=3D"css-1dbj=
+c4n r-sdzlij r-ggadg3 r-1udh08x r-u8s1d r-8jfcpp" style=3D"height: calc(100=
+% + 4px); width: calc(100% + 4px);"><a href=3D"https://twitter.com/bnormcod=
+es?ref_src=3Dtwsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E13327446436336230=
+41%7Ctwgr%5E5dad6cbb40483f78ad6dcd1694a2fbd2a94c27ed%7Ctwcon%5Es1_&amp;ref_=
+url=3Dhttps%3A%2F%2Fblog.bnorm.dev%2Fwriting-your-second-compiler-plugin-pa=
+rt-2" rel=3D"noopener noreferrer nofollow" target=3D"_blank" aria-hidden=3D=
+"true" role=3D"link" tabindex=3D"-1" class=3D"css-4rbku5 css-18t94o4 css-1d=
+bjc4n r-1loqt21 r-1pi2tsx r-1ny4l3l r-o7ynqc r-6416eg r-13qz1uu" style=3D"b=
+ackground-color: rgba(0, 0, 0, 0);"><div class=3D"css-1dbjc4n r-sdzlij r-1w=
+yvozj r-1udh08x r-633pao r-u8s1d r-1v2oles r-desppf" style=3D"height: calc(=
+100% - 4px); width: calc(100% - 4px);"><div class=3D"css-1dbjc4n r-1pi2tsx =
+r-13qz1uu" style=3D"background-color: rgba(0, 0, 0, 0);"></div></div><div c=
+lass=3D"css-1dbjc4n r-sdzlij r-1wyvozj r-1udh08x r-633pao r-u8s1d r-1v2oles=
+ r-desppf" style=3D"height: calc(100% - 4px); width: calc(100% - 4px);"><di=
+v class=3D"css-1dbjc4n r-14lw9ot r-1pi2tsx r-13qz1uu"></div></div><div clas=
+s=3D"css-1dbjc4n r-14lw9ot r-sdzlij r-1wyvozj r-1udh08x r-633pao r-u8s1d r-=
+1v2oles r-desppf" style=3D"height: calc(100% - 4px); width: calc(100% - 4px=
+);"><div class=3D"css-1dbjc4n r-1adg3ll r-1udh08x" style=3D"background-colo=
+r: rgb(185, 202, 211);"><div class=3D"r-1adg3ll r-13qz1uu" style=3D"padding=
+-bottom: 100%;"></div><div class=3D"r-1p0dtai r-1pi2tsx r-1d2f490 r-u8s1d r=
+-ipm5af r-13qz1uu"><div aria-label=3D"" class=3D"css-1dbjc4n r-1p0dtai r-1m=
+lwlqe r-1d2f490 r-1udh08x r-u8s1d r-zchlnj r-ipm5af r-417010"><div class=3D=
+"css-1dbjc4n r-1niwhzg r-vvn4in r-u6sd8q r-4gszlv r-1p0dtai r-1pi2tsx r-1d2=
+f490 r-u8s1d r-zchlnj r-ipm5af r-13qz1uu r-1wyyakw" style=3D""></div></div>=
+</div></div></div><div class=3D"css-1dbjc4n r-sdzlij r-1wyvozj r-1udh08x r-=
+u8s1d r-1v2oles r-desppf" style=3D"height: calc(100% - 4px); width: calc(10=
+0% - 4px);"><div class=3D"css-1dbjc4n r-12181gd r-1pi2tsx r-1ny4l3l r-o7ynq=
+c r-6416eg r-13qz1uu"></div></div></a></div></div></div></div></div></div><=
+div class=3D"css-1dbjc4n r-eqz5dr r-1777fci r-4amgru r-1kh6xel"><div class=
+=3D"css-1dbjc4n r-1ny4l3l"><div class=3D"css-1dbjc4n r-1wbh5a2 r-dnmrzs r-1=
+ny4l3l"><div class=3D"css-1dbjc4n r-1wbh5a2 r-dnmrzs r-1ny4l3l"><a href=3D"=
+https://twitter.com/bnormcodes?ref_src=3Dtwsrc%5Etfw%7Ctwcamp%5Etweetembed%=
+7Ctwterm%5E1332744643633623041%7Ctwgr%5E5dad6cbb40483f78ad6dcd1694a2fbd2a94=
+c27ed%7Ctwcon%5Es1_&amp;ref_url=3Dhttps%3A%2F%2Fblog.bnorm.dev%2Fwriting-yo=
+ur-second-compiler-plugin-part-2" rel=3D"noopener noreferrer nofollow" targ=
+et=3D"_blank" role=3D"link" class=3D"css-4rbku5 css-18t94o4 css-1dbjc4n r-1=
+loqt21 r-1wbh5a2 r-dnmrzs r-1ny4l3l"><div class=3D"css-1dbjc4n r-1awozwy r-=
+18u37iz r-dnmrzs"><div dir=3D"auto" class=3D"css-901oao r-1awozwy r-18jsvk2=
+ r-6koalj r-1qd0xha r-a023e6 r-b88u0q r-rjixqe r-bcqeeo r-1udh08x r-3s2u2q =
+r-qvutc0"><span class=3D"css-901oao css-16my406 css-1hf3ou5 r-poiln3 r-bcqe=
+eo r-qvutc0"><span class=3D"css-901oao css-16my406 r-poiln3 r-bcqeeo r-qvut=
+c0">Brian Norman </span><img alt=3D"=F0=9F=90=A2" draggable=3D"false" src=
+=3D"https://abs-0.twimg.com/emoji/v2/svg/1f422.svg" class=3D"r-4qtqp9 r-dfl=
+py8 r-sjv1od r-zw8f10 r-10akycc r-h9hxbl"><span class=3D"css-901oao css-16m=
+y406 r-poiln3 r-bcqeeo r-qvutc0"> (@bnorm@kotlin.social)</span><span class=
+=3D"css-901oao css-16my406 r-poiln3 r-bcqeeo r-1pos5eu r-qvutc0"></span></s=
+pan></div><div dir=3D"auto" class=3D"css-901oao r-18jsvk2 r-xoduu5 r-18u37i=
+z r-1q142lx r-1qd0xha r-a023e6 r-16dba41 r-rjixqe r-bcqeeo r-qvutc0"><span =
+class=3D"css-901oao css-16my406 r-1awozwy r-xoduu5 r-poiln3 r-bcqeeo r-qvut=
+c0"></span></div></div></a><div class=3D"css-1dbjc4n r-1awozwy r-18u37iz r-=
+1wbh5a2"><a href=3D"https://twitter.com/bnormcodes?ref_src=3Dtwsrc%5Etfw%7C=
+twcamp%5Etweetembed%7Ctwterm%5E1332744643633623041%7Ctwgr%5E5dad6cbb40483f7=
+8ad6dcd1694a2fbd2a94c27ed%7Ctwcon%5Es1_&amp;ref_url=3Dhttps%3A%2F%2Fblog.bn=
+orm.dev%2Fwriting-your-second-compiler-plugin-part-2" rel=3D"noopener noref=
+errer nofollow" target=3D"_blank" role=3D"link" tabindex=3D"-1" class=3D"cs=
+s-4rbku5 css-18t94o4 css-1dbjc4n r-1loqt21 r-1wbh5a2 r-dnmrzs r-1ny4l3l"><d=
+iv class=3D"css-1dbjc4n"><div dir=3D"ltr" class=3D"css-901oao css-1hf3ou5 r=
+-14j79pv r-18u37iz r-1qd0xha r-1wvb978 r-a023e6 r-16dba41 r-rjixqe r-bcqeeo=
+ r-qvutc0"><span class=3D"css-901oao css-16my406 r-poiln3 r-bcqeeo r-qvutc0=
+">@bnormcodes</span></div></div></a><div class=3D"css-1dbjc4n r-18u37iz r-1=
+q142lx"><div dir=3D"auto" aria-hidden=3D"true" class=3D"css-901oao r-14j79p=
+v r-1q142lx r-1qd0xha r-a023e6 r-16dba41 r-rjixqe r-bcqeeo r-s1qlax r-qvutc=
+0"><span class=3D"css-901oao css-16my406 r-poiln3 r-bcqeeo r-qvutc0">=C2=B7=
+</span></div><a href=3D"https://twitter.com/intent/follow?ref_src=3Dtwsrc%5=
+Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1332744643633623041%7Ctwgr%5E5dad6cbb=
+40483f78ad6dcd1694a2fbd2a94c27ed%7Ctwcon%5Es1_&amp;ref_url=3Dhttps%3A%2F%2F=
+blog.bnorm.dev%2Fwriting-your-second-compiler-plugin-part-2&amp;screen_name=
+=3Dbnormcodes" dir=3D"auto" rel=3D"noopener noreferrer nofollow" target=3D"=
+_blank" role=3D"link" class=3D"css-4rbku5 css-18t94o4 css-901oao r-1loqt21 =
+r-1qd0xha r-a023e6 r-b88u0q r-rjixqe r-bcqeeo r-qvutc0" style=3D"color: rgb=
+(0, 111, 214);"><span class=3D"css-901oao css-16my406 r-poiln3 r-bcqeeo r-q=
+vutc0">Follow</span></a></div></div></div></div></div></div></div><div clas=
+s=3D"css-1dbjc4n"><div dir=3D"auto" lang=3D"en" class=3D"css-901oao r-18jsv=
+k2 r-1dqbpge r-1qd0xha r-adyw6z r-16dba41 r-135wba7 r-bcqeeo r-bnwqim r-qvu=
+tc0" data-testid=3D"tweetText"><span class=3D"css-901oao css-16my406 r-poil=
+n3 r-bcqeeo r-qvutc0">Part 2! Let's take a look at some Kotlin IR! </span><=
+img alt=3D"=F0=9F=A4=93" draggable=3D"false" src=3D"https://abs-0.twimg.com=
+/emoji/v2/svg/1f913.svg" class=3D"r-4qtqp9 r-dflpy8 r-sjv1od r-zw8f10 r-10a=
+kycc r-h9hxbl"></div></div><div class=3D"css-1dbjc4n r-1s2bzr4"><div aria-l=
+abelledby=3D"id__gpf0kblaq7 id__dl5s04p48g9" class=3D"css-1dbjc4n r-1ets6dv=
+ r-1867qdf r-1phboty r-rs99b7 r-18u37iz r-1ny4l3l r-1udh08x r-o7ynqc r-6416=
+eg"><div aria-hidden=3D"true" class=3D"css-1dbjc4n r-zmljjp r-1ets6dv r-13l=
+2t4g r-1phboty r-t12b5v r-1adg3ll r-1udh08x" id=3D"id__gpf0kblaq7" style=3D=
+"width: calc(130px);"><a href=3D"https://t.co/E088of4DeJ" rel=3D"noopener n=
+oreferrer nofollow" target=3D"_blank" role=3D"link" tabindex=3D"-1" class=
+=3D"css-4rbku5 css-18t94o4 css-1dbjc4n r-x572qd r-1loqt21 r-1ny4l3l r-1udh0=
+8x r-o7ynqc r-6416eg r-13qz1uu"><div class=3D"css-1dbjc4n r-1adg3ll r-1udh0=
+8x"><div class=3D"r-1adg3ll r-13qz1uu" style=3D"padding-bottom: 100%;"></di=
+v><div class=3D"r-1p0dtai r-1pi2tsx r-1d2f490 r-u8s1d r-ipm5af r-13qz1uu"><=
+div class=3D"css-1dbjc4n r-1awozwy r-6koalj r-1pi2tsx r-1777fci r-13qz1uu">=
+<svg viewBox=3D"0 0 24 24" aria-hidden=3D"true" class=3D"r-14j79pv r-4qtqp9=
+ r-yyyyoo r-yucp9h r-dnmrzs r-bnwqim r-1plcrui r-lrvibr"><g><path d=3D"M1.9=
+98 5.5c0-1.38 1.119-2.5 2.5-2.5h15c1.381 0 2.5 1.12 2.5 2.5v13c0 1.38-1.119=
+ 2.5-2.5 2.5h-15c-1.381 0-2.5-1.12-2.5-2.5v-13zm2.5-.5c-.276 0-.5.22-.5.5v1=
+3c0 .28.224.5.5.5h15c.276 0 .5-.22.5-.5v-13c0-.28-.224-.5-.5-.5h-15zM6 7h6v=
+6H6V7zm2 2v2h2V9H8zm10 0h-4V7h4v2zm0 4h-4v-2h4v2zm-.002 4h-12v-2h12v2z"></p=
+ath></g></svg></div></div></div></a></div><div class=3D"css-1dbjc4n r-16y2u=
+ox r-1wbh5a2 r-1777fci"><a href=3D"https://t.co/E088of4DeJ" rel=3D"noopener=
+ noreferrer nofollow" target=3D"_blank" role=3D"link" class=3D"css-4rbku5 c=
+ss-18t94o4 css-1dbjc4n r-1loqt21 r-18u37iz r-16y2uox r-1wtj0ep r-1ny4l3l r-=
+o7ynqc r-6416eg"><div class=3D"css-1dbjc4n r-16y2uox r-1wbh5a2 r-z5qs1h r-1=
+777fci r-kzbkwu r-1e081e0 r-ttdzmv" id=3D"id__dl5s04p48g9"><div dir=3D"auto=
+" class=3D"css-901oao css-1hf3ou5 r-14j79pv r-1qd0xha r-a023e6 r-16dba41 r-=
+rjixqe r-bcqeeo r-qvutc0"><span class=3D"css-901oao css-16my406 r-poiln3 r-=
+bcqeeo r-qvutc0">blog.bnorm.dev</span></div><div dir=3D"auto" class=3D"css-=
+901oao css-1hf3ou5 r-18jsvk2 r-1qd0xha r-a023e6 r-16dba41 r-rjixqe r-bcqeeo=
+ r-qvutc0"><span class=3D"css-901oao css-16my406 r-poiln3 r-bcqeeo r-qvutc0=
+">Writing Your Second Kotlin Compiler Plugin, Part 2 =E2=80=94 Inspecting K=
+otlin IR</span></div><div dir=3D"auto" class=3D"css-901oao css-cens5h r-14j=
+79pv r-1qd0xha r-a023e6 r-16dba41 r-rjixqe r-bcqeeo r-qvutc0" style=3D"-web=
+kit-line-clamp: 2;"><span class=3D"css-901oao css-16my406 r-poiln3 r-bcqeeo=
+ r-qvutc0">Inspecting Kotlin IR</span></div></div></a></div></div></div><di=
+v class=3D"css-1dbjc4n r-1awozwy r-18u37iz r-1bymd8e"><div dir=3D"auto" cla=
+ss=3D"css-901oao css-1hf3ou5 r-18jsvk2 r-1qd0xha r-a023e6 r-16dba41 r-rjixq=
+e r-bcqeeo r-qvutc0"><div class=3D"css-1dbjc4n r-xoduu5"><div class=3D"css-=
+1dbjc4n r-1d09ksm r-1471scf r-18u37iz r-1wbh5a2"><span class=3D"css-901oao =
+css-16my406 r-14j79pv r-poiln3 r-bcqeeo r-qvutc0"><a href=3D"https://twitte=
+r.com/bnormcodes/status/1332744643633623041?ref_src=3Dtwsrc%5Etfw%7Ctwcamp%=
+5Etweetembed%7Ctwterm%5E1332744643633623041%7Ctwgr%5E5dad6cbb40483f78ad6dcd=
+1694a2fbd2a94c27ed%7Ctwcon%5Es1_&amp;ref_url=3Dhttps%3A%2F%2Fblog.bnorm.dev=
+%2Fwriting-your-second-compiler-plugin-part-2" rel=3D"noopener noreferrer n=
+ofollow" target=3D"_blank" aria-label=3D"1:54 AM =C2=B7 Nov 29, 2020" role=
+=3D"link" class=3D"css-4rbku5 css-18t94o4 css-901oao css-16my406 r-14j79pv =
+r-1loqt21 r-xoduu5 r-1q142lx r-1w6e6rj r-poiln3 r-9aw3ui r-bcqeeo r-3s2u2q =
+r-qvutc0"><time datetime=3D"2020-11-28T17:54:18.000Z">1:54 AM =C2=B7 Nov 29=
+, 2020</time></a></span></div></div></div><a href=3D"https://help.twitter.c=
+om/en/twitter-for-websites-ads-info-and-privacy" rel=3D"noopener noreferrer=
+ nofollow" target=3D"_blank" aria-label=3D"X Ads info and privacy" role=3D"=
+link" class=3D"css-4rbku5 css-18t94o4 css-1dbjc4n r-sdzlij r-1loqt21 r-mabq=
+d8 r-1777fci r-1jj8364 r-2eo2mk r-1ny4l3l r-o7ynqc r-6416eg r-1yvhtrz"><svg=
+ viewBox=3D"0 0 24 24" aria-hidden=3D"true" class=3D"r-14j79pv r-4qtqp9 r-y=
+yyyoo r-1xvli5t r-dnmrzs r-bnwqim r-1plcrui r-lrvibr"><g><path d=3D"M13.5 8=
+.5c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5S11.17 7 12 7s1.5.67 1.5 1.5zM13 1=
+7v-5h-2v5h2zm-1 5.25c5.66 0 10.25-4.59 10.25-10.25S17.66 1.75 12 1.75 1.75 =
+6.34 1.75 12 6.34 22.25 12 22.25zM20.25 12c0 4.56-3.69 8.25-8.25 8.25S3.75 =
+16.56 3.75 12 7.44 3.75 12 3.75s8.25 3.69 8.25 8.25z"></path></g></svg></a>=
+</div><div class=3D"css-1dbjc4n r-1habvwh r-1ets6dv r-5kkj8d r-18u37iz r-14=
+gqq1x r-1h8ys4a"><a href=3D"https://twitter.com/intent/like?ref_src=3Dtwsrc=
+%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1332744643633623041%7Ctwgr%5E5dad6c=
+bb40483f78ad6dcd1694a2fbd2a94c27ed%7Ctwcon%5Es1_&amp;ref_url=3Dhttps%3A%2F%=
+2Fblog.bnorm.dev%2Fwriting-your-second-compiler-plugin-part-2&amp;tweet_id=
+=3D1332744643633623041" rel=3D"noopener noreferrer nofollow" target=3D"_bla=
+nk" aria-label=3D"Like. This post has 40 likes" role=3D"link" class=3D"css-=
+4rbku5 css-18t94o4 css-1dbjc4n r-1awozwy r-1loqt21 r-18u37iz r-1mf7evn r-1n=
+y4l3l r-o7ynqc r-6416eg"><div tabindex=3D"-1" class=3D"css-1dbjc4n r-sdzlij=
+ r-mabqd8 r-1777fci r-cnkkqs r-1yvhtrz"><svg viewBox=3D"0 0 24 24" aria-hid=
+den=3D"true" class=3D"r-vkub15 r-4qtqp9 r-1sreavd r-1xvli5t r-dnmrzs r-bnwq=
+im r-1plcrui r-lrvibr"><g><path d=3D"M20.884 13.19c-1.351 2.48-4.001 5.12-8=
+.379 7.67l-.503.3-.504-.3c-4.379-2.55-7.029-5.19-8.382-7.67-1.36-2.5-1.41-4=
+.86-.514-6.67.887-1.79 2.647-2.91 4.601-3.01 1.651-.09 3.368.56 4.798 2.01 =
+1.429-1.45 3.146-2.1 4.796-2.01 1.954.1 3.714 1.22 4.601 3.01.896 1.81.846 =
+4.17-.514 6.67z"></path></g></svg></div><div dir=3D"auto" class=3D"css-901o=
+ao css-1hf3ou5 r-14j79pv r-1qd0xha r-1b43r93 r-b88u0q r-1cwl3u0 r-13hce6t r=
+-bcqeeo r-qvutc0"><span class=3D"css-901oao css-16my406 r-poiln3 r-bcqeeo r=
+-qvutc0">40</span></div></a><a href=3D"https://twitter.com/intent/tweet?ref=
+_src=3Dtwsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1332744643633623041%7Ct=
+wgr%5E5dad6cbb40483f78ad6dcd1694a2fbd2a94c27ed%7Ctwcon%5Es1_&amp;ref_url=3D=
+https%3A%2F%2Fblog.bnorm.dev%2Fwriting-your-second-compiler-plugin-part-2&a=
+mp;in_reply_to=3D1332744643633623041" rel=3D"noopener noreferrer nofollow" =
+target=3D"_blank" aria-label=3D"Reply to this post on X" role=3D"link" clas=
+s=3D"css-4rbku5 css-18t94o4 css-1dbjc4n r-1awozwy r-1loqt21 r-18u37iz r-1mf=
+7evn r-1ny4l3l r-o7ynqc r-6416eg"><div tabindex=3D"-1" class=3D"css-1dbjc4n=
+ r-sdzlij r-mabqd8 r-1777fci r-1yvhtrz"><svg viewBox=3D"0 0 24 24" aria-hid=
+den=3D"true" class=3D"r-1cvl2hr r-4qtqp9 r-4r3dic r-1xvli5t r-dnmrzs r-bnwq=
+im r-1plcrui r-lrvibr"><g><path d=3D"M1.751 10c0-4.42 3.584-8 8.005-8h4.366=
+c4.49 0 8.129 3.64 8.129 8.13 0 2.96-1.607 5.68-4.196 7.11l-8.054 4.46v-3.6=
+9h-.067c-4.49.1-8.183-3.51-8.183-8.01z"></path></g></svg></div><div dir=3D"=
+auto" class=3D"css-901oao css-1hf3ou5 r-14j79pv r-1qd0xha r-1b43r93 r-b88u0=
+q r-1cwl3u0 r-13hce6t r-bcqeeo r-qvutc0"><span class=3D"css-901oao css-16my=
+406 r-poiln3 r-bcqeeo r-qvutc0">Reply</span></div></a><div role=3D"button" =
+tabindex=3D"0" class=3D"css-18t94o4 css-1dbjc4n r-1awozwy r-18u37iz r-1wbh5=
+a2 r-1ny4l3l r-o7ynqc r-6416eg"><div tabindex=3D"-1" class=3D"css-1dbjc4n r=
+-sdzlij r-mabqd8 r-1777fci r-cnkkqs r-1yvhtrz"><svg viewBox=3D"0 0 24 24" a=
+ria-hidden=3D"true" class=3D"r-14j79pv r-4qtqp9 r-yyyyoo r-1xvli5t r-dnmrzs=
+ r-bnwqim r-1plcrui r-lrvibr" style=3D""><g><path d=3D"M18.36 5.64c-1.95-1.=
+96-5.11-1.96-7.07 0L9.88 7.05 8.46 5.64l1.42-1.42c2.73-2.73 7.16-2.73 9.9 0=
+ 2.73 2.74 2.73 7.17 0 9.9l-1.42 1.42-1.41-1.42 1.41-1.41c1.96-1.96 1.96-5.=
+12 0-7.07zm-2.12 3.53l-7.07 7.07-1.41-1.41 7.07-7.07 1.41 1.41zm-12.02.71l1=
+.42-1.42 1.41 1.42-1.41 1.41c-1.96 1.96-1.96 5.12 0 7.07 1.95 1.96 5.11 1.9=
+6 7.07 0l1.41-1.41 1.42 1.41-1.42 1.42c-2.73 2.73-7.16 2.73-9.9 0-2.73-2.74=
+-2.73-7.17 0-9.9z"></path></g></svg></div><div dir=3D"auto" class=3D"css-90=
+1oao css-1hf3ou5 r-14j79pv r-1qd0xha r-1b43r93 r-b88u0q r-1cwl3u0 r-13hce6t=
+ r-bcqeeo r-qvutc0" style=3D""><span class=3D"css-901oao css-16my406 r-poil=
+n3 r-bcqeeo r-qvutc0">Copy link</span></div></div></div><div class=3D"css-1=
+dbjc4n r-kzbkwu r-1h8ys4a"><a href=3D"https://twitter.com/bnormcodes/status=
+/1332744643633623041?ref_src=3Dtwsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5=
+E1332744643633623041%7Ctwgr%5E5dad6cbb40483f78ad6dcd1694a2fbd2a94c27ed%7Ctw=
+con%5Es1_&amp;ref_url=3Dhttps%3A%2F%2Fblog.bnorm.dev%2Fwriting-your-second-=
+compiler-plugin-part-2" rel=3D"noopener noreferrer nofollow" target=3D"_bla=
+nk" role=3D"link" class=3D"css-4rbku5 css-18t94o4 css-1dbjc4n r-1niwhzg r-1=
+ets6dv r-sdzlij r-1phboty r-rs99b7 r-1loqt21 r-15ysp7h r-4wgw6l r-1ny4l3l r=
+-ymttw5 r-o7ynqc r-6416eg r-lrvibr" style=3D""><div dir=3D"auto" class=3D"c=
+ss-901oao r-1awozwy r-6koalj r-18u37iz r-16y2uox r-1qd0xha r-a023e6 r-b88u0=
+q r-1777fci r-rjixqe r-bcqeeo r-q4m81j r-qvutc0" style=3D"color: rgb(0, 111=
+, 214);"><span class=3D"css-901oao css-16my406 css-1hf3ou5 r-poiln3 r-1b43r=
+93 r-1cwl3u0 r-bcqeeo r-qvutc0"><span class=3D"css-901oao css-16my406 r-poi=
+ln3 r-bcqeeo r-qvutc0">Read 2 replies</span></span></div></a></div></articl=
+e></div></div></div></div><div style=3D"width: 0px; height: 0px;"></div></b=
+ody></html>
+------MultipartBoundary--0Gh0FQyan1OnPi87Kyhw2EqHcoLXkvPwRVoZ1ETzki----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-b4288559-1762-4577-bc24-881f38ffabbf@mhtml.blink
+
+@charset "utf-8";
+
+input::placeholder { user-select: none; }
+
+iframe { color-scheme: auto; }
+------MultipartBoundary--0Gh0FQyan1OnPi87Kyhw2EqHcoLXkvPwRVoZ1ETzki----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-1fee8c05-6b19-453c-bef3-f538c9665b19@mhtml.blink
+
+@charset "utf-8";
+
+@font-face { font-family: TwitterChirp; src: url("https://abs.twimg.com/res=
+ponsive-web/client-web/Chirp-Light.3a18e64a.woff2") format("woff2"), url("h=
+ttps://abs.twimg.com/responsive-web/client-web/Chirp-Light.7a5673aa.woff") =
+format("woff"); font-weight: 300; }
+
+@font-face { font-family: TwitterChirp; src: url("https://abs.twimg.com/res=
+ponsive-web/client-web/Chirp-Regular.80fda27a.woff2") format("woff2"), url(=
+"https://abs.twimg.com/responsive-web/client-web/Chirp-Regular.60b215ba.wof=
+f") format("woff"); font-weight: 400; }
+
+@font-face { font-family: TwitterChirp; src: url("https://abs.twimg.com/res=
+ponsive-web/client-web/Chirp-Medium.f8e2739a.woff2") format("woff2"), url("=
+https://abs.twimg.com/responsive-web/client-web/Chirp-Medium.20fc288a.woff"=
+) format("woff"); font-weight: 500; }
+
+@font-face { font-family: TwitterChirp; src: url("https://abs.twimg.com/res=
+ponsive-web/client-web/Chirp-Bold.ebb56aba.woff2") format("woff2"), url("ht=
+tps://abs.twimg.com/responsive-web/client-web/Chirp-Bold.a573679a.woff") fo=
+rmat("woff"); font-weight: 700; }
+
+@font-face { font-family: TwitterChirp; src: url("https://abs.twimg.com/res=
+ponsive-web/client-web/Chirp-Heavy.f44ae4ea.woff2") format("woff2"), url("h=
+ttps://abs.twimg.com/responsive-web/client-web/Chirp-Heavy.d70ec7ca.woff") =
+format("woff"); font-weight: 800; }
+
+@font-face { font-family: TwitterChirpExtendedHeavy; src: url("https://abs.=
+twimg.com/fonts/v1/chirp-extended-heavy-web.woff2") format("woff2"), url("h=
+ttps://abs.twimg.com/fonts/v1/chirp-extended-heavy-web.woff") format("woff"=
+); font-weight: 800; }
+------MultipartBoundary--0Gh0FQyan1OnPi87Kyhw2EqHcoLXkvPwRVoZ1ETzki----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-23d10b78-d298-4405-add1-99c763ef3bdc@mhtml.blink
+
+@charset "utf-8";
+
+[stylesheet-group=3D"0"] { }
+
+html { text-size-adjust: 100%; -webkit-tap-highlight-color: rgba(0, 0, 0, 0=
+); }
+
+body { margin: 0px; }
+
+input::-webkit-search-cancel-button, input::-webkit-search-decoration, inpu=
+t::-webkit-search-results-button, input::-webkit-search-results-decoration =
+{ display: none; }
+
+[stylesheet-group=3D"0.1"] { }
+
+:focus:not([data-focusvisible-polyfill]) { outline: none; }
+
+[stylesheet-group=3D"0.5"] { }
+
+.css-4rbku5 { background-color: rgba(0, 0, 0, 0); color: inherit; font: inh=
+erit; list-style: none; margin: 0px; text-align: inherit; text-decoration: =
+none; }
+
+.css-18t94o4 { cursor: pointer; }
+
+[stylesheet-group=3D"1"] { }
+
+.css-1dbjc4n { -webkit-box-align: stretch; -webkit-box-direction: normal; -=
+webkit-box-orient: vertical; align-items: stretch; border: 0px solid black;=
+ box-sizing: border-box; display: flex; flex-basis: auto; flex-direction: c=
+olumn; flex-shrink: 0; margin: 0px; min-height: 0px; min-width: 0px; paddin=
+g: 0px; position: relative; z-index: 0; }
+
+.css-901oao { border: 0px solid black; box-sizing: border-box; color: rgb(0=
+, 0, 0); display: inline; font: 14px -apple-system, BlinkMacSystemFont, "Se=
+goe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0px; padding: 0px; w=
+hite-space: pre-wrap; overflow-wrap: break-word; }
+
+.css-16my406 { color: inherit; font: inherit; white-space: inherit; }
+
+.css-1hf3ou5 { max-width: 100%; overflow: hidden; text-overflow: ellipsis; =
+white-space: nowrap; overflow-wrap: normal; }
+
+.css-9pa8cd { inset: 0px; height: 100%; opacity: 0; position: absolute; wid=
+th: 100%; z-index: -1; }
+
+.css-cens5h { -webkit-box-orient: vertical; display: -webkit-box; max-width=
+: 100%; overflow: hidden; text-overflow: ellipsis; }
+
+[stylesheet-group=3D"2"] { }
+
+.r-13awgt0 { flex: 1 1 0%; }
+
+.r-1ets6dv { border-color: rgb(207, 217, 222); }
+
+.r-1q9bdsx { border-radius: 12px; }
+
+.r-rs99b7 { border-width: 1px; }
+
+.r-1udh08x { overflow: hidden; }
+
+.r-1adg3ll { display: block; }
+
+.r-bztko3 { overflow: visible; }
+
+.r-sdzlij { border-radius: 9999px; }
+
+.r-dr4v9t { flex: 1 1 auto; }
+
+.r-6koalj { display: flex; }
+
+.r-4qtqp9 { display: inline-block; }
+
+.r-xoduu5 { display: inline-flex; }
+
+.r-19fsva8 { margin: 0px; }
+
+.r-1471scf { display: inline; }
+
+.r-1phboty { border-style: solid; }
+
+.r-1867qdf { border-radius: 16px; }
+
+[stylesheet-group=3D"2.1"] { }
+
+.r-1jgb5lz { margin-left: auto; margin-right: auto; }
+
+.r-s1qlax { padding-left: 4px; padding-right: 4px; }
+
+.r-4amgru { margin-left: 4px; margin-right: 4px; }
+
+.r-ymttw5 { padding-left: 16px; padding-right: 16px; }
+
+.r-1e081e0 { padding-left: 12px; padding-right: 12px; }
+
+[stylesheet-group=3D"2.2"] { }
+
+.r-12vffkv > * { pointer-events: auto; }
+
+.r-12vffkv { pointer-events: none !important; }
+
+.r-1loqt21 { cursor: pointer; }
+
+.r-vakc41 { max-width: 550px; }
+
+.r-y54riw { min-width: 250px; }
+
+.r-14lw9ot { background-color: rgb(255, 255, 255); }
+
+.r-iphfwy { padding-bottom: 4px; }
+
+.r-1qhn6m8 { padding-left: 16px; }
+
+.r-i023vh { padding-right: 16px; }
+
+.r-ttdzmv { padding-top: 12px; }
+
+.r-o7ynqc { transition-duration: 0.2s; }
+
+.r-6416eg { transition-property: background-color, box-shadow; }
+
+.r-1ny4l3l { outline-style: none; }
+
+.r-18u37iz { -webkit-box-direction: normal; -webkit-box-orient: horizontal;=
+ flex-direction: row; }
+
+.r-13qz1uu { width: 100%; }
+
+.r-1p0dtai { bottom: 0px; }
+
+.r-1pi2tsx { height: 100%; }
+
+.r-1d2f490 { left: 0px; }
+
+.r-u8s1d { position: absolute; }
+
+.r-ipm5af { top: 0px; }
+
+.r-1wyvozj { left: 50%; }
+
+.r-1v2oles { top: 50%; }
+
+.r-desppf { transform: translateX(-50%) translateY(-50%); }
+
+.r-ggadg3 { left: -2px; }
+
+.r-8jfcpp { top: -2px; }
+
+.r-633pao { pointer-events: none !important; }
+
+.r-12181gd { box-shadow: rgba(0, 0, 0, 0.03) 0px 0px 2px inset; }
+
+.r-1bimlpy { background-color: rgb(207, 217, 222); }
+
+.r-16y2uox { -webkit-box-flex: 1; flex-grow: 1; }
+
+.r-15zivkp { margin-bottom: 4px; }
+
+.r-14gqq1x { margin-top: 4px; }
+
+.r-yfq7p9 { min-height: 10px; }
+
+.r-m5arl1 { width: 2px; }
+
+.r-1iusvr4 { flex-basis: 0px; }
+
+.r-46vdb2 { -webkit-box-flex: 7; flex-grow: 7; }
+
+.r-1h0z5md { -webkit-box-pack: start; justify-content: flex-start; }
+
+.r-6gpygo { margin-bottom: 12px; }
+
+.r-13hce6t { margin-left: 4px; }
+
+.r-1d09ksm { -webkit-box-align: baseline; align-items: baseline; }
+
+.r-eqz5dr { -webkit-box-direction: normal; -webkit-box-orient: vertical; fl=
+ex-direction: column; }
+
+.r-1777fci { -webkit-box-pack: center; justify-content: center; }
+
+.r-1aebqfk { max-width: calc(100% - 25px); }
+
+.r-1habvwh { -webkit-box-align: start; align-items: flex-start; }
+
+.r-dnmrzs { max-width: 100%; }
+
+.r-1wbh5a2 { flex-shrink: 1; }
+
+.r-1awozwy { -webkit-box-align: center; align-items: center; }
+
+.r-bcqeeo { min-width: 0px; }
+
+.r-qvutc0 { overflow-wrap: break-word; }
+
+.r-rjixqe { line-height: 20px; }
+
+.r-1qd0xha { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Ro=
+boto, Helvetica, Arial, sans-serif; }
+
+.r-a023e6 { font-size: 15px; }
+
+.r-b88u0q { font-weight: 700; }
+
+.r-3s2u2q { white-space: nowrap; }
+
+.r-poiln3 { font-family: inherit; }
+
+.r-dflpy8 { height: 1.2em; }
+
+.r-sjv1od { margin-left: 0.075em; }
+
+.r-zw8f10 { margin-right: 0.075em; }
+
+.r-10akycc { vertical-align: -20%; }
+
+.r-h9hxbl { width: 1.2em; }
+
+.r-1pos5eu { vertical-align: middle; }
+
+.r-16dba41 { font-weight: 400; }
+
+.r-1q142lx { flex-shrink: 0; }
+
+.r-1bqc3p3 { flex-basis: content; }
+
+.r-1w6e6rj { flex-wrap: wrap; }
+
+.r-9aw3ui { gap: 4px; }
+
+.r-14j79pv { color: rgb(83, 100, 113); }
+
+.r-1jj8364 { margin-left: auto; }
+
+.r-yyyyoo { fill: currentcolor; }
+
+.r-1xvli5t { height: 1.25em; }
+
+.r-bnwqim { position: relative; }
+
+.r-1plcrui { vertical-align: text-bottom; }
+
+.r-lrvibr { user-select: none; }
+
+.r-18jsvk2 { color: rgb(15, 20, 25); }
+
+.r-6zzn7w { height: 25px; }
+
+.r-q1j0wu { width: 25px; }
+
+.r-1dqbpge { cursor: text; }
+
+.r-kzbkwu { padding-bottom: 12px; }
+
+.r-1kh6xel { max-width: calc(100% - 84px); }
+
+.r-1wvb978 { font-feature-settings: "ss01"; }
+
+.r-1bymd8e { margin-top: 2px; }
+
+.r-mabqd8 { height: 32px; }
+
+.r-2eo2mk { margin-right: -4px; }
+
+.r-1yvhtrz { width: 32px; }
+
+.r-n6v787 { font-size: 13px; }
+
+.r-5kkj8d { border-top-width: 1px; }
+
+.r-1h8ys4a { padding-top: 4px; }
+
+.r-1mf7evn { margin-right: 20px; }
+
+.r-cnkkqs { margin-left: -4px; }
+
+.r-vkub15 { color: rgb(249, 24, 128); }
+
+.r-1sreavd { fill: rgb(249, 24, 128); }
+
+.r-1b43r93 { font-size: 14px; }
+
+.r-1cwl3u0 { line-height: 16px; }
+
+.r-1cvl2hr { color: rgb(29, 155, 240); }
+
+.r-4r3dic { fill: rgb(29, 155, 240); }
+
+.r-15ysp7h { min-height: 32px; }
+
+.r-4wgw6l { min-width: 32px; }
+
+.r-q4m81j { text-align: center; }
+
+.r-adyw6z { font-size: 20px; }
+
+.r-135wba7 { line-height: 24px; }
+
+.r-1mlwlqe { flex-basis: auto; }
+
+.r-417010 { z-index: 0; }
+
+.r-1niwhzg { background-color: rgba(0, 0, 0, 0); }
+
+.r-vvn4in { background-position: center center; }
+
+.r-u6sd8q { background-repeat: no-repeat; }
+
+.r-4gszlv { background-size: cover; }
+
+.r-zchlnj { right: 0px; }
+
+.r-1wyyakw { z-index: -1; }
+
+.r-1s2bzr4 { margin-top: 12px; }
+
+.r-140t1nj { border-bottom-color: rgb(207, 217, 222); }
+
+.r-rull8r { border-bottom-style: solid; }
+
+.r-qklmqi { border-bottom-width: 1px; }
+
+.r-pm2fo { border-bottom-left-radius: 0px; }
+
+.r-zmljjp { border-bottom-right-radius: 0px; }
+
+.r-1wtj0ep { -webkit-box-pack: justify; justify-content: space-between; }
+
+.r-z5qs1h { gap: 2px; }
+
+.r-13l2t4g { border-right-width: 1px; }
+
+.r-t12b5v { border-top-right-radius: 0px; }
+
+.r-x572qd { background-color: rgb(247, 249, 249); }
+
+.r-yucp9h { height: 2em; }
+
+.r-jwli3a { color: rgb(255, 255, 255); }
+
+.r-jpd7ae { height: 40%; }
+
+.r-todpsx { opacity: 0.3; }
+
+.r-1panhkp { background-color: rgba(0, 0, 0, 0.03); }
+
+.r-15azkrj { background-color: rgba(0, 186, 124, 0.1); }
+
+.r-1ddef8g { text-decoration-line: underline; }
+
+.r-4ngtct { background-color: rgba(0, 111, 214, 0.1); }
+------MultipartBoundary--0Gh0FQyan1OnPi87Kyhw2EqHcoLXkvPwRVoZ1ETzki----
+Content-Type: image/svg+xml
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://abs-0.twimg.com/emoji/v2/svg/1f422.svg
+
+<svg xmlns=3D"http://www.w3.org/2000/svg" viewBox=3D"0 0 36 36"><path fill=
+=3D"#77B255" d=3D"M9.842 19.922c0 9.842 6.575 9.673 5.158 10.078-7 2-8.803-=
+7.618-9.464-7.618-2.378 0-5.536-.423-5.536-2.46C0 17.883 2.46 15 6.151 15c2=
+.379 0 3.691 2.883 3.691 4.922zM36 28.638c0 1.104-3.518-.741-5 0-2 1-2-.896=
+-2-2s1.343-1 3-1 4 1.895 4 3z"/><path fill=3D"#77B255" d=3D"M16.715 33.143c=
+0 2.761-1.279 2.857-2.857 2.857S11 35.903 11 33.143c0-.489.085-1.029.234-1.=
+587.69-2.59 2.754-5.556 4.052-5.556 1.578 0 1.429 4.382 1.429 7.143zm8.571 =
+0c0 2.761 1.278 2.857 2.856 2.857C29.721 36 31 35.903 31 33.143c0-.489-.085=
+-1.029-.234-1.587-.691-2.59-2.754-5.556-4.052-5.556-1.578 0-1.428 4.382-1.4=
+28 7.143z"/><path fill=3D"#3E721D" d=3D"M32 27c0 4-5.149 4-11.5 4S9 31 9 27=
+c0-6.627 5.149-12 11.5-12S32 20.373 32 27z"/><circle fill=3D"#292F33" cx=3D=
+"5" cy=3D"18" r=3D"1"/><path fill=3D"#5C913B" d=3D"M23.667 25.1c0 3.591-1.4=
+18 3.9-3.167 3.9s-3.167-.31-3.167-3.9S18.75 17 20.5 17s3.167 4.51 3.167 8.1=
+zM30 24c.871 3.482-.784 4-2.533 4-1.749 0-2.533.69-2.533-2.9s-1.116-6.5.633=
+-6.5C27.315 18.6 29 20 30 24zm-13.933 1.1c0 3.591-.785 2.9-2.534 2.9s-3.404=
+-.518-2.533-4c1-4 3.251-5.4 5-5.4 1.75 0 .067 2.91.067 6.5z"/></svg>
+------MultipartBoundary--0Gh0FQyan1OnPi87Kyhw2EqHcoLXkvPwRVoZ1ETzki----
+Content-Type: image/svg+xml
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://abs-0.twimg.com/emoji/v2/svg/1f9e9.svg
+
+<svg xmlns=3D"http://www.w3.org/2000/svg" viewBox=3D"0 0 36 36"><path fill=
+=3D"#78B159" d=3D"M26.093 4.612c-.498.498-.629.839-.728 1.029-.66 1.266-1.4=
+55 1.676-2.78.351-.13-.13-4.087-4.267-4.741-5.017-.427-.49-1.081-.64-1.584-=
+.262-.38.286-4.035 3.273-5.035 4.507-.774.955-.8 2.134-.079 2.856.326.326.7=
+27.449 1.151.578.552.169 1.763.068 2.47.775 1.133 1.133.54 2.924-.917 4.421=
+-1.497 1.457-3.288 2.05-4.421.917-.708-.708-.606-1.918-.775-2.47-.129-.424-=
+.252-.824-.578-1.151-.721-.721-1.9-.694-2.856.079-1.235 1-4.221 4.655-4.507=
+ 5.035-.379.503-.228 1.156.262 1.584.75.654 4.887 4.611 5.017 4.741 1.324 1=
+.324.915 2.12-.351 2.78-.19.099-.53.229-1.029.728-1.462 1.462-1.462 3.833 0=
+ 5.295 1.462 1.462 3.833 1.462 5.295 0 .498-.498.629-.839.728-1.029.66-1.26=
+6 1.455-1.676 2.78-.351.13.13 4.087 4.267 4.741 5.017.427.49 1.081.64 1.584=
+.262.38-.286 4.035-3.273 5.035-4.507.774-.955.8-2.134.079-2.856-.326-.326-.=
+727-.449-1.151-.578-.552-.169-1.763-.068-2.47-.775-1.133-1.133-.54-2.924.91=
+7-4.421 1.497-1.457 3.288-2.05 4.421-.917.708.708.606 1.918.775 2.47.129.42=
+4.252.824.578 1.151.721.721 1.9.694 2.856-.079 1.235-1 4.221-4.655 4.507-5.=
+035.379-.503.228-1.156-.262-1.584-.75-.654-4.887-4.611-5.017-4.741-1.324-1.=
+324-.915-2.12.351-2.78.19-.099.53-.229 1.029-.728 1.462-1.462 1.462-3.833 0=
+-5.295-1.462-1.463-3.833-1.463-5.295 0z"/></svg>
+------MultipartBoundary--0Gh0FQyan1OnPi87Kyhw2EqHcoLXkvPwRVoZ1ETzki----
+Content-Type: image/svg+xml
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://abs-0.twimg.com/emoji/v2/svg/1f913.svg
+
+<svg xmlns=3D"http://www.w3.org/2000/svg" viewBox=3D"0 0 36 36"><circle fil=
+l=3D"#FFCC4D" cx=3D"18" cy=3D"18" r=3D"18"/><path fill=3D"#664500" d=3D"M27=
+.335 23.629c-.178-.161-.444-.171-.635-.029-.039.029-3.922 2.9-8.7 2.9-4.766=
+ 0-8.662-2.871-8.7-2.9-.191-.142-.457-.13-.635.029-.177.16-.217.424-.094.62=
+8C8.7 24.472 11.788 29.5 18 29.5s9.301-5.028 9.429-5.243c.123-.205.084-.468=
+-.094-.628z"/><path fill=3D"#65471B" d=3D"M18 26.591c-.148 0-.291-.011-.438=
+-.016v4.516h.875v-4.517c-.145.005-.289.017-.437.017z"/><path fill=3D"#FFF" =
+d=3D"M22 26c.016-.004-1.45.378-2.446.486-.366.042-.737.076-1.117.089v4.517H=
+20c1.1 0 2-.9 2-2V26zm-8 0c-.016-.004 1.45.378 2.446.486.366.042.737.076 1.=
+117.089v4.517H16c-1.1 0-2-.9-2-2V26z"/><path fill=3D"#65471B" d=3D"M27.335 =
+23.629c-.178-.161-.444-.171-.635-.029-.03.022-2.259 1.668-5.411 2.47-.443.1=
+13-1.864.43-3.286.431-1.424 0-2.849-.318-3.292-.431-3.152-.802-5.381-2.448-=
+5.411-2.47-.19-.142-.457-.132-.635.029-.178.16-.217.423-.094.628.097.162 1.=
+885 3.067 5.429 4.481v-1.829c-.016-.004 1.45.378 2.446.486.366.042.737.076 =
+1.117.089.146.005.289.016.437.016.148 0 .291-.011.438-.016.38-.013.751-.046=
+ 1.117-.089.996-.108 2.462-.49 2.446-.486v1.829c3.544-1.414 5.332-4.319 5.4=
+29-4.481.122-.205.083-.468-.095-.628zm-.711-9.605c0 1.714-.938 3.104-2.096 =
+3.104-1.157 0-2.096-1.39-2.096-3.104s.938-3.104 2.096-3.104c1.158 0 2.096 1=
+.39 2.096 3.104zm-17.167 0c0 1.714.938 3.104 2.096 3.104 1.157 0 2.096-1.39=
+ 2.096-3.104s-.938-3.104-2.096-3.104c-1.158 0-2.096 1.39-2.096 3.104z"/><pa=
+th fill=3D"#292F33" d=3D"M34.808 9.627c-.171-.166-1.267.274-2.376-.291-2.28=
+8-1.166-8.07-2.291-11.834.376-.403.285-2.087.333-2.558.313-.471.021-2.155-.=
+027-2.558-.313-3.763-2.667-9.545-1.542-11.833-.376-1.109.565-2.205.125-2.37=
+6.291-.247.239-.247 1.196.001 1.436.246.239 1.477.515 1.722 1.232.247.718.2=
+49 4.958 2.213 6.424 1.839 1.372 6.129 1.785 8.848.238 2.372-1.349 2.289-4.=
+189 2.724-5.881.155-.603.592-.907 1.26-.907s1.105.304 1.26.907c.435 1.691.3=
+51 4.532 2.724 5.881 2.719 1.546 7.009 1.133 8.847-.238 1.965-1.465 1.967-5=
+.706 2.213-6.424.245-.717 1.476-.994 1.722-1.232.248-.24.249-1.197.001-1.43=
+6zm-20.194 3.65c-.077 1.105-.274 3.227-1.597 3.98-.811.462-1.868.743-2.974.=
+743h-.001c-1.225 0-2.923-.347-3.587-.842-.83-.619-1.146-3.167-1.265-4.12-.0=
+76-.607-.28-2.09.388-2.318 1.06-.361 2.539-.643 4.052-.643.693 0 3.021.043 =
+4.155.741 1.005.617.872 1.851.829 2.459zm16.278-.253c-.119.954-.435 3.515-1=
+.265 4.134-.664.495-2.362.842-3.587.842h-.001c-1.107 0-2.163-.281-2.975-.74=
+3-1.323-.752-1.52-2.861-1.597-3.966-.042-.608-.176-1.851.829-2.468 1.135-.6=
+98 3.462-.746 4.155-.746 1.513 0 2.991.277 4.052.638.668.228.465 1.702.389 =
+2.309z"/></svg>
+------MultipartBoundary--0Gh0FQyan1OnPi87Kyhw2EqHcoLXkvPwRVoZ1ETzki----
+Content-Type: text/html
+Content-ID: <frame-EC727730F9C885EBF8517A61C3A6ACD3@mhtml.blink>
+Content-Transfer-Encoding: quoted-printable
+
+<html class=3D"SandboxRoot"><head><meta http-equiv=3D"Content-Type" content=
+=3D"text/html; charset=3DUTF-8"><link rel=3D"stylesheet" type=3D"text/css" =
+href=3D"cid:css-11c0100c-9060-406b-91a5-d3065c3635cc@mhtml.blink" /><base t=
+arget=3D"_blank"></head><body></body></html>
+------MultipartBoundary--0Gh0FQyan1OnPi87Kyhw2EqHcoLXkvPwRVoZ1ETzki----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-11c0100c-9060-406b-91a5-d3065c3635cc@mhtml.blink
+
+@charset "utf-8";
+
+.SandboxRoot { display: none; }
+------MultipartBoundary--0Gh0FQyan1OnPi87Kyhw2EqHcoLXkvPwRVoZ1ETzki------
